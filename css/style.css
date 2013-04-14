@@ -1,0 +1,41 @@
+* {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    font: serif;
+    font-size: 24px;
+    color: #AAA;
+}
+
+div.panel {
+    border: 5px solid #AAA;
+    padding: 10px;
+    background-color: #EEE;
+}
+
+body > .container {
+    width: 1024px;
+    margin: 50px auto 20px auto;
+}
+
+body > .container > .header {
+    margin-bottom: 20px;
+    height: 100px;
+}
+
+body > .container > .body {
+    overflow: auto;
+}
+
+body > .container > .body > .sidebar {
+    float: left;
+    width: 250px;
+    height: 600px;
+    margin-right: 20px;
+}
+
+#main {
+    float: left;
+    width: 724px;
+}
+
