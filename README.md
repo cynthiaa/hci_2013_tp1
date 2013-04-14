@@ -1,4 +1,6 @@
-hci_tp1
+Click n'Travel
 =======
 
-hci_tp1
+Para poder testear en Linux o en Mac, se posicionan en el repositorio y
+corren el script start.sh y luego en chrome ponen localhost:8000.
+
