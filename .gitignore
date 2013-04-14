@@ -1,0 +1,10 @@
+# Avoid Mac temps
+.DS_Store
+
+# Avoid editor temps
+*~
+*.tmp
+*.swp
+*.swo
+*.swn
+
