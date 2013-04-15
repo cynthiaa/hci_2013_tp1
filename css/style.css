@@ -23,6 +23,14 @@ div.panel {
     background-color: #EEE;
 }
 
+body {
+    background: -webkit-gradient(linear, left top, left bottom, from(#A3D1FF), to(#FFFFFF), color-stop(0.7, #FFF));
+    background: -moz-linear-gradient(top, #A3D1FF, #FFFFFF);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#A3D1FF', endColorstr='#FFFFFF');
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#A3D1FF', endColorstr='#FFFFFF')";
+    background: -o-linear-gradient(top, #A3D1FF, #FFFFFF);
+}
+
 body > .container {
     width: 1024px;
     margin: 50px auto 20px auto;
