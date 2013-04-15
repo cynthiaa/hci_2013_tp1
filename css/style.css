@@ -2,9 +2,19 @@
     position: relative;
     margin: 0;
     padding: 0;
-    font: serif;
+    font-family: Verdana, Geneva, sans-serif;
     font-size: 24px;
     color: #AAA;
+}
+
+a {
+    color: #AAA;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    color: #2BF;
 }
 
 div.panel {
@@ -48,4 +58,10 @@ body > .container > .body > .sidebar {
     float: right;
     height: 35px;
 }
+#contact_link {
+    float: right;
+    margin-top: 70px;
+    margin-right: -70px;
+}
+
 
