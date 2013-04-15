@@ -29,6 +29,7 @@ body {
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#A3D1FF', endColorstr='#FFFFFF');
     -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#A3D1FF', endColorstr='#FFFFFF')";
     background: -o-linear-gradient(top, #A3D1FF, #FFFFFF);
+    background-repeat: no-repeat;
 }
 
 body > .container {
