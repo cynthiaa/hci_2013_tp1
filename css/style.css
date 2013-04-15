@@ -57,11 +57,19 @@ body > .container > .body > .sidebar {
 #twitter_logo, #facebook_logo {
     float: right;
     height: 35px;
+    margin-left: 10px;
 }
+
 #contact_link {
     float: right;
     margin-top: 70px;
-    margin-right: -70px;
+    margin-right: -90px;
+}
+
+#about_link {
+    float: right;
+    margin-top: 70px;
+    margin-right: 20px;
 }
 
 
