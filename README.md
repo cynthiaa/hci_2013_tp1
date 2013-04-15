@@ -35,7 +35,7 @@
 * css: En esta carpeta se encontrarán todas las hojas de estilo
 * design: En esta carpeta se encontrarán los diseños de la página
 * html: En esta carpeta se encontrarán todos los archivos .html, excepto el index.html
-* js: En esta carpeta encontraremos todos los archivos .js
+* js: En esta carpeta se encontrarán todos los archivos .js
 
 
 ### Cómo testear la página
