@@ -1,0 +1,17 @@
+#main {
+    background-color: #EEE;
+}
+
+#main > .deals {
+    height: 400px;
+    padding: 10px;
+    border: 5px solid #AAA;
+}
+
+#main > .populars {
+    height: 151px;
+    margin-top: 20px;
+    padding: 10px;
+    border: 5px solid #AAA;
+}
+
