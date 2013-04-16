@@ -7,16 +7,25 @@
 
         <link rel="stylesheet" href="/css/style.css"/>
         <link rel="stylesheet" href="/css/home.css"/>
+        <link rel="stylesheet" href="/css/carousel.css"/>
 
         <script data-main="/js/main" src="/js/libs/require-jquery.js"></script>
+
+        <script type="text/javascript" src="/js/carousel.js"></script>
+        <script type="text/javascript">window.onload = DP.inicio;</script>
     </head>
     <body>
-        <div class="deals panel">
-            <p>Ofertas</p>
+        <div class="deals">
+            <ul id="carousel-frame">
+                <li><img src="/assets/img/carousel/01.jpg" alt="" width="715" height="350"/></li>
+                <li><img src="/assets/img/carousel/02.jpg" alt="" width="715" height="350"/></li>
+                <li><img src="/assets/img/carousel/03.jpg" alt="" width="715" height="350"/></li>
+                <li><img src="/assets/img/carousel/04.jpg" alt="" width="715" height="350"/></li>
+                <li><img src="/assets/img/carousel/05.jpg" alt="" width="715" height="350"/></li>
+            </ul>
         </div>
         <div class="populars panel">
             <p>Destacados</p>
-        </div>
         </div>
     </body>
 </html>
