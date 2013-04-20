@@ -7,3 +7,45 @@
     margin-top: 20px;
 }
 
+#carousel-frame > .carousel-item {
+    width: 715px;
+    height: 350px;
+}
+
+#carousel-frame > .carousel-item > img {
+    width: 715px;
+    height: 350px;
+}
+
+#main > .populars > p {
+    color: #2BF;
+}
+
+#main > .populars > .hr {
+    height: 0px;
+    width: 100%;
+    margin-top: 5px;
+    border-bottom: 1.5px solid #AAA;
+}
+
+#carousel2 {
+    height: 150px;
+    margin-top: 10px;
+    width: 700px;
+}
+
+#carousel2 > .item {
+    float: left;
+    height: 125px;
+    width: 125px;
+    margin: 8px 7px 0px 0px;
+    border: 4px solid #AAA;
+    padding: 0px;
+}
+
+#carousel2 > .item > img {
+    float: left;
+    height: 125px;
+    width: 125px;
+}
+
