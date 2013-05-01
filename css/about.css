@@ -4,7 +4,7 @@
 
 #main > .main > div .aboutHeader {
     font-size: 30px;
-    color: #378CD2;
+    color: #52B0D6;
     font-family: "Lucida Sans Unicode";
     font-weight: normal;
 }
@@ -14,6 +14,8 @@
 
 #main > .main > div > .aboutParagraph {
     margin-top: 25px;
+    color: #AAA;
+    font-weight: normal;
     margin-left: 25px;
     font-size: 15px;
 }
