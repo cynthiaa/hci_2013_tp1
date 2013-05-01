@@ -14,7 +14,12 @@ a {
 }
 
 a:hover {
-    color: #2BF;
+    color: #52B0D6;
+}
+
+p {
+    font-weight: bold;
+    color: #52B0D6;
 }
 
 div.panel {
