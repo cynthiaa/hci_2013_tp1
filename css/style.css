@@ -78,7 +78,35 @@ body > .container > .body > .sidebar {
 #twitter_logo, #facebook_logo {
     float: right;
     height: 35px;
+    width: 35px;
     margin-left: 10px;
+}
+
+#facebook_logo > img, #twitter_logo > img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 35px;
+}
+
+.hide_onhover {
+    opacity: 1.0;
+    filter: alpha(opacity=100);
+}
+
+.hide_onhover:hover {
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+
+.show_onhover {
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+
+.show_onhover:hover {
+    opacity: 1.00;
+    filter: alpha(opacity=100);
 }
 
 #contact_link {
