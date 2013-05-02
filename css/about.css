@@ -2,11 +2,6 @@
     height: 600px;
 }
 
-#main > .main > div .aboutHeader {
-    font-size: 30px;
-    color: #52B0D6;
-    font-weight: normal;
-}
 #main > .main > div{
     border-bottom: #AAA solid 2px;
 }

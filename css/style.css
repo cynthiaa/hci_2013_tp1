@@ -18,8 +18,19 @@ a:hover {
 }
 
 p {
-    font-weight: bold;
+    font-weight: normal;
+    color: #AAA;
+}
+
+h2 {
+    font-weight: normal;
     color: #52B0D6;
+    font-size: 32px;
+}
+
+input {
+    background-color: #CFCFCF;
+    color: #000;
 }
 
 div.panel {
