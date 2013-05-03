@@ -178,3 +178,10 @@ body > .container > .body > .sidebar {
     margin-right: 20px;
 }
 
+#home_link {
+    float: right;
+    margin-top: 70px;
+    margin-right: 30px;
+}
+
+
