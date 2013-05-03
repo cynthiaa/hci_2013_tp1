@@ -4,11 +4,11 @@
     padding: 0;
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     font-size: 20px;
-    color: #AAA;
+    color: #888;
 }
 
 a {
-    color: #AAA;
+    color: #888;
     text-decoration: none;
     font-weight: bold;
 }
@@ -19,7 +19,7 @@ a:hover {
 
 p {
     font-weight: normal;
-    color: #AAA;
+    color: #888;
 }
 
 h2 {
@@ -39,11 +39,12 @@ label {
 }
 
 input[type="text"], textarea {
-    background-color: #CFCFCF;
+    background-color: #DDD;
     color: #565656;
+    font-size: 18px;
     padding: 7px 6px;
     width: 320px;
-    border: 1px solid #AAA;
+    border: 1px solid #888;
     resize: none;
     /* box-shadow: 0 0 0 3px #EEF5F7; */
     margin: 5px 0;
@@ -124,7 +125,7 @@ body > .container > .body > .sidebar {
     height: 0px;
     width: 100%;
     margin-top: 5px;
-    border-bottom: 1.5px solid #AAA;
+    border-bottom: 1.5px solid #888;
 }
 
 #logo {
