@@ -135,6 +135,14 @@ body > .container > .body > .sidebar {
     border-bottom: 1.5px solid #888;
 }
 
+body > .container > .header .vdivider {
+    height: 25px;
+    margin-top: 70px;
+    margin-right: 10px;
+    border-left: 1.5px solid #888;
+    float: right;
+}
+
 #logo {
     float: left;
     margin: 20px 5px 5px 0px;
@@ -182,14 +190,13 @@ body > .container > .body > .sidebar {
 
 #about_link {
     float: right;
-    margin-top: 70px;
-    margin-right: 20px;
+    margin: 70px 20px 0 10px;
 }
 
 #home_link {
     float: right;
     margin-top: 70px;
-    margin-right: 30px;
+    margin-right: 20px;
 }
 
 
