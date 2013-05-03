@@ -28,6 +28,12 @@ h2 {
     font-size: 32px;
 }
 
+h3 {
+    font-weight: normal;
+    color: #52B0D6;
+    font-size: 20px;
+}
+
 label {
     margin: 20px 0px 10px 0px;
 }
@@ -53,8 +59,6 @@ input[type="submit"] {
     color: #52B0D6;
     border: 1px solid #52B0D6;
     box-shadow: 0 0 0 3px #EEF5F7;
-    margin-top: 10px;
-    margin-bottom: 25px;
     padding: 8px 16px;
     font-weight: normal;
     text-shadow: 1px 1px 0px #52B0D6;

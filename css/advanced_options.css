@@ -10,3 +10,7 @@
     display: block;
 }
 
+#main > .main > form > input[type="submit"] {
+    margin: 25px 0;
+}
+
