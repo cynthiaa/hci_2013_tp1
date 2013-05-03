@@ -2,3 +2,11 @@
     height: 600px;
 }
 
+#main > .main > form > label {
+    display: block;
+}
+
+#main > .main > form > input[type="text"] {
+    display: block;
+}
+
