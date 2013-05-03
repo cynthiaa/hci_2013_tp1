@@ -2,22 +2,22 @@
     height: 600px;
 }
 
-#main > .main > div{
-    border-bottom: #AAA solid 2px;
-}
-
-#main > .main > div > .aboutParagraph {
+#main > .main > .aboutParagraph {
     margin-top: 25px;
+    margin-left: 25px;
     color: #AAA;
     font-weight: normal;
-    margin-left: 25px;
-    font-size: 15px;
+    font-size: 16px;
 }
 
-#main > .main > div > .aboutList {
+#main > .main > .aboutList {
     margin-top: 50px;
     margin-left: 75px;
-    font-size: 16px;
     padding-bottom: 300px;
+    list-style-type: square;
+}
+
+#main > .main > .aboutList > li {
+    font-size: 16px;
 }
 
