@@ -128,7 +128,7 @@ body > .container > .body > .sidebar {
     width: 724px;
 }
 
-#main .hdivider {
+.hdivider {
     height: 0px;
     width: 100%;
     margin-top: 5px;
@@ -197,5 +197,37 @@ body > .container > .header .vdivider {
     float: right;
     margin-top: 70px;
     margin-right: 20px;
+}
+
+body > .container > .body > .sidebar > .sidebar-body {
+    width: 250px;
+}
+
+body > .container > .body > .sidebar > .sidebar-body label {
+    color: #555;
+}
+
+body > .container > .body > .sidebar > .sidebar-body > input[type="text"] {
+    width: 230px;
+}
+
+body > .container > .body > .sidebar > .sidebar-body > div {
+    margin: 10px 0 20px 0;
+}
+
+body > .container > .body > .sidebar > .sidebar-body > div > label {
+    width: 55%;
+    float: left;
+    display: block;
+    margin: 7px 20px 0 0;
+}
+
+body > .container > .body > .sidebar > .sidebar-body > div > select {
+    display: block;
+    width: 50px;
+}
+
+body > .container > .body > .sidebar > .sidebar-body > .search > a {
+    font-size: 15px;
 }
 

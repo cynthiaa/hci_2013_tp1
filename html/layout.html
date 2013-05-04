@@ -23,9 +23,60 @@
     </div>
     <div class="body">
         <div class="sidebar panel">
-            Sidebar
-            <a id="aux" href="/html/flights.html">Búsqueda</a>
-            <a id="aux2" href="/html/advanced_options.html">Búsqueda Avanzada</a>
+            <div class="sidebar-header"></div>
+            <div class="sidebar-body">
+                <label>Origen:</label>
+                <input name="from" type="text" />
+                <label>Destino:</label>
+                <input name="to" type="text" />
+                <div class="hdivider"></div>
+                <label>Partida:</label>
+                <input name="depart" type="text" />
+                <label>Regreso:</label>
+                <input name="return" type="text" />
+                <div class="hdivider"></div>
+                <div>
+                    <label>Adultos:</label>
+                    <select name="adults">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                   </select>
+                </div>
+               <div>
+                    <label>Menores:</label>
+                    <select name="children">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                    </select>
+                </div>
+               <div>
+                    <label>Infantes:</label>
+                    <select name="infants">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                   </select>
+                </div>
+                <div class="hdivider"></div>
+                <div class="search">
+                <a id="adv_opt" href="/html/advanced_options.html">Opciones Avanzadas</a>
+            </div>
+            <input type="submit" value="Buscar" />
+            <!-- <a id="aux" href="/html/flights.html">Búsqueda</a> -->
+            </div>
         </div>
         <div id="main">
         </div>
