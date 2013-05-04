@@ -7,14 +7,38 @@
     margin-top: 20px;
 }
 
-#carousel-frame > .carousel-item {
-    width: 715px;
+
+#carousel-frame-on > li.carousel-item > img {
+    width: 716px;
     height: 350px;
 }
 
-#carousel-frame > .carousel-item > img {
-    width: 715px;
+#carousel-frame-on > .carousel-item > * {
+    width: 716px;
     height: 350px;
+    position: absolute;
+}
+
+#carousel-frame-on > .carousel-item > div {
+    width: 706px;
+    height: 50px;
+    background-color: #333;
+    z-index: 1000;
+    padding: 10px 0px 0 10px;
+    position: absolute;
+    bottom: 0;
+    opacity: 0.6;
+    filter: alpha(opacity=60);
+}
+
+#carousel-frame-on > .carousel-item > div > h4 {
+    text-align: left;
+    font-size: 20px;
+}
+
+#carousel-frame-on > .carousel-item > div > p {
+    color: #EEE;
+    font-size: 15px;
 }
 
 #featured-flights {

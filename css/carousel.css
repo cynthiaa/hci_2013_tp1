@@ -4,7 +4,7 @@
     border: 5px solid #888;
 }
 
-#carousel-frame > li {
+#carousel-frame > .carousel-item {
     position: absolute;
     top: 0;
     left: 0;
@@ -21,7 +21,7 @@
     position: relative;
 }
 
-#carousel-frame-on li {
+#carousel-frame-on > .carousel-item {
     position: absolute;
     top: 0;
     left: 0;
