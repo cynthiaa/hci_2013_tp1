@@ -88,7 +88,7 @@ input[type='submit']:active {
 }
 
 div.panel {
-    border: 4px solid #AAA;
+    border: 5px solid #AAA;
     padding: 10px;
     background-color: #EEE;
 }
@@ -104,11 +104,11 @@ body {
 
 body > .container {
     width: 1024px;
-    margin: 25px auto 20px auto;
+    margin: 50px auto 20px auto;
 }
 
 body > .container > .header {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     height: 100px;
 }
 
@@ -119,8 +119,8 @@ body > .container > .body {
 body > .container > .body > .sidebar {
     float: left;
     width: 250px;
-    height: 598px;
-    margin-right: 10px;
+    height: 600px;
+    margin-right: 20px;
 }
 
 #main {
@@ -198,5 +198,4 @@ body > .container > .header .vdivider {
     margin-top: 70px;
     margin-right: 20px;
 }
-
 
