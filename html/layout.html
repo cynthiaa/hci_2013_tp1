@@ -21,81 +21,89 @@
         <a id="home_link" href="/">Inicio</a>
 
     </div>
-    <div class="body">
-        <div class="sidebar panel">
+    <div id="body">
+        <div class="panel" id="sidebar">
+
             <div class="sidebar-header">
                 <!-- <div> -->
                 <!-- </div> -->
                 <!-- <div> -->
                 <!-- </div> -->
             </div>
+
             <div class="sidebar-body">
-                <label>Origen:</label>
-                <input name="from" type="text" />
-                <label>Destino:</label>
-                <input name="to" type="text" />
-                <div class="hdivider"></div>
-                <label>Partida:</label>
-                <input name="depart" type="text" id="depart" placeholder="dd-mm-yyyy" />
-                <img src="/assets/img/calendar.png" title="Fecha Inicial" id="lanzador" />
-                <!-- script que define y configura el calendario-->
- <!--                <script type="text/javascript"> -->
- <!--   Calendar.setup({ -->
- <!--    inputField     :    "depart",     // id del campo de texto -->
- <!--     ifFormat     :     "%d&#45;%m&#45;%Y",     // formato de la fecha que se escriba en el campo de texto -->
- <!--     button     :    "lanzador"     // el id del botón que lanzará el calendario -->
- <!-- }); -->
- <!-- </script> -->
-                <label>Regreso:</label>
-                <input name="return" type="text" id="return" placeholder="dd-mm-yyyy" />
-                <img src="/assets/img/calendar.png" />
-                <div class="hdivider"></div>
-                <div>
-                    <label>Adultos:</label>
-                    <select name="adults">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                   </select>
-                </div>
-               <div>
-                    <label>Menores:</label>
-                    <select name="children">
-                        <option value="0">0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                    </select>
-                </div>
-               <div>
-                    <label>Infantes:</label>
-                    <select name="infants">
-                        <option value="0">0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                   </select>
-                </div>
-                <div class="hdivider"></div>
-                <div class="search">
-                    <div>
-                        <a id="adv_opt" href="/html/advanced_options.html">Opciones Avanzadas</a>
+
+                <form>
+                    <label>Origen:</label>
+                    <input name="from" type="text" />
+
+                    <label>Destino:</label>
+                    <input name="to" type="text" />
+
+                    <div class="hdivider"></div>
+
+                    <label>Partida:</label>
+                    <div class="input-date">
+                        <input name="depart" type="text" placeholder="dd-mm-yyyy" maxlength="15" />
+                        <img src="/assets/img/calendar.png" />
                     </div>
-                    <input type="submit" value="Buscar" onClick="window.location='/html/flights.html';" />
-               </div>
+
+                    <label>Regreso:</label>
+                    <div class="input-date">
+                        <input name="return" type="text" placeholder="dd-mm-yyyy" maxlength="15" />
+                        <img src="/assets/img/calendar.png" />
+                    </div>
+
+                    <div class="hdivider"></div>
+
+                    <div class="num-people">
+                        <label>Adultos:</label>
+                        <select name="adults">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select>
+                    </div>
+
+                    <div class="num-people">
+                        <label>Menores:</label>
+                        <select name="children">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select>
+                    </div>
+
+                    <div class="num-people">
+                        <label>Infantes:</label>
+                        <select name="infants">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                    </select>
+                    </div>
+
+                    <div class="hdivider"></div>
+
+                    <div class="search">
+                        <a href="/html/advanced_options.html">Opciones Avanzadas</a>
+                        <input type="submit" value="Buscar" onClick="window.location='/html/flights.html';" />
+                    </div>
+                </form>
             </div>
         </div>
-        <div id="main">
-        </div>
+        <div id="main"></div>
     </div>
 </div>
 

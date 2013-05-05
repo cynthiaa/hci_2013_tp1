@@ -39,7 +39,13 @@ h4 {
     text-align: center;
 }
 
+h4.title {
+    font-weight: normal;
+    color: #333;
+}
+
 label {
+    color: #555;
     margin: 20px 0px 10px 0px;
 }
 
@@ -48,10 +54,8 @@ input[type="text"], textarea {
     color: #565656;
     font-size: 18px;
     padding: 7px 6px;
-    width: 320px;
     border: 1px solid #888;
     resize: none;
-    /* box-shadow: 0 0 0 3px #EEF5F7; */
     margin: 5px 0;
 }
 
@@ -73,13 +77,13 @@ input[type="submit"] {
     background: -webkit-linear-gradient(top, #e4f1f6 0%,#CFE6EF 100%);
 }
 
-input[type='submit']:hover {
+input[type="submit"]:hover {
     background: #edfcff;
     background: -moz-linear-gradient(top, #edfcff 0%, #cfe6ef 100%);
     background: -webkit-linear-gradient(top, #edfcff 0%,#cfe6ef 100%);
 }
 
-input[type='submit']:active {
+input[type="submit"]:active {
     background: #cfe6ef;
     background: -moz-linear-gradient(top, #cfe6ef 0%, #edfcff 100%);
     background: -webkit-linear-gradient(top, #cfe6ef 0%,#edfcff 100%);
@@ -110,7 +114,7 @@ body > .container > .header {
     height: 100px;
 }
 
-body > .container > .body > .sidebar {
+#sidebar {
     float: left;
     width: 250px;
     height: 600px;
@@ -193,69 +197,70 @@ body > .container > .header .vdivider {
     margin-right: 20px;
 }
 
-body > .container > .body > .sidebar > .sidebar-header {
+#sidebar .sidebar-header {
     width: 250px;
     height: 30px;
     display: block;
 }
 
-body > .container > .body > .sidebar > .sidebar-header > div {
-    width: 40%;
-    height: 100%;
-    border: 3px solid #AAA;
-    display: block;
-    float: left;
-}
+/* #sidebar .sidebar-header div { */
+/*     width: 40%; */
+/*     height: 100%; */
+/*     border: 3px solid #AAA; */
+/*     display: block; */
+/*     float: left; */
+/* } */
 
-body > .container > .body > .sidebar > .sidebar-body {
+#sidebar .sidebar-body {
     width: 250px;
 }
 
-body > .container > .body > .sidebar > .sidebar-body label {
-    color: #555;
-}
-
-body > .container > .body > .sidebar > .sidebar-body > input[type="text"] {
+#sidebar .sidebar-body input[type="text"] {
     width: 236px;
 }
 
-body > .container > .body > .sidebar > .sidebar-body > img {
-    width: 16px;
-    height: 16px;
-    float: right;
-    margin-top: -32px;
-    margin-right: 5px;
+.input-date input {
+    width: 100%;
 }
 
-body > .container > .body > .sidebar > .sidebar-body > div {
+.input-date img {
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    bottom: 15px;
+    right: 10px;
+}
+
+#sidebar .sidebar-body .num-people {
     margin: 10px 0 20px 0;
 }
 
-body > .container > .body > .sidebar > .sidebar-body > div > label {
+#sidebar .sidebar-body label {
     width: 55%;
     float: left;
     display: block;
     margin: 7px 20px 0 0;
 }
 
-body > .container > .body > .sidebar > .sidebar-body > div > select {
+#sidebar .sidebar-body select {
     display: block;
     width: 50px;
 }
 
-body > .container > .body > .sidebar > .sidebar-body > .search > div {
-    padding-top: 0px;
-    width: 100px;
-    float: left;
+#sidebar .sidebar-body .search {
+    padding-top: 10px;
 }
 
-body > .container > .body > .sidebar > .sidebar-body > .search > div > a {
+#sidebar .sidebar-body .search a {
+    /* padding-top: 0px; */
+    /* width: 100px; */
+    /* float: left; */
     font-size: 14px;
     text-decoration: underline;
 }
 
-body > .container > .body > .sidebar > .sidebar-body > .search > input[type="submit"] {
-    float: right;
-    margin-top: -5px;
+#sidebar .sidebar-body .search input[type="submit"] {
+    /* float: right; */
+    margin-top: 15px;
 }
 
