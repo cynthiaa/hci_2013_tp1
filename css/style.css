@@ -36,7 +36,7 @@ h3 {
 
 h4 {
     font-weight: bold;
-    color: #50B0D6;
+    color: #52B0D6;
     font-size: 25px;
     text-align: center;
 }
@@ -67,7 +67,7 @@ input[type="submit"] {
     color: #52B0D6;
     border: 1px solid #52B0D6;
     box-shadow: 0 0 0 3px #EEF5F7;
-    padding: 8px 16px;
+    padding: 8px 14px;
     font-weight: normal;
     text-shadow: 1px 1px 0px #52B0D6;
     background: #E4F1F6; /* fallback para navegadores que no soporten degradados */
@@ -199,6 +199,20 @@ body > .container > .header .vdivider {
     margin-right: 20px;
 }
 
+body > .container > .body > .sidebar > .sidebar-header {
+    width: 250px;
+    height: 30px;
+    display: block;
+}
+
+body > .container > .body > .sidebar > .sidebar-header > div {
+    width: 40%;
+    height: 100%;
+    border: 3px solid #AAA;
+    display: block;
+    float: left;
+}
+
 body > .container > .body > .sidebar > .sidebar-body {
     width: 250px;
 }
@@ -208,7 +222,15 @@ body > .container > .body > .sidebar > .sidebar-body label {
 }
 
 body > .container > .body > .sidebar > .sidebar-body > input[type="text"] {
-    width: 230px;
+    width: 236px;
+}
+
+body > .container > .body > .sidebar > .sidebar-body > img {
+    width: 16px;
+    height: 16px;
+    float: right;
+    margin-top: -32px;
+    margin-right: 5px;
 }
 
 body > .container > .body > .sidebar > .sidebar-body > div {
@@ -227,7 +249,19 @@ body > .container > .body > .sidebar > .sidebar-body > div > select {
     width: 50px;
 }
 
-body > .container > .body > .sidebar > .sidebar-body > .search > a {
-    font-size: 15px;
+body > .container > .body > .sidebar > .sidebar-body > .search > div {
+    padding-top: 0px;
+    width: 100px;
+    float: left;
+}
+
+body > .container > .body > .sidebar > .sidebar-body > .search > div > a {
+    font-size: 14px;
+    text-decoration: underline;
+}
+
+body > .container > .body > .sidebar > .sidebar-body > .search > input[type="submit"] {
+    float: right;
+    margin-top: -5px;
 }
 
