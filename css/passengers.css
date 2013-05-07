@@ -1,10 +1,18 @@
 #main > .main {
     height: 600px;
-	overflow: scroll;
 	width: 510px;
 }
 
 .passenger_form {
 	display: inline-block;
 	padding: 10px 0;
+}
+
+.pass-ctn {
+	height: 500px;
+	overflow: scroll;
+}
+
+.navigation-bar {
+	height: 100px;
 }
