@@ -12,7 +12,210 @@
     </head>
     <body>
         <div class="main panel">
-            <h2>Búsqueda</h2>
+            <div>
+                <div class="searchTitle">
+                    <h2>Búsqueda</h2>
+                </div>
+                <div class="orderBy">
+                    <form>
+                        <label>Ordenar por</label>
+                        <select name="order">
+                            <option value="priceHigher">Precio: de mayor a menor</option>
+                            <option value="priceLower">Precio: de menor a mayor</option>
+                            <option value="stopsHigher">Escalas: de mayor a menor</option>
+                            <option value="stopsLower">Escalas: de menor a mayor</option>
+                            <option value="airlineA-Z">Aerolinea: A-Z</option>
+                            <option value="airlineZ-A">Aerolinea: Z-A</option>
+                            <option value="durationHigher">Duración: de mayor a menor</option>
+                            <option value="durationLower">Duración: de menor a mayor</option>
+                        </select>
+                    </form>
+                </div>
+            </div>
+            <div class="hdivider"></div>
+            <div class="flight">
+                <img src="/assets/img/AARGwprice.gif" alt="Aerolineas Argentinas" class="flightImage"/>
+                <div class="departure">
+                    <h5 class="flightHeader">Ida</h5>
+                    <p class="pFlight">Origen:
+                        <p class="pCommon">Buenos Aires</p>
+                    </p>
+                    <p class="pFlight">Destino:
+                        <p class="pCommon">Miami</p>
+                    </p>
+                    <p class="pFlight">Salida:
+                        <p class="pCommon">08:00</p>
+                    </p>
+                    <p class="pFlight">Llegada:
+                        <p class="pCommon">14:00</p>
+                    </p>
+                    <p class="pFlight">Clase:
+                        <p class="pCommon">Turista</p>
+                    </p>
+                    <p class="pFlight">Escalas:
+                        <p class="pCommon">0</p>
+                    <p class="pFlight">Duración:
+                        <p class="pCommon">6 hs</p>
+                    </p>
+                </div>
+                <div class="return">
+                    <h5 class="flightHeader">Vuelta</h5>
+                    <p class="pFlight">Origen:
+                        <p class="pCommon">Miami</p>
+                    </p>    
+                    <p class="pFlight">Destino:
+                        <p class="pCommon">Buenos Aires</p>
+                    </p>
+                    <p class="pFlight">Salida:
+                        <p class="pCommon">08:00</p>
+                    </p>
+                    <p class="pFlight">Llegada:
+                        <p class="pCommon">14:00</p>
+                    </p>
+                    <p class="pFlight">Clase:
+                        <p class="pCommon">Turista</p>
+                    </p>
+                    <p class="pFlight">Escalas:
+                        <p class="pCommon">0</p>
+                    <p class="pFlight">Duración:
+                        <p class="pCommon">6 hs</p>
+                    </p>
+                </div>
+                <div class="d1">
+                    <div class="details">
+                        <p class="detPar">1 adulto/s   $5800</p>
+                        <p class="detPar">0 menores    $0</p>
+                        <p class="detPar">0 infantes   $0</p>
+                        <p class="detPar">Impuestos    $300</p>
+                        <p class="detPar">Total        $6100</p>
+                    </div>
+                    <input type="submit" value="Seleccionar" onclick="window.location='/html/flights.html';">
+                </div>
+            </div>
+            <div class="hdivider"></div>
+            
+            
+            <div class="flight">
+                <img src="/assets/img/AAwprice.gif" alt="American Airlines" class="flightImage"/>
+                <div class="departure">
+                    <h5 class="flightHeader">Ida</h5>
+                    <p class="pFlight">Origen:
+                        <p class="pCommon">Buenos Aires</p>
+                    </p>
+                    <p class="pFlight">Destino:
+                        <p class="pCommon">Miami</p>
+                    </p>
+                    <p class="pFlight">Salida:
+                        <p class="pCommon">08:00</p>
+                    </p>
+                    <p class="pFlight">Llegada:
+                        <p class="pCommon">14:00</p>
+                    </p>
+                    <p class="pFlight">Clase:
+                        <p class="pCommon">Turista</p>
+                    </p>
+                    <p class="pFlight">Escalas:
+                        <p class="pCommon">0</p>
+                    <p class="pFlight">Duración:
+                        <p class="pCommon">6 hs</p>
+                    </p>
+                </div>
+                <div class="return">
+                    <h5 class="flightHeader">Vuelta</h5>
+                    <p class="pFlight">Origen:
+                        <p class="pCommon">Miami</p>
+                    </p>    
+                    <p class="pFlight">Destino:
+                        <p class="pCommon">Buenos Aires</p>
+                    </p>
+                    <p class="pFlight">Salida:
+                        <p class="pCommon">08:00</p>
+                    </p>
+                    <p class="pFlight">Llegada:
+                        <p class="pCommon">14:00</p>
+                    </p>
+                    <p class="pFlight">Clase:
+                        <p class="pCommon">Turista</p>
+                    </p>
+                    <p class="pFlight">Escalas:
+                        <p class="pCommon">0</p>
+                    <p class="pFlight">Duración:
+                        <p class="pCommon">6 hs</p>
+                    </p>
+                </div>
+                <div class="d1">
+                    <div class="details">
+                        <p class="detPar">1 adulto/s   $6500</p>
+                        <p class="detPar">0 menores    $0</p>
+                        <p class="detPar">0 infantes   $0</p>
+                        <p class="detPar">Impuestos    $300</p>
+                        <p class="detPar">Total        $6800</p>
+                    </div>
+                    <input type="submit" value="Seleccionar" onclick="window.location='/html/flights.html';">
+                </div>
+            </div>
+            <div class="hdivider"></div>
+            
+            
+            <div class="flight">
+                <img src="/assets/img/Twprice.gif" alt="Tam Airlines" class="flightImage"/>
+                <div class="departure">
+                    <h5 class="flightHeader">Ida</h5>
+                    <p class="pFlight">Origen:
+                        <p class="pCommon">Buenos Aires</p>
+                    </p>
+                    <p class="pFlight">Destino:
+                        <p class="pCommon">Miami</p>
+                    </p>
+                    <p class="pFlight">Salida:
+                        <p class="pCommon">08:00</p>
+                    </p>
+                    <p class="pFlight">Llegada:
+                        <p class="pCommon">14:00</p>
+                    </p>
+                    <p class="pFlight">Clase:
+                        <p class="pCommon">Turista</p>
+                    </p>
+                    <p class="pFlight">Escalas:
+                        <p class="pCommon">0</p>
+                    <p class="pFlight">Duración:
+                        <p class="pCommon">6 hs</p>
+                    </p>
+                </div>
+                <div class="return">
+                    <h5 class="flightHeader">Vuelta</h5>
+                    <p class="pFlight">Origen:
+                        <p class="pCommon">Miami</p>
+                    </p>    
+                    <p class="pFlight">Destino:
+                        <p class="pCommon">Buenos Aires</p>
+                    </p>
+                    <p class="pFlight">Salida:
+                        <p class="pCommon">08:00</p>
+                    </p>
+                    <p class="pFlight">Llegada:
+                        <p class="pCommon">14:00</p>
+                    </p>
+                    <p class="pFlight">Clase:
+                        <p class="pCommon">Turista</p>
+                    </p>
+                    <p class="pFlight">Escalas:
+                        <p class="pCommon">0</p>
+                    <p class="pFlight">Duración:
+                        <p class="pCommon">6 hs</p>
+                    </p>
+                </div>
+                <div class="d1">
+                    <div class="details">
+                        <p class="detPar">1 adulto/s   $6650</p>
+                        <p class="detPar">0 menores    $0</p>
+                        <p class="detPar">0 infantes   $0</p>
+                        <p class="detPar">Impuestos    $300</p>
+                        <p class="detPar">Total        $6950</p>
+                    </div>
+                    <input type="submit" value="Seleccionar" onclick="window.location='/html/flights.html';">
+                </div>
+            </div>
             <div class="hdivider"></div>
         </div>
     </body>
