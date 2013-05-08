@@ -59,6 +59,7 @@ input[type="text"], textarea {
     border: 1px solid #888;
     resize: none;
     margin: 5px 0;
+    width: 350px;
 }
 
 input[type="text"]:focus, textarea:focus {

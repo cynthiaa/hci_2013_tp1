@@ -1,5 +1,5 @@
 #main > .main {
-    height: 600px;
+    height: 550px;
 }
 
 #main > .main > form > label {
@@ -10,3 +10,6 @@
     margin: 20px 0 25px 0;
 }
 
+.contactForm {
+    height: 450px;
+}
