@@ -1,5 +1,6 @@
-div.calendar {
+.calendar {
     position: relative;
+    z-index: 3000;
 }
 
 .calendar {

@@ -39,13 +39,13 @@
                 <input name="depart" type="text" id="depart" placeholder="dd-mm-yyyy" />
                 <img src="/assets/img/calendar.png" title="Fecha Inicial" id="lanzador" />
                 <!-- script que define y configura el calendario-->
- <!--                <script type="text/javascript"> -->
- <!--   Calendar.setup({ -->
- <!--    inputField     :    "depart",     // id del campo de texto -->
- <!--     ifFormat     :     "%d&#45;%m&#45;%Y",     // formato de la fecha que se escriba en el campo de texto -->
- <!--     button     :    "lanzador"     // el id del botón que lanzará el calendario -->
- <!-- }); -->
- <!-- </script> -->
+                <script type="text/javascript">
+   Calendar.setup({
+    inputField     :    "depart",     // id del campo de texto
+     ifFormat     :     "%d-%m-%Y",     // formato de la fecha que se escriba en el campo de texto
+     button     :    "lanzador"     // el id del botón que lanzará el calendario
+ });
+ </script>
                 <label>Regreso:</label>
                 <input name="return" type="text" id="return" placeholder="dd-mm-yyyy" />
                 <img src="/assets/img/calendar.png" />
