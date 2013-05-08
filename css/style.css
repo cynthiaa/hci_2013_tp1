@@ -264,3 +264,12 @@ body > .container > .header .vdivider {
     float: right;
     display: inline-block;
 }
+
+.sidebarTab {
+    background-color: #CCC;
+    display: inline-block;
+    padding: 3px;
+    width: 113px;
+    text-align: center;
+    border: 1px solid #AAA;
+}
