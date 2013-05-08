@@ -3,7 +3,7 @@
     margin: 0;
     padding: 0;
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-    font-size: 20px;
+    font-size: 18px;
     color: #888;
 }
 
@@ -54,7 +54,7 @@ label {
 input[type="text"], textarea {
     background-color: #DDD;
     color: #565656;
-    font-size: 18px;
+    font-size: 12px;
     padding: 7px 6px;
     border: 1px solid #888;
     resize: none;
@@ -95,6 +95,7 @@ div.panel {
     border: 5px solid #AAA;
     padding: 10px;
     background-color: #EEE;
+    margin-bottom: 25px;
 }
 
 body {
@@ -108,18 +109,18 @@ body {
 
 body > .container {
     width: 1024px;
-    margin: 50px auto 20px auto;
+    margin: 25px auto 20px auto;
 }
 
 body > .container > .header {
     margin-bottom: 20px;
-    height: 100px;
+    height: 75px;
 }
 
 #sidebar {
     float: left;
     width: 250px;
-    height: 600px;
+    height: 550px;
     margin-right: 20px;
 }
 
@@ -137,7 +138,7 @@ body > .container > .header {
 
 body > .container > .header .vdivider {
     height: 25px;
-    margin-top: 70px;
+    margin-top: 55px;
     margin-right: 10px;
     border-left: 1.5px solid #888;
     float: right;
@@ -145,7 +146,6 @@ body > .container > .header .vdivider {
 
 #logo {
     float: left;
-    margin: 20px 5px 5px 0px;
 }
 
 #twitter_logo, #facebook_logo {
@@ -184,18 +184,18 @@ body > .container > .header .vdivider {
 
 #contact_link {
     float: right;
-    margin-top: 70px;
+    margin-top: 55px;
     margin-right: -90px;
 }
 
 #about_link {
     float: right;
-    margin: 70px 20px 0 10px;
+    margin: 55px 20px 0 10px;
 }
 
 #home_link {
     float: right;
-    margin-top: 70px;
+    margin-top: 55px;
     margin-right: 20px;
 }
 
@@ -254,15 +254,13 @@ body > .container > .header .vdivider {
 }
 
 #sidebar .sidebar-body .search a {
-    /* padding-top: 0px; */
-    /* width: 100px; */
-    /* float: left; */
-    font-size: 14px;
+    font-size: 12px;
     text-decoration: underline;
+    display: inline-block;
+    padding-top: 30px;
 }
 
 #sidebar .sidebar-body .search input[type="submit"] {
-    /* float: right; */
-    margin-top: 15px;
+    float: right;
+    display: inline-block;
 }
-
