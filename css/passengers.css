@@ -18,6 +18,10 @@
 	display: inline-block;
 }
 
+.navigation-bar input {
+	display: inline-block;
+}
+
 .form-component {
     float: left;
     width: 310px;
@@ -31,4 +35,5 @@
 .form-container {
     overflow: auto;
 }
+
 
