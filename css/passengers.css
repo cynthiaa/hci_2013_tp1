@@ -13,6 +13,6 @@
 	overflow: scroll;
 }
 
-.navigation-bar {
-	height: 100px;
+.navigation-bar input {
+	display: inline-block;
 }
