@@ -69,3 +69,8 @@ input[type="radio"]{
 .ownerContainer{
 	margin-top:15px;
 	height: 200px;
+}
+
+.scroller{
+	overflow:scroll;
+}
