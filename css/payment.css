@@ -73,6 +73,7 @@ input[type="radio"]{
 
 .scroller{
 	overflow:scroll;
+	height: 500px;
 }
 
 .paymentWrapper{
