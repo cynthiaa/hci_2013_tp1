@@ -22,6 +22,7 @@
 .departure {
     display: inline-block;
     padding-left: 15px;
+	margin-top:10px;
 }
 
 .return {
