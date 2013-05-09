@@ -17,7 +17,7 @@
     /* box-shadow: 0px 2px 20px #000; */
     /* width: 700px; */
     height: 345px;
-    margin-bottom: 30px;
+    margin-bottom: 23px;
     position: relative;
 }
 
@@ -66,3 +66,4 @@
 #carousel-pills li.actual a {
     background: #52B0D6;
 }
+

@@ -3,7 +3,7 @@
     margin: 0;
     padding: 0;
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-    font-size: 18px;
+    font-size: 14px;
     color: #888;
 }
 
@@ -251,19 +251,17 @@ body > .container > .header .vdivider {
 }
 
 #sidebar .sidebar-body .search {
-    padding-top: 30px;
+    padding-top: 10px;
 }
 
 #sidebar .sidebar-body .search a {
     font-size: 12px;
     text-decoration: underline;
-    display: inline-block;
     padding-top: 30px;
 }
 
 #sidebar .sidebar-body .search input[type="submit"] {
     float: right;
-    display: inline-block;
 }
 
 .sidebarTab {
@@ -274,3 +272,4 @@ body > .container > .header .vdivider {
     text-align: center;
     border: 1px solid #AAA;
 }
+
