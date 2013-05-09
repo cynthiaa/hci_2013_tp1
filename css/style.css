@@ -269,12 +269,25 @@ body > .container > .header .vdivider {
     float: right;
 }
 
-.sidebarTab {
+.sidebar-tab {
     background-color: #CCC;
     display: inline-block;
     padding: 3px;
     width: 113px;
     text-align: center;
     border: 1px solid #AAA;
+}
+
+.sidebar-tab.selected {
+    background-color: #52B0D6;
+    color: #555;
+}
+
+label.disabled {
+    color: #BBB;
+}
+
+input.disabled {
+    border-color: #DDD;
 }
 
