@@ -1,16 +1,10 @@
-#main > .main {
-    /* height: 600px; */
-	/* overflow: scroll; */
-	/* width: 510px; */
-}
-
 .passenger_form {
 	display: inline-block;
 	padding: 10px 0;
 }
 
 .pass-ctn {
-	height: 500px;
+	height: 450px;
 	overflow: scroll;
 }
 
@@ -36,3 +30,15 @@
     overflow: auto;
 }
 
+.summary{
+	display:inline-block;
+	height: 550px;
+	width: 400px;
+	margin-right:20px;
+}
+
+div.main.panel {
+	display:inline-block;
+	position: absolute;
+	height: 550px;
+}
