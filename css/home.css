@@ -1,3 +1,7 @@
+div.featured.panel {
+    height: 172px;
+}
+
 #main > .deals {
     height: 343px;
 }
