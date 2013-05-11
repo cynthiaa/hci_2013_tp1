@@ -1,7 +1,7 @@
 function init() {
 
     $("body").append("<div id='temp_div'></div>");
-    $("#temp_div").load("/html/layout.html", function() {
+    $("#temp_div").load("/layout.html", function() {
 
         if ($("body[data-sidebar='false']").length) {
 
