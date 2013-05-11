@@ -236,7 +236,7 @@ body > .container > .header .vdivider {
     width: 16px;
     height: 16px;
     position: absolute;
-    bottom: 15px;
+    bottom: 12px;
     right: 10px;
 }
 
@@ -274,9 +274,9 @@ body > .container > .header .vdivider {
     background-color: #CCC;
     display: inline-block;
     padding: 3px;
-    width: 113px;
+    width: 114px;
     text-align: center;
-    border: 1px solid #AAA;
+    border: 1px solid #888;
 }
 
 .sidebar-tab.selected {

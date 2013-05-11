@@ -9,6 +9,7 @@
 }
 
 .navigation-bar {
+    margin-top: 20px;
     text-align: center;
 }
 
@@ -18,12 +19,12 @@
 
 .form-component {
     float: left;
-    width: 310px;
-    margin-right: 20px;
+    width: 250px;
+    margin-right: 10px;
 }
 
 .form-component input {
-    width: 300px;
+    width: 200px;
 }
 
 .form-container {
