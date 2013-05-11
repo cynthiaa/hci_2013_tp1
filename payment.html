@@ -3,7 +3,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-        <title>Pasajeros</title>
+        <title>Pago de pasajes</title>
 
         <link rel="stylesheet" href="/css/style.css"/>
         <link rel="stylesheet" href="/css/payment.css"/>
@@ -138,7 +138,6 @@
             </div>
         </div>
         <div class="main panel">
-            <div class="payment-wrapper">
                 <h2>Pago de pasajes</h2>
 
                 <div class="hdivider"></div>
@@ -153,18 +152,22 @@
                 </div>
 
                     <div class="datacard-container">
-                        <div class="form-component card-component">
+                        <div class="form-component-left card-num-component">
                             <label>Número de tarjeta:</label>
-                            <input class="card_num" name="card_num" type="text"/>
+                            <input class="card-num" name="card_num" type="text"/>
                         </div>
-                        <div class="form-component">
+                        <div class="form-component-left">
                             <label>Fecha de vencimiento:</label><br>
-                            <select name="expiration_month"></select>
-                            <select name="expiration_year"></select>
+                            <select class="expiration-date" name="expiration_month">
+                                <option value="default" selected="selected">mm</option>
+                            </select>
+                            <select name="expiration_year">
+                                <option value="default" selected="selected">aaaa</option>
+                            </select>
                         </div>
-                        <div class="form-component">
-                            <label>Código de seguridad:</label>
-                            <input name="security_code" type="text" maxlength="3"/>
+                        <div class="form-component-right code-component">
+                            <label>Código de seguridad:</label><br>
+                            <input class="security-code" name="security_code" type="text" maxlength="3"/>
                         </div>
                     </div>
 
@@ -173,23 +176,22 @@
                     <div class="hdivider"></div>
 
                     <div class="owner-container">
-                        <div class="form-component">
+                        <div class="form-component-left">
                             <label>Nombre:</label>
                             <input name="name" type="text"/>
                         </div>
-                        <div class="form-component">
+                        <div class="form-component-right">
                             <label>Apellido:</label>
                             <input name="lastname" type="text"/>
                         </div>
-                        <div class="form-component">
+                        <div class="form-component-left">
                             <label>DNI:</label><br>
                             <input name="dni" type="text"/>
                         </div>
                     </div>
 
-                </div>
-
                 <div class="navigation-bar">
+                    <div class="hdivider"></div>
                     <input type="submit" value="Volver" onClick="window.location='/passengers.html';" />
                     <input type="submit" value="Continuar" onClick="window.location='/payment.html';" />
                 </div>

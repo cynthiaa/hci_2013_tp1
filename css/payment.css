@@ -19,11 +19,12 @@
 }
 
 .select-container {
-    margin: 10px 0 20px 0;
+    margin: 15px 0 10px 0;
+    padding-left: 10px;
 }
 
 .select-container > .cards {
-    margin-top: 20px;
+    margin-top: 15px;
 }
 
 .datacard-container {
@@ -66,38 +67,63 @@ p.flight {
 }
 
 .navigation-bar {
-    margin-top: 20px;
     text-align: center;
+    margin-top: 10px;
 }
 
 .navigation-bar input[type="submit"] {
+    margin-top: 20px;
 	display: inline-block;
 }
 
-.form-component {
+.form-component-left {
     float: left;
-    width: 250px;
-    margin-right: 10px;
+    width: 212px;
+    margin: 0 10px 10px 10px;
 }
 
-.card-component {
-    width: 500px;
+.form-component-right {
+    float: right;
+    width: 212px;
+    margin: 0 10px 10px 10px;
 }
 
-.form-component input[type="text"] {
+.card-num-component {
+    width: 300px;
+}
+
+/* .code-component input[type="text"] { */
+/*     margin-left: 10px; */
+/* } */
+
+/* .code-component { */
+/*     width: 150px; */
+/* } */
+
+.form-component-left input[type="text"], .form-component-right input[type="text"] {
     width: 200px;
+    margin-top: 5px;
 }
 
-.card-component input[type="text"] {
-    width: 460px;
+select.expiration-date {
+    margin-top: 10px;
 }
+
+input[type="text"].security-code {
+    width: 30px;
+}
+
+/* input[type="text"].card-num { */
+/*     width: 200px; */
+/* } */
 
 .form-container {
     overflow: auto;
 }
 
 .owner-container {
-	margin-top: 15px;
+	margin-top: 20px;
+	overflow: auto;
 }
 
 .scroller {
@@ -107,5 +133,10 @@ p.flight {
 
 .payment-wrapper {
 	height: 500px;
+}
+
+h6 {
+    margin-top: 6px;
+    margin-bottom: 2px;
 }
 
