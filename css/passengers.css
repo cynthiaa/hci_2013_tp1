@@ -13,7 +13,7 @@
     text-align: center;
 }
 
-.navigation-bar input {
+.navigation-bar input[type="submit"] {
 	display: inline-block;
 }
 
@@ -23,7 +23,7 @@
     margin-right: 10px;
 }
 
-.form-component input {
+.form-component input[type="text"] {
     width: 200px;
 }
 
