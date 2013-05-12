@@ -3,11 +3,10 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-		<title>Click n'Travel</title>
+		<title>Contacto</title>
 
 		<link rel="stylesheet" href="css/style.css"/>
-		<link rel="stylesheet" href="css/home.css"/>
-		<link rel="stylesheet" href="css/carousel.css"/>
+		<link rel="stylesheet" href="css/contact.css"/>
 
 	</head>
 	<body>
@@ -79,13 +78,13 @@
 						<label>Partida:</label>
 						<div class="input-date">
 							<input name="depart" type="text" placeholder="dd-mm-yyyy" maxlength="15" />
-							<img src="img/calendar.png" />
+							<img src="assets/img/calendar.png" />
 						</div>
 
 						<label id="return_label">Regreso:</label>
 						<div class="input-date">
 							<input id="return_input" name="return" type="text" placeholder="dd-mm-yyyy" maxlength="15" />
-							<img src="img/calendar.png" />
+							<img src="assets/img/calendar.png" />
 						</div>
 
 						<div class="hdivider"></div>
@@ -138,115 +137,24 @@
 						</div>
 					</div>
 				</div>
-			</div>
-			<div id="main">
-				<div id="carousel-frame">
-					<li class="carousel-item">
-						<img src="img/carousel/01.jpg" />
-						<div>
-							<h4>Ofertas Caribeñas</h4>
-							<p>
-								15% de descuento en viajes para dos personas a Acapulco
-							</p>
-						</div>
-					</li>
-					<li class="carousel-item">
-						<img src="img/carousel/02.jpg" />
-					</li>
-					<li class="carousel-item">
-						<img src="img/carousel/03.jpg" />
-					</li>
-					<li class="carousel-item">
-						<img src="img/carousel/04.jpg" />
-					</li>
-					<li class="carousel-item">
-						<img src="img/carousel/05.jpg" />
-					</li>
-				</div>
-				<div class="featured panel">
-					<h3>Los más buscados</h3>
-					<div class="hdivider"></div>
-					<div id="featured-flights">
-						<div class="featured-item panel">
-							<img class="hide_onhover" src="img/featured/01.jpg" />
-							<div class="show_onhover">
-								<div class="city">
-									<h4>Disney</h4>
-								</div>
-								<div class="price">
-									<p>
-										Desde $7500
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="featured-item panel">
-							<img class="hide_onhover" src="img/featured/02.jpg" />
-							<div class="show_onhover">
-								<div class="city">
-									<h4>Camboriú</h4>
-								</div>
-								<div class="price">
-									<p>
-										Desde $5000
-									</p>
-								</div>
-							</div>
-							<img src="img/featured/02.jpg" />
-						</div>
-						<div class="featured-item panel">
-							<img class="hide_onhover" src="img/featured/03.jpg" />
-							<div class="show_onhover">
-								<div class="city">
-									<h4>Cataratas</h4>
-								</div>
-								<div class="price">
-									<p>
-										Desde $3500
-									</p>
-								</div>
-							</div>
-							<img src="img/featured/03.jpg" />
-						</div>
-						<div class="featured-item panel">
-							<img class="hide_onhover" src="img/featured/04.jpg" />
-							<div class="show_onhover">
-								<div class="city">
-									<h4>Jujuy</h4>
-								</div>
-								<div class="price">
-									<p>
-										Desde $2500
-									</p>
-								</div>
-							</div>
-							<img src="img/featured/04.jpg" />
-						</div>
-						<div class="featured-item panel">
-							<img class="hide_onhover" src="img/featured/05.jpg" />
-							<div class="show_onhover">
-								<div class="city">
-									<h4>España</h4>
-								</div>
-								<div class="price">
-									<p>
-										Desde $5500
-									</p>
-								</div>
-							</div>
-							<img src="img/featured/05.jpg" />
-						</div>
+				<div id="main">
+					<div class="main panel">
+						<h2>Contacto</h2>
+						<div class="hdivider"></div>
+						<form class="contactForm">
+							<label>Email:</label>
+							<input name="email" type="text" placeholder="Ingrese su Email" />
+							<label>Mensaje:</label>
+							<textarea name="message" rows="6" placeholder="Ingrese su mensaje"></textarea>
+							<input type="submit" value='Enviar' />
+						</form>
 					</div>
 				</div>
 			</div>
-		</div>
 	</body>
 	<script type="text/javascript" src="js/libs/jquery.js"></script>
-	<!-- <script type="text/javascript" src="js/libs/handlebars.js"></script> -->
-	<!-- <script type="text/javascript" src="js/code.js"></script> -->
+	<script type="text/javascript" src="js/libs/handlebars.js"></script>
 	<script type="text/javascript" src="js/carousel.js"></script>
-	<script type="text/javascript">
-		window.onload = DP.inicio;
-	</script>
+	<!-- <script data-main="js/main" src="js/libs/require-jquery.js"></script> -->
 </html>
 

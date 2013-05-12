@@ -1,9 +1,3 @@
-#main > .main {
-    height: 600px;
-	overflow: scroll;
-	width: 510px;
-}
-
 .passenger_form {
 	padding: 10px 0;
 }
