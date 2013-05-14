@@ -2,21 +2,21 @@
     height: 550px;
 }
 
-#main > .main > .aboutParagraph {
+#main > .main > .about-paragraph {
     margin-top: 25px;
     margin-left: 25px;
     font-weight: normal;
     font-size: 16px;
 }
 
-#main > .main > .aboutList {
+#main > .main > .about-list {
     margin-top: 50px;
     margin-left: 75px;
     padding-bottom: 250px;
     list-style-type: square;
 }
 
-#main > .main > .aboutList > li {
+#main > .main > .about-list > li {
     font-size: 16px;
 }
 

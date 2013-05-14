@@ -26,20 +26,20 @@
             <script type="text/javascript">
                 function toggleFlightMode(from) {
 
-                    if ($("#idayvuelta").hasClass("selected") && from == "ida") {
+                    if ($("#round_trip").hasClass("selected") && from == "one_way") {
 
-                        $("#idayvuelta").removeClass("selected");
-                        $("#ida").addClass("selected");
+                        $("#round_trip").removeClass("selected");
+                        $("#one_way").addClass("selected");
                         $("#return_input").prop("disabled", true);
                         $("#return_label").addClass("disabled");
                         $("#return_input").addClass("disabled");
 
                     }
 
-                    if ($("#ida").hasClass("selected") && from == "idayvuelta") {
+                    if ($("#one_way").hasClass("selected") && from == "round_trip") {
 
-                        $("#ida").removeClass("selected");
-                        $("#idayvuelta").addClass("selected");
+                        $("#one_way").removeClass("selected");
+                        $("#round_trip").addClass("selected");
                         $("#return_input").prop("disabled", false);
                         $("#return_label").removeClass("disabled");
                         $("#return_input").removeClass("disabled");
@@ -47,13 +47,13 @@
                 }
             </script>
             <div class="sidebar-header">
-                <a href="javascript:toggleFlightMode('idayvuelta')">
-                    <div class="sidebar-tab selected" id="idayvuelta">
+                <a href="javascript:toggleFlightMode('round_trip')">
+                    <div class="sidebar-tab selected" id="round_trip">
                         Ida y vuelta
                     </div>
                 </a>
-                <a href="javascript:toggleFlightMode('ida')">
-                    <div class="sidebar-tab" id="ida">
+                <a href="javascript:toggleFlightMode('one_way')">
+                    <div class="sidebar-tab" id="one_way">
                         Ida
                     </div>
                 </a>
