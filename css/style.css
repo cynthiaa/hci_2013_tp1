@@ -76,7 +76,7 @@ input[type="text"]:focus, textarea:focus {
     box-shadow:0 0 0 3px #52B0D6;
 }
 
-input[type="submit"] {
+input[type="submit"], input[type="reset"] {
     display: block;
     color: #52B0D6;
     border: 1px solid #52B0D6;
@@ -90,13 +90,13 @@ input[type="submit"] {
     background: -webkit-radial-gradient(circle, #E4F1F6 40%, #CFE6EF);
 }
 
-input[type="submit"]:hover {
+input[type="submit"]:hover, input[type="reset"]:hover {
     background: #EDFCFF;
     background: -moz-linear-gradient(top, #EDFCFF 0%, #CFE6EF 100%);
     background: -webkit-linear-gradient(top, #EDFCFF 0%,#CFE6EF 100%);
 }
 
-input[type="submit"]:active {
+input[type="submit"]:active, input[type="reset"]:active {
     background: #CFE6EF;
     background: -moz-linear-gradient(top, #CFE6EF 0%, #EDFCFF 100%);
     background: -webkit-linear-gradient(top, #CFE6EF 0%,#EDFCFF 100%);

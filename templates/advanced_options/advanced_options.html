@@ -1,31 +1,31 @@
 <div class="main panel">
     <h2>Opciones avanzadas</h2>
     <div class="hdivider"></div>
-    <form>
-        <div>
+    <div class="form-container">
+        <div class="form-component">
             <label>Aerolínea:</label>
             <input name="airline" type="text" placeholder="Ingrese el nombre de una aerolínea" />
         </div>
-        <div>
+        <div class="form-component">
             <label>Horario de partida:</label>
             <select id="select_departure_time" name="departure_time">
                 <option value="no-preference">Sin preferencia</option>
             </select>
         </div>
-        <div>
+        <div class="form-component">
             <label>Horario de regreso:</label>
             <select id="select_return_time" name="return_time">
                 <option value="no-preference">Sin preferencia</option>
             </select>
         </div>
-        <div>
+        <div class="form-component">
             <label>Cantidad de escalas:</label>
             <select id="select_stopovers" name="stopovers">
                 <option value="no-preference">Sin preferencia</option>
                 <option value="0">Sin escalas</option>
             </select>
         </div>
-        <div>
+        <div class="form-component">
             <label>Clase:</label>
             <select name="clase">
                 <option value="no-preference">Sin preferencia</option>
@@ -34,7 +34,7 @@
                 <option value="first">Primera clase</option>
             </select>
         </div>
-        <div>
+        <div class="form-component">
             <label>Moneda:</label>
             <select name="currency">
                 <option value="pesos">Pesos</option>
@@ -42,15 +42,18 @@
                 <option value="euros">Euros</option>
             </select>
         </div>
-        <div>
+        <div class="form-component">
             <label>Precio mínimo:</label>
             <input name="min-price" type="text" placeholder="Mín" />
         </div>
-        <div>
+        <div class="form-component">
             <label>Precio máximo:</label>
             <input name="max-price" type="text" placeholder="Máx" />
         </div>
-        <input type="submit" value="Buscar" />
-    </form>
+    </div>
+    <div class="navigation-bar">
+        <div class="hdivider"></div>
+        <input type="submit" value="Buscar" onClick="window.location='{{Link "flights.html"}}';" />
+    </div>
 </div>
 

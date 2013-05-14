@@ -2,15 +2,30 @@
     height: 550px;
 }
 
-#main > .main > form > label {
+#main > .main label {
     display: block;
 }
 
-#main > .main > form > input[type="submit"] {
+.form-container {
+    margin: 10px;
+}
+
+#main > .main input[type="submit"],
+#main > .main input[type="reset"] {
     margin: 20px 0 25px 0;
 }
 
-.contactForm {
+.contact-form {
     height: 450px;
+}
+
+.navigation-bar {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.navigation-bar input[type="submit"], .navigation-bar input[type="reset"] {
+	display: inline-block;
+    margin-top: 20px;
 }
 
