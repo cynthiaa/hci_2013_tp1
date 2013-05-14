@@ -132,9 +132,9 @@
     <div class="select-container">
         <label>Seleccionar tarjeta:</label><br>
         <div class="cards">
-            <input name="card" type="radio"/><img src="/img/visa.png" alt="visa"/>
-            <input name="card" type="radio"/><img src="/img/mastercard.png" alt="master card"/>
-            <input name="card" type="radio"/><img src="/img/americanExpress.png" alt="american express"/>
+            <input name="card" type="radio"/><img src='{{Link "img/visa.png"}}' alt="visa"/>
+            <input name="card" type="radio"/><img src='{{Link "img/mastercard.png"}}' alt="master card"/>
+            <input name="card" type="radio"/><img src='{{Link "img/americanExpress.png"}}' alt="american express"/>
         </div>
     </div>
 
@@ -179,8 +179,8 @@
 
     <div class="navigation-bar">
         <div class="hdivider"></div>
-        <input type="submit" value="Volver" onClick="window.location='/passengers.html';" />
-        <input type="submit" value="Continuar" onClick="window.location='/payment.html';" />
+        <input type="submit" value="Volver" onClick="window.location='{{Link "passengers.html"}}';" />
+        <input type="submit" value="Continuar" onClick="window.location='{{Link "payment.html"}}';" />
     </div>
 </div>
 
