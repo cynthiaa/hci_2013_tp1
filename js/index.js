@@ -11,6 +11,7 @@ require(
         Utils.init();
         Utils.make_html(index_html);
 
+        $("#home_link").addClass("selected");
         // Init the carousel
 
         DP.inicio();

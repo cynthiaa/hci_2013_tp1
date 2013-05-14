@@ -10,6 +10,8 @@ require(
 
         Utils.init();
         Utils.make_html(contact_html);
+
+        $("#contact_link").addClass("selected");
     }
 );
 
