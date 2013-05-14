@@ -3,6 +3,10 @@
     width: 694px;
 }
 
+.flight {
+    overflow: auto;
+}
+
 .pFlight {
     font-size: 12px;
     color: #52B0D6;
@@ -17,6 +21,7 @@
 
 .flightImage {
     display: inline-block;
+    float: left;
 }
 
 .departure {
