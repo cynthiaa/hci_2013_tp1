@@ -1,3 +1,17 @@
+h6.title {
+    margin-top: 6px;
+    margin-bottom: 2px;
+}
+
+select {
+    margin-top: 10px;
+}
+
+.data-container {
+    margin-top: 20px;
+    overflow: auto;
+}
+
 .passenger_form {
 	display: inline-block;
 	padding: 10px 0;
@@ -9,22 +23,30 @@
 }
 
 .navigation-bar {
-    margin-top: 20px;
     text-align: center;
+    margin-top: 10px;
 }
 
 .navigation-bar input[type="submit"] {
 	display: inline-block;
+	margin-top: 20px;
 }
 
-.form-component {
+.form-component-left {
     float: left;
-    width: 250px;
-    margin-right: 10px;
+    width: 212px;
+    margin: 0 10px 10px 10px;
 }
 
-.form-component input[type="text"] {
+.form-component-right {
+    float: right;
+    width: 212px;
+    margin: 0 10px 10px 10px;
+}
+
+.form-component-left input[type="text"], .form-component-right input[type="text"] {
     width: 200px;
+    margin-top: 5px;
 }
 
 .form-container {
