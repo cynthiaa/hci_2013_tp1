@@ -14,11 +14,13 @@ require(
 
         var select_tmp = Handlebars.compile(select_html);
 
+        current_year = new Date().getFullYear();
+
         for (var i = 1; i <= 12; i++) {
             $("#select_expiration_month").append(select_tmp({"value": i, "name": i}));
         }
 
-        for (var i = 2013; i <= 2023; i++) {
+        for (var i = current_year; i <= current_year + 10; i++) {
             $("#select_expiration_year").append(select_tmp({"value": i, "name": i}));
         }
     }
