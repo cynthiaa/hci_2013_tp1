@@ -3,7 +3,7 @@ var Utils;
 define(
     [
         "libs/text!../../templates/layout.html",
-        "libs/text!../../templates/non_menu_layout.html",
+        "libs/text!../../templates/layout_only_top.html",
         "libs/text!../../templates/select.html",
         "libs/i18n",
         "libs/handlebars",

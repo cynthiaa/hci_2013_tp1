@@ -129,14 +129,15 @@ body > .container > .header {
 }
 
 #sidebar {
-    float: left;
+    display: inline-block;
     width: 250px;
     height: 550px;
     margin-right: 20px;
 }
 
 #main {
-    float: left;
+    display: inline-block;
+    position: absolute;
     width: 724px;
 }
 
@@ -149,10 +150,9 @@ body > .container > .header {
 
 body > .container > .header .vdivider {
     height: 25px;
-    margin-top: 55px;
     margin-right: 10px;
     border-left: 1.5px solid #888;
-    float: right;
+	display: inline-block;
 }
 
 #logo {
@@ -160,10 +160,9 @@ body > .container > .header .vdivider {
 }
 
 #twitter_logo, #facebook_logo {
-    float: right;
     height: 35px;
     width: 35px;
-    margin-left: 10px;
+    display:inline-block;
 }
 
 #facebook_logo > img, #twitter_logo > img {
@@ -193,6 +192,36 @@ body > .container > .header .vdivider {
     filter: alpha(opacity=100);
 }
 
+.menu_link {
+	display: inline-block;
+}
+
+.menu_link :hover{
+	color:#74BEDE;
+}
+
+.menu-item {
+	display: inline-block;
+	padding: 0px 14px;
+	border-right: 1px solid #888;
+}
+
+.final-menu-item {
+	display: inline-block;
+	padding: 0px 14px;
+}
+.header-info {
+	float: right;
+}
+
+.social-media {
+	float: right;
+}
+
+.menu {
+	margin-top: 60px;
+}
+/*
 #contact_link {
     float: right;
     margin-top: 55px;
@@ -209,7 +238,7 @@ body > .container > .header .vdivider {
     margin-top: 55px;
     margin-right: 20px;
 }
-
+*/
 #sidebar .sidebar-header {
     width: 250px;
     height: 30px;
@@ -226,6 +255,7 @@ body > .container > .header .vdivider {
 
 #sidebar .sidebar-body {
     width: 250px;
+    display: inline-block;
 }
 
 #sidebar .sidebar-body input[type="text"] {
@@ -294,5 +324,23 @@ label.disabled {
 
 input.disabled {
     border-color: #DDD;
+}
+
+.styled-select{
+	width: 40px;
+   height: 27px;
+   overflow: hidden;
+   background: url(../img/select_arrow.png) no-repeat right #ddd;
+   border: 1px solid #ccc;
+}
+.styled-select select {
+   background: transparent;
+   width: 40px;
+   padding: 5px;
+   font-size: 16px;
+   line-height: 1;
+   border: 0;
+   height: 25px;
+   -webkit-appearance: none;
 }
 
