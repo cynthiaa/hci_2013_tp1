@@ -327,17 +327,14 @@ input.disabled {
 }
 
 .styled-select{
-	width: 40px;
-   height: 27px;
+	width: 50px;
+   height: 25px;
    overflow: hidden;
    background: url(../img/select_arrow.png) no-repeat right #ddd;
    border: 1px solid #ccc;
 }
 .styled-select select {
    background: transparent;
-   width: 40px;
-   padding: 5px;
-   font-size: 16px;
    line-height: 1;
    border: 0;
    height: 25px;
