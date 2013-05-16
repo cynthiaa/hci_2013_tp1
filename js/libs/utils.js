@@ -10,7 +10,7 @@ define(
         "jquery",
         "libs/purl"
     ],
-    function(layout_html, non_menu_layout_html, select_html) {
+    function(layout_html, layout_only_top_html, select_html) {
 
         Utils = {
 
@@ -89,7 +89,7 @@ define(
                 // Make HTML from templates
 
                 var main_tmp = Handlebars.compile(template);
-                var layout_tmp = Handlebars.compile(non_menu_layout_html);
+                var layout_tmp = Handlebars.compile(layout_only_top_html);
 
                 $("body").append(layout_tmp({main_body: main_tmp()}));
 
