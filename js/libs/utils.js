@@ -2,6 +2,7 @@ var Utils;
 
 define(
     [
+        "libs/text!../../templates/header.html",
         "libs/text!../../templates/layout.html",
         "libs/text!../../templates/layout_only_top.html",
         "libs/text!../../templates/select.html",
@@ -10,7 +11,7 @@ define(
         "jquery",
         "libs/purl"
     ],
-    function(layout_html, layout_only_top_html, select_html) {
+    function(header_html, layout_html, layout_only_top_html, select_html) {
 
         Utils = {
 
@@ -69,8 +70,9 @@ define(
 
                 var main_tmp = Handlebars.compile(template);
                 var layout_tmp = Handlebars.compile(layout_html);
+                var header_tmp = Handlebars.compile(header_html);
 
-                $("body").append(layout_tmp({main_body: main_tmp()}));
+                $("body").append(layout_tmp({header: header_tmp(), main_body: main_tmp()}));
 
                 var select_tmp = Handlebars.compile(select_html);
 
@@ -90,8 +92,9 @@ define(
 
                 var main_tmp = Handlebars.compile(template);
                 var layout_tmp = Handlebars.compile(layout_only_top_html);
+                var header_tmp = Handlebars.compile(header_html);
 
-                $("body").append(layout_tmp({main_body: main_tmp()}));
+                $("body").append(layout_tmp({header: header_tmp(), main_body: main_tmp()}));
 
             },
 
