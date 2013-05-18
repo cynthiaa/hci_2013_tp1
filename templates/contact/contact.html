@@ -1,12 +1,22 @@
 <div class="main panel">
     <h2>Contacto</h2>
     <div class="hdivider"></div>
-    <form class="contactForm">
-        <label>Email:</label>
-        <input name="email" type="text" placeholder="Ingrese su Email" />
-        <label>Mensaje:</label>
-        <textarea name="message" rows="6" placeholder="Ingrese su mensaje"></textarea>
-        <input type="submit" value='Enviar' />
+
+    <form class="contact-form" method="get" action="mailto:clickntravel.hci@gmail.com" enctype="text/plain">
+        <div class="form-container">
+            <label>Asunto:</label>
+            <input name="subject" type="text" placeholder="Ingrese el asunto" />
+            <label>Email:</label>
+            <input name="email" type="text" placeholder="Ingrese su Email" />
+            <label>Mensaje:</label>
+            <textarea name="body" rows="12" placeholder="Ingrese su mensaje"></textarea>
+        </div>
+
+        <div class="navigation-bar">
+            <div class="hdivider"></div>
+            <input type="submit" value='Enviar' />
+            <input type="reset" value='Reset' />
+        </div>
     </form>
 </div>
 
