@@ -96,7 +96,6 @@ div.main.panel {
 }
 
 .styled-select, .styled-select select {
-    width: 60px;
     display: inline-block;
 }
 
@@ -105,7 +104,7 @@ div.main.panel {
     margin-right: 5px;
 }
 
-#gender, #gender select {
+.gender {
     width: 100px;
 }
 

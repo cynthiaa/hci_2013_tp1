@@ -327,22 +327,24 @@ input.disabled {
 }
 
 .styled-select {
-    width: 50px;
+    width: 60px;
     height: 25px;
     overflow: hidden;
     background: url(../img/select_arrow.png) no-repeat right #ddd;
     border: 1px solid #ccc;
     margin: 0;
+    
 }
 
 .styled-select select {
-    width: 50px;
+    width: 140%;
     background: transparent;
     line-height: 1;
     border: 0;
     height: 25px;
     -webkit-appearance: none;
     margin: 0;
+    overflow: hidden;
 }
 
 option {
