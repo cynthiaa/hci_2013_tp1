@@ -4,6 +4,10 @@
 	width: 510px;
 }
 
+.paymentTitle {
+	height: 39px;
+}
+
 .summary{
 	display: inline-block;
 	height: 550px;
@@ -21,14 +25,15 @@
 .select-container {
     margin: 15px 0 10px 0;
     padding-left: 10px;
+    height: 71px;
 }
 
 .select-container > .cards {
-    margin-top: 15px;
+    margin-top: 10px;
 }
 
 .datacard-container {
-    padding: 10px 0;
+	height: 150px;
     overflow: auto;
 }
 
@@ -73,7 +78,7 @@ input[type="radio"]{
 
 .navigation-bar input[type="submit"] {
 	display: inline-block;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .form-component-left {
@@ -110,7 +115,7 @@ input[type="text"].security-code {
 }
 
 .owner-container {
-	margin-top: 20px;
+	margin-top: 10px;
 	overflow: auto;
 }
 
@@ -124,6 +129,7 @@ input[type="text"].security-code {
 }
 
 h6.title {
+	height: 17px;
     margin-top: 6px;
     margin-bottom: 2px;
 }
