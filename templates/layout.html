@@ -14,7 +14,7 @@
                         $("#return_input").prop("disabled", true);
                         $("#return_label").addClass("disabled");
                         $("#return_input").addClass("disabled");
-                        $("#return-calendar").css("display", "none");
+                        $("#return-calendar").hide();;
 
                     }
 
@@ -25,7 +25,8 @@
                         $("#return_input").prop("disabled", false);
                         $("#return_label").removeClass("disabled");
                         $("#return_input").removeClass("disabled");
-                        $("#return-calendar").css("display", "block");
+                        $("#return-calendar").show();
+                        // $("#return_input").show();
 
                     }
                 }

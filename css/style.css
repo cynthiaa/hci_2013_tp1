@@ -324,6 +324,23 @@ label.disabled {
 
 input.disabled {
     border-color: #DDD;
+    color: #DDD;
+}
+
+input.disabled::-webkit-input-placeholder {
+    color: #DDD;
+}
+
+input.disabled::-moz-placeholder {
+    color: #DDD;
+}
+
+input.disabled:-moz-placeholder {
+    color: #DDD;
+}
+
+input.disabled:-ms-input-placeholder {
+    color: #DDD;
 }
 
 .styled-select {
@@ -333,7 +350,7 @@ input.disabled {
     background: url(../img/select_arrow.png) no-repeat right #ddd;
     border: 1px solid #ccc;
     margin: 0;
-    
+
 }
 
 .styled-select select {
