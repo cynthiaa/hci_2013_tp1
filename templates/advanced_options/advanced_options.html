@@ -4,51 +4,61 @@
     <div class="form-container">
         <div class="form-component">
             <label>Aerolínea:</label>
-            <input name="airline" type="text" placeholder="Ingrese el nombre de una aerolínea" />
+            <input id="airline" name="airline" type="text" placeholder="Ingrese el nombre de una aerolínea" />
         </div>
         <div class="form-component">
             <label>Horario de partida:</label>
-            <select id="select_departure_time" name="departure_time">
-                <option value="no-preference">Sin preferencia</option>
-            </select>
+            <div class="styled-select">
+                <select id="select_departure_time" name="departure_time">
+                    <option value="no-preference">Sin preferencia</option>
+                </select>
+            </div>
         </div>
         <div class="form-component">
             <label>Horario de regreso:</label>
-            <select id="select_return_time" name="return_time">
-                <option value="no-preference">Sin preferencia</option>
-            </select>
+            <div class="styled-select">
+                <select id="select_return_time" name="return_time">
+                    <option value="no-preference">Sin preferencia</option>
+                </select>
+            </div>
         </div>
         <div class="form-component">
             <label>Cantidad de escalas:</label>
-            <select id="select_stopovers" name="stopovers">
-                <option value="no-preference">Sin preferencia</option>
-                <option value="0">Sin escalas</option>
-            </select>
+            <div class="styled-select">
+                <select id="select_stopovers" name="stopovers">
+                    <option value="no-preference">Sin preferencia</option>
+                    <option value="0">Sin escalas</option>
+                </select>
+            </div>
         </div>
         <div class="form-component">
             <label>Clase:</label>
-            <select name="clase">
-                <option value="no-preference">Sin preferencia</option>
-                <option value="economy">Turista</option>
-                <option value="business">Ejecutiva</option>
-                <option value="first">Primera clase</option>
-            </select>
+            <div class="styled-select">
+                <select name="clase">
+                    <option value="no-preference">Sin preferencia</option>
+                    <option value="economy">Turista</option>
+                    <option value="business">Ejecutiva</option>
+                    <option value="first">Primera clase</option>
+                </select>
+            </div>
         </div>
         <div class="form-component">
             <label>Moneda:</label>
-            <select name="currency">
-                <option value="pesos">Pesos</option>
-                <option value="dollars">Dólares</option>
-                <option value="euros">Euros</option>
-            </select>
+            <div class="styled-select">
+                <select name="currency">
+                    <option value="pesos">Pesos</option>
+                    <option value="dollars">Dólares</option>
+                    <option value="euros">Euros</option>
+                </select>
+            </div>
         </div>
         <div class="form-component">
             <label>Precio mínimo:</label>
-            <input name="min-price" type="text" placeholder="Mín" />
+            <input class="price" name="min-price" type="text" placeholder="Mín" />
         </div>
         <div class="form-component">
             <label>Precio máximo:</label>
-            <input name="max-price" type="text" placeholder="Máx" />
+            <input class="price" name="max-price" type="text" placeholder="Máx" />
         </div>
     </div>
     <div class="navigation-bar">

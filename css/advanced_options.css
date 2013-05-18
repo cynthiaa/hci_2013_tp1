@@ -32,3 +32,19 @@
     margin-top: 20px;
 }
 
+.form-component .styled-select {
+    width: 130px;
+}
+
+.form-component .styled-select select {
+    width: 130px;
+}
+
+#airline {
+    width: 200px;
+}
+
+input.price {
+    width: 50px;
+}
+

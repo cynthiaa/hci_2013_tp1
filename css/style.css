@@ -51,8 +51,8 @@ h4.title {
 }
 
 h6{
-	color:#333;
-	text-align:center;
+    color:#333;
+    text-align:center;
 }
 
 label {
@@ -152,7 +152,7 @@ body > .container > .header .vdivider {
     height: 25px;
     margin-right: 10px;
     border-left: 1.5px solid #888;
-	display: inline-block;
+    display: inline-block;
 }
 
 #logo {
@@ -193,52 +193,52 @@ body > .container > .header .vdivider {
 }
 
 .menu_link {
-	display: inline-block;
+    display: inline-block;
 }
 
 .menu_link :hover{
-	color:#74BEDE;
+    color:#74BEDE;
 }
 
 .menu-item {
-	display: inline-block;
-	padding: 0px 14px;
-	border-right: 1px solid #888;
+    display: inline-block;
+    padding: 0px 14px;
+    border-right: 1px solid #888;
 }
 
 .final-menu-item {
-	display: inline-block;
-	padding: 0px 14px;
+    display: inline-block;
+    padding: 0px 14px;
 }
 .header-info {
-	float: right;
+    float: right;
 }
 
 .social-media {
-	float: right;
+    float: right;
 }
 
 .menu {
-	margin-top: 60px;
-}
-/*
-#contact_link {
-    float: right;
-    margin-top: 55px;
-    margin-right: -80px;
+    margin-top: 60px;
 }
 
-#about_link {
-    float: right;
-    margin: 55px 20px 0 10px;
-}
+/* #contact_link { */
+/* float: right; */
+/* margin-top: 55px; */
+/* margin-right: -80px; */
+/* } */
+/*  */
+/* #about_link { */
+/* float: right; */
+/* margin: 55px 20px 0 10px; */
+/* } */
+/*  */
+/* #home_link { */
+/* float: right; */
+/* margin-top: 55px; */
+/* margin-right: 20px; */
+/* } */
 
-#home_link {
-    float: right;
-    margin-top: 55px;
-    margin-right: 20px;
-}
-*/
 #sidebar .sidebar-header {
     width: 250px;
     height: 30px;
@@ -326,18 +326,22 @@ input.disabled {
     border-color: #DDD;
 }
 
-.styled-select{
-	width: 50px;
-   height: 25px;
-   overflow: hidden;
-   background: url(../img/select_arrow.png) no-repeat right #ddd;
-   border: 1px solid #ccc;
+.styled-select {
+    width: 50px;
+    height: 25px;
+    overflow: hidden;
+    background: url(../img/select_arrow.png) no-repeat right #ddd;
+    border: 1px solid #ccc;
 }
 .styled-select select {
-   background: transparent;
-   line-height: 1;
-   border: 0;
-   height: 25px;
-   -webkit-appearance: none;
+    background: transparent;
+    line-height: 1;
+    border: 0;
+    height: 25px;
+    -webkit-appearance: none;
+}
+
+option {
+    background-color: #EEE;
 }
 
