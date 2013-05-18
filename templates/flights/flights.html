@@ -20,93 +20,9 @@
 		</div>
 	</div>
 	<div class="hdivider"></div>
-	<div class="flight">
-		<img src='{{Link "img/AARGwprice.gif"}}' alt="Tam Airlines" class="flightImage"/>
-		<div class="departure">
-			<h5 class="flightHeader">Ida</h5>
-			<p class="pFlight">
-				Origen: <span class="pCommon">Buenos Aires</span>
-			</p>
-			<br>
-			<p class="pFlight">
-				Destino: <span class="pCommon">Miami</span>
-			</p>
-			<br>
-			<p class="pFlight">
-				Salida: <span class="pCommon">08:00</span>
-			</p>
-			<br>
-			<p class="pFlight">
-				Llegada: <span class="pCommon">14:00</span>
-			</p>
-			<br>
-			<p class="pFlight">
-				Clase: <span class="pCommon">Turista</span>
-			</p>
-			<br>
-			<p class="pFlight">
-				Escalas: <span class="pCommon">0</span>
-			</p>
-			<br>
-			<p class="pFlight">
-				Duración: <span class="pCommon">6 hs</span>
-			</p>
-		</div>
-		<div class="return">
-			<h5 class="flightHeader">Vuelta</h5>
-			<p class="pFlight">
-				Origen: <span class="pCommon">Miami</span>
-			</p>
-			<br>
-			<p class="pFlight">
-				Destino: <span class="pCommon">Buenos Aires</span>
-			</p>
-			<br>
-			<p class="pFlight">
-				Salida: <span class="pCommon">08:00</span>
-			</p>
-			<br>
-			<p class="pFlight">
-				Llegada: <span class="pCommon">14:00</span>
-			</p>
-			<br>
-			<p class="pFlight">
-				Clase: <span class="pCommon">Turista</span>
-			</p>
-			<br>
-			<p class="pFlight">
-				Escalas: <span class="pCommon">0</span>
-			</p>
-			<br>
-			<p class="pFlight">
-				Duración: <span class="pCommon">6 hs</span>
-			</p>
-			<br>
-		</div>
-		<div class="d1">
-			<div class="details">
-				<p class="detPar">
-					1 adulto/s   $6650
-				</p>
-				<p class="detPar">
-					0 menores    $0
-				</p>
-				<p class="detPar">
-					0 infantes   $0
-				</p>
-				<p class="detPar">
-					Impuestos    $300
-				</p>
-				<p class="detPar">
-					Total        $6950
-				</p>
-			</div>
-			<input type="submit" value="Seleccionar" onClick="window.location='{{Link "passengers.html"}}'; return false;">
-		</div>
-		<div class="hdivider"></div>
-
+	<div class="flight-container">
 		<div class="flight">
-			<img src='{{Link "img/AAwprice.gif"}}' alt="Tam Airlines" class="flightImage"/>
+			<img src='{{Link "img/AARGwprice.gif"}}' alt="Tam Airlines" class="flightImage"/>
 			<div class="departure">
 				<h5 class="flightHeader">Ida</h5>
 				<p class="pFlight">
@@ -118,11 +34,11 @@
 				</p>
 				<br>
 				<p class="pFlight">
-					Salida: <span class="pCommon">08:00</span>
+					Salida: <span class="pCommon"> 08/10/2013 - 08:00</span>
 				</p>
 				<br>
 				<p class="pFlight">
-					Llegada: <span class="pCommon">14:00</span>
+					Llegada: <span class="pCommon">08/10/2013 - 14:00</span>
 				</p>
 				<br>
 				<p class="pFlight">
@@ -148,11 +64,11 @@
 				</p>
 				<br>
 				<p class="pFlight">
-					Salida: <span class="pCommon">08:00</span>
+					Salida: <span class="pCommon">07/11/2013 - 08:00</span>
 				</p>
 				<br>
 				<p class="pFlight">
-					Llegada: <span class="pCommon">14:00</span>
+					Llegada: <span class="pCommon">07/11/2013 - 14:00</span>
 				</p>
 				<br>
 				<p class="pFlight">
@@ -182,98 +98,183 @@
 					<p class="detPar">
 						Impuestos    $300
 					</p>
+					<p class="detTotal">
+						Total        $6950
+					</p>
+				</div>
+				<input type="submit" value="Seleccionar" onClick="window.location='{{Link "passengers.html"}}'; return false;">
+			</div>
+		<div class="hdivider"></div>
+		</div>
+		<div class="flight">
+			<img src='{{Link "img/AAwprice.gif"}}' alt="Tam Airlines" class="flightImage"/>
+			<div class="departure">
+				<h5 class="flightHeader">Ida</h5>
+				<p class="pFlight">
+					Origen: <span class="pCommon">Buenos Aires</span>
+				</p>
+				<br>
+				<p class="pFlight">
+					Destino: <span class="pCommon">Miami</span>
+				</p>
+				<br>
+				<p class="pFlight">
+					Salida: <span class="pCommon">08/10/2013 - 08:00</span>
+				</p>
+				<br>
+				<p class="pFlight">
+					Llegada: <span class="pCommon">08/10/2013 - 14:00</span>
+				</p>
+				<br>
+				<p class="pFlight">
+					Clase: <span class="pCommon">Turista</span>
+				</p>
+				<br>
+				<p class="pFlight">
+					Escalas: <span class="pCommon">0</span>
+				</p>
+				<br>
+				<p class="pFlight">
+					Duración: <span class="pCommon">6 hs</span>
+				</p>
+			</div>
+			<div class="return">
+				<h5 class="flightHeader">Vuelta</h5>
+				<p class="pFlight">
+					Origen: <span class="pCommon">Miami</span>
+				</p>
+				<br>
+				<p class="pFlight">
+					Destino: <span class="pCommon">Buenos Aires</span>
+				</p>
+				<br>
+				<p class="pFlight">
+					Salida: <span class="pCommon">07/11/2013 - 08:00</span>
+				</p>
+				<br>
+				<p class="pFlight">
+					Llegada: <span class="pCommon">07/11/2013 - 14:00</span>
+				</p>
+				<br>
+				<p class="pFlight">
+					Clase: <span class="pCommon">Turista</span>
+				</p>
+				<br>
+				<p class="pFlight">
+					Escalas: <span class="pCommon">0</span>
+				</p>
+				<br>
+				<p class="pFlight">
+					Duración: <span class="pCommon">6 hs</span>
+				</p>
+				<br>
+			</div>
+			<div class="d1">
+				<div class="details">
 					<p class="detPar">
+						1 adulto/s   $6650
+					</p>
+					<p class="detPar">
+						0 menores    $0
+					</p>
+					<p class="detPar">
+						0 infantes   $0
+					</p>
+					<p class="detPar">
+						Impuestos    $300
+					</p>
+					<p class="detTotal">
 						Total        $6950
 					</p>
 				</div>
 				<input type="submit" value="Seleccionar" onClick="window.location='{{Link "passengers.html"}}'; return false;">
 			</div>
 			<div class="hdivider"></div>
-
-			<div class="flight">
-				<img src='{{Link "img/Twprice.gif"}}' alt="Tam Airlines" class="flightImage"/>
-				<div class="departure">
-					<h5 class="flightHeader">Ida</h5>
-					<p class="pFlight">
-						Origen: <span class="pCommon">Buenos Aires</span>
+		</div>
+		<div class="flight">
+			<img src='{{Link "img/Twprice.gif"}}' alt="Tam Airlines" class="flightImage"/>
+			<div class="departure">
+				<h5 class="flightHeader">Ida</h5>
+				<p class="pFlight">
+					Origen: <span class="pCommon">Buenos Aires</span>
+				</p>
+				<br>
+				<p class="pFlight">
+					Destino: <span class="pCommon">Miami</span>
+				</p>
+				<br>
+				<p class="pFlight">
+					Salida: <span class="pCommon">08/10/2013 - 08:00</span>
+				</p>
+				<br>
+				<p class="pFlight">
+					Llegada: <span class="pCommon">08/10/2013 - 14:00</span>
+				</p>
+				<br>
+				<p class="pFlight">
+					Clase: <span class="pCommon">Turista</span>
+				</p>
+				<br>
+				<p class="pFlight">
+					Escalas: <span class="pCommon">0</span>
+				</p>
+				<br>
+				<p class="pFlight">
+					Duración: <span class="pCommon">6 hs</span>
+				</p>
+			</div>
+			<div class="return">
+				<h5 class="flightHeader">Vuelta</h5>
+				<p class="pFlight">
+					Origen: <span class="pCommon">Miami</span>
+				</p>
+				<br>
+				<p class="pFlight">
+					Destino: <span class="pCommon">Buenos Aires</span>
+				</p>
+				<br>
+				<p class="pFlight">
+					Salida: <span class="pCommon">07/11/2013 - 08:00</span>
+				</p>
+				<br>
+				<p class="pFlight">
+					Llegada: <span class="pCommon">07/11/2013 - 14:00</span>
+				</p>
+				<br>
+				<p class="pFlight">
+					Clase: <span class="pCommon">Turista</span>
+				</p>
+				<br>
+				<p class="pFlight">
+					Escalas: <span class="pCommon">0</span>
+				</p>
+				<br>
+				<p class="pFlight">
+					Duración: <span class="pCommon">6 hs</span>
+				</p>
+				<br>
+			</div>
+			<div class="d1">
+				<div class="details">
+					<p class="detPar">
+						1 adulto/s   $6650
 					</p>
-					<br>
-					<p class="pFlight">
-						Destino: <span class="pCommon">Miami</span>
+					<p class="detPar">
+						0 menores    $0
 					</p>
-					<br>
-					<p class="pFlight">
-						Salida: <span class="pCommon">08:00</span>
+					<p class="detPar">
+						0 infantes   $0
 					</p>
-					<br>
-					<p class="pFlight">
-						Llegada: <span class="pCommon">14:00</span>
+					<p class="detPar">
+						Impuestos    $300
 					</p>
-					<br>
-					<p class="pFlight">
-						Clase: <span class="pCommon">Turista</span>
-					</p>
-					<br>
-					<p class="pFlight">
-						Escalas: <span class="pCommon">0</span>
-					</p>
-					<br>
-					<p class="pFlight">
-						Duración: <span class="pCommon">6 hs</span>
+					<p class="detTotal">
+						Total        $6950
 					</p>
 				</div>
-				<div class="return">
-					<h5 class="flightHeader">Vuelta</h5>
-					<p class="pFlight">
-						Origen: <span class="pCommon">Miami</span>
-					</p>
-					<br>
-					<p class="pFlight">
-						Destino: <span class="pCommon">Buenos Aires</span>
-					</p>
-					<br>
-					<p class="pFlight">
-						Salida: <span class="pCommon">08:00</span>
-					</p>
-					<br>
-					<p class="pFlight">
-						Llegada: <span class="pCommon">14:00</span>
-					</p>
-					<br>
-					<p class="pFlight">
-						Clase: <span class="pCommon">Turista</span>
-					</p>
-					<br>
-					<p class="pFlight">
-						Escalas: <span class="pCommon">0</span>
-					</p>
-					<br>
-					<p class="pFlight">
-						Duración: <span class="pCommon">6 hs</span>
-					</p>
-					<br>
-				</div>
-				<div class="d1">
-					<div class="details">
-						<p class="detPar">
-							1 adulto/s   $6650
-						</p>
-						<p class="detPar">
-							0 menores    $0
-						</p>
-						<p class="detPar">
-							0 infantes   $0
-						</p>
-						<p class="detPar">
-							Impuestos    $300
-						</p>
-						<p class="detPar">
-							Total        $6950
-						</p>
-					</div>
-					<input type="submit" value="Seleccionar" onClick="window.location='{{Link "passengers.html"}}'; return false;">
-				</div>
+				<input type="submit" value="Seleccionar" onClick="window.location='{{Link "passengers.html"}}'; return false;">
 			</div>
 			<div class="hdivider"></div>
 		</div>
-
+	</div>
+</div>
