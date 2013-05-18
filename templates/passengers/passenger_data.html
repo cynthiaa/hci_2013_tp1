@@ -15,23 +15,31 @@
         </div>
         <div class="form-component-left">
             <label>Fecha de nacimiento:</label><br>
-            <select class="select_birth_day" name="birth_day">
-                <option value="dd" selected="selected">dd</option>
-            </select>
-            <select class="select_birth_month" name="birth_month">
-                <option value="mm" selected="selected">mm</option>
-            </select>
-            <select class="select_birth_year" name="birth_year">
-                <option value="aaaa" selected="selected">aaaa</option>i
-            </select>
+            <div class="styled-select">
+                <select class="select_birth_day" name="birth_day">
+                    <option value="dd" selected="selected">dd</option>
+                </select>
+            </div>
+            <div class="styled-select">
+                <select class="select_birth_month" name="birth_month">
+                    <option value="mm" selected="selected">mm</option>
+                </select>
+            </div>
+            <div class="styled-select">
+                <select class="select_birth_year" name="birth_year">
+                    <option value="aaaa" selected="selected">aaaa</option>
+                </select>
+            </div>
         </div>
         <div class="form-component-right">
             <label>Sexo:</label><br />
-            <select name="gender">
-                <option value="none" selected="true"></option>
-                <option value="male">Masculino</option>
-                <option value="female">Femenino</option>
-            </select>
+            <div id="gender" class="styled-select">
+                <select name="gender">
+                    <option value="none" selected="true"></option>
+                    <option value="male">Masculino</option>
+                    <option value="female">Femenino</option>
+                </select>
+            </div>
         </div>
     </div>
 </div>

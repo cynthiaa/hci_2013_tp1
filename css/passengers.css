@@ -95,3 +95,17 @@ p.flight {
     display: inline-block;
 }
 
+.styled-select, .styled-select select {
+    width: 60px;
+    display: inline-block;
+}
+
+.styled-select {
+    margin-top: 5px;
+    margin-right: 5px;
+}
+
+#gender, #gender select {
+    width: 100px;
+}
+

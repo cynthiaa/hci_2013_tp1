@@ -5,14 +5,14 @@
 }
 
 .summary{
-	display:inline-block;
+	display: inline-block;
 	height: 550px;
 	width: 400px;
 	margin-right:20px;
 }
 
 #body .main {
-	display:inline-block;
+	display: inline-block;
 	height: 550px;
 	width: 544px;
 	position: absolute;
@@ -33,7 +33,7 @@
 }
 
 .payment-owner {
-	display:inline-block;
+	display: inline-block;
 	float: left;
 	margin-left: 20px;
 }
@@ -126,5 +126,16 @@ input[type="text"].security-code {
 h6.title {
     margin-top: 6px;
     margin-bottom: 2px;
+}
+
+.styled-select, .styled-select select {
+    display: inline-block;
+    width: 60px;
+    /* vertical-align: bottom; */
+}
+
+.styled-select {
+    margin-top: 5px;
+    margin-right: 10px;
 }
 
