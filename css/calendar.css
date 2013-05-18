@@ -1,8 +1,8 @@
 div.calendar {
-    position: relative;
+    position: absolute;
 }
-
 .calendar {
+    z-index: 2000;
     border-right: #52B0D6 1px solid;
     border-top: #52B0D6 1px solid;
     font-size: 11px;
@@ -11,7 +11,11 @@ div.calendar {
     cursor: default;
     color: #000;
     border-bottom: #52B0D6 1px solid;
-    font-family: tahoma,verdana,sans-serif;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+.calendar div {
+    color: #FFFFFF;
 }
 
 .calendar table {
@@ -23,7 +27,7 @@ div.calendar {
     cursor: default;
     color: #000;
     border-bottom: #52B0D6 1px solid;
-    font-family: tahoma,verdana,sans-serif;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
 
 .calendar .button {
@@ -37,10 +41,6 @@ div.calendar {
     text-align: center;
 }
 
-.calendar .nav {
-    background: url(menuarrow.gif) #52B0D6 no-repeat 100% 100%;
-}
-
 .calendar thead .title {
     padding-right: 2px;
     padding-left: 2px;
@@ -50,9 +50,6 @@ div.calendar {
     color: #FFFFFF;
     padding-top: 2px;
     text-align: center;
-}
-
-.calendar thead .headrow {
 }
 
 .calendar thead .name {
@@ -198,6 +195,7 @@ div.calendar {
     padding-bottom: 2px;
     color: #FFFFFF;
     padding-top: 2px;
+    width: 100%;
 }
 
 .calendar tfoot .hilite {
@@ -226,7 +224,7 @@ div.calendar {
     border-top: #52B0D6 1px solid;
     display: none;
     font-size: 90%;
-    z-index: 100;
+    z-index: 3000;
     background: #DFEEFF;
     left: 0px;
     border-left: #52B0D6 1px solid;

@@ -3,10 +3,10 @@ Calendar._DN = new Array
 ("Domingo",
  "Lunes",
  "Martes",
- "Miércoles",
+ "MiÃ©rcoles",
  "Jueves",
  "Viernes",
- "Sábado",
+ "SÃ¡bado",
  "Domingo");
 
 // Please note that the following array of short day names (and the same goes
@@ -26,10 +26,10 @@ Calendar._SDN = new Array
 ("Dom",
  "Lun",
  "Mar",
- "Mié",
+ "MiÃ©",
  "Jue",
  "Vie",
- "Sáb",
+ "SÃ¡b",
  "Dom");
 
 // First day of the week. "0" means display Sunday first, "1" means display
@@ -71,28 +71,28 @@ Calendar._TT = {};
 Calendar._TT["INFO"] = "Acerca del calendario";
 
 Calendar._TT["ABOUT"] =
-"Selección de fecha:\n" +
-"- Use los botones \xab, \xbb para seleccionar el año\n" +
+"SelecciÃ³n de fecha:\n" +
+"- Use los botones \xab, \xbb para seleccionar el aÃ±o\n" +
 "- Use los botones " + String.fromCharCode(0x2039) + ", " + String.fromCharCode(0x203a) + " para seleccionar el mes\n" +
-"- Mantenga pulsado el ratón en cualquiera de estos botones para una selección rápida.";
+"- Mantenga pulsado el ratÃ³n en cualquiera de estos botones para una selecciÃ³n rÃ¡pida.";
 Calendar._TT["ABOUT_TIME"] = "\n\n" +
-"Selección de hora:\n" +
+"SelecciÃ³n de hora:\n" +
 "- Pulse en cualquiera de las partes de la hora para incrementarla\n" +
-"- o pulse las mayúsculas mientras hace clic para decrementarla\n" +
-"- o haga clic y arrastre el ratón para una selección más rápida.";
+"- o pulse las mayÃºsculas mientras hace clic para decrementarla\n" +
+"- o haga clic y arrastre el ratÃ³n para una selecciÃ³n mÃ¡s rÃ¡pida.";
 
-Calendar._TT["PREV_YEAR"] = "Año anterior (mantener para menú)";
-Calendar._TT["PREV_MONTH"] = "Mes anterior (mantener para menú)";
+Calendar._TT["PREV_YEAR"] = "AÃ±o anterior (mantener para menÃº)";
+Calendar._TT["PREV_MONTH"] = "Mes anterior (mantener para menÃº)";
 Calendar._TT["GO_TODAY"] = "Ir a hoy";
-Calendar._TT["NEXT_MONTH"] = "Mes siguiente (mantener para menú)";
-Calendar._TT["NEXT_YEAR"] = "Año siguiente (mantener para menú)";
+Calendar._TT["NEXT_MONTH"] = "Mes siguiente (mantener para menÃº)";
+Calendar._TT["NEXT_YEAR"] = "AÃ±o siguiente (mantener para menÃº)";
 Calendar._TT["SEL_DATE"] = "Seleccionar fecha";
 Calendar._TT["DRAG_TO_MOVE"] = "Arrastrar para mover";
 Calendar._TT["PART_TODAY"] = " (hoy)";
 
 // the following is to inform that "%s" is to be the first day of week
 // %s will be replaced with the day name.
-Calendar._TT["DAY_FIRST"] = "Hacer %s primer día de la semana";
+Calendar._TT["DAY_FIRST"] = "Hacer %s primer dÃ­a de la semana";
 
 // This may be locale-dependent.  It specifies the week-end days, as an array
 // of comma-separated numbers.  The numbers are from 0 to 6: 0 means Sunday, 1
@@ -101,7 +101,7 @@ Calendar._TT["WEEKEND"] = "0,6";
 
 Calendar._TT["CLOSE"] = "Cerrar";
 Calendar._TT["TODAY"] = "Hoy";
-Calendar._TT["TIME_PART"] = "(Mayúscula-)Clic o arrastre para cambiar valor";
+Calendar._TT["TIME_PART"] = "(MayÃºscula-)Clic o arrastre para cambiar valor";
 
 // date formats
 Calendar._TT["DEF_DATE_FORMAT"] = "%d/%m/%Y";
@@ -109,3 +109,4 @@ Calendar._TT["TT_DATE_FORMAT"] = "%A, %e de %B de %Y";
 
 Calendar._TT["WK"] = "sem";
 Calendar._TT["TIME"] = "Hora:";
+

@@ -199,3 +199,4 @@ Calendar.setup = function (params) {
 
 	return cal;
 };
+

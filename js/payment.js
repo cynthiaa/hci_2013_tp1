@@ -3,7 +3,6 @@ require(
         "libs/text!../templates/payment/payment.html",
         "libs/text!../templates/select.html",
         "libs/utils",
-        "libs/carousel",
         "libs/domReady"
     ],
 

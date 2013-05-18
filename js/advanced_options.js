@@ -4,6 +4,9 @@ require(
         "libs/text!../templates/select.html",
         "libs/utils",
         "libs/carousel",
+        // "libs/calendar/calendar",
+        // "libs/calendar/calendar-es",
+        // "libs/calendar/calendar-setup",
         "libs/domReady"
     ],
 

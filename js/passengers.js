@@ -5,7 +5,6 @@ require(
         "libs/text!../templates/select.html",
         "libs/text!../templates/select.html",
         "libs/utils",
-        "libs/carousel",
         "libs/domReady"
     ],
 

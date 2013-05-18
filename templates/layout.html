@@ -25,78 +25,84 @@
                         $("#return_input").removeClass("disabled");
                     }
                 }
-            </script>
-            <div class="sidebar-header">
-                <a href="javascript:toggleFlightMode('round_trip')">
-                    <div class="sidebar-tab selected" id="round_trip">
-                        Ida y vuelta
-                    </div>
-                </a>
-                <a href="javascript:toggleFlightMode('one_way')">
-                    <div class="sidebar-tab" id="one_way">
-                        Ida
-                    </div>
-                </a>
-            </div>
-
-            <div class="sidebar-body">
-                <label>Origen:</label>
-                    <input name="from" type="text" />
-
-                    <label>Destino:</label>
-                    <input name="to" type="text" />
-
-                    <div class="hdivider"></div>
-
-                    <label>Partida:</label>
-                    <div class="input-date">
-                        <input name="depart" type="text" placeholder="dd-mm-yyyy" maxlength="15" />
-                        <img src="{{Link 'img/calendar.png'}}" />
-                    </div>
-
-                    <label id="return_label">Regreso:</label>
-                    <div class="input-date">
-                        <input id="return_input" name="return" type="text" placeholder="dd-mm-yyyy" maxlength="15" />
-                        <img src="{{Link 'img/calendar.png'}}" />
-                    </div>
-
-                    <div class="hdivider"></div>
-
-                    <div class="num-people">
-                        <label>Adultos:</label>
-                        <div class="styled-select">
-                        	<select id="select_adults" name="adults">
-                        	</select>
-                        </div>
-                    </div>
-
-                    <div class="num-people">
-                        <label>Menores:</label>
-                        <div class="styled-select">
-                        	<select id="select_children" name="children">
-                        	</select>
-                        </div>
-                    </div>
-
-                    <div class="num-people">
-                        <label>Infantes:</label>
-                        <div class="styled-select">
-                        	<select id="select_infants" name="infants">
-                        	</select>
-                        </div>
-                    </div>
-
-                    <div class="hdivider"></div>
-
-                    <div class="search">
-                        <a href="{{Link 'advanced_options.html'}}">Opciones Avanzadas</a>
-                        <input type="submit" value="Buscar" onClick="window.location='{{Link "flights.html"}}';" />
-                    </div>
-            </div>
+</script>
+<div class="sidebar-header">
+    <a href="javascript:toggleFlightMode('round_trip')">
+        <div class="sidebar-tab selected" id="round_trip">
+            Ida y vuelta
         </div>
-        <div id="main">
-            {{{main_body}}}
+    </a>
+    <a href="javascript:toggleFlightMode('one_way')">
+        <div class="sidebar-tab" id="one_way">
+            Ida
+        </div>
+    </a>
+</div>
+
+<div class="sidebar-body">
+    <label>Origen:</label>
+    <input name="from" type="text" />
+
+    <label>Destino:</label>
+    <input name="to" type="text" />
+
+    <div class="hdivider"></div>
+
+    <label id="depart_label">Partida:</label>
+    <div class="input-date">
+        <input id="depart_input" name="depart" type="text" placeholder="dd-mm-yyyy" maxlength="15" />
+        <img id="depart-calendar" src="{{Link 'img/calendar.png'}}" />
+        <script type="text/javascript">
+            Calendar.setup({inputField: "depart_input", ifFormat: "%d-%m-%Y", button: "depart-calendar"});
+            </script>
+        </div>
+
+        <label id="return_label">Regreso:</label>
+        <div class="input-date">
+            <input id="return_input" name="return" type="text" placeholder="dd-mm-yyyy" maxlength="15" />
+            <img id="return-calendar" src="{{Link 'img/calendar.png'}}" />
+            <script type="text/javascript">
+                Calendar.setup({inputField: "return_input", ifFormat: "%d-%m-%Y", button: "return-calendar"});
+                </script>
+            </div>
+
+            <div class="hdivider"></div>
+
+            <div class="num-people">
+                <label>Adultos:</label>
+                <div class="styled-select">
+                    <select id="select_adults" name="adults">
+                    </select>
+                </div>
+            </div>
+
+            <div class="num-people">
+                <label>Menores:</label>
+                <div class="styled-select">
+                    <select id="select_children" name="children">
+                    </select>
+                </div>
+            </div>
+
+            <div class="num-people">
+                <label>Infantes:</label>
+                <div class="styled-select">
+                    <select id="select_infants" name="infants">
+                    </select>
+                </div>
+            </div>
+
+            <div class="hdivider"></div>
+
+            <div class="search">
+                <a href="{{Link 'advanced_options.html'}}">Opciones Avanzadas</a>
+                <input type="submit" value="Buscar" onClick="window.location='{{Link "flights.html"}}';" />
+            </div>
         </div>
     </div>
+    <div id="main">
+        {{{main_body}}}
+    </div>
+</div>
 </div>
 

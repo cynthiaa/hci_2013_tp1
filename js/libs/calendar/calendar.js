@@ -1380,8 +1380,9 @@ Calendar.prototype.showAtElement = function (el, opts) {
 		}
 		var tmp = box.x + box.width - br.x;
 		if (tmp > 0) box.x -= tmp;
-		tmp = box.y + box.height - br.y;
-		if (tmp > 0) box.y -= tmp;
+		// tmp = box.y + box.height - br.y;
+		// if (tmp > 0) box.y -= tmp;
+		box.y -= 15;
 	};
 	this.element.style.display = "block";
 	Calendar.continuation_for_the_fucking_khtml_browser = function() {
