@@ -3,6 +3,7 @@
 
     <div id="body">
         <div class="panel" id="sidebar">
+
             <script type="text/javascript">
                 function toggleFlightMode(from) {
 
@@ -13,6 +14,7 @@
                         $("#return_input").prop("disabled", true);
                         $("#return_label").addClass("disabled");
                         $("#return_input").addClass("disabled");
+                        $("#return-calendar").hide();;
 
                     }
 
@@ -23,85 +25,105 @@
                         $("#return_input").prop("disabled", false);
                         $("#return_label").removeClass("disabled");
                         $("#return_input").removeClass("disabled");
+                        $("#return-calendar").show();
+                        // $("#return_input").show();
+
                     }
                 }
-</script>
-<div class="sidebar-header">
-    <a href="javascript:toggleFlightMode('round_trip')">
-        <div class="sidebar-tab selected" id="round_trip">
-            Ida y vuelta
-        </div>
-    </a>
-    <a href="javascript:toggleFlightMode('one_way')">
-        <div class="sidebar-tab" id="one_way">
-            Ida
-        </div>
-    </a>
-</div>
+            </script>
 
-<div class="sidebar-body">
-	<form>
-		<label>Origen:</label>
-		<input name="from" type="text" />
+            <script type="text/javascript">
+                function isDateKey(data) {
 
-		<label>Destino:</label>
-		<input name="to" type="text" />
+                    character = (document.all) ? data.keyCode : data.which;
 
-		<div class="hdivider"></div>
+                    if (character == 8 || character == 0)
+                        return true;
 
-		<label id="depart_label">Partida:</label>
-		<div class="input-date">
-			<input id="depart_input" name="depart" type="text" placeholder="dd-mm-yyyy" maxlength="15" />
-			<img id="depart-calendar" src="{{Link 'img/calendar.png'}}" />
-			<script type="text/javascript">
-				Calendar.setup({inputField: "depart_input", ifFormat: "%d-%m-%Y", button: "depart-calendar"});
-				</script>
-			</div>
+                    pattern = /[0-9]|-|\//;
 
-			<label id="return_label">Regreso:</label>
-			<div class="input-date">
-				<input id="return_input" name="return" type="text" placeholder="dd-mm-yyyy" maxlength="15" />
-				<img id="return-calendar" src="{{Link 'img/calendar.png'}}" />
-				<script type="text/javascript">
+                    return pattern.test(String.fromCharCode(character));
+                }
+            </script>
+
+            <div class="sidebar-header">
+                <a href="javascript:toggleFlightMode('round_trip')">
+                    <div class="sidebar-tab selected" id="round_trip">
+                        Ida y vuelta
+                    </div>
+                </a>
+                <a href="javascript:toggleFlightMode('one_way')">
+                    <div class="sidebar-tab" id="one_way">
+                        Ida
+                    </div>
+                </a>
+            </div>
+
+            <div class="sidebar-body">
+                <form>
+                    <label>Origen:</label>
+                    <input name="from" type="text" />
+
+                    <label>Destino:</label>
+                    <input name="to" type="text" />
+
+                    <div class="hdivider"></div>
+
+                    <label id="depart_label">Partida:</label>
+                    <div class="input-date">
+                        <input id="depart_input" name="depart" type="text" placeholder="dd-mm-yyyy" maxlength="10" onkeypress="return isDateKey(event);" />
+                        <img id="depart-calendar" src="{{Link 'img/calendar.png'}}" />
+
+                        <script type="text/javascript">
+                    Calendar.setup({inputField: "depart_input", ifFormat: "%d-%m-%Y", button: "depart-calendar"});
+        				</script>
+        			</div>
+
+		        	<label id="return_label">Regreso:</label>
+        			<div class="input-date">
+		        		<input id="return_input" name="return" type="text" placeholder="dd-mm-yyyy" maxlength="10" onkeypress="return isDateKey(event);" />
+			        	<img id="return-calendar" src="{{Link 'img/calendar.png'}}" />
+
+                        <script type="text/javascript">
 					Calendar.setup({inputField: "return_input", ifFormat: "%d-%m-%Y", button: "return-calendar"});
-					</script>
-				</div>
+					    </script>
+				    </div>
 
-				<div class="hdivider"></div>
+				    <div class="hdivider"></div>
 
-				<div class="num-people">
-					<label>Adultos:</label>
-					<div class="styled-select">
-						<select id="select_adults" name="adults"></select>
-					</div>
-				</div>
+				    <div class="num-people">
+					    <label>Adultos:</label>
+					    <div class="styled-select">
+						    <select id="select_adults" name="adults"></select>
+					    </div>
+				    </div>
 
-				<div class="num-people">
-					<label>Menores:</label>
-					<div class="styled-select">
-						<select id="select_children" name="children"></select>
-					</div>
-				</div>
+				    <div class="num-people">
+					    <label>Menores:</label>
+					    <div class="styled-select">
+						    <select id="select_children" name="children"></select>
+					    </div>
+				    </div>
 
-				<div class="num-people">
-					<label>Infantes:</label>
-					<div class="styled-select">
-						<select id="select_infants" name="infants"></select>
-					</div>
-				</div>
+				    <div class="num-people">
+					    <label>Infantes:</label>
+					    <div class="styled-select">
+						    <select id="select_infants" name="infants"></select>
+					    </div>
+				    </div>
 
-				<div class="hdivider"></div>
+				    <div class="hdivider"></div>
 
-				<div class="search">
-					<a href="{{Link 'advanced_options.html'}}">Opciones Avanzadas</a>
-					<input type="submit" value="Buscar" onClick="window.location='{{Link "flights.html"}}'; return false;" />
-				</div>
-			</div>
-		</div>
-		<div id="main">
-			{{{main_body}}}
-		</div>
-	</form>
-</div>
+				    <div class="search">
+					    <a href="{{Link 'advanced_options.html'}}">Opciones Avanzadas</a>
+					    <input type="submit" value="Buscar" onClick="window.location='{{Link "flights.html"}}'; return false;" />
+				    </div>
+			    </div>
+		    </div>
+		    <div id="main">
+			    {{{main_body}}}
+		    </div>
+	    </form>
+    </div>
 </div>
 
