@@ -13,15 +13,14 @@
     display: inline-block;
 }
 
-.orderBy {
+.order-by {
     display: inline-block;
     float: right;
-    margin-top: -35px;
+    margin-top: -45px;
 }
 
 .flightImage {
     display: inline-block;
-    float: left;
 }
 
 .departure {
@@ -63,5 +62,13 @@
     text-align: right;
     font-size: 12px;
     display: inline-block;
+}
+
+.order-by .styled-select {
+    width: 200px;
+}
+
+.order-by .styled-select select {
+    width: 200px;
 }
 
