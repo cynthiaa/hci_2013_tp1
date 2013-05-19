@@ -19,18 +19,29 @@
 			</div>
 		</div>
 	</div>
-    <div class="hdivider"></div>
-    <div id="flight-container">
+	<div id="flight-container">
+		<div class="inbound">
+			<div class="hdivider"></div>
+			<h6 class="title">IDA</h6>
+			<div class="hdivider"></div>	
+			<form>
+				<!-- aca irian las idas -->
+			</form>
+		</div>
+		<div class="outbound">
+			<div class="hdivider"></div>
+			<h6 class="title">VUELTA</h6>
+			<div class="hdivider"></div>
+			<form>
+				<!-- aca irian las vueltas-->				
+			</form>
 
-        <!-- El siguiente div está sólo para probar la API, borrar TODO -->
-        <div>
-            <span class="title">Request</span><br>
-            <span class="label">Service: </span><span>Misc</span><br>
-            <span class="label">Method: </span><span>GetLanguages</span><br>
-            <span class="title">Response</span><br>
-            <span class="label">UUID: </span><span id="uuid"></span><br>
-            <span class="label">Time: </span><span id="time"></span><br>
-            <ul></ul>
-        </div>
-    </div>
+		</div>
+	</div>
+	<div class="navigation-bar">
+		<div class="summary">
+			<!--aca iria actualizandose lo que clickean los usuarios-->
+		</div>
+		<input type="submit" value="Continuar" onClick="window.location='{{Link "passengers.html"}}';" />
+	</div>
 </div>
