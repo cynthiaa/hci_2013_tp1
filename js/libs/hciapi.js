@@ -3,7 +3,7 @@ function HCI() {
 
 HCI.prototype = (function() {
    var baseUrl = "http://eiffel.itba.edu.ar/hci/service2/";
-   
+
    var resolveUrl = function(relativeUrl, method, params) {
       var url = baseUrl + relativeUrl + "?method=" + method;
       for (var property in params) {
