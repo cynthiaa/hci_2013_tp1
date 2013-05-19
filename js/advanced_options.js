@@ -15,6 +15,8 @@ require(
         Utils.init();
         Utils.make_html(advanced_options_html);
 
+        $("#advanced_options").addClass("selected");
+
         var select_tmp = Handlebars.compile(select_html);
 
         for (var i = 0; i <= 24; i++) {
