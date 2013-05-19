@@ -4,75 +4,80 @@
 	<div class="departure">
 		<h5 class="flightHeader">Ida</h5>
 		<p class="pFlight">
-			Origen: <span class="pCommon">{{departureCity}}</span>
+			Origen: <span class="pCommon">{{inboundDepartureCity}}</span>
 		</p>
 		<br>
 		<p class="pFlight">
-			Destino: <span class="pCommon">{{arrivalCity}}</span>
+			Destino: <span class="pCommon">{{inboundArrivalCity}}</span>
 		</p>
 		<br>
 		<p class="pFlight">
-			Salida: <span class="pCommon">{{departureTime}}</span>
+			Salida: <span class="pCommon">{{inboundDepartureTime}}</span>
 		</p>
 		<br>
 		<p class="pFlight">
-			Llegada: <span class="pCommon">{{arrivalTime}}</span>
+			Llegada: <span class="pCommon">{{inboundArrivalTime}}</span>
 		</p>
 		<br>
 		<p class="pFlight">
-			Clase: <span class="pCommon">{{flightClass}}</span>
+			Clase: <span class="pCommon">{{inboundFlightClass}}</span>
 		</p>
 		<br>
 		<p class="pFlight">
-			Escalas: <span class="pCommon">{{flightScales}}</span>
+			Escalas: <span class="pCommon">{{inboundFlightStopovers}}</span>
 		</p>
 		<br>
 		<p class="pFlight">
-			Duración: <span class="pCommon">{{flightDuration}}</span>
+			Duración: <span class="pCommon">{{inboundFlightDuration}}</span>
 		</p>
 	</div>
 	<div class="return">
 		<h5 class="flightHeader">Vuelta</h5>
 		<p class="pFlight">
-			Origen: <span class="pCommon">{{arrivalCity}}</span>
+			Origen: <span class="pCommon">{{outboundArrivalCity}}</span>
 		</p>
 		<br>
 		<p class="pFlight">
-			Destino: <span class="pCommon">{{departureCity}}</span>
+			Destino: <span class="pCommon">{{outboundDepartureCity}}</span>
 		</p>
 		<br>
 		<p class="pFlight">
-			Salida: <span class="pCommon">{{returningDepartureTime}}</span>
+			Salida: <span class="pCommon">{{outboundDepartureTime}}</span>
 		</p>
 		<br>
 		<p class="pFlight">
-			Llegada: <span class="pCommon">{{returningArrivalTime}}</span>
+			Llegada: <span class="pCommon">{{outboundArrivalTime}}</span>
 		</p>
 		<br>
 		<p class="pFlight">
-			Clase: <span class="pCommon">{{flightClass}}</span>
+			Clase: <span class="pCommon">{{outboundFlightClass}}</span>
 		</p>
 		<br>
 		<p class="pFlight">
-			Escalas: <span class="pCommon">{{flightScales}}</span>
+			Escalas: <span class="pCommon">{{outboundFlightStopovers}}</span>
 		</p>
 		<br>
 		<p class="pFlight">
-			Duración: <span class="pCommon">{{flightDuration}}</span>
+			Duración: <span class="pCommon">{{outboundFlightDuration}}</span>
 		</p>
 		<br>
 	</div>
 	<div class="d1">
 		<div class="details">
-			<p class="detPar detailAdults">
+			<p class="detPar">
+				{{detailAdults}}
 			</p>
-			<p class="detPar detailMinors">
+			<p class="detPar">
+				{{detailMinors}}
 			</p>
-			<p class="detPar detailInfants">
+			<p class="detPar">
+				{{detailInfants}}
 			</p>
-			<p class="detPar detailTaxes">
+			<p class="detPar">
+				{{detailTaxes}}
 			</p>
-			<p class="detTotal detailTotal">
+			<p class="detTotal">
+				{{detailTotal}}
 			</p>
 		</div>
 		<input type="submit" value="Seleccionar" onClick="window.location='{{Link "passengers.html"}}'; return false;">
