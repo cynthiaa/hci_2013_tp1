@@ -1,12 +1,12 @@
-require(["libs/text!../templates/flights/flights.html", "libs/text!../templates/flights/flights_data.html", "libs/utils", "libs/carousel",
-// "libs/calendar/calendar",
-// "libs/calendar/calendar-es",
-// "libs/calendar/calendar-setup",
-// "libs/hci",
-"libs/api", "libs/domReady"], function(flights_html, flights_data_html) {
+require(["libs/text!../templates/flights/flights.html",
+        "libs/text!../templates/flights/flights_data.html", "libs/utils", "libs/carousel",
+        // "libs/calendar/calendar",
+        // "libs/calendar/calendar-es",
+        // "libs/calendar/calendar-setup",
+        // "libs/hci",
+        "libs/api", "libs/domReady"],
 
-	Utils.init();
-	Utils.make_html(flights_html);
+        function(flights_html, flights_data_html) {
 
 	var api = new API();
 	var flights_data_tmp = Handlebars.compile(flights_data_html);
