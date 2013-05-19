@@ -15,20 +15,18 @@ require(
 
         Utils.init();
         Utils.make_html(flights_html);
-        
-        var param = {"from": "EZE", "to": "MIA", "dep_date": "2013-08-19", "ret_date": "2013-09-1", "adults": "1", "children": "0", "infants": "0"}
-        var callback = {"success": 
-        
-	        function(data){
-	        	for (var i = 0; i <= data.flights.length; i++) {
-	        		var flight_data_tmp = Handlebars.compile(flight_data_html);
-	        		$('#caca').append(data.toString());
-					// $('#flights').append(flights_data_tmp({"departureCity" :}));
-			}},
-		"error": function(data){}}
-		console.log(HCI.prototype);
-        var url = HCI.prototype.call("Misc.groovy", "GetRoundTripFlights", param, callback);
-		
+
+        var flights_data_tmp = Handlebars.compile(flights_data_html);
+
+        /* Para cada pasajero, completar con la info correcta */
+
+        $('#flight-container').append(flights_data_tmp({"departureCity": "City1",
+             "arrivalCity": "City2", "departureTime": "Time1", "arrivalTime": "Time2",
+             "flightClass": "Class", "flightScales": "Scales", "flightDuration": "Duration",
+             "returningDepartureTime": "Time3", "returningArrivalTime": "Time4",
+             "detailAdults": "Price1", "detailMinors": "Price2", "detailInfants": "Price3",
+             "detailTaxes": "Taxes", "detailTotal": "Total"}));
+
 	}
 );
 
