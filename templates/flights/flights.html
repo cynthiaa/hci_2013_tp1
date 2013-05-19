@@ -20,23 +20,30 @@
 		</div>
 	</div>
 	<div class="hdivider"></div>
-	<div id="flight-container">
-		<div class="inbound">
-			<h6 class="title">IDA</h6>
-			<div class="hdivider"></div>
-			<form></form>
+		<div class="flight-header">
+				<h6 class="title">IDA</h6>			
 		</div>
-		<div class="outbound">
-			<h6 class="title">VUELTA</h6>
-			<div class="hdivider"></div>
-			<form></form>
+		<div class="flight-header">
+				<h6 class="title">VUELTA</h6>			
+		</div>
+	<div class="hdivider"></div>
+	<div id="flight-container">
+		<div class="inbound flight-wrapper">
+			<form>
+				<!-- insert inbound flights here -->
+			</form>
+		</div>
+		<div class="outbound flight-wrapper">
+			<form>
+				<!-- insert outbound flights here -->
+			</form>
 		</div>
 	</div>
 	<div class="navigation-bar">
 		<div class="summary">
 			<!--aca iria actualizandose lo que clickean los usuarios-->
 		</div>
-		<input type="submit" value="Continuar" onClick="window.location='{{Link "passengers.html"}}';" />
+		<input class="flight-submit" type="submit" value="Continuar" onClick="window.location='{{Link "passengers.html"}}';" />
 	</div>
 </div>
 

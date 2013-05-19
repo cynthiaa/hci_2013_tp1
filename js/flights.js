@@ -1,10 +1,12 @@
 require(["libs/text!../templates/flights/flights.html",
-        "libs/text!../templates/flights/flights_data.html", "libs/utils", "libs/carousel",
+        "libs/text!../templates/flights/flights_data.html",
+        "libs/utils",
+        "libs/carousel",
         // "libs/calendar/calendar",
         // "libs/calendar/calendar-es",
         // "libs/calendar/calendar-setup",
         // "libs/hci",
-        "libs/api", "libs/domReady"],
+        "libs/domReady"],
 
         function(flights_html, flights_data_html) {
 

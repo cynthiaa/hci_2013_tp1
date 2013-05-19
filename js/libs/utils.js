@@ -9,7 +9,9 @@ define(
         "libs/i18n",
         "libs/handlebars",
         "jquery",
-        "libs/purl"
+        "libs/purl",
+        "libs/api",
+        "libs/ui/jquery-ui"
     ],
     function(header_html, layout_html, layout_only_top_html, select_html) {
 
