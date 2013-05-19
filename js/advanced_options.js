@@ -25,6 +25,39 @@ require(
         for (var i = 1; i <= 8; i++) {
             $("#select_stopovers").append(select_tmp({"value": i, "name": "Hasta " + i + " escala" + (i > 1 ? "s" : "")}));
         }
+
+        var api = new API();
+
+        var airlines = new Array();
+
+        api.misc.getAirlines({
+
+            success: function(result) {
+
+            for (var i = 0; i < result.airlines.length; i++) {
+
+                airlines[i] = result.airlines[i].name + " (" + result.airlines[i].airlineId + ")";
+            }
+        }});
+
+        $("#airline").autocomplete({
+            source: airlines
+        });
+
+        var callbacks = {
+
+            success: function(result) {
+
+            for (var i = 0; i < result.currencies.length; i++) {
+
+                $("#currency").append(select_tmp({"value": result.currencies[i].description, "name": result.currencies[i].description}));
+            }
+        }
+        };
+
+        var param = {"sort_key": "id", "sort_order": "asc"};
+        api.misc.getCurrencies(callbacks, param);
+
     }
 );
 
