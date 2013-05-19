@@ -7,7 +7,7 @@ require(
         // "libs/calendar/calendar",
         // "libs/calendar/calendar-es",
         // "libs/calendar/calendar-setup",
-        "libs/hci.api",
+        "libs/api",
         "libs/domReady"
     ],
 
@@ -26,6 +26,41 @@ require(
              "returningDepartureTime": "Time3", "returningArrivalTime": "Time4",
              "detailAdults": "Price1", "detailMinors": "Price2", "detailInfants": "Price3",
              "detailTaxes": "Taxes", "detailTotal": "Total"}));
+
+    // Ejemplos de uso de la API
+    // Esto está sólo para probar la API, borrar TODO
+
+        var api = new API();
+
+        api.misc.getLanguages({
+
+            success: function(result) {
+                $("#uuid").text(result.meta.uuid);
+                $("#time").text(result.meta.time);
+
+                for (var i = 0; i < result.languages.length; i++) {
+
+                    var li = $("<li>" + result.languages[i].name + " (" +
+                        result.languages[i].languageId + ")" + "</li>");
+                    $("ul").append(li);
+                }
+            }
+        });
+
+        var params = {"page": "1"};
+
+        api.misc.getCurrencies({
+
+            success: function(result) {
+
+                for (var i = 0; i < result.currencies.length; i++) {
+
+                    var li = $("<li>" + result.currencies[i].description + " (" +
+                        result.currencies[i].currencyId + ")" + "</li>");
+                    $("ul").append(li);
+                }
+            }
+        }, params);
 
 	}
 );
