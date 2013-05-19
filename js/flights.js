@@ -24,27 +24,26 @@ require(["libs/text!../templates/flights/flights.html", "libs/text!../templates/
 		success : function(result) {
 			console.log(result);
 			for (var i = 0; i < result.flights.length; i++) {
-				console.log(i);
 				if (result.flights[i].hasOwnProperty('inboundRoutes')) {
 					console.log("*1");
-					$('#flight-container').append(flights_data_tmp({
-						"inboundDepartureCity" : result.flights[i].inboundRoutes[0].segments[0].departure.cityName,
-						"inboundArrivalCity" : result.flights[i].inboundRoutes[0].segments[0].arrival.cityName,
-						"inboundDepartureTime" : result.flights[i].inboundRoutes[0].segments[0].departure.date.substring(11),
-						"inboundArrivalTime" : result.flights[i].inboundRoutes[0].segments[0].arrival.date.substring(11),
-						"inboundFlightClass" : result.flights[i].inboundRoutes[0].segments[0].cabinType,
-						"inboundFlightStopovers" : result.flights[i].inboundRoutes[0].segments[0].stopovers.length,
-						"inboundFlightDuration" : result.flights[i].inboundRoutes[0].segments[0].duration}));
+					$('.inbound form').append(flights_data_tmp({
+						"departureCity" : result.flights[i].inboundRoutes[0].segments[0].departure.cityName,
+						"arrivalCity" : result.flights[i].inboundRoutes[0].segments[0].arrival.cityName,
+						"departureTime" : result.flights[i].inboundRoutes[0].segments[0].departure.date.substring(11),
+						"arrivalTime" : result.flights[i].inboundRoutes[0].segments[0].arrival.date.substring(11),
+						"flightClass" : result.flights[i].inboundRoutes[0].segments[0].cabinType,
+						"flightStopovers" : result.flights[i].inboundRoutes[0].segments[0].stopovers.length,
+						"flightDuration" : result.flights[i].inboundRoutes[0].segments[0].duration}));
 				} else if (result.flights[i].hasOwnProperty('outboundRoutes')) {
 					console.log("*2");
-					$('#flight-container').append(flights_data_tmp({
-						"outboundDepartureCity" : result.flights[i].outboundRoutes[0].segments[0].departure.cityName,
-						"outboundArrivalCity" : result.flights[i].outboundRoutes[0].segments[0].arrival.cityName,
-						"outboundDepartureTime" : result.flights[i].outboundRoutes[0].segments[0].departure.date.substring(11),
-						"outboundArrivalTime" : result.flights[i].outboundRoutes[0].segments[0].arrival.date.substring(11),
-						"outboundFlightClass" : result.flights[i].outboundRoutes[0].segments[0].cabinType,
-						"outboundFlightStopovers" : result.flights[i].outboundRoutes[0].segments[0].stopovers.length,
-						"outboundFlightDuration" : result.flights[i].outboundRoutes[0].segments[0].duration}));
+					$('.outbound form').append(flights_data_tmp({
+						"departureCity" : result.flights[i].outboundRoutes[0].segments[0].departure.cityName,
+						"arrivalCity" : result.flights[i].outboundRoutes[0].segments[0].arrival.cityName,
+						"departureTime" : result.flights[i].outboundRoutes[0].segments[0].departure.date.substring(11),
+						"arrivalTime" : result.flights[i].outboundRoutes[0].segments[0].arrival.date.substring(11),
+						"flightClass" : result.flights[i].outboundRoutes[0].segments[0].cabinType,
+						"flightStopovers" : result.flights[i].outboundRoutes[0].segments[0].stopovers.length,
+						"flightDuration" : result.flights[i].outboundRoutes[0].segments[0].duration}));
 				}
 			};
 			// console.log(result);
