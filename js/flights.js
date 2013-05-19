@@ -8,6 +8,9 @@ require(["libs/text!../templates/flights/flights.html",
 
         function(flights_html, flights_data_html) {
 
+		Utils.init();
+        Utils.make_html(flights_html);
+
 	var api = new API();
 	var flights_data_tmp = Handlebars.compile(flights_data_html);
 	var param = {
@@ -64,7 +67,8 @@ require(["libs/text!../templates/flights/flights.html",
 			"infants" : "0",
 			"sort_key" : $.trim($("#selectionOrder :selected").val().match(".* ")[0]),
 			"sort_order" : $.trim($("#selectionOrder :selected").val().match(" .*")[0])};
-		$(".inbound form").remove();
+		$(".inbound form div").remove();
+		$(".outbound form div").remove();
 		api.booking.getRoundTripFlights(callback, param);
 	});
 });
