@@ -4,15 +4,15 @@
 <div class="hdivider"></div>
 
 <div class="data-container">
-	<form>
+	<form class="passengerForm" method="get" action="">
 		<div class="form-container">
 			<div class="form-component-left">
-				<label>Nombre:</label>
-				<input name="name" type="text"/>
+				<label for="name">Nombre:</label>
+				<input name="name" id="name" type="text" class="required" minlength="2"/>
 			</div>
 			<div class="form-component-right">
-				<label>Apellido:</label>
-				<input name="lastname" type="text"/>
+				<label for="lastname">Apellido:</label>
+				<input name="lastname" id="lastname" type="text" class="required" minlength="2"/>
 			</div>
 			<div class="form-component-left">
 				<label>Fecha de nacimiento:</label><br>

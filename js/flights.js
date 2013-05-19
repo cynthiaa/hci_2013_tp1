@@ -26,10 +26,8 @@ require(["libs/text!../templates/flights/flights.html",
 	};
 	var callback = {
 		success : function(result) {
-			console.log(result);
 			for (var i = 0; i < result.flights.length; i++) {
 				if (result.flights[i].hasOwnProperty('inboundRoutes')) {
-					console.log("*1");
 					$('.inbound form').append(flights_data_tmp({
 						"departureCity" : result.flights[i].inboundRoutes[0].segments[0].departure.cityName,
 						"arrivalCity" : result.flights[i].inboundRoutes[0].segments[0].arrival.cityName,
@@ -40,7 +38,6 @@ require(["libs/text!../templates/flights/flights.html",
 						"flightDuration" : result.flights[i].inboundRoutes[0].segments[0].duration
 					}));
 				} else if (result.flights[i].hasOwnProperty('outboundRoutes')) {
-					console.log("*2");
 					$('.outbound form').append(flights_data_tmp({
 						"departureCity" : result.flights[i].outboundRoutes[0].segments[0].departure.cityName,
 						"arrivalCity" : result.flights[i].outboundRoutes[0].segments[0].arrival.cityName,
@@ -54,9 +51,8 @@ require(["libs/text!../templates/flights/flights.html",
 			};
 		}
 	};
-	console.log(param);
 
-	$("#selectionOrder").each(function() {
+	$("#selectionOrder").change(function() {
 		param = {
 			"from" : "EZE",
 			"to" : "MIA",
@@ -67,9 +63,10 @@ require(["libs/text!../templates/flights/flights.html",
 			"infants" : "0",
 			"sort_key" : $.trim($("#selectionOrder :selected").val().match(".* ")[0]),
 			"sort_order" : $.trim($("#selectionOrder :selected").val().match(" .*")[0])};
-		$(".inbound form div").remove();
-		$(".outbound form div").remove();
+		$(".flight").remove();
+		$(".flight").remove();
 		api.booking.getRoundTripFlights(callback, param);
 	});
+	api.booking.getRoundTripFlights(callback, param);
 });
 
