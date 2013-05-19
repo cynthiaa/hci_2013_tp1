@@ -17,10 +17,11 @@ require(["libs/text!../templates/flights/flights.html", "libs/text!../templates/
 		"ret_date" : "2013-09-01",
 		"adults" : "1",
 		"children" : "0",
-		"infants" : "0"
+		"infants" : "0",
+		"sort_key" : $.trim($("#selectionOrder :selected").val().match(".* ")[0]),
+		"sort_order" : $.trim($("#selectionOrder :selected").val().match(" .*")[0])
 	};
-	api.booking.getRoundTripFlights({
-
+	var callback = {
 		success : function(result) {
 			console.log(result);
 			for (var i = 0; i < result.flights.length; i++) {
@@ -33,7 +34,8 @@ require(["libs/text!../templates/flights/flights.html", "libs/text!../templates/
 						"arrivalTime" : result.flights[i].inboundRoutes[0].segments[0].arrival.date.substring(11),
 						"flightClass" : result.flights[i].inboundRoutes[0].segments[0].cabinType,
 						"flightStopovers" : result.flights[i].inboundRoutes[0].segments[0].stopovers.length,
-						"flightDuration" : result.flights[i].inboundRoutes[0].segments[0].duration}));
+						"flightDuration" : result.flights[i].inboundRoutes[0].segments[0].duration
+					}));
 				} else if (result.flights[i].hasOwnProperty('outboundRoutes')) {
 					console.log("*2");
 					$('.outbound form').append(flights_data_tmp({
@@ -43,40 +45,27 @@ require(["libs/text!../templates/flights/flights.html", "libs/text!../templates/
 						"arrivalTime" : result.flights[i].outboundRoutes[0].segments[0].arrival.date.substring(11),
 						"flightClass" : result.flights[i].outboundRoutes[0].segments[0].cabinType,
 						"flightStopovers" : result.flights[i].outboundRoutes[0].segments[0].stopovers.length,
-						"flightDuration" : result.flights[i].outboundRoutes[0].segments[0].duration}));
+						"flightDuration" : result.flights[i].outboundRoutes[0].segments[0].duration
+					}));
 				}
 			};
-			// console.log(result);
-			// $("#uuid").text(result.meta.uuid);
-			// $("#time").text(result.meta.time);
-
-			// for (var i = 0; i < result.languages.length; i++) {
-			//
-			// var li = $("<li>" + result.flights[i].name + " (" +
-			// result.flights[i].languageId + ")" + "</li>");
-			// $("ul").append(li);
-			// }
 		}
-	}, param);
-
-	var params = {
-		"page" : "3"
 	};
+	console.log(param);
 
-	// api.misc.getCurrencies({
-	//
-	// success: function(result) {
-	// $("#uuid").text(result.meta.uuid);
-	// $("#time").text(result.meta.time);
-	// console.log(result);
-	// for (var i = 0; i < result.currencies.length; i++) {
-	//
-	// var li = $("<li>" + result.currencies[i].description + " (" +
-	// result.currencies[i].currencyId + ")" + "</li>");
-	// $("ul").append(li);
-	// }
-	// }
-	// }, params);
-
+	$("#selectionOrder").each(function() {
+		param = {
+			"from" : "EZE",
+			"to" : "MIA",
+			"dep_date" : "2013-08-19",
+			"ret_date" : "2013-09-01",
+			"adults" : "1",
+			"children" : "0",
+			"infants" : "0",
+			"sort_key" : $.trim($("#selectionOrder :selected").val().match(".* ")[0]),
+			"sort_order" : $.trim($("#selectionOrder :selected").val().match(" .*")[0])};
+		$(".inbound form").remove();
+		api.booking.getRoundTripFlights(callback, param);
+	});
 });
 
