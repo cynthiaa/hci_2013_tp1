@@ -79,8 +79,7 @@
 }
 
 #flight-container {
-	overflow-y: scroll;
-	height: 505px;
+	height: 450px;
 }
 
 .detTotal {
@@ -90,5 +89,42 @@
 
 .flight-select {
 	width: 120px;
+}
+
+.flight-header {
+	display: inline-block;
+	width: 335px;
+}
+
+.flight-wrapper {
+	display: inline-block;
+	width: 345px;
+	height: 420px;
+	overflow-y: scroll;
+}
+
+.flight-submit {
+	float: right;
+	display: inline-block;
+}
+
+.summary {
+	display: inline-block;
+	width: 450px;
+	height: 35px;
+	background-color: rgba(255, 255, 255, 0.6);
+	border-radius: 35px;
+	border: 1px solid #ccc;
+}
+
+.flight {
+	padding: 10px;
+	display: inline-block;
+}
+
+.flight-radio {
+	display: inline-block;
+	vertical-align: top;
+	margin-top: 60px;
 }
 
