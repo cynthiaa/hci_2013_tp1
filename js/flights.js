@@ -8,7 +8,7 @@ require(
         // "libs/calendar/calendar-es",
         // "libs/calendar/calendar-setup",
         // "libs/hci",
-        "libs/hciapi",
+        "libs/api",
         "libs/domReady"
     ],
 
@@ -17,18 +17,41 @@ require(
         Utils.init();
         Utils.make_html(flights_html);
 
-	    var api = new HCI();
-	    api.misc.getLanguages({
+        var api = new API();
+
+        api.misc.getLanguages({
+
             success: function(result) {
-                $("#uuid").text(result.meta.uuid);
-                $("#time").text(result.meta.time);
+                // console.log(result);
+                // $("#uuid").text(result.meta.uuid);
+                // $("#time").text(result.meta.time);
 
                 for (var i = 0; i < result.languages.length; i++) {
-                    var li = $("<li>" + result.languages[i].name + " (" + result.languages[i].languageId + ")" + "</li>");
+
+                    var li = $("<li>" + result.languages[i].name + " (" +
+                        result.languages[i].languageId + ")" + "</li>");
                     $("ul").append(li);
                 }
             }
         });
-	}
+
+        var params = {"page": "3"};
+
+        api.misc.getCurrencies({
+
+            success: function(result) {
+                $("#uuid").text(result.meta.uuid);
+                $("#time").text(result.meta.time);
+                 console.log(result);
+                for (var i = 0; i < result.currencies.length; i++) {
+
+                    var li = $("<li>" + result.currencies[i].description + " (" +
+                        result.currencies[i].currencyId + ")" + "</li>");
+                    $("ul").append(li);
+                }
+            }
+        }, params);
+
+    }
 );
 
