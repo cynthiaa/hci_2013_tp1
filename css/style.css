@@ -60,6 +60,14 @@ label {
     margin: 20px 0px 10px 0px;
 }
 
+span.small {
+    color: #666666;
+    font-size: 11px;
+    font-weight: normal;
+    text-align: right;
+    width :140px;
+}
+
 input[type="text"], textarea {
     background-color: #DDD;
     color: #565656;
