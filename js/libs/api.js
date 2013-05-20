@@ -27,6 +27,7 @@ API.prototype = (function() {
             dataType: "jsonp"
         }).done(function(data) {
 
+            console.log(data);
             if (callbacks.success) {
 
                 callbacks.success(data);
@@ -109,16 +110,16 @@ API.prototype = (function() {
                 call("Geo.groovy", "GetAirportById", params, callbacks);
             },
 
-            getAirportsByName: function(callbacks) {
-                call("Geo.groovy", "GetAirportsByName", {}, callbacks);
+            getAirportsByName: function(callbacks, params) {
+                call("Geo.groovy", "GetAirportsByName", params, callbacks);
             },
 
             getAirportsByPosition: function(callbacks, params) {
                 call("Geo.groovy", "GetAirportsByPosition", params, callbacks);
             },
 
-            getCitiesAndAirportsByName: function(callbacks) {
-                call("Geo.groovy", "GetCitiesAndAirportsByName", {}, callbacks);
+            getCitiesAndAirportsByName: function(callbacks, params) {
+                call("Geo.groovy", "GetCitiesAndAirportsByName", params, callbacks);
             }
         },
 
