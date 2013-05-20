@@ -146,19 +146,21 @@
 			<label>Seleccionar tarjeta:</label>
 			<br>
 			<div class="cards">
-				<input name="card" type="radio"/>
-				<img src='{{Link "img/visa.png"}}' alt="visa"/>
-				<input name="card" type="radio"/>
-				<img src='{{Link "img/mastercard.png"}}' alt="master card"/>
-				<input name="card" type="radio"/>
-				<img src='{{Link "img/americanExpress.png"}}' alt="american express"/>
+				<input id="visa" name="card" type="radio"/>
+				<img src='{{Link "img/visa.png"}}' alt="visa" />
+				<input id="diners" name="card" type="radio"/>
+				<img src='{{Link "img/diners.png"}}' alt="diners" />
+			    <input id="master-card" name="card" type="radio"/>
+				<img src='{{Link "img/master-card.png"}}' alt="master card" />
+				<input id="american-express" name="card" type="radio"/>
+				<img src='{{Link "img/american-express.png"}}' alt="american express" />
 			</div>
 		</div>
 
 		<div class="datacard-container">
 			<div class="form-component-left card-num-component">
 				<label>Número de tarjeta:</label>
-				<input class="card-num" name="card_num" type="text"/>
+				<input id="card-num" class="card-num" name="card_num" type="text" maxlength="16" />
 			</div>
 			<div class="form-component-left">
 				<label>Fecha de vencimiento:</label>
@@ -177,7 +179,7 @@
 			<div class="form-component-right code-component">
 				<label>Código de seguridad:</label>
 				<br>
-				<input class="security-code" name="security_code" type="text" maxlength="3"/>
+				<input id="security-code" class="security-code" name="security_code" type="text" maxlength="3" />
 			</div>
 		</div>
 
@@ -200,7 +202,7 @@
 				<input name="dni" type="text"/>
 			</div>
 			<div class="form-component-right">
-				<label>Email:</label>
+				<label>Email de contacto:</label>
 				<br>
 				<input name="email" type="text"/>
 			</div>
