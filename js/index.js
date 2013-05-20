@@ -21,25 +21,40 @@ require(
         DP.inicio();
 
         var api = new API();
-        var countries = new Array();
 
-        api.geo.getCountries({
+        var cities = new Array();
+        var airports = new Array();
+        var airportsId = new Array();
+
+        api.geo.getCities({
 
             success: function(result) {
 
-            for (var i = 0; i < result.countries.length; i++) {
+            for (var i = 0; i < result.cities.length; i++) {
 
-                countries[i] = result.countries[i].name;
-                // + " (" + result.countries[i].countryId + ")";
+                cities[i] = result.cities[i].name;
+                // + " (" + result.airports[i].countryId + ")";
+            }
+        }});
+
+        api.geo.getAirports({
+
+            success: function(result) {
+
+                for (var i = 0; i < result.airports.length; i++) {
+
+                airports[i] = result.airports[i].description;
+                airportsId[i] = result.airports[i].airportId;
+                // + " (" + result.airports[i].countryId + ")";
             }
         }});
 
         $("#from").autocomplete({
-            source: countries
+            source: airports
         });
 
         $("#to").autocomplete({
-            source: countries
+            source: airports
         });
 
         // Cuando se clickee el button de id search
@@ -50,10 +65,10 @@ require(
              // Por cada atributo que le quiera pasar
             // attrs["attr_name"] = "attr_value";
 
-            attrs["from"] = $("#from").val();
-            attrs["to"] = $("#to").val();
-            attrs["dep_date"] = $("#depart_input").val();
-            attrs["ret_date"] = $("#return_input").val();
+            attrs["from"] = airportsId[airports.indexOf($("#from").val())];
+            attrs["to"] = airportsId[airports.indexOf($("#to").val())];
+            attrs["dep_date"] = Utils.convertDate($("#depart_input").val());
+            attrs["ret_date"] = Utils.convertDate($("#return_input").val());
             attrs["adults"] = $("#select_adults").val();
             attrs["children"] = $("#select_children").val();
             attrs["infants"] = $("#select_infants").val();

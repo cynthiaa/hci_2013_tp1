@@ -1,11 +1,18 @@
 var Utils;
 
+require.config({
+    paths: {
+        "moment": "libs/moment",
+    }
+});
+
 define(
     [
         "libs/text!../../templates/header.html",
         "libs/text!../../templates/layout.html",
         "libs/text!../../templates/layout_only_top.html",
         "libs/text!../../templates/select.html",
+        "moment",
         "libs/i18n",
         "libs/handlebars",
         "jquery",
@@ -13,7 +20,9 @@ define(
         "libs/api",
         "libs/ui/jquery-ui"
     ],
-    function(header_html, layout_html, layout_only_top_html, select_html) {
+    function(header_html, layout_html, layout_only_top_html, select_html, moment) {
+
+        // console.log(moment('20-08-1991','DD-MM-YYYY').format('YYYY-MM-DD'));
 
         Utils = {
 
@@ -48,7 +57,7 @@ define(
 
                 // TODO: Descomentar esta línea para usar links relativos al root
 
-                url = /* $.url().attr('directory') + */ url;
+                //url = $.url().attr('directory') + url;
 
                 if (lang || typeof lang == 'undefined') {
 
@@ -108,7 +117,16 @@ define(
 
                     return Utils.getUrl(url);
                 });
+            },
+
+            'convertDate': function(stringDate) {
+
+                var dateRegex = /([^-]*)-([^-]*)-([^-]*)/;
+                var dateRegexResult = stringDate.match(dateRegex);
+
+                return dateRegexResult[3] + "-" + dateRegexResult[2] + "-" + dateRegexResult[1];
             }
         }
     }
 );
+

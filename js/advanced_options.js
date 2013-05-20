@@ -33,6 +33,7 @@ require(
         var api = new API();
 
         var airlines = new Array();
+        var airlineId = new Array();
 
         var callbacks = {
 
@@ -40,7 +41,8 @@ require(
 
             for (var i = 0; i < result.airlines.length; i++) {
 
-                airlines[i] = result.airlines[i].name + " (" + result.airlines[i].airlineId + ")";
+                airlines[i] = result.airlines[i].name;
+                airlineId[i] = result.airlines[i].airlineId;
             }
         }};
 
