@@ -109,12 +109,12 @@ API.prototype = (function() {
                 call("Geo.groovy", "GetAirportById", params, callbacks);
             },
 
-            getAirportByName: function(callbacks) {
-                call("Geo.groovy", "GetAirportByName", {}, callbacks);
+            getAirportsByName: function(callbacks) {
+                call("Geo.groovy", "GetAirportsByName", {}, callbacks);
             },
 
-            getAirportByPosition: function(callbacks, params) {
-                call("Geo.groovy", "GetAirportByPosition", params, callbacks);
+            getAirportsByPosition: function(callbacks, params) {
+                call("Geo.groovy", "GetAirportsByPosition", params, callbacks);
             },
 
             getCitiesAndAirportsByName: function(callbacks) {
