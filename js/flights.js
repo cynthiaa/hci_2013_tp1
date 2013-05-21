@@ -2,10 +2,6 @@ require(["libs/text!../templates/flights/flights.html",
         "libs/text!../templates/flights/flights_data.html",
         "libs/utils",
         "libs/carousel",
-        // "libs/calendar/calendar",
-        // "libs/calendar/calendar-es",
-        // "libs/calendar/calendar-setup",
-        // "libs/hci",
         "libs/domReady"],
 
         function(flights_html, flights_data_html) {
@@ -57,21 +53,13 @@ require(["libs/text!../templates/flights/flights.html",
            }
 	};
 
-	// $("#selectionOrder").change(function() {
-	// 	param = {
-	// 		"from" : "EZE",
-	// 		"to" : "MIA",
-	// 		"dep_date" : "2013-08-19",
-	// 		"ret_date" : "2013-09-01",
-	// 		"adults" : "1",
-	// 		"children" : "0",
-	// 		"infants" : "0",
-	// 		"sort_key" : $.trim($("#selectionOrder :selected").val().match(".* ")[0]),
-	// 		"sort_order" : $.trim($("#selectionOrder :selected").val().match(" .*")[0])};
-	// 	$(".flight").remove();
-	// 	$(".flight").remove();
-	// 	api.booking.getRoundTripFlights(callback, param);
-	// });
+	$("#selectionOrder").change(function() {
+		param.sort_key = $.trim($("#selectionOrder :selected").val().match(".* ")[0]);
+		param.sort_order = $.trim($("#selectionOrder :selected").val().match(" .*")[0])};
+		$(".inbound form").remove();
+		$(".outbound form").remove();
+		api.booking.getRoundTripFlights(callback, param);
+	});
 
     api.booking.getRoundTripFlights(callback, param);
 
