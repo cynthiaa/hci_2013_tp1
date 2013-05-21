@@ -115,7 +115,7 @@ define(
 
             'convertDate': function(stringDate) {
 
-                var dateRegex = /([^-]*)-([^-]*)-([^-]*)/;
+                var dateRegex = /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/;
                 var dateRegexResult = stringDate.match(dateRegex);
 
                 // return moment.utc(stringDate, "DD-MM-YYYY").format("YYYY-MM-DD");
