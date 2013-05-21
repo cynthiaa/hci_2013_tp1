@@ -73,6 +73,17 @@ require(
             attrs["children"] = $("#select_children").val();
             attrs["infants"] = $("#select_infants").val();
 
+            // var param = {"name": "bahia"};
+            // var bla = 1;
+            // var callback1 = {
+
+            // success: function(result) {
+            // bla = result.airports[0].airportId;
+            // attrs["adults"] = "2";
+            // }
+            // };
+
+            // $.when((api.geo.getAirportsByName(callback1, param))).done(document.location.href = Utils.getUrl("flights.html", attrs));
             document.location.href = Utils.getUrl("flights.html", attrs);
         });
 
