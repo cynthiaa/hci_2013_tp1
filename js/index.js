@@ -3,6 +3,7 @@ require(
         "libs/text!../templates/index/index.html",
         "libs/utils",
         "libs/carousel",
+        "libs/jquery.maskedinput",
         // "libs/calendar/calendar",
         // "libs/calendar/calendar-es",
         // "libs/calendar/calendar-setup",
@@ -15,6 +16,16 @@ require(
         Utils.make_html(index_html);
 
         $("#home_link").addClass("selected");
+
+        // Máscara para fechas
+
+        jQuery(function($) {
+            $("#depart_input").mask("99/99/9999");
+        });
+
+        jQuery(function($) {
+            $("#return_input").mask("99/99/9999");
+        });
 
         // Init the carousel
 
