@@ -1,56 +1,66 @@
-require(["libs/text!../templates/passengers/passengers.html", "libs/text!../templates/passengers/passenger_data.html", "libs/text!../templates/select.html", "libs/text!../templates/select.html", "libs/utils", "libs/jquery.validate", "libs/jquery.formvalidator.min", "libs/domReady"], function(passengers_html, passenger_data_html, select_html) {
+require([
+        "libs/text!../templates/passengers/passengers.html",
+        "libs/text!../templates/passengers/passenger_data.html",
+        "libs/text!../templates/select.html",
+        "libs/text!../templates/select.html",
+        "libs/utils",
+        "libs/jquery.validate",
+        "libs/jquery.maskedinput",
+        "libs/jquery.formvalidator.min",
+        "libs/domReady"
+        ],
 
-	Utils.init();
-	Utils.make_non_menu_html(passengers_html);
+        function(passengers_html, passenger_data_html, select_html) {
 
-	var passenger_data_tmp = Handlebars.compile(passenger_data_html);
+            Utils.init();
+            Utils.make_non_menu_html(passengers_html);
 
-	/* Para cada pasajero */
+            var passenger_data_tmp = Handlebars.compile(passenger_data_html);
 
-	$('#pass-ctn').append(passenger_data_tmp({
-		"title" : "Adultos"
-	}));
-	$('#pass-ctn').append(passenger_data_tmp({
-		"title" : "Menores"
-	}));
-	$('#pass-ctn').append(passenger_data_tmp({
-		"title" : "Infantes"
-	}));
+            /* Para cada pasajero */
 
-	var select_tmp = Handlebars.compile(select_html);
+            $('#pass-ctn').append(passenger_data_tmp({
+                "title" : "Adultos"
+            }));
+            $('#pass-ctn').append(passenger_data_tmp({
+                "title" : "Menores"
+            }));
+            $('#pass-ctn').append(passenger_data_tmp({
+                "title" : "Infantes"
+            }));
 
-	current_year = new Date().getFullYear();
+            var select_tmp = Handlebars.compile(select_html);
 
-	for (var i = 1; i <= 31; i++) {
-		$(".select_birth_day").append(select_tmp({
-			"value" : i,
-			"name" : i
-		}));
-	}
+            current_year = new Date().getFullYear();
 
-	for (var i = 1; i <= 12; i++) {
-		$(".select_birth_month").append(select_tmp({
-			"value" : i,
-			"name" : i
-		}));
-	}
+            // for (var i = 1; i <= 31; i++) {
+            //     $(".select_birth_day").append(select_tmp({
+            //         "value" : i,
+            //         "name" : i
+            //     }));
+            // }
 
-	for (var i = 1900; i <= current_year; i++) {
-		$(".select_birth_year").append(select_tmp({
-			"value" : i,
-			"name" : i
-		}));
-	}
+            // for (var i = 1; i <= 12; i++) {
+            //     $(".select_birth_month").append(select_tmp({
+            //         "value" : i,
+            //         "name" : i
+            //     }));
+            // }
 
-	var validator = $(".passengerForm").validate({
-		rules : {
-			name : "required",
-			lastname : "required"
-		}
-	});
-	$("#continuar").click(function(){
-		if(validator.valid())
-			console.log="jojoooojo";
-	});
+            // for (var i = 1900; i <= current_year; i++) {
+            //     $(".select_birth_year").append(select_tmp({
+            //         "value" : i,
+            //         "name" : i
+            //     }));
+            // }
+
+            jQuery(function($) {
+                $("input.birth").mask("99/99/9999");
+            });
+
+            $("#continuar").click(function(){
+                if(validator.valid())
+                    console.log="jojoooojo";
+            });
 });
 
