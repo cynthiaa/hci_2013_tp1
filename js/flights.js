@@ -12,6 +12,7 @@ require(["libs/text!../templates/flights/flights.html",
 
     	var api = new API();
     	var flights_data_tmp = Handlebars.compile(flights_data_html);
+    	var tmp_img = Handlebars.compile(img_html);
 
 //        var param = $.url().param();
 //        console.log(param);
@@ -33,31 +34,32 @@ require(["libs/text!../templates/flights/flights.html",
         var outpagenum= 0;
         var flights;
         
-        var paginate= function(array, pagesize) {
+        var paginate= function(arr, pagesize) {
         	var aux= new Array;
-        	for(var i=0; (i*pagesize)<array.legth ;i++)
-        		aux.push(array.slice(i*pagesize, (i+1)*pagesize));
+        	for(var i=0; (i*pagesize)<arr.length ;i++)
+        		aux.push(arr.slice(i*pagesize, (i+1)*pagesize));
      		return aux;
         }
            
         var loadPagesArrays = function(flightsArray) {
         	var inbound= new Array;
         	var outbound= new Array;
+        	var aux;
         	
         	for(var i=0; i<flightsArray.length ; i++) {
-        		if(flight.hasOwnProperty('inboundRoutes')) {
-        			inbound.push(flightsArray[i].inboundRoutes[0].segments[0]);
-        			inbound[i].pricing= flightsArray[i].price;
+        		if(flightsArray[i].hasOwnProperty('inboundRoutes')) {
+        			aux= inbound.push(flightsArray[i].inboundRoutes[0].segments[0]);
+        			inbound[aux-1].pricing= flightsArray[i].price;
         		}
         		else {
-        			outbound.push(flightsArray[i].outboundRoutes[0].segments[0]);
-        			outbound[i].pricing= flightsArray[i].price;
+        			aux= outbound.push(flightsArray[i].outboundRoutes[0].segments[0]);
+        			outbound[aux-1].pricing= flightsArray[i].price;
         		}
         	}
-        	
+
         	inbound= paginate(inbound, 10);
         	outbound= paginate(outbound, 10);
-        	
+
         	var flights= { "inbound": inbound, "outbound": outbound }
         	return flights;
         }
@@ -106,7 +108,7 @@ require(["libs/text!../templates/flights/flights.html",
 					"flightClass": page[i].cabinType,
 					"flightStopovers": page[i].stopovers.length,
 					"flightDuration": page[i].duration,
-					"flightTotal": page[i].total.price.price
+					"flightTotal": page[i].pricing.total.total
 				}));
 			}
 		}
@@ -119,8 +121,12 @@ require(["libs/text!../templates/flights/flights.html",
 		}
 
     	var callback = { 
-    		success: function(result) { flights= loadPagesArrays(result.flights); }
- //   		<---- Falta la funcion de error aca ---->
+    		success: function(result) { 
+    			flights = loadPagesArrays(result.flights);
+    			showFlights($(".inbound form"), flights.inbound[0]);
+				showFlights($(".outbound form"), flights.outbound[0]);
+			}
+ //   		<-- Falta la funcion de error aca -->
     	}
 	
 	
@@ -135,7 +141,7 @@ require(["libs/text!../templates/flights/flights.html",
 	});
 
     api.booking.getRoundTripFlights(callback, param);
-	showFlights($(".inbound form"), flights.inbound[0]);
-	showFlights($(".outbound form"), flights.outbound[0]);
 });
+
+
 
