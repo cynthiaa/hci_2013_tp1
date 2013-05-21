@@ -7,6 +7,7 @@ require(
         "libs/text!../templates/index/index.html",
         "libs/text!../templates/index/li.html",
         "libs/text!../templates/img.html",
+        "libs/text!../templates/index/info_deal.html",
         "libs/utils",
         "libs/carousel",
         "libs/jquery.maskedinput",
@@ -17,7 +18,7 @@ require(
         "libs/domReady"
     ],
 
-    function(index_html, li_html, img_html) {
+    function(index_html, li_html, img_html, info_deal_html) {
 
         Utils.init();
         Utils.make_html(index_html);
@@ -27,6 +28,8 @@ require(
         // Create the carousel-frame
 
         var li_tmp = Handlebars.compile(li_html);
+        var info_deal_tmp = Handlebars.compile(info_deal_html);
+        var img_tmp = Handlebars.compile(img_html);
 
         for (var i = 0; i < max_li ; i++) {
 
@@ -37,26 +40,37 @@ require(
         var api = new API();
 
         var deals = new Array();
-        var img_tmp = Handlebars.compile(img_html);
 
         api.booking.getFlightDeals({
 
             success: function(result) {
 
-            for (var i = 0; i < result.deals.length; i++) {
+                for (var i = 0; i < result.deals.length; i++) {
 
-                deals[i] = result.deals[i].cityId;
-            }
+                    deals[i] = new Array();
 
-            deals = $.shuffle(deals);
+                    deals[i][0] = result.deals[i].cityId;
+                    deals[i][1] = result.deals[i].cityName;
+                    deals[i][2] = result.deals[i].price;
+                }
 
-            for (var i = 0; i < max_li; i++) {
-            var link = '{{Link "img/featured/' + deals[i] + '.jpg"}}';
-            var img_src = Handlebars.compile(link);
-            var img = img_tmp({'img_src': img_src});
+                deals = $.shuffle(deals);
 
-            $('#li-'+i).append(img);
-            }
+                // Carousel images
+
+                for (var i = 0; i < max_li; i++) {
+
+                    var link = '{{Link "img/featured/' + deals[i][0] + '.jpg"}}';
+                    var img_src = Handlebars.compile(link);
+                    var img = img_tmp({'img_src': img_src});
+
+                    var city = deals[i][1].split(",")[0];
+                    var percentage = Math.floor(Math.random() * 5 + 1) * 5;
+                    var deal = percentage + "% de descuento para dos personas a " + city;
+
+                    $('#li-' + i).append(img);
+                    $('#li-' + i + ' div').append(info_deal_tmp({"title": deals[i][1], "deal": deal}));
+                }
             }
         }, {"from": "BUE"});
 
