@@ -128,7 +128,7 @@ body {
 
 body > .container {
     width: 1024px;
-    margin: 25px auto 20px auto;
+    margin: 10px auto 20px auto;
 }
 
 body > .container > .header {
@@ -139,7 +139,7 @@ body > .container > .header {
 #sidebar {
     display: inline-block;
     width: 250px;
-    height: 550px;
+    height: 500px;
     margin-right: 20px;
 }
 
@@ -230,36 +230,11 @@ body > .container > .header .vdivider {
     margin-top: 60px;
 }
 
-/* #contact_link { */
-/* float: right; */
-/* margin-top: 55px; */
-/* margin-right: -80px; */
-/* } */
-/*  */
-/* #about_link { */
-/* float: right; */
-/* margin: 55px 20px 0 10px; */
-/* } */
-/*  */
-/* #home_link { */
-/* float: right; */
-/* margin-top: 55px; */
-/* margin-right: 20px; */
-/* } */
-
 #sidebar .sidebar-header {
     width: 250px;
     height: 30px;
     display: block;
 }
-
-/* #sidebar .sidebar-header div { */
-/*     width: 40%; */
-/*     height: 100%; */
-/*     border: 3px solid #AAA; */
-/*     display: block; */
-/*     float: left; */
-/* } */
 
 #sidebar .sidebar-body {
     width: 250px;
