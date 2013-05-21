@@ -1,5 +1,5 @@
 #main > .main {
-    height: 550px;
+    height: 500px;
 }
 
 #main > .main label {
@@ -8,11 +8,12 @@
 
 .form-container {
     margin: 10px;
+    height: 390px;
 }
 
 #main > .main input[type="submit"],
 #main > .main input[type="reset"] {
-    margin: 20px 0 25px 0;
+    margin: 10px 0 25px 0;
 }
 
 .contact-form {
@@ -29,3 +30,11 @@
     margin-top: 20px;
 }
 
+textarea {
+	height: 150px;
+}
+
+label {
+	margin: 10px 0 0 0;
+}
+}
