@@ -14,22 +14,11 @@ require(["libs/text!../templates/flights/flights.html",
     	var flights_data_tmp = Handlebars.compile(flights_data_html);
     	var tmp_img = Handlebars.compile(img_html);
 
-//        var param = $.url().param();
-//        console.log(param);
-		var sortkey= $.trim($("#selectionOrder :selected").val().match(".* ")[0]);
-		var sortorder= $.trim($("#selectionOrder :selected").val().match(" .*")[0]);
-		var param = {
-			"from" : "EZE",
-			"to" : "MIA",
-			"dep_date" : "2013-08-19",
-			"ret_date" : "2013-09-01",
-			"adults" : "1",
-			"children" : "0",
-			"infants" : "0",
-			"sort_key": sortkey,
-			"sort_order": sortorder
-		}
-        
+        var param = $.url().param();
+		param.sort_key= $.trim($("#selectionOrder :selected").val().match(".* ")[0]);
+		param.sort_order= $.trim($("#selectionOrder :selected").val().match(" .*")[0]);
+        console.log(param);
+         
         var inpagenum= 0;
         var outpagenum= 0;
         var flights;
@@ -142,6 +131,5 @@ require(["libs/text!../templates/flights/flights.html",
 
     api.booking.getRoundTripFlights(callback, param);
 });
-
 
 
