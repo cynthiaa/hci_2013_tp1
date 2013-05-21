@@ -1,21 +1,64 @@
+// Cantidad de imágenes en el carousel
+
+var max_li = 5;
+
 require(
     [
         "libs/text!../templates/index/index.html",
+        "libs/text!../templates/index/li.html",
+        "libs/text!../templates/img.html",
         "libs/utils",
         "libs/carousel",
         "libs/jquery.maskedinput",
+        "libs/jquery.shuffle",
         // "libs/calendar/calendar",
         // "libs/calendar/calendar-es",
         // "libs/calendar/calendar-setup",
         "libs/domReady"
     ],
 
-    function(index_html) {
+    function(index_html, li_html, img_html) {
 
         Utils.init();
         Utils.make_html(index_html);
 
         $("#home_link").addClass("selected");
+
+        // Create the carousel-frame
+
+        var li_tmp = Handlebars.compile(li_html);
+
+        for (var i = 0; i < max_li ; i++) {
+
+            var li = li_tmp({'id': 'li-' + i, 'title': 'Título', 'deal': 'Oferta'});
+            $('#carousel-frame').append(li);
+        }
+
+        var api = new API();
+
+        var deals = new Array();
+        var img_tmp = Handlebars.compile(img_html);
+
+        api.booking.getFlightDeals({
+
+            success: function(result) {
+
+            for (var i = 0; i < result.deals.length; i++) {
+
+                deals[i] = result.deals[i].cityId;
+            }
+
+            deals = $.shuffle(deals);
+
+            for (var i = 0; i < max_li; i++) {
+            var link = '{{Link "img/featured/' + deals[i] + '.jpg"}}';
+            var img_src = Handlebars.compile(link);
+            var img = img_tmp({'img_src': img_src});
+
+            $('#li-'+i).append(img);
+            }
+            }
+        }, {"from": "BUE"});
 
         // Máscara para fechas
 
@@ -27,11 +70,15 @@ require(
             $("#return_input").mask("99/99/9999");
         });
 
+        // Init the calendars
+
+        Calendar.setup({inputField: "depart_input", ifFormat: "%d/%m/%Y", button: "depart-calendar"});
+       	Calendar.setup({inputField: "return_input", ifFormat: "%d/%m/%Y", button: "return-calendar"});
+
         // Init the carousel
 
         DP.inicio();
 
-        var api = new API();
 
         var cities = new Array();
         var airports = new Array();

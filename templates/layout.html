@@ -77,8 +77,6 @@
                         <input id="depart_input" name="depart" type="text" placeholder="dd/mm/yyyy" maxlength="10" onkeypress="return isDateKey(event);" />
                         <img id="depart-calendar" src="{{Link 'img/calendar.png'}}" />
 
-                        <script type="text/javascript">
-                    Calendar.setup({inputField: "depart_input", ifFormat: "%d/%m/%Y", button: "depart-calendar"});
         				</script>
         			</div>
 
@@ -87,9 +85,6 @@
 		        		<input id="return_input" name="return" type="text" placeholder="dd/mm/yyyy" maxlength="10" onkeypress="return isDateKey(event);" />
 			        	<img id="return-calendar" src="{{Link 'img/calendar.png'}}" />
 
-                        <script type="text/javascript">
-					Calendar.setup({inputField: "return_input", ifFormat: "%d/%m/%Y", button: "return-calendar"});
-					    </script>
 				    </div>
 
 				    <div class="hdivider"></div>
