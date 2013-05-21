@@ -55,7 +55,7 @@ require(["libs/text!../templates/flights/flights.html",
 
 	$("#selectionOrder").change(function() {
 		param.sort_key = $.trim($("#selectionOrder :selected").val().match(".* ")[0]);
-		param.sort_order = $.trim($("#selectionOrder :selected").val().match(" .*")[0])};
+		param.sort_order = $.trim($("#selectionOrder :selected").val().match(" .*")[0]);
 		$(".inbound form").remove();
 		$(".outbound form").remove();
 		api.booking.getRoundTripFlights(callback, param);

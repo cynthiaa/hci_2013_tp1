@@ -26,9 +26,9 @@ require(
         // Validación
 
         var params = {
-            "number": $('#card-num');
-            "exp_date": Utils.convertExpirationDate($('#select_expiration_month'), $('#select_expiration_year'));
-            "sec_code": $('#security-code');
+            "number": $('#card-num'),
+            "exp_date": Utils.convertExpirationDate($('#select_expiration_month'), $('#select_expiration_year')),
+            "sec_code": $('#security-code')
         };
     }
 );

@@ -1,5 +1,5 @@
 #main > .main {  
-    height: 550px;
+    height: 500px;
     width: 694px;
 }
 
@@ -79,7 +79,7 @@
 }
 
 #flight-container {
-	height: 450px;
+	height: 350px;
 }
 
 .detTotal {
@@ -99,7 +99,7 @@
 .flight-wrapper {
 	display: inline-block;
 	width: 345px;
-	height: 420px;
+	height: 350px;
 	overflow-y: scroll;
 }
 
@@ -126,5 +126,40 @@
 	display: inline-block;
 	vertical-align: top;
 	margin-top: 60px;
+}
+
+.pagination-bar {
+	display: inline-block;
+	width: 335px;
+}
+
+.inbound-prev {
+	float: left;
+}
+
+.inbound-next {
+	float: right;
+	margin-right: 10px;
+}
+
+.outbound-prev {
+	float: left;
+	margin-left: 10px;
+}
+
+.outbound-next {
+	float: right;
+}
+
+.vdivider {
+	display: inline-block;
+	border-left: 1.5px solid #888;
+	width: 1px;
+	height: 15px;
+	margin-top: 5px;
+}
+
+.navigation-bar {
+	margin-top: 10px;
 }
 

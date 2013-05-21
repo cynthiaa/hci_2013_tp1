@@ -1,23 +1,17 @@
-#main > .main {
-    height: 600px;
-	overflow: scroll;
-	width: 510px;
-}
-
 .paymentTitle {
 	height: 39px;
 }
 
 .summary{
 	display: inline-block;
-	height: 550px;
+	height: 500px;
 	width: 400px;
 	margin-right:20px;
 }
 
 #body .main {
 	display: inline-block;
-	height: 550px;
+	height: 500px;
 	width: 544px;
 	position: absolute;
 }
@@ -33,7 +27,6 @@
 }
 
 .datacard-container {
-	height: 150px;
     overflow: auto;
 }
 
@@ -84,13 +77,13 @@ input[type="radio"]{
 .form-component-left {
     float: left;
     width: 212px;
-    margin: 0 10px 10px 10px;
+    margin: 0 10px 5px 10px;
 }
 
 .form-component-right {
     float: right;
     width: 212px;
-    margin: 0 10px 10px 10px;
+    margin: 0 10px 5px 10px;
 }
 
 .card-num-component {
@@ -121,7 +114,7 @@ input[type="text"].security-code {
 
 .scroller {
     overflow-y: scroll;
-	height: 500px;
+	height: 450px;
 }
 
 .payment-wrapper {
