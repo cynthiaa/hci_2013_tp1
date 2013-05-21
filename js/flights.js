@@ -24,7 +24,7 @@ require(["libs/text!../templates/flights/flights.html",
 			"ret_date" : "2013-09-01",
 			"adults" : "1",
 			"children" : "0",
-			"infants" : "0"
+			"infants" : "0",
 			"sort_key": sortkey,
 			"sort_order": sortorder
 		}
