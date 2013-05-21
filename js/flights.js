@@ -122,11 +122,9 @@ require(["libs/text!../templates/flights/flights.html",
 	$("#selectionOrder").change(function() {
 		param.sort_key = $.trim($("#selectionOrder :selected").val().match(".* ")[0]);
 		param.sort_order = $.trim($("#selectionOrder :selected").val().match(" .*")[0]);
-		$(".inbound form").remove();
-		$(".outbound form").remove();
+		$(".inbound form div").remove();
+		$(".outbound form div").remove();
 		api.booking.getRoundTripFlights(callback, param);
-		showFlights($(".inbound form"), flights.inbound[0]);
-		showFlights($(".outbound form"), flights.outbound[0]);
 	});
 
     api.booking.getRoundTripFlights(callback, param);
