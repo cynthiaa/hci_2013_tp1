@@ -15,7 +15,8 @@ require(["libs/text!../templates/flights/flights.html",
 
 //        var param = $.url().param();
 //        console.log(param);
-
+		var sortkey= $.trim($("#selectionOrder :selected").val().match(".* ")[0]);
+		var sortorder= $.trim($("#selectionOrder :selected").val().match(" .*")[0]);
 		var param = {
 			"from" : "EZE",
 			"to" : "MIA",
@@ -24,8 +25,8 @@ require(["libs/text!../templates/flights/flights.html",
 			"adults" : "1",
 			"children" : "0",
 			"infants" : "0"
-			"sort_key": $.trim($("#selectionOrder :selected").val().match(".* ")[0]),
-			"sort_order": $.trim($("#selectionOrder :selected").val().match(" .*")[0])
+			"sort_key": sortkey,
+			"sort_order": sortorder
 		}
         
         var inpagenum= 0;
