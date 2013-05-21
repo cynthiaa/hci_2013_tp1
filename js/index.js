@@ -1,6 +1,5 @@
-// Cantidad de imágenes en el carousel
-
-var max_li = 5;
+// Cantidad de imágenes en el carousel y en destacados
+var max = 5;
 
 require(
     [
@@ -8,6 +7,8 @@ require(
         "libs/text!../templates/index/li.html",
         "libs/text!../templates/img.html",
         "libs/text!../templates/index/info_deal.html",
+        "libs/text!../templates/index/featured_item.html",
+        "libs/text!../templates/index/info_featured.html",
         "libs/utils",
         "libs/carousel",
         "libs/jquery.maskedinput",
@@ -18,7 +19,7 @@ require(
         "libs/domReady"
     ],
 
-    function(index_html, li_html, img_html, info_deal_html) {
+    function(index_html, li_html, img_html, info_deal_html, featured_item_html, info_featured_html) {
 
         Utils.init();
         Utils.make_html(index_html);
@@ -30,11 +31,16 @@ require(
         var li_tmp = Handlebars.compile(li_html);
         var info_deal_tmp = Handlebars.compile(info_deal_html);
         var img_tmp = Handlebars.compile(img_html);
+        var featured_item_tmp = Handlebars.compile(featured_item_html);
+        var info_featured_tmp = Handlebars.compile(info_featured_html);
 
-        for (var i = 0; i < max_li ; i++) {
+        for (var i = 0; i < max ; i++) {
 
-            var li = li_tmp({'id': 'li-' + i, 'title': 'Título', 'deal': 'Oferta'});
+            var li = li_tmp({'id': 'li-' + i});
             $('#carousel-frame').append(li);
+
+            var featured_item = featured_item_tmp({'id': 'feat-' + i});
+            $('#featured-flights').append(featured_item);
         }
 
         var api = new API();
@@ -58,7 +64,7 @@ require(
 
                 // Carousel images
 
-                for (var i = 0; i < max_li; i++) {
+                for (var i = 0; i < max; i++) {
 
                     var link = '{{Link "img/featured/' + deals[i][0] + '.jpg"}}';
                     var img_src = Handlebars.compile(link);
@@ -70,6 +76,21 @@ require(
 
                     $('#li-' + i).append(img);
                     $('#li-' + i + ' div').append(info_deal_tmp({"title": deals[i][1], "deal": deal}));
+                }
+
+                // Featured items
+
+                for (var i = max; i < 2 * max; i++) {
+
+                    var link = '{{Link "img/featured/' + deals[i][0] + '.jpg"}}';
+                    var img_src = Handlebars.compile(link);
+                    var img = img_tmp({'img_src': img_src});
+
+                    var city = deals[i][1].split(",")[0];
+                    var price = "Desde U$S " + Math.ceil(deals[i][2]);
+
+                    $('#feat-' + (i - max)).append(img);
+                    $('#feat-' + (i - max) + ' div').append(info_featured_tmp({"city": city, "price": price}));
                 }
             }
         }, {"from": "BUE"});
