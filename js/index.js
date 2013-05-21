@@ -72,7 +72,10 @@ require(
 
                     var city = deals[i][1].split(",")[0];
                     var percentage = Math.floor(Math.random() * 5 + 1) * 5;
-                    var deal = percentage + "% de descuento para dos personas a " + city;
+                    var cards = ["Visa", "Diners", "Master Card", "American Express"];
+                    var card = cards[Math.floor(Math.random() * 3 + 1)];
+                    var deal = percentage + "% de descuento a " + city +
+                            " abonando con " + card;
 
                     $('#li-' + i).append(img);
                     $('#li-' + i + ' div').append(info_deal_tmp({"title": deals[i][1], "deal": deal}));
@@ -115,9 +118,12 @@ require(
         DP.inicio();
 
 
-        var cities = new Array();
+        var citiesAndAirports = new Array(2);
         var airports = new Array();
         var airportsId = new Array();
+
+        citiesAndAirports[0] = new Array();
+        citiesAndAirports[1] = new Array();
 
         api.geo.getCities({
 
@@ -125,29 +131,35 @@ require(
 
             for (var i = 0; i < result.cities.length; i++) {
 
-                cities[i] = result.cities[i].name;
-                // + " (" + result.airports[i].countryId + ")";
+                citiesAndAirports[0][i] = result.cities[i].name;
+                citiesAndAirports[1][i] = result.cities[i].cityId;
             }
+
+            api.geo.getAirports({
+
+                success: function(result) {
+
+                    var citiesLength = citiesAndAirports[0].length;
+
+                    for (var i = 0; i < result.airports.length; i++) {
+
+                        citiesAndAirports[0][i + citiesLength] = result.airports[i].description;
+                        citiesAndAirports[1][i + citiesLength] = result.airports[i].airportId;
+                }
+            }});
+
         }});
 
-        api.geo.getAirports({
-
-            success: function(result) {
-
-                for (var i = 0; i < result.airports.length; i++) {
-
-                airports[i] = result.airports[i].description;
-                airportsId[i] = result.airports[i].airportId;
-                // + " (" + result.airports[i].countryId + ")";
-            }
-        }});
+        console.log(Utils.convertDate("12/08/1991"));
 
         $("#from").autocomplete({
-            source: airports
+            source: citiesAndAirports[0],
+            // minLength: "3"
         });
 
         $("#to").autocomplete({
-            source: airports
+            source: citiesAndAirports[0],
+            // minLength: "3"
         });
 
         // Cuando se clickee el button de id search
@@ -158,24 +170,16 @@ require(
              // Por cada atributo que le quiera pasar
             // attrs["attr_name"] = "attr_value";
 
-            attrs["from"] = airportsId[airports.indexOf($("#from").val())];
-            attrs["to"] = airportsId[airports.indexOf($("#to").val())];
+            attrs["from"] = citiesAndAirports[1][citiesAndAirports[0].indexOf($("#from").val())];
+            attrs["to"] = citiesAndAirports[1][citiesAndAirports[0].indexOf($("#to").val())];
             attrs["dep_date"] = Utils.convertDate($("#depart_input").val());
             attrs["ret_date"] = Utils.convertDate($("#return_input").val());
             attrs["adults"] = $("#select_adults").val();
             attrs["children"] = $("#select_children").val();
             attrs["infants"] = $("#select_infants").val();
 
-            // var param = {"name": "bahia"};
-            // var bla = 1;
-            // var callback1 = {
 
-            // success: function(result) {
-            // bla = result.airports[0].airportId;
-            // attrs["adults"] = "2";
-            // }
-            // };
-
+            console.log(attrs);
             // $.when((api.geo.getAirportsByName(callback1, param))).done(document.location.href = Utils.getUrl("flights.html", attrs));
             document.location.href = Utils.getUrl("flights.html", attrs);
         });
