@@ -1,18 +1,12 @@
 var Utils;
 
-require.config({
-    paths: {
-        "moment": "libs/moment",
-    }
-});
-
 define(
     [
         "libs/text!../../templates/header.html",
         "libs/text!../../templates/layout.html",
         "libs/text!../../templates/layout_only_top.html",
         "libs/text!../../templates/select.html",
-        "moment",
+        "libs/moment",
         "libs/i18n",
         "libs/handlebars",
         "jquery",
@@ -22,7 +16,7 @@ define(
     ],
     function(header_html, layout_html, layout_only_top_html, select_html, moment) {
 
-        // console.log(moment('20-08-1991','DD-MM-YYYY').format('YYYY-MM-DD'));
+        // moment.utc("20-09-1991", "DD-MM-YYYY").format("YYYY-MM-DD");
 
         Utils = {
 
@@ -124,7 +118,13 @@ define(
                 var dateRegex = /([^-]*)-([^-]*)-([^-]*)/;
                 var dateRegexResult = stringDate.match(dateRegex);
 
+                // return moment.utc(stringDate, "DD-MM-YYYY").format("YYYY-MM-DD");
                 return dateRegexResult[3] + "-" + dateRegexResult[2] + "-" + dateRegexResult[1];
+            },
+
+            'convertExpirationDate': function(month, year) {
+
+                return month + year.substring(2);
             }
         }
     }
