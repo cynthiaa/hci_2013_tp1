@@ -134,8 +134,8 @@ API.prototype = (function() {
                 call("Booking.groovy", "GetRoundTripFlights", params, callbacks);
             },
 
-            getFlightsDeals: function(callbacks, params) {
-                call("Booking.groovy", "GetFlightsDeals", params, callbacks);
+            getFlightDeals: function(callbacks, params) {
+                call("Booking.groovy", "GetFlightDeals", params, callbacks);
             },
 
             // TODO
