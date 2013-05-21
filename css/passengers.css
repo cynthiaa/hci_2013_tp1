@@ -18,7 +18,7 @@ select {
 }
 
 .pass-ctn {
-	height: 450px;
+	height: 400px;
 	overflow-y: scroll;
 }
 
@@ -55,7 +55,7 @@ select {
 
 .summary{
 	display: inline-block;
-	height: 550px;
+	height: 500px;
 	width: 400px;
 	margin-right: 20px;
 }
@@ -63,7 +63,7 @@ select {
 div.main.panel {
 	display: inline-block;
 	position: absolute;
-	height: 550px;
+	height: 500px;
 }
 
 .departure {
