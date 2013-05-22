@@ -136,39 +136,44 @@ require(
 		$(".outbound-pages span").text("/" + flights.outbound.length);
 	}
 
+	var clearFlights = function() {
+		$(".inbound form div").remove();
+		$(".outbound form div").remove();
+	}
+	
+	var refreshPage= function() {
+		clearFlights();
+		showFlights($(".inbound form"), flights.inbound[inpagenum]);
+		showFlights($(".outbound form"), flights.outbound[outpagenum]);
+		$(".inbound .flight-radio input").first().prop('checked', 'checked');
+    	$(".outbound .flight-radio input").first().prop('checked', 'checked');
+	}
+	
+	var clearPageNums = function() {
+		inpagenum= 0;
+		outpagenum= 0;
+	}	
+	
 	var callback = { 
 		success: function(result) { 
 			flights = loadPagesArrays(result.flights);
-			showFlights($(".inbound form"), flights.inbound[inpagenum]);
-			showFlights($(".outbound form"), flights.outbound[outpagenum]);
+			clearPageNums();
 			refreshPageFooting();
-			$(".inbound .flight-radio input").first().prop('checked', 'checked');
-    		$(".outbound .flight-radio input").first().prop('checked', 'checked');
+			refreshPage();
 			}
  //   	<-- Falta la funcion de error aca -->
-	}
-	
-	var clearAll = function() {
-		inpagenum= 0;
-		outpagenum= 0;
-		$(".inbound form div").remove();
-		$(".outbound form div").remove();
 	}
 
 	$("#selectionOrder").change(function() {
 		param.sort_key = $.trim($("#selectionOrder :selected").val().match(".* ")[0]);
 		param.sort_order = $.trim($("#selectionOrder :selected").val().match(" .*")[0]);
-		clearAll();
 		api.booking.getRoundTripFlights(callback, param);
 	});
 
 	$(".inbound-prev").click(function(){
 		if(inpagenum>0) {
 			inpagenum--;
-			$(".inbound form div").remove();
-			showFlights($(".inbound form"), flights.inbound[inpagenum]);
-			$(".inbound .flight-radio input").first().prop('checked',true);
-    		$(".outbound .flight-radio input").first().prop('checked',true);
+			refreshPage();
 		}
 		
 	});
@@ -176,52 +181,37 @@ require(
 	$(".outbound-prev").click(function(){
 		if(outpagenum>0) {
 			outpagenum--;
-			$(".outbound form div").remove();
-			showFlights($(".outbound form"), flights.outbound[outpagenum]);
-			$(".inbound .flight-radio input").first().prop('checked',true);
-    		$(".outbound .flight-radio input").first().prop('checked',true);
+			refreshPage();
 		}
 	});
 	
 	$(".inbound-next").click(function(){
 		if(inpagenum < flights.inbound.length-1) {
 			inpagenum++;
-			$(".inbound form div").remove();
-			showFlights($(".inbound form"), flights.inbound[inpagenum]);
-			$(".inbound .flight-radio input").first().prop('checked',true);
-    		$(".outbound .flight-radio input").first().prop('checked',true);
+			refreshPage();
 		}
 	});
 	
 	$(".outbound-next").click(function(){
 		if(outpagenum < flights.outbound.length-1) {
 			outpagenum++;
-			$(".outbound form div").remove();
-			showFlights($(".outbound form"), flights.outbound[outpagenum]);
-			$(".inbound .flight-radio input").first().prop('checked',true);
-    		$(".outbound .flight-radio input").first().prop('checked',true);
+			refreshPage();
 		}
 	});
 	
 	$(".inPageBtn").click(function() {
 		var desiredPage= $(".inbound-pages .page-number").val();
-		if(desiredPage>0 && desiredPage<flights.inbound.length) {
+		if(desiredPage>0 && desiredPage<=flights.inbound.length) {
 			inpagenum= desiredPage -1;
-			$(".inbound form div").remove();
-			showFlights($(".inbound form"), flights.inbound[inpagenum]);
-			$(".inbound .flight-radio input").first().prop('checked',true);
-    		$(".outbound .flight-radio input").first().prop('checked',true);
+			refreshPage();
 		}
 	});
 	
 	$(".outPageBtn").click(function() {
 		var desiredPage= $(".outbound-pages .page-number").val();
-		if(desiredPage>0 && desiredPage<flights.outbound.length) {
+		if(desiredPage>0 && desiredPage<=flights.outbound.length) {
 			outpagenum= desiredPage -1;
-			$(".outbound form div").remove();
-			showFlights($(".outbound form"), flights.outbound[outpagenum]);
-			$(".inbound .flight-radio input").first().prop('checked',true);
-    		$(".outbound .flight-radio input").first().prop('checked',true);
+			refreshPage();
 		}
 	});
 	
