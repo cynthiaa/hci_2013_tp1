@@ -131,28 +131,39 @@
 .pagination-bar {
 	display: inline-block;
 	width: 335px;
+	margin-top: 5px;
 }
 
 .inbound-prev {
 	float: left;
+	margin-top: 6px;
+	margin-left:10px
+	display: inline-block;
 }
 
 .inbound-next {
-	float: right;
+	position: absolute;
 	margin-right: 10px;
+	margin-top: 6px;
+	display: inline-block;
 }
 
 .outbound-prev {
 	float: left;
 	margin-left: 10px;
+	margin-top: 6px;
+	display: inline-block;
 }
 
 .outbound-next {
-	float: right;
+	position: absolute;
+	margin-top: 6px;
+	display: inline-block;
+	display: inline-block;
 }
 
 .vdivider {
-	display: inline-block;
+	display: inline;
 	border-left: 1.5px solid #888;
 	width: 1px;
 	height: 15px;
@@ -161,5 +172,27 @@
 
 .navigation-bar {
 	margin-top: 10px;
+}
+
+input.page-number {
+	width: 16px;
+	height: 9px;
+}
+
+input.flight-pages {
+	padding: 0;
+	height: 26px;
+	width: 20px;
+	display: inline-block;
+}
+
+.inbound-pages {
+	display: inline-block;
+	margin: 0 110px;
+}
+
+.outbound-pages {
+	display: inline-block;
+	margin: 0 110px;
 }
 
