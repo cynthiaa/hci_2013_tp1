@@ -26,163 +26,207 @@ require(
 
         $("#home_link").addClass("selected");
 
-        // Create the carousel-frame
-
-        var li_tmp = Handlebars.compile(li_html);
-        var info_deal_tmp = Handlebars.compile(info_deal_html);
-        var img_tmp = Handlebars.compile(img_html);
-        var featured_item_tmp = Handlebars.compile(featured_item_html);
-        var info_featured_tmp = Handlebars.compile(info_featured_html);
-
-        for (var i = 0; i < max ; i++) {
-
-            var li = li_tmp({'id': 'li-' + i});
-            $('#carousel-frame').append(li);
-
-            var featured_item = featured_item_tmp({'id': 'feat-' + i});
-            $('#featured-flights').append(featured_item);
-        }
-
         var api = new API();
+        var citiesAndAirports = new Array(2);
 
-        var deals = new Array();
+        // Create the carousel-frame and the featured-frame
 
-        api.booking.getFlightDeals({
+        createCarouselAndFeatured();
 
-            success: function(result) {
+        // Date mask
 
-                for (var i = 0; i < result.deals.length; i++) {
-
-                    deals[i] = new Array();
-
-                    deals[i][0] = result.deals[i].cityId;
-                    deals[i][1] = result.deals[i].cityName;
-                    deals[i][2] = result.deals[i].price;
-                }
-
-                deals = $.shuffle(deals);
-
-                // Carousel images
-
-                for (var i = 0; i < max; i++) {
-
-                    var link = '{{Link "img/featured/' + deals[i][0] + '.jpg"}}';
-                    var img_src = Handlebars.compile(link);
-                    var img = img_tmp({'img_src': img_src});
-
-                    var city = deals[i][1].split(",")[0];
-                    var percentage = Math.floor(Math.random() * 5 + 1) * 5;
-                    var cards = ["Visa", "Diners", "Master Card", "American Express"];
-                    var card = cards[Math.floor(Math.random() * 3 + 1)];
-                    var deal = percentage + "% de descuento a " + city +
-                            " abonando con " + card;
-
-                    $('#li-' + i).append(img);
-                    $('#li-' + i + ' div').append(info_deal_tmp({"title": deals[i][1], "deal": deal}));
-                }
-
-                // Featured items
-
-                for (var i = max; i < 2 * max; i++) {
-
-                    var link = '{{Link "img/featured/' + deals[i][0] + '.jpg"}}';
-                    var img_src = Handlebars.compile(link);
-                    var img = img_tmp({'img_src': img_src});
-
-                    var city = deals[i][1].split(",")[0];
-                    var price = "Desde U$S " + Math.ceil(deals[i][2]);
-
-                    $('#feat-' + (i - max)).append(img);
-                    $('#feat-' + (i - max) + ' div').append(info_featured_tmp({"city": city, "price": price}));
-                }
-            }
-        }, {"from": "BUE"});
-
-        // Máscara para fechas
-
-        jQuery(function($) {
-            $("#depart_input").mask("99/99/9999");
-        });
-
-        jQuery(function($) {
-            $("#return_input").mask("99/99/9999");
-        });
+        dateMask("#depart_input");
+        dateMask("#return_input");
 
         // Init the calendars
 
-        Calendar.setup({inputField: "depart_input", ifFormat: "%d/%m/%Y", button: "depart-calendar"});
-       	Calendar.setup({inputField: "return_input", ifFormat: "%d/%m/%Y", button: "return-calendar"});
+        initCalendar("depart_input", "depart-calendar");
+        initCalendar("return_input", "return-calendar");
 
         // Init the carousel
 
         DP.inicio();
 
+        // Generate autocomplete
 
-        var citiesAndAirports = new Array(2);
-        var airports = new Array();
-        var airportsId = new Array();
-
-        citiesAndAirports[0] = new Array();
-        citiesAndAirports[1] = new Array();
-
-        api.geo.getCities({
-
-            success: function(result) {
-
-            for (var i = 0; i < result.cities.length; i++) {
-
-                citiesAndAirports[0][i] = result.cities[i].name;
-                citiesAndAirports[1][i] = result.cities[i].cityId;
-            }
-
-            api.geo.getAirports({
-
-                success: function(result) {
-
-                    var citiesLength = citiesAndAirports[0].length;
-
-                    for (var i = 0; i < result.airports.length; i++) {
-
-                        citiesAndAirports[0][i + citiesLength] = result.airports[i].description;
-                        citiesAndAirports[1][i + citiesLength] = result.airports[i].airportId;
-                }
-            }});
-
-        }});
-
-        console.log(Utils.convertDate("12/08/1991"));
-
-        $("#from").autocomplete({
-            source: citiesAndAirports[0],
-            // minLength: "3"
-        });
-
-        $("#to").autocomplete({
-            source: citiesAndAirports[0],
-            // minLength: "3"
-        });
+        getCitiesAndAirports();
 
         // Cuando se clickee el button de id search
 
         $("#search").click(function(){
+
+            document.location.href = Utils.getUrl("flights.html", setAttrs());
+        });
+
+
+        function createCarouselAndFeatured() {
+
+            var li_tmp = Handlebars.compile(li_html);
+            var featured_item_tmp = Handlebars.compile(featured_item_html);
+
+            for (var i = 0; i < max ; i++) {
+
+                var li = li_tmp({'id': 'li-' + i});
+                $('#carousel-frame').append(li);
+
+                var featured_item = featured_item_tmp({'id': 'feat-' + i});
+                $('#featured-flights').append(featured_item);
+            }
+
+            setCarouselAndFeaturedImages();
+        }
+
+        function setCarouselAndFeaturedImages() {
+
+            var deals = new Array();
+
+            var info_deal_tmp = Handlebars.compile(info_deal_html);
+            var info_featured_tmp = Handlebars.compile(info_featured_html);
+            var img_tmp = Handlebars.compile(img_html);
+
+            api.booking.getFlightDeals({
+
+                success: function(result) {
+
+                    for (var i = 0; i < result.deals.length; i++) {
+
+                        deals[i] = new Array();
+
+                        deals[i][0] = result.deals[i].cityId;
+                        deals[i][1] = result.deals[i].cityName;
+                        deals[i][2] = result.deals[i].price;
+                    }
+
+                    deals = $.shuffle(deals);
+
+                    // Carousel images
+
+                    for (var i = 0; i < max; i++) {
+
+                        var link = '{{Link "img/featured/' + deals[i][0] + '.jpg"}}';
+                        var img_src = Handlebars.compile(link);
+                        var img = img_tmp({'img_src': img_src});
+
+                        var city = deals[i][1].split(",")[0];
+                        var percentage = Math.floor(Math.random() * 5 + 1) * 5;
+                        var cards = ["Visa", "Diners", "Master Card", "American Express"];
+                        var card = cards[Math.floor(Math.random() * 3 + 1)];
+                        var deal = percentage + "% de descuento a " + city +
+                                " abonando con " + card;
+
+                        $('#li-' + i).append(img);
+                        $('#li-' + i + ' div').append(info_deal_tmp({"title": deals[i][1], "deal": deal}));
+                    }
+
+                    // Featured items
+
+                    for (var i = max; i < 2 * max; i++) {
+
+                        var link = '{{Link "img/featured/' + deals[i][0] + '.jpg"}}';
+                        var img_src = Handlebars.compile(link);
+                        var img = img_tmp({'img_src': img_src});
+
+                        var city = deals[i][1].split(",")[0];
+                        var price = "Desde U$S " + Math.ceil(deals[i][2]);
+
+                        $('#feat-' + (i - max)).append(img);
+                        $('#feat-' + (i - max) + ' div').append(info_featured_tmp({"city": city, "price": price}));
+                    }
+                }
+            }, {"from": "BUE"});
+        }
+
+        function initCalendar(input, button) {
+
+            Calendar.setup({"inputField": input, "ifFormat": "%d/%m/%Y", "button": button});
+        }
+
+
+        function dateMask(input) {
+
+            jQuery(function($) {
+                $(input).mask("99/99/9999");
+            });
+        }
+
+
+        function getCitiesAndAirports() {
+
+            citiesAndAirports[0] = new Array();
+            citiesAndAirports[1] = new Array();
+
+            api.geo.getCities({
+
+                success: function(result) {
+
+                for (var i = 0; i < result.cities.length; i++) {
+
+                    citiesAndAirports[0][i] = result.cities[i].name;
+                    citiesAndAirports[1][i] = result.cities[i].cityId;
+                }
+
+                api.geo.getAirports({
+
+                    success: function(result) {
+
+                        var citiesLength = citiesAndAirports[0].length;
+
+                        for (var i = 0; i < result.airports.length; i++) {
+
+                            citiesAndAirports[0][i + citiesLength] = result.airports[i].description;
+                            citiesAndAirports[1][i + citiesLength] = result.airports[i].airportId;
+                    }
+                }});
+
+            }});
+
+            autocomplete("#from");
+            autocomplete("#to");
+
+        }
+
+        function autocomplete(id) {
+
+            $(id).autocomplete({
+                source: function(request, response) {
+
+                    var results = $.ui.autocomplete.filter(citiesAndAirports[0], request.term);
+
+                    response(results.slice(0, 10));
+                },
+
+                minLength: "3"
+            });
+        }
+
+        function setAttrs() {
+
             var attrs = new Array();
 
-             // Por cada atributo que le quiera pasar
-            // attrs["attr_name"] = "attr_value";
-
-            attrs["from"] = citiesAndAirports[1][citiesAndAirports[0].indexOf($("#from").val())];
-            attrs["to"] = citiesAndAirports[1][citiesAndAirports[0].indexOf($("#to").val())];
-            attrs["dep_date"] = Utils.convertDate($("#depart_input").val());
-            attrs["ret_date"] = Utils.convertDate($("#return_input").val());
+            attrs["from"] = getId("#from");
+            attrs["to"] = getId("#to");
+            attrs["dep_date"] = convertDate($("#depart_input").val());
+            attrs["ret_date"] = convertDate($("#return_input").val());
             attrs["adults"] = $("#select_adults").val();
             attrs["children"] = $("#select_children").val();
             attrs["infants"] = $("#select_infants").val();
 
+            return attrs;
+        }
 
-            console.log(attrs);
-            // $.when((api.geo.getAirportsByName(callback1, param))).done(document.location.href = Utils.getUrl("flights.html", attrs));
-            document.location.href = Utils.getUrl("flights.html", attrs);
-        });
+        function getId(name) {
+
+            return citiesAndAirports[1][citiesAndAirports[0].indexOf($(name).val())];
+        }
+
+        function convertDate(stringDate) {
+
+            var dateRegex = /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/;
+            var dateRegexResult = stringDate.match(dateRegex);
+
+            // return moment.utc(stringDate, "DD-MM-YYYY").format("YYYY-MM-DD");
+            return dateRegexResult[3] + "-" + dateRegexResult[2] + "-" + dateRegexResult[1];
+        }
 
     }
 );

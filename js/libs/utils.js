@@ -113,15 +113,6 @@ define(
                 });
             },
 
-            'convertDate': function(stringDate) {
-
-                var dateRegex = /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/;
-                var dateRegexResult = stringDate.match(dateRegex);
-
-                // return moment.utc(stringDate, "DD-MM-YYYY").format("YYYY-MM-DD");
-                return dateRegexResult[3] + "-" + dateRegexResult[2] + "-" + dateRegexResult[1];
-            },
-
             'convertExpirationDate': function(month, year) {
 
                 return month + year.substring(2);
