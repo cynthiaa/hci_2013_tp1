@@ -274,7 +274,7 @@ body > .container > .header .vdivider {
 
 #sidebar .sidebar-body select {
     display: block;
-    width: 50px;
+    width: 60px;
 }
 
 #sidebar .sidebar-body .search {
@@ -284,7 +284,6 @@ body > .container > .header .vdivider {
 #sidebar .sidebar-body .search a {
     font-size: 12px;
     text-decoration: underline;
-    padding-top: 30px;
 }
 
 #sidebar .sidebar-body .search input[type="submit"] {
