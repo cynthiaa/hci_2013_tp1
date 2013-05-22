@@ -51,7 +51,7 @@ div.featured.panel {
     width: 700px;
 }
 
-#featured-flights > .featured-item {
+#featured-flights .featured-item {
     float: left;
     height: 125px;
     width: 125px;
@@ -60,13 +60,13 @@ div.featured.panel {
     padding: 0px;
 }
 
-#featured-flights > .featured-item > img {
+#featured-flights .featured-item > img {
     height: 125px;
     width: 125px;
     position: absolute;
 }
 
-#featured-flights > .featured-item > div {
+#featured-flights .featured-item > div {
     height: 125px;
     width: 125px;
     background-color: #EEE;
@@ -74,37 +74,37 @@ div.featured.panel {
     position: absolute;
 }
 
-#featured-flights > .featured-item > .hide_onhover {
+#featured-flights .featured-item > .hide_onhover {
     opacity: 1.00;
     filter: alpha(opacity=100);
 }
 
-#featured-flights > .featured-item > .hide_onhover:hover {
+#featured-flights .featured-item > .hide_onhover:hover {
     opacity: 0;
     filter: alpha(opacity=0);
 }
 
-#featured-flights > .featured-item > .show_onhover {
+#featured-flights .featured-item > .show_onhover {
     opacity: 0;
     filter: alpha(opacity=0);
 }
 
-#featured-flights > .featured-item > .show_onhover:hover {
+#featured-flights .featured-item > .show_onhover:hover {
     opacity: 0.8;
     filter: alpha(opacity=80);
 }
 
-#featured-flights > .featured-item > div > .city {
+#featured-flights .featured-item > div > .city {
     margin-top: 15px;
     padding: 4px;
     background-color: #CCC;
 }
 
-#featured-flights > .featured-item > div > .price {
+#featured-flights .featured-item > div > .price {
     margin-top: 40px;
 }
 
-#featured-flights > .featured-item > div > .price > p {
+#featured-flights .featured-item > div > .price > p {
     /* font-weight: bold; */
     text-align: center;
     color: #444;
