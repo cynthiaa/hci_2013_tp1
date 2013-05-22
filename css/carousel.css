@@ -21,7 +21,7 @@
     position: relative;
 }
 
-#carousel-frame-on > .carousel-item {
+#carousel-frame-on .carousel-item {
     position: absolute;
     top: 0;
     left: 0;

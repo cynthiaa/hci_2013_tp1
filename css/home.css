@@ -12,18 +12,18 @@ div.featured.panel {
 }
 
 
-#carousel-frame-on > li.carousel-item > img {
+#carousel-frame-on li.carousel-item > img {
     width: 714px;
     height: 315px;
 }
 
-#carousel-frame-on > .carousel-item > * {
+#carousel-frame-on .carousel-item > * {
     width: 716px;
     height: 350px;
     position: absolute;
 }
 
-#carousel-frame-on > .carousel-item > div {
+#carousel-frame-on .carousel-item > div {
     width: 704px;
     height: 50px;
     background-color: #333;
@@ -36,12 +36,12 @@ div.featured.panel {
     filter: alpha(opacity=60);
 }
 
-#carousel-frame-on > .carousel-item > div > h4 {
+#carousel-frame-on .carousel-item > div > h4 {
     text-align: left;
     font-size: 20px;
 }
 
-#carousel-frame-on > .carousel-item > div > p {
+#carousel-frame-on .carousel-item > div > p {
     color: #EEE;
     font-size: 15px;
 }
