@@ -19,6 +19,20 @@ require(
 	param.sort_key= $.trim($("#selectionOrder :selected").val().match(".* ")[0]);
 	param.sort_order= $.trim($("#selectionOrder :selected").val().match(" .*")[0]);
 
+    // Entonces es sólo ida
+
+    if (param.ret_date == "null") {
+
+        $(".outbound").hide();
+        $("#flight-header-ret").hide();
+        $(".flight-wrapper").css("width", "100%");
+        $(".flight-header").css("width", "100%");
+        $("#pagination-bar-right").hide();
+        $(".vdivider").hide();
+        $(".pagination-bar").css("width", "100%");
+        $(".pagination-bar").css("text-align", "center");
+    }
+
     var inpagenum= 0;
     var outpagenum= 0;
     var flights;
@@ -29,12 +43,12 @@ require(
     		aux.push(arr.slice(i*pagesize, (i+1)*pagesize));
  		return aux;
     }
-       
+
     var loadPagesArrays = function(flightsArray) {
 		var inbound= new Array;
 		var outbound= new Array;
 		var aux;
-		
+
 		for(var i=0; i<flightsArray.length ; i++) {
 			if(flightsArray[i].hasOwnProperty('inboundRoutes')) {
 				aux= inbound.push(flightsArray[i].inboundRoutes[0].segments[0]);
@@ -45,16 +59,16 @@ require(
 				outbound[aux-1].pricing= flightsArray[i].price;
 			}
 		}
-	
+
 		inbound= paginate(inbound, 2);
 		outbound= paginate(outbound, 2);
-	
+
 	    var flights= { "inbound": inbound, "outbound": outbound }
 	    return flights;
     }
 
 	var airlineToAirlineLink = function(airline) { return Handlebars.compile("{{Link 'img/airlines/" + airline + ".png'}}"); }
-		
+
     var showFlights= function(form, page) {
     	for(var i = 0; i < page.length ; i++) {
     		var airlineLink= airlineToAirlineLink(page[i].airlineId);
@@ -90,7 +104,7 @@ require(
 		$(".inbound form div").remove();
 		$(".outbound form div").remove();
 	}
-	
+
 	var refreshPage= function() {
 		clearFlights();
 		showFlights($(".inbound form"), flights.inbound[inpagenum]);
@@ -98,14 +112,14 @@ require(
 		$(".inbound .flight-radio input").first().prop('checked', 'checked');
     	$(".outbound .flight-radio input").first().prop('checked', 'checked');
 	}
-	
+
 	var clearPageNums = function() {
 		inpagenum= 0;
 		outpagenum= 0;
-	}	
-	
-	var callback = { 
-		success: function(result) { 
+	}
+
+	var callback = {
+		success: function(result) {
 			flights = loadPagesArrays(result.flights);
 			clearPageNums();
 			refreshPageFooting();
@@ -125,30 +139,30 @@ require(
 			inpagenum--;
 			refreshPage();
 		}
-		
+
 	});
-	
+
 	$(".outbound-prev").click(function(){
 		if(outpagenum>0) {
 			outpagenum--;
 			refreshPage();
 		}
 	});
-	
+
 	$(".inbound-next").click(function(){
 		if(inpagenum < flights.inbound.length-1) {
 			inpagenum++;
 			refreshPage();
 		}
 	});
-	
+
 	$(".outbound-next").click(function(){
 		if(outpagenum < flights.outbound.length-1) {
 			outpagenum++;
 			refreshPage();
 		}
 	});
-	
+
 	$(".inPageBtn").click(function() {
 		var desiredPage= $(".inbound-pages .page-number").val();
 		if(desiredPage>0 && desiredPage<=flights.inbound.length) {
@@ -156,7 +170,7 @@ require(
 			refreshPage();
 		}
 	});
-	
+
 	$(".outPageBtn").click(function() {
 		var desiredPage= $(".outbound-pages .page-number").val();
 		if(desiredPage>0 && desiredPage<=flights.outbound.length) {
@@ -164,10 +178,7 @@ require(
 			refreshPage();
 		}
 	});
-	
+
     api.booking.getRoundTripFlights(callback, param);
 });
-
-
-
 

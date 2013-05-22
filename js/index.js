@@ -203,7 +203,7 @@ require(
             attrs["from"] = getId("#from");
             attrs["to"] = getId("#to");
             attrs["dep_date"] = convertDate($("#depart_input").val());
-            attrs["ret_date"] = convertDate($("#return_input").val());
+            attrs["ret_date"] = $("#return_input").is(":visible") ? convertDate($("#return_input").val()) : "null";
             attrs["adults"] = $("#select_adults").val();
             attrs["children"] = $("#select_children").val();
             attrs["infants"] = $("#select_infants").val();
@@ -222,6 +222,7 @@ require(
             attrs["from"] = "BUE";
             attrs["to"] = deals[n + offset][0];
             attrs["dep_date"] = date;
+            attrs["ret_date"] = "null";
             attrs["adults"] = 1;
             attrs["children"] = attrs["infants"] = 0;
 
