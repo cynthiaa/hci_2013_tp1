@@ -56,6 +56,10 @@ require(
 
         clickCarouselImage();
 
+        // Cuando se clickee algún destacado
+
+        clickFeaturedItem();
+
         // Cuando se clickee el button de id search
 
         $("#search").click(function(){
@@ -207,7 +211,24 @@ require(
             return attrs;
         }
 
-        function setDealsAttrs(n) {
+        function setFeaturedAttrs(n) {
+
+            var attrs = new Array();
+            var currentDate = new Date();
+            currentDate.setDate(currentDate.getDate() + 2);
+            var date = currentDate.getFullYear() + "-" + (currentDate.getMonth() + 2) +
+                    '-' + currentDate.getDate();
+
+            attrs["from"] = "BUE";
+            attrs["to"] = deals[n + max][0];
+            attrs["dep_date"] = date;
+            attrs["adults"] = n;
+            attrs["children"] = attrs["infants"] = n + max;
+
+            return attrs;
+        }
+
+       function setDealsAttrs(n) {
 
             var attrs = new Array();
             var currentDate = new Date();
@@ -235,6 +256,18 @@ require(
 
             // return moment.utc(stringDate, "DD-MM-YYYY").format("YYYY-MM-DD");
             return dateRegexResult[3] + "-" + dateRegexResult[2] + "-" + dateRegexResult[1];
+        }
+
+        function clickFeaturedItem() {
+
+             for (var i = 0; i < 5; i++) {
+
+                $("#feat-" + i).click(function(){
+
+                    // console.log(i);
+                    document.location.href = Utils.getUrl("flights.html", setFeaturedAttrs(i));
+                });
+            }
         }
 
         function clickCarouselImage() {
