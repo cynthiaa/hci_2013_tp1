@@ -207,3 +207,11 @@ input.flight-pages {
 .go-button :hover {
 	background: -webkit-linear-gradient(top, #EDFCFF 0%,#CFE6EF 100%);
 }
+
+.airline-image img {
+	width: 290px;
+}
+
+.airline-image {
+	width: 290px;
+}
