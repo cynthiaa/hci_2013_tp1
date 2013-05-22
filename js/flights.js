@@ -142,6 +142,8 @@ require(
 			showFlights($(".inbound form"), flights.inbound[inpagenum]);
 			showFlights($(".outbound form"), flights.outbound[outpagenum]);
 			refreshPageFooting();
+			$(".inbound .flight-radio input").first().prop('checked', 'checked');
+    		$(".outbound .flight-radio input").first().prop('checked', 'checked');
 			}
  //   	<-- Falta la funcion de error aca -->
 	}
@@ -165,6 +167,8 @@ require(
 			inpagenum--;
 			$(".inbound form div").remove();
 			showFlights($(".inbound form"), flights.inbound[inpagenum]);
+			$(".inbound .flight-radio input").first().prop('checked',true);
+    		$(".outbound .flight-radio input").first().prop('checked',true);
 		}
 		
 	});
@@ -174,6 +178,8 @@ require(
 			outpagenum--;
 			$(".outbound form div").remove();
 			showFlights($(".outbound form"), flights.outbound[outpagenum]);
+			$(".inbound .flight-radio input").first().prop('checked',true);
+    		$(".outbound .flight-radio input").first().prop('checked',true);
 		}
 	});
 	
@@ -182,6 +188,8 @@ require(
 			inpagenum++;
 			$(".inbound form div").remove();
 			showFlights($(".inbound form"), flights.inbound[inpagenum]);
+			$(".inbound .flight-radio input").first().prop('checked',true);
+    		$(".outbound .flight-radio input").first().prop('checked',true);
 		}
 	});
 	
@@ -190,6 +198,8 @@ require(
 			outpagenum++;
 			$(".outbound form div").remove();
 			showFlights($(".outbound form"), flights.outbound[outpagenum]);
+			$(".inbound .flight-radio input").first().prop('checked',true);
+    		$(".outbound .flight-radio input").first().prop('checked',true);
 		}
 	});
 	
@@ -199,6 +209,8 @@ require(
 			inpagenum= desiredPage -1;
 			$(".inbound form div").remove();
 			showFlights($(".inbound form"), flights.inbound[inpagenum]);
+			$(".inbound .flight-radio input").first().prop('checked',true);
+    		$(".outbound .flight-radio input").first().prop('checked',true);
 		}
 	});
 	
@@ -208,6 +220,8 @@ require(
 			outpagenum= desiredPage -1;
 			$(".outbound form div").remove();
 			showFlights($(".outbound form"), flights.outbound[outpagenum]);
+			$(".inbound .flight-radio input").first().prop('checked',true);
+    		$(".outbound .flight-radio input").first().prop('checked',true);
 		}
 	});
 	
