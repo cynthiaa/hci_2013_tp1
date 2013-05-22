@@ -1,5 +1,5 @@
 div.featured.panel {
-    height: 172px;
+    height: 152px;
 }
 
 #main > .deals {
@@ -52,23 +52,23 @@ div.featured.panel {
 }
 
 #featured-flights .featured-item {
-    float: left;
-    height: 125px;
-    width: 125px;
-    margin: 5px 7px 0px 0px;
+    height: 120px;
+    width: 120px;
+    margin: 5px 6px 0px 2px;
     border: 4px solid #888;
     padding: 0px;
+    display: inline-block;
 }
 
 #featured-flights .featured-item > img {
-    height: 125px;
-    width: 125px;
+    height: 120px;
+    width: 120px;
     position: absolute;
 }
 
 #featured-flights .featured-item > div {
-    height: 125px;
-    width: 125px;
+    height: 120px;
+    width: 120px;
     background-color: #EEE;
     z-index: 1000;
     position: absolute;
@@ -98,10 +98,6 @@ div.featured.panel {
     margin-top: 15px;
     padding: 4px;
     background-color: #CCC;
-}
-
-#featured-flights .featured-item > div > .price {
-    margin-top: 40px;
 }
 
 #featured-flights .featured-item > div > .price > p {
