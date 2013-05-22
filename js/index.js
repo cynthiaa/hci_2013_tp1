@@ -28,6 +28,7 @@ require(
 
         var api = new API();
         var citiesAndAirports = new Array(2);
+        var deals = new Array(max);
 
         // Create the carousel-frame and the featured-frame
 
@@ -50,6 +51,10 @@ require(
         // Generate autocomplete
 
         getCitiesAndAirports();
+
+        // Cuando se clickee alguna imagen del carousel
+
+        clickCarouselImage();
 
         // Cuando se clickee el button de id search
 
@@ -77,8 +82,6 @@ require(
         }
 
         function setCarouselAndFeaturedImages() {
-
-            var deals = new Array();
 
             var info_deal_tmp = Handlebars.compile(info_deal_html);
             var info_featured_tmp = Handlebars.compile(info_featured_html);
@@ -173,7 +176,6 @@ require(
 
             autocomplete("#from");
             autocomplete("#to");
-
         }
 
         function autocomplete(id) {
@@ -205,6 +207,22 @@ require(
             return attrs;
         }
 
+        function setDealsAttrs(n) {
+
+            var attrs = new Array();
+            var currentDate = new Date();
+            var date = currentDate.getFullYear() + "-" + (currentDate.getMonth() + 2) +
+                    '-' + currentDate.getDate();
+
+            attrs["from"] = "BUE";
+            attrs["to"] = deals[n][0];
+            attrs["dep_date"] = date;
+            attrs["adults"] = "1";
+            attrs["children"] = attrs["infants"] = "0";
+
+            return attrs;
+        }
+
         function getId(name) {
 
             return citiesAndAirports[1][citiesAndAirports[0].indexOf($(name).val())];
@@ -219,6 +237,22 @@ require(
             return dateRegexResult[3] + "-" + dateRegexResult[2] + "-" + dateRegexResult[1];
         }
 
+        function clickCarouselImage() {
+
+            for (var i = 0; i < 5; i++) {
+
+                $("#li-" + i).click(function(){
+
+                    for (var j = 0; j < 5; j++) {
+
+                        if($("#li-" + j).hasClass("selected")) {
+
+                            document.location.href = Utils.getUrl("flights.html", setDealsAttrs(j));
+                        }
+                    }
+                });
+            }
+        }
     }
 );
 

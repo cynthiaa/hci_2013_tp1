@@ -26,6 +26,9 @@ var DP = {
                 el.style.zIndex=v;
             } else {
                 el.setAttribute('style','opacity:'+v/100+';z-index:'+v);
+
+                if (v == 100) el.setAttribute('class','carousel-item selected');
+                if (v == 0) el.setAttribute('class','carousel-item');
             }
             } else {
                 (DP.IE) ? el.style.filter='alpha(opacity='+v+')' : el.setAttribute('style','opacity:'+v/100);
