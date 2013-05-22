@@ -18,23 +18,23 @@ require(["libs/text!../templates/flights/flights.html",
 		param.sort_key= $.trim($("#selectionOrder :selected").val().match(".* ")[0]);
 		param.sort_order= $.trim($("#selectionOrder :selected").val().match(" .*")[0]);
         console.log(param);
-         
+
         var inpagenum= 0;
         var outpagenum= 0;
         var flights;
-        
-        var paginate= function(arr, pagesize) {
+
+        var paginate = function(arr, pagesize) {
         	var aux= new Array;
         	for(var i=0; (i*pagesize)<arr.length ;i++)
         		aux.push(arr.slice(i*pagesize, (i+1)*pagesize));
      		return aux;
         }
-           
+
         var loadPagesArrays = function(flightsArray) {
         	var inbound= new Array;
         	var outbound= new Array;
         	var aux;
-        	
+
         	for(var i=0; i<flightsArray.length ; i++) {
         		if(flightsArray[i].hasOwnProperty('inboundRoutes')) {
         			aux= inbound.push(flightsArray[i].inboundRoutes[0].segments[0]);
@@ -52,42 +52,17 @@ require(["libs/text!../templates/flights/flights.html",
         	var flights= { "inbound": inbound, "outbound": outbound }
         	return flights;
         }
-        
+
         var airlineToAirlineLink = function(airline) {
-			switch(airline) {
-				case "AR":
-					return Handlebars.compile("{{Link 'img/aerolineasArgentinas.png'}}");
-				case "LA":
-					return Handlebars.compile("{{Link 'img/lan.png'}}");
-				case "8R":
-					return Handlebars.compile("{{Link 'img/sol.png'}}");
-				case "JJ":
-					return Handlebars.compile("{{Link 'img/tamAirlines.png'}}");
-				case "BA":
-					return Handlebars.compile("{{Link 'img/britishAirways.png'}}");
-				case "AF":
-					return Handlebars.compile("{{Link 'img/airFrance.png'}}");
-				case "AZ":
-					return Handlebars.compile("{{Link 'img/alitalia.png'}}");
-				case "AA":
-					return Handlebars.compile("{{Link 'img/americanAirlines.png'}}");
-				case "IB":
-					return Handlebars.compile("{{Link 'img/iberia.png'}}");
-				case "AM":
-					return Handlebars.compile("{{Link 'img/aeroMexico.png'}}");
-				case "TA":
-					return Handlebars.compile("{{Link 'img/taca.png'}}");
-				case "CM":
-					return Handlebars.compile("{{Link 'img/copaAirlines.png'}}");
-				case "AV":
-					return Handlebars.compile("{{Link 'img/avianca.png'}}");
-			}
+
+			return Handlebars.compile("{{Link 'img/airlines/" + airline + ".png'}}");
+
 		}
-        
+
         var showFlights= function(form, page) {
-        	
-        	for(var i=0; i<page.length ;i++) {
-        		var airlineLink= airlineToAirlineLink(page[i].airlineId)
+
+        	for(var i = 0; i < page.length ; i++) {
+        		var airlineLink= airlineToAirlineLink(page[i].airlineId);
         		$(".airline-image").append(tmp_img({"img_src" : airlineLink}));
 				$(form).append(flights_data_tmp({
 					"departureCity": page[i].departure.cityName,
@@ -101,24 +76,24 @@ require(["libs/text!../templates/flights/flights.html",
 				}));
 			}
 		}
-		
+
 		var clearAll = function() {
-			inpagenum= 0;
-			outpagenum= 0;
+			inpagenum = 0;
+			outpagenum = 0;
 			$(".inbound form").remove();
 			$(".outbound form").remove();
 		}
 
-    	var callback = { 
-    		success: function(result) { 
+    	var callback = {
+    		success: function(result) {
     			flights = loadPagesArrays(result.flights);
     			showFlights($(".inbound form"), flights.inbound[0]);
 				showFlights($(".outbound form"), flights.outbound[0]);
 			}
  //   		<-- Falta la funcion de error aca -->
     	}
-	
-	
+
+
 	$("#selectionOrder").change(function() {
 		param.sort_key = $.trim($("#selectionOrder :selected").val().match(".* ")[0]);
 		param.sort_order = $.trim($("#selectionOrder :selected").val().match(" .*")[0]);
