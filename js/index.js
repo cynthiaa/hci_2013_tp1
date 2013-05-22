@@ -201,9 +201,13 @@ require(
             var attrs = new Array();
 
             attrs["from"] = getId("#from");
+            attrs["from_name"] = $("#from").val();
             attrs["to"] = getId("#to");
+            attrs["to_name"] = $("#to").val();
             attrs["dep_date"] = convertDate($("#depart_input").val());
+            attrs["dep_date_input"] = $("#depart_input").val();
             attrs["ret_date"] = $("#return_input").is(":visible") ? convertDate($("#return_input").val()) : "null";
+            attrs["ret_date_input"] = $("#return_input").val();
             attrs["adults"] = $("#select_adults").val();
             attrs["children"] = $("#select_children").val();
             attrs["infants"] = $("#select_infants").val();
@@ -220,7 +224,9 @@ require(
                     '-' + currentDate.getDate();
 
             attrs["from"] = "BUE";
+            attrs["from_name"] = "Buenos Aires, Ciudad de Buenos Aires";
             attrs["to"] = deals[n + offset][0];
+            attrs["to_name"] = "Falta poner este nombre";
             attrs["dep_date"] = date;
             attrs["ret_date"] = "null";
             attrs["adults"] = 1;

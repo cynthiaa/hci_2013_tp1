@@ -19,19 +19,10 @@ require(
 	param.sort_key= $.trim($("#selectionOrder :selected").val().match(".* ")[0]);
 	param.sort_order= $.trim($("#selectionOrder :selected").val().match(" .*")[0]);
 
-    // Entonces es sólo ida
+    completeSideBar();
 
-    if (param.ret_date == "null") {
-
-        $(".outbound").hide();
-        $("#flight-header-ret").hide();
-        $(".flight-wrapper").css("width", "100%");
-        $(".flight-header").css("width", "100%");
-        $("#pagination-bar-right").hide();
-        $(".vdivider").hide();
-        $(".pagination-bar").css("width", "100%");
-        $(".pagination-bar").css("text-align", "center");
-    }
+    // Si es sólo ida
+    generateLayoutOneWay();
 
     var inpagenum= 0;
     var outpagenum= 0;
@@ -180,5 +171,32 @@ require(
 	});
 
     api.booking.getRoundTripFlights(callback, param);
+
+    function generateLayoutOneWay() {
+
+        if (param.ret_date == "null") {
+
+            $(".outbound").hide();
+            $("#flight-header-ret").hide();
+            $(".flight-wrapper").css("width", "100%");
+            $(".flight-header").css("width", "100%");
+            $("#pagination-bar-right").hide();
+            $(".vdivider").hide();
+            $(".pagination-bar").css("width", "100%");
+            $(".pagination-bar").css("text-align", "center");
+        }
+    }
+
+    function completeSideBar() {
+
+        console.log(param);
+        $("#from").val(param.from_name);
+        $("#to").val(param.to_name);
+        $("#depart_input").val(param.dep_date_input);
+        $("#return_input").val(param.ret_date_input);
+        $("#select_adults").val(param.adults);
+        $("#select_children").val(param.children);
+        $("#select_infants").val(param.infants);
+    }
 });
 
