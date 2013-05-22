@@ -177,6 +177,7 @@
 input.page-number {
 	width: 16px;
 	height: 9px;
+	margin: 0;
 }
 
 input.flight-pages {
@@ -188,7 +189,7 @@ input.flight-pages {
 
 .inbound-pages {
 	display: inline-block;
-	margin: 0 110px;
+	margin: 0 115px;
 }
 
 .outbound-pages {
@@ -196,3 +197,13 @@ input.flight-pages {
 	margin: 0 110px;
 }
 
+.go-button {
+	color: #52B0D6;
+	border: 1px solid #52B0D6;
+	height: 26px;
+	width: 20px;
+}
+
+.go-button :hover {
+	background: -webkit-linear-gradient(top, #EDFCFF 0%,#CFE6EF 100%);
+}
