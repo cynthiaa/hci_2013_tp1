@@ -69,7 +69,8 @@ input[type="radio"]{
     margin-top: 10px;
 }
 
-.navigation-bar input[type="submit"] {
+.navigation-bar input[type="submit"],
+.navigation-bar input[type="button"] {
 	display: inline-block;
     margin-top: 10px;
 }

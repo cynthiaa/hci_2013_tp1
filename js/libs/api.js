@@ -143,8 +143,8 @@ API.prototype = (function() {
                 call("Booking.groovy", "BookFlight", {}, callbacks);
             },
 
-            validateCreditCard: function(callbacks) {
-                call("Booking.groovy", "ValidateCreditCard", {}, callbacks);
+            validateCreditCard: function(callbacks, param) {
+                call("Booking.groovy", "ValidateCreditCard", param, callbacks);
             },
 
             getInstallments: function(callbacks, params) {

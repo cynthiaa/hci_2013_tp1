@@ -23,13 +23,31 @@ require(
             $("#select_expiration_year").append(select_tmp({"value": i, "name": i}));
         }
 
-        // Validación
+        var api = new API();
 
-        var params = {
-            "number": $('#card-num'),
-            "exp_date": Utils.convertExpirationDate($('#select_expiration_month'), $('#select_expiration_year')),
-            "sec_code": $('#security-code')
-        };
+        // Cuando se clickee el button de id next, se debe validar la tarjeta
+
+        $("#next").click(function(){
+
+            var param = {
+                "number": $('#card-num').val(),
+                "exp_date": Utils.convertExpirationDate($('#select_expiration_month').val(), $('#select_expiration_year').val()),
+                "sec_code": $('#security-code').val()
+            };
+
+            var callback = {
+                success: function(result) {
+
+                    window.alert("Los datos de la tarjeta son " + (result.valid == true ? "" : "in") + "correctos");
+                }
+            }
+
+            console.log(param);
+            api.booking.validateCreditCard(callback, param);
+
+            // document.location.href = Utils.getUrl("flights.html", setAttrs());
+        });
+
     }
 );
 

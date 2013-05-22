@@ -199,7 +199,7 @@
 			<div class="form-component-left">
 				<label>DNI:</label>
 				<br>
-				<input name="dni" type="text"/>
+				<input name="dni" type="text" maxlength="8"/>
 			</div>
 			<div class="form-component-right">
 				<label>Email de contacto:</label>
@@ -210,8 +210,8 @@
 
 		<div class="navigation-bar">
 			<div class="hdivider"></div>
-			<input type="submit" value="Volver" onClick="window.location='{{Link "passengers.html"}}'; return false;" />
-			<input type="submit" value="Continuar" onClick="window.location='{{Link "payment.html"}}'; return false;" />
+			<input id="prev" type="submit" value="Volver" onClick="window.location='{{Link "passengers.html"}}'; return false;" />
+			<input id="next" type="button" value="Continuar" />
 		</div>
 	</form>
 </div>
