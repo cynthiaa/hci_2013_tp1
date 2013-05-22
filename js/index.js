@@ -211,35 +211,19 @@ require(
             return attrs;
         }
 
-        function setFeaturedAttrs(n) {
+        function setDealsAttrs(n, days, offset) {
 
             var attrs = new Array();
             var currentDate = new Date();
-            currentDate.setDate(currentDate.getDate() + 2);
-            var date = currentDate.getFullYear() + "-" + (currentDate.getMonth() + 2) +
+            currentDate.setDate(currentDate.getDate() + days);
+            var date = currentDate.getFullYear() + "-" + (currentDate.getMonth() + 1) +
                     '-' + currentDate.getDate();
 
             attrs["from"] = "BUE";
-            attrs["to"] = deals[n + max][0];
+            attrs["to"] = deals[n + offset][0];
             attrs["dep_date"] = date;
-            attrs["adults"] = n;
-            attrs["children"] = attrs["infants"] = n + max;
-
-            return attrs;
-        }
-
-       function setDealsAttrs(n) {
-
-            var attrs = new Array();
-            var currentDate = new Date();
-            var date = currentDate.getFullYear() + "-" + (currentDate.getMonth() + 2) +
-                    '-' + currentDate.getDate();
-
-            attrs["from"] = "BUE";
-            attrs["to"] = deals[n][0];
-            attrs["dep_date"] = date;
-            attrs["adults"] = "1";
-            attrs["children"] = attrs["infants"] = "0";
+            attrs["adults"] = 1;
+            attrs["children"] = attrs["infants"] = 0;
 
             return attrs;
         }
@@ -260,27 +244,32 @@ require(
 
         function clickFeaturedItem() {
 
-             for (var i = 0; i < 5; i++) {
+            for (var i = 0; i < max; i++) {
 
-                $("#feat-" + i).click(function(){
-
-                    // console.log(i);
-                    document.location.href = Utils.getUrl("flights.html", setFeaturedAttrs(i));
-                });
+                clickFeaturedImage(i);
             }
+        }
+
+        function clickFeaturedImage(i) {
+
+            $("#feat-" + i).click(function(){
+
+                    document.location.href = Utils.getUrl("flights.html", setDealsAttrs(i, 2, max));
+            });
+
         }
 
         function clickCarouselImage() {
 
-            for (var i = 0; i < 5; i++) {
+            for (var i = 0; i < max; i++) {
 
                 $("#li-" + i).click(function(){
 
-                    for (var j = 0; j < 5; j++) {
+                    for (var j = 0; j < max; j++) {
 
                         if($("#li-" + j).hasClass("selected")) {
 
-                            document.location.href = Utils.getUrl("flights.html", setDealsAttrs(j));
+                            document.location.href = Utils.getUrl("flights.html", setDealsAttrs(j, 2, 0));
                         }
                     }
                 });
