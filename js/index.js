@@ -35,8 +35,8 @@ require(
 
         // Date mask
 
-        dateMask("#depart_input");
-        dateMask("#return_input");
+        Utils.dateMask("#depart_input");
+        Utils.dateMask("#return_input");
 
         // Init the calendars
 
@@ -140,15 +140,6 @@ require(
 
             Calendar.setup({"inputField": input, "ifFormat": "%d/%m/%Y", "button": button});
         }
-
-
-        function dateMask(input) {
-
-            jQuery(function($) {
-                $(input).mask("99/99/9999");
-            });
-        }
-
 
         function getCitiesAndAirports() {
 

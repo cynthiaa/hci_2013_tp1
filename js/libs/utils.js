@@ -116,6 +116,13 @@ define(
             'convertExpirationDate': function(month, year) {
 
                 return month + year.substring(2);
+            },
+
+            'dateMask': function(input) {
+
+                jQuery(function($) {
+                    $(input).mask("99/99/9999");
+                });
             }
         }
     }

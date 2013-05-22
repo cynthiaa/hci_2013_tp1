@@ -33,30 +33,7 @@ require([
 
             current_year = new Date().getFullYear();
 
-            // for (var i = 1; i <= 31; i++) {
-            //     $(".select_birth_day").append(select_tmp({
-            //         "value" : i,
-            //         "name" : i
-            //     }));
-            // }
-
-            // for (var i = 1; i <= 12; i++) {
-            //     $(".select_birth_month").append(select_tmp({
-            //         "value" : i,
-            //         "name" : i
-            //     }));
-            // }
-
-            // for (var i = 1900; i <= current_year; i++) {
-            //     $(".select_birth_year").append(select_tmp({
-            //         "value" : i,
-            //         "name" : i
-            //     }));
-            // }
-
-            jQuery(function($) {
-                $("input.birth").mask("99/99/9999");
-            });
+            Utils.dateMask("input.birth");
 
             $("#continuar").click(function(){
                 if(validator.valid())
