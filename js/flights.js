@@ -184,6 +184,8 @@ require(
             $(".vdivider").hide();
             $(".pagination-bar").css("width", "100%");
             $(".pagination-bar").css("text-align", "center");
+
+            javascript:toggleFlightMode('one_way')
         }
     }
 
