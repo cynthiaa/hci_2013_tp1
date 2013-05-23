@@ -73,7 +73,7 @@ require(
 
         $("#search_adv_opt").click(function(){
 
-            var citiesAndAirports = Utils.getCitiesAndAirports();
+            // var citiesAndAirports = Utils.getCitiesAndAirports();
             var attrs = new Array();
 
             attrs["airline_id"] = airlines[1][airlines[0].indexOf($("#airline").val())];
@@ -88,7 +88,7 @@ require(
             setTimes("ret_time", "select_return_time", attrs);
 
             console.log(attrs)
-             // document.location.href = Utils.getUrl("flights.html", Utils.setAttrsAdv(citiesAndAirports));
+            document.location.href = Utils.getUrl("flights.html", Utils.setAdvAttrs(attrs));
         });
 
         function checkAndSetPrice(attrs_name, attrs) {
