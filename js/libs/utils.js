@@ -102,9 +102,9 @@ define(
                 Utils.initCalendar("depart_input", "depart-calendar");
                 Utils.initCalendar("return_input", "return-calendar");
 
-                // Get Cities and Airports
+                // Generate Cities and Airports
 
-                citiesAndAirports = Utils.getCitiesAndAirports();
+                Utils.generateCitiesAndAirports();
 
                 // Generate autocomplete
 
@@ -162,94 +162,91 @@ define(
 
             },
 
-            'getCitiesAndAirports': function() {
+            'generateCitiesAndAirports': function() {
 
-            var api = new API();
+                var api = new API();
 
-            var citiesAndAirports = new Array();
-            citiesAndAirports[0] = new Array();
-            citiesAndAirports[1] = new Array();
+                citiesAndAirports = new Array();
+                citiesAndAirports[0] = new Array();
+                citiesAndAirports[1] = new Array();
 
-            api.geo.getCities({
-
-                success: function(result) {
-
-                for (var i = 0; i < result.cities.length; i++) {
-
-                    citiesAndAirports[0][i] = result.cities[i].name;
-                    citiesAndAirports[1][i] = result.cities[i].cityId;
-                }
-
-                api.geo.getAirports({
+                api.geo.getCities({
 
                     success: function(result) {
 
-                        var citiesLength = citiesAndAirports[0].length;
+                    for (var i = 0; i < result.cities.length; i++) {
 
-                        for (var i = 0; i < result.airports.length; i++) {
-
-                            citiesAndAirports[0][i + citiesLength] = result.airports[i].description;
-                            citiesAndAirports[1][i + citiesLength] = result.airports[i].airportId;
+                        citiesAndAirports[0][i] = result.cities[i].name;
+                        citiesAndAirports[1][i] = result.cities[i].cityId;
                     }
+
+                    api.geo.getAirports({
+
+                        success: function(result) {
+
+                            var citiesLength = citiesAndAirports[0].length;
+
+                            for (var i = 0; i < result.airports.length; i++) {
+
+                                citiesAndAirports[0][i + citiesLength] = result.airports[i].description;
+                                citiesAndAirports[1][i + citiesLength] = result.airports[i].airportId;
+                        }
+                    }});
+
                 }});
+            },
 
-            }});
+            'autocomplete': function(id, citiesAndAirports) {
 
-            return citiesAndAirports;
-        },
+                $(id).autocomplete({
+                    source: function(request, response) {
 
-        'autocomplete': function(id, citiesAndAirports) {
+                        var results = $.ui.autocomplete.filter(citiesAndAirports[0], request.term);
 
-            $(id).autocomplete({
-                source: function(request, response) {
+                        response(results.slice(0, 10));
+                    },
 
-                    var results = $.ui.autocomplete.filter(citiesAndAirports[0], request.term);
+                    minLength: "3"
+                });
+            },
 
-                    response(results.slice(0, 10));
-                },
+            'setAdvAttrs': function(advAttrs) {
 
-                minLength: "3"
-            });
-        },
+                return advAttrs;
+            },
 
-        'setAdvAttrs': function(advAttrs) {
+            'setAttrs': function() {
 
-            return advAttrs.concat(Utils.setAttrs());
-        },
+                var attrs = new Array();
 
-        'setAttrs': function() {
+                attrs["from"] = Utils.getId("#from", citiesAndAirports);
+                attrs["from_name"] = $("#from").val();
+                attrs["to"] = Utils.getId("#to", citiesAndAirports);
+                attrs["to_name"] = $("#to").val();
+                attrs["dep_date"] = Utils.convertDate($("#depart_input").val());
+                attrs["dep_date_input"] = $("#depart_input").val();
+                attrs["ret_date"] = $("#return_input").is(":visible") ? Utils.convertDate($("#return_input").val()) : "null";
+                attrs["ret_date_input"] = $("#return_input").val();
+                attrs["adults"] = $("#select_adults").val();
+                attrs["children"] = $("#select_children").val();
+                attrs["infants"] = $("#select_infants").val();
 
-            var attrs = new Array();
+                return attrs;
+            },
 
-            attrs["from"] = Utils.getId("#from", citiesAndAirports);
-            attrs["from_name"] = $("#from").val();
-            attrs["to"] = Utils.getId("#to", citiesAndAirports);
-            attrs["to_name"] = $("#to").val();
-            attrs["dep_date"] = Utils.convertDate($("#depart_input").val());
-            attrs["dep_date_input"] = $("#depart_input").val();
-            attrs["ret_date"] = $("#return_input").is(":visible") ? Utils.convertDate($("#return_input").val()) : "null";
-            attrs["ret_date_input"] = $("#return_input").val();
-            attrs["adults"] = $("#select_adults").val();
-            attrs["children"] = $("#select_children").val();
-            attrs["infants"] = $("#select_infants").val();
+            'convertDate': function(stringDate) {
 
-            return attrs;
-        },
+                var dateRegex = /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/;
+                var dateRegexResult = stringDate.match(dateRegex);
 
-        'convertDate': function(stringDate) {
+                // return moment.utc(stringDate, "DD-MM-YYYY").format("YYYY-MM-DD");
+                return dateRegexResult[3] + "-" + dateRegexResult[2] + "-" + dateRegexResult[1];
+            },
 
-            var dateRegex = /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/;
-            var dateRegexResult = stringDate.match(dateRegex);
+            'getId': function(name, citiesAndAirports) {
 
-            // return moment.utc(stringDate, "DD-MM-YYYY").format("YYYY-MM-DD");
-            return dateRegexResult[3] + "-" + dateRegexResult[2] + "-" + dateRegexResult[1];
-        },
-
-        'getId': function(name, citiesAndAirports) {
-
-            return citiesAndAirports[1][citiesAndAirports[0].indexOf($(name).val())];
-        }
-
+                return citiesAndAirports[1][citiesAndAirports[0].indexOf($(name).val())];
+            }
 
         }
     }
