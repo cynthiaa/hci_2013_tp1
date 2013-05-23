@@ -19,55 +19,67 @@ require(
 	param.sort_key= $.trim($("#selectionOrder :selected").val().match(".* ")[0]);
 	param.sort_order= $.trim($("#selectionOrder :selected").val().match(" .*")[0]);
 
+    // Vuelve a rellenar la sidebar
     completeSideBar();
 
     // Si es sólo ida
     generateLayoutOneWay();
 
-    var inpagenum= 0;
-    var outpagenum= 0;
+    var inpagenumx = 0;
+    var outpagenum = 0;
     var flights;
 
     var paginate = function(arr, pagesize) {
-    	var aux= new Array;
-    	for(var i=0; (i*pagesize)<arr.length ;i++)
-    		aux.push(arr.slice(i*pagesize, (i+1)*pagesize));
+    	var aux = new Array;
+
+    	for (var i = 0; (i*pagesize) < arr.length; i++) {
+    		aux.push(arr.slice(i*pagesize, (i + 1)*pagesize));
+        }
+
  		return aux;
     }
 
     var loadPagesArrays = function(flightsArray) {
-		var inbound= new Array;
-		var outbound= new Array;
+		var inbound = new Array;
+		var outbound = new Array;
 		var aux;
 
-		for(var i=0; i<flightsArray.length ; i++) {
+		for(var i = 0; i < flightsArray.length; i++) {
+
 			if(flightsArray[i].hasOwnProperty('inboundRoutes')) {
-				aux= inbound.push(flightsArray[i].inboundRoutes[0].segments[0]);
-				inbound[aux-1].pricing= flightsArray[i].price;
+				aux = inbound.push(flightsArray[i].inboundRoutes[0].segments[0]);
+				inbound[aux-1].pricing = flightsArray[i].price;
 			}
 			else {
-				aux= outbound.push(flightsArray[i].outboundRoutes[0].segments[0]);
-				outbound[aux-1].pricing= flightsArray[i].price;
+				aux = outbound.push(flightsArray[i].outboundRoutes[0].segments[0]);
+				outbound[aux-1].pricing = flightsArray[i].price;
 			}
 		}
 
-		inbound= paginate(inbound, 2);
-		outbound= paginate(outbound, 2);
+		inbound = paginate(inbound, 2);
+		outbound = paginate(outbound, 2);
 
-	    var flights= { "inbound": inbound, "outbound": outbound }
+	    var flights = {"inbound": inbound, "outbound": outbound};
+
 	    return flights;
     }
 
-	var airlineToAirlineLink = function(airline) { return Handlebars.compile("{{Link 'img/airlines/" + airline + ".png'}}"); }
+	var airlineToAirlineLink = function(airline) {
+
+	    return Handlebars.compile("{{Link 'img/airlines/" + airline + ".png'}}");
+	}
 
     var showFlights= function(form, page) {
-    	for(var i = 0; i < page.length ; i++) {
-    		var airlineLink= airlineToAirlineLink(page[i].airlineId);
-			$(form).append(flights_data_tmp({
+
+        for(var i = 0; i < page.length ; i++) {
+
+    	    var airlineLink= airlineToAirlineLink(page[i].airlineId);
+
+            $(form).append(flights_data_tmp({
 				"departureCity": page[i].departure.cityName,
 				"arrivalCity": page[i].arrival.cityName,
-				"departureTime": page[i].departure.date.substring(11),
-				"arrivalTime": page[i].arrival.date.substring(11),
+				"departureTime": convertDateToTime(page[i].departure.date),
+				"arrivalTime": convertDateToTime(page[i].arrival.date),
 				"flightClass": page[i].cabinType,
 				"flightStopovers": page[i].stopovers.length,
 				"flightDuration": page[i].duration,
@@ -76,6 +88,11 @@ require(
 			form.find(".airline-image").eq(i).append(tmp_img({"img_src" : airlineLink}));
 		}
 	}
+
+    var convertDateToTime = function(date) {
+
+        return date.substring(11,16);
+    }
 
 	var clearAll = function() {
 		inpagenum = 0;
@@ -105,8 +122,8 @@ require(
 	}
 
 	var clearPageNums = function() {
-		inpagenum= 0;
-		outpagenum= 0;
+		inpagenum = 0;
+		outpagenum = 0;
 	}
 
 	var callback = {
@@ -126,7 +143,7 @@ require(
 	});
 
 	$(".inbound-prev").click(function(){
-		if(inpagenum>0) {
+		if (inpagenum > 0) {
 			inpagenum--;
 			refreshPage();
 		}
@@ -134,7 +151,7 @@ require(
 	});
 
 	$(".outbound-prev").click(function(){
-		if(outpagenum>0) {
+		if (outpagenum > 0) {
 			outpagenum--;
 			refreshPage();
 		}
@@ -155,17 +172,17 @@ require(
 	});
 
 	$(".inPageBtn").click(function() {
-		var desiredPage= $(".inbound-pages .page-number").val();
-		if(desiredPage>0 && desiredPage<=flights.inbound.length) {
-			inpagenum= desiredPage -1;
+		var desiredPage = $(".inbound-pages .page-number").val();
+		if (desiredPage > 0 && desiredPage <= flights.inbound.length) {
+			inpagenum = desiredPage - 1;
 			refreshPage();
 		}
 	});
 
 	$(".outPageBtn").click(function() {
-		var desiredPage= $(".outbound-pages .page-number").val();
-		if(desiredPage>0 && desiredPage<=flights.outbound.length) {
-			outpagenum= desiredPage -1;
+		var desiredPage = $(".outbound-pages .page-number").val();
+		if (desiredPage > 0 && desiredPage <= flights.outbound.length) {
+			outpagenum = desiredPage - 1;
 			refreshPage();
 		}
 	});
