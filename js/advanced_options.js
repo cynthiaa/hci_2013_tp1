@@ -4,9 +4,6 @@ require(
         "libs/text!../templates/select.html",
         "libs/utils",
         "libs/carousel",
-        // "libs/calendar/calendar",
-        // "libs/calendar/calendar-es",
-        // "libs/calendar/calendar-setup",
         "libs/domReady"
     ],
 
@@ -71,6 +68,65 @@ require(
 
         api.misc.getCurrencies(callbacks, param);
 
+        $("#search_adv_opt").click(function(){
+
+            var citiesAndAirports = Utils.getCitiesAndAirports();
+            var attrs = new Array();
+
+            attrs["airline_id"] = "";
+
+            checkAndSetPrice("min_price", attrs);
+            checkAndSetPrice("max_price", attrs);
+
+            checkAndSetValue("stopovers", "select_stopovers", attrs);
+            checkAndSetValue("cabin_type", "class", attrs);
+
+            setTimes("dep_time", "select_departure_time", attrs);
+            setTimes("ret_time", "select_return_time", attrs);
+
+            console.log(attrs)
+             // document.location.href = Utils.getUrl("flights.html", Utils.setAttrsAdv(citiesAndAirports));
+        });
+
+        function checkAndSetPrice(attrs_name, attrs) {
+
+            if (($("#" + attrs_name).val()) != "") {
+
+                attrs[attrs_name] = $("#" + attrs_name).val();
+            }
+        }
+
+        function checkAndSetValue(attrs_name, id, attrs) {
+
+            if (checkValue(id)) {
+
+                attrs[attrs_name] = $("#" + id).val();
+            }
+        }
+
+        function checkValue(id) {
+
+            return ($("#" + id).val() != "no-preference");
+        }
+
+        function setTimes(attrs_name, id, attrs) {
+
+            // Agregar desfasaje +-2
+
+            if (checkValue(id)) {
+
+                attrs["min_" + attrs_name] = addHours(id, -2);
+                attrs["max_" + attrs_name] = addHours(id, 2);
+            }
+        }
+
+        function addHours(id, offset) {
+
+            var currentTime = $("#" + id).val();
+
+            return (Number(currentTime) + offset) + ":00";
+
+        }
     }
 );
 

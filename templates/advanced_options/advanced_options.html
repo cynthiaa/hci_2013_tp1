@@ -34,32 +34,32 @@
         <div class="form-component">
             <label>Clase:</label>
             <div class="styled-select">
-                <select name="clase">
+                <select id="class" name="class">
                     <option value="no-preference">Sin preferencia</option>
-                    <option value="economy">Turista</option>
-                    <option value="business">Ejecutiva</option>
-                    <option value="first">Primera clase</option>
+                    <option value="ECONOMY">Turista</option>
+                    <option value="BUSINESS">Ejecutiva</option>
+                    <option value="FIRST_CLASS">Primera clase</option>
                 </select>
             </div>
         </div>
-        <div class="form-component">
-            <label>Moneda:</label>
-            <div class="styled-select">
-                <select id="currency" name="currency"></select>
-            </div>
-        </div>
+        <!-- <div class="form&#45;component"> -->
+        <!--     <label>Moneda:</label> -->
+        <!--     <div class="styled&#45;select"> -->
+        <!--         <select id="currency" name="currency"></select> -->
+        <!--     </div> -->
+        <!-- </div> -->
         <div class="form-component">
             <label>Precio mínimo:</label>
-            <input class="price" name="min-price" type="text" placeholder="Mín" />
+            <input id="min_price" class="price" name="min-price" type="text" placeholder="Mín" />
         </div>
         <div class="form-component">
             <label>Precio máximo:</label>
-            <input class="price" name="max-price" type="text" placeholder="Máx" />
+            <input id="max_price" class="price" name="max-price" type="text" placeholder="Máx" />
         </div>
     </div>
     <div class="navigation-bar">
         <div class="hdivider"></div>
-        <input type="submit" value="Buscar" onClick="window.location='{{Link "flights.html"}}';" />
+        <input id="search_adv_opt" type="submit" value="Buscar" />
     </div>
 </div>
 
