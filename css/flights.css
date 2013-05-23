@@ -71,11 +71,11 @@
 }
 
 .order-by .styled-select {
-    width: 200px;
+    width: 230px;
 }
 
 .order-by .styled-select select {
-    width: 200px;
+    width: 230px;
 }
 
 #flight-container {
@@ -130,6 +130,7 @@
 
 .pagination-bar {
 	display: inline-block;
+	text-align: center;
 	width: 335px;
 	margin-top: 5px;
 }
