@@ -101,7 +101,9 @@ div.featured.panel {
 }
 
 #featured-flights .featured-item > div > .price {
-    margin-top: 20px;
+    width: 120px;
+    position: absolute;
+    bottom: 10px;
 }
 
 #featured-flights .featured-item > div > .price > p {
