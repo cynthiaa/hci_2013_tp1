@@ -101,10 +101,19 @@ define(
                 Utils.initCalendar("depart_input", "depart-calendar");
                 Utils.initCalendar("return_input", "return-calendar");
 
+                // Get Cities and Airports
+
+                var citiesAndAirports = Utils.getCitiesAndAirports();
+
                 // Generate autocomplete
 
-                Utils.getCitiesAndAirports();
-            },
+                Utils.generateAutocomplete(citiesAndAirports);
+
+                $("#search").click(function(){
+
+                    document.location.href = Utils.getUrl("flights.html", Utils.setAttrs(citiesAndAirports));
+                });
+           },
 
             'make_non_menu_html': function(template) {
 
@@ -145,6 +154,13 @@ define(
             Calendar.setup({"inputField": input, "ifFormat": "%d/%m/%Y", "button": button});
             },
 
+            'generateAutocomplete': function(citiesAndAirports) {
+
+                Utils.autocomplete("#from", citiesAndAirports);
+                Utils.autocomplete("#to", citiesAndAirports);
+
+            },
+
             'getCitiesAndAirports': function() {
 
             var api = new API();
@@ -178,8 +194,7 @@ define(
 
             }});
 
-            Utils.autocomplete("#from", citiesAndAirports);
-            Utils.autocomplete("#to", citiesAndAirports);
+            return citiesAndAirports;
         },
 
         'autocomplete': function(id, citiesAndAirports) {
@@ -194,7 +209,42 @@ define(
 
                 minLength: "3"
             });
+        },
+
+        'setAttrs': function(citiesAndAirports) {
+
+            var attrs = new Array();
+
+            attrs["from"] = Utils.getId("#from", citiesAndAirports);
+            attrs["from_name"] = $("#from").val();
+            attrs["to"] = Utils.getId("#to", citiesAndAirports);
+            attrs["to_name"] = $("#to").val();
+            attrs["dep_date"] = Utils.convertDate($("#depart_input").val());
+            attrs["dep_date_input"] = $("#depart_input").val();
+            attrs["ret_date"] = $("#return_input").is(":visible") ? Utils.convertDate($("#return_input").val()) : "null";
+            attrs["ret_date_input"] = $("#return_input").val();
+            attrs["adults"] = $("#select_adults").val();
+            attrs["children"] = $("#select_children").val();
+            attrs["infants"] = $("#select_infants").val();
+
+            return attrs;
+        },
+
+        'convertDate': function(stringDate) {
+
+            var dateRegex = /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/;
+            var dateRegexResult = stringDate.match(dateRegex);
+
+            // return moment.utc(stringDate, "DD-MM-YYYY").format("YYYY-MM-DD");
+            return dateRegexResult[3] + "-" + dateRegexResult[2] + "-" + dateRegexResult[1];
+        },
+
+        'getId': function(name, citiesAndAirports) {
+
+            console.log($(name).val());
+            return citiesAndAirports[1][citiesAndAirports[0].indexOf($(name).val())];
         }
+
 
         }
     }

@@ -47,11 +47,6 @@ require(
 
         // Cuando se clickee el button de id search
 
-        $("#search").click(function(){
-
-            document.location.href = Utils.getUrl("flights.html", setAttrs());
-        });
-
 
         function createCarouselAndFeatured() {
 
@@ -128,24 +123,6 @@ require(
             }, {"from": "BUE"});
         }
 
-        function setAttrs() {
-
-            var attrs = new Array();
-
-            attrs["from"] = getId("#from");
-            attrs["from_name"] = $("#from").val();
-            attrs["to"] = getId("#to");
-            attrs["to_name"] = $("#to").val();
-            attrs["dep_date"] = convertDate($("#depart_input").val());
-            attrs["dep_date_input"] = $("#depart_input").val();
-            attrs["ret_date"] = $("#return_input").is(":visible") ? convertDate($("#return_input").val()) : "null";
-            attrs["ret_date_input"] = $("#return_input").val();
-            attrs["adults"] = $("#select_adults").val();
-            attrs["children"] = $("#select_children").val();
-            attrs["infants"] = $("#select_infants").val();
-
-            return attrs;
-        }
 
         function setDealsAttrs(n, days, offset) {
 
@@ -167,19 +144,7 @@ require(
             return attrs;
         }
 
-        function getId(name) {
 
-            return citiesAndAirports[1][citiesAndAirports[0].indexOf($(name).val())];
-        }
-
-        function convertDate(stringDate) {
-
-            var dateRegex = /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/;
-            var dateRegexResult = stringDate.match(dateRegex);
-
-            // return moment.utc(stringDate, "DD-MM-YYYY").format("YYYY-MM-DD");
-            return dateRegexResult[3] + "-" + dateRegexResult[2] + "-" + dateRegexResult[1];
-        }
 
         function clickFeaturedItem() {
 
