@@ -17,22 +17,33 @@ require([
             var passenger_data_tmp = Handlebars.compile(passenger_data_html);
             var passenger_title_tmp = Handlebars.compile(passenger_title_html);
 
+	        var api = new API();
+            var param = $.url().param();
+
             /* Passengers */
 
-            addPassengers("Adultos", 3);
-            addPassengers("Menores", 2);
-            addPassengers("Infantes", 1);
+            addPassengers("Adultos", Number(param["adults"]));
+            addPassengers("Menores", Number(param["children"]));
+            addPassengers("Infantes", Number(param["infants"]));
 
             current_year = new Date().getFullYear();
 
             Utils.dateMask("input.birth");
 
+            $("#back").click(function(){
+
+                document.location.href = Utils.getUrl("flights.html", param);
+            });
+
 
             function addPassengers(title, n) {
+
+                if (n == 0) return;
 
                 ($('#pass-ctn').append(passenger_title_tmp({"title": title}))).append(passenger_data_tmp({}));
 
                 while(--n) {
+
                     ($('#pass-ctn').append(passenger_data_tmp({})));
                 }
             }
