@@ -1,6 +1,7 @@
 require(
     [
         "libs/text!../templates/contact/contact.html",
+        "libs/text!../templates/contact/contactValidation.html",
         "libs/utils",
         "libs/carousel",
         // "libs/calendar/calendar",
@@ -9,10 +10,10 @@ require(
         "libs/domReady"
     ],
 
-    function(contact_html) {
+    function(contact_html, contact_validation_html) {
 
         Utils.init();
-        Utils.make_html(contact_html);
+        Utils.make_html(contact_html, contact_validation_html);
 
         $("#contact_link").addClass("selected");
     }
