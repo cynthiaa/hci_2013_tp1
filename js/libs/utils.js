@@ -1,4 +1,5 @@
 var Utils;
+var citiesAndAirports;
 
 define(
     [
@@ -103,15 +104,15 @@ define(
 
                 // Get Cities and Airports
 
-                var citiesAndAirports = Utils.getCitiesAndAirports();
+                citiesAndAirports = Utils.getCitiesAndAirports();
 
                 // Generate autocomplete
 
-                Utils.generateAutocomplete(citiesAndAirports);
+                Utils.generateAutocomplete();
 
                 $("#search").click(function(){
 
-                    document.location.href = Utils.getUrl("flights.html", Utils.setAttrs(citiesAndAirports));
+                    document.location.href = Utils.getUrl("flights.html", Utils.setAttrs());
                 });
            },
 
@@ -154,7 +155,7 @@ define(
             Calendar.setup({"inputField": input, "ifFormat": "%d/%m/%Y", "button": button});
             },
 
-            'generateAutocomplete': function(citiesAndAirports) {
+            'generateAutocomplete': function() {
 
                 Utils.autocomplete("#from", citiesAndAirports);
                 Utils.autocomplete("#to", citiesAndAirports);
@@ -211,7 +212,12 @@ define(
             });
         },
 
-        'setAttrs': function(citiesAndAirports) {
+        'setAdvAttrs': function(advAttrs) {
+
+            return advAttrs.concat(Utils.setAttrs());
+        },
+
+        'setAttrs': function() {
 
             var attrs = new Array();
 
