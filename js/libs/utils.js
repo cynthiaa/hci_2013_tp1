@@ -177,6 +177,7 @@ define(
                     for (var i = 0; i < result.cities.length; i++) {
 
                         citiesAndAirports[0][i] = result.cities[i].name;
+                        Utils.checkName(i);
                         citiesAndAirports[1][i] = result.cities[i].cityId;
                     }
 
@@ -189,11 +190,20 @@ define(
                             for (var i = 0; i < result.airports.length; i++) {
 
                                 citiesAndAirports[0][i + citiesLength] = result.airports[i].description;
+                                Utils.checkName(i + citiesLength);
                                 citiesAndAirports[1][i + citiesLength] = result.airports[i].airportId;
                         }
                     }});
 
                 }});
+            },
+
+            'checkName': function(i) {
+
+                citiesAndAirports[0][i] = citiesAndAirports[0][i].replace("R\uFFFD","Ri");
+                citiesAndAirports[0][i] = citiesAndAirports[0][i].replace("\uFFFD","ñ");
+                citiesAndAirports[0][i] = citiesAndAirports[0][i].replace("&#241;","ñ");
+                citiesAndAirports[0][i] = citiesAndAirports[0][i].replace("�","ñ");
             },
 
             'autocomplete': function(id, citiesAndAirports) {
