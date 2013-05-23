@@ -20,52 +20,52 @@
 		</div>
 	</div>
 	<div class="hdivider"></div>
-		<div id="flight-header-ret" class="flight-header">
+		<div class="flight-header">
 				<h6 class="title">Ida</h6>
 		</div>
-		<div class="flight-header">
-				<h6 id="title" class="title">Vuelta</h6>
+		<div id = "flight-header-ret" class="flight-header">
+				<h6 class="title">Vuelta</h6>
 		</div>
 	<div class="hdivider"></div>
 	<div id="flight-container">
-		<div class="inbound flight-wrapper">
-			<form>
-				<!-- insert inbound flights here -->
-			</form>
-		</div>
 		<div class="outbound flight-wrapper">
 			<form>
 				<!-- insert outbound flights here -->
 			</form>
 		</div>
+		<div class="inbound flight-wrapper">
+			<form>
+				<!-- insert inbound flights here -->
+			</form>
+		</div>
 	</div>
 	<div class="hdivider"></div>
-		<div id="pagination-bar-left" class="pagination-bar">
-			<div class="inbound-prev">
-				<img src="{{Link 'img/prevArrow.png'}}" alt="previous"/>
-			</div>
-			<div class="inbound-pages">
-				<input class="page-number" name="from" type="text">
-				<span></span>
-				<button class="go-button inPageBtn" type="button" name="submit">Ir</button>
-				<!-- insert page numbers -->
-			</div>
-			<div class="inbound-next">
-				<img src="{{Link 'img/nextArrow.png'}}" alt="next"/>
-			</div>
-		</div>
-		<div class="vdivider"></div>
 		<div class="pagination-bar">
 			<div class="outbound-prev">
 				<img src="{{Link 'img/prevArrow.png'}}" alt="previous"/>
 			</div>
 			<div class="outbound-pages">
-				<input class="page-number" name="from" type="text">
+				<input class="page-number" name="outbound-page-number" type="text">
 				<span></span>
 				<button class="go-button outPageBtn" type="button" name="submit">Ir</button>
 				<!-- insert page numbers -->
 			</div>
 			<div class="outbound-next">
+				<img src="{{Link 'img/nextArrow.png'}}" alt="next"/>
+			</div>
+		</div>
+		<div class="vdivider"></div>
+		<div id="pagination-bar-right" class="pagination-bar">
+			<div class="inbound-prev">
+				<img src="{{Link 'img/prevArrow.png'}}" alt="previous"/>
+			</div>
+			<div class="inbound-pages">
+				<input class="page-number" name="inbound-page-number" type="text">
+				<span></span>
+				<button class="go-button inPageBtn" type="button" name="submit">Ir</button>
+				<!-- out1sert page numbers -->
+			</div>
+			<div class="inbound-next">
 				<img src="{{Link 'img/nextArrow.png'}}" alt="next"/>
 			</div>
 		</div>

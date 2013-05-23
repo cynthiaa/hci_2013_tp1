@@ -71,11 +71,11 @@
 }
 
 .order-by .styled-select {
-    width: 230px;
+    width: 200px;
 }
 
 .order-by .styled-select select {
-    width: 230px;
+    width: 200px;
 }
 
 #flight-container {
@@ -130,33 +130,32 @@
 
 .pagination-bar {
 	display: inline-block;
-	text-align: center;
 	width: 335px;
 	margin-top: 5px;
 }
 
-.inbound-prev {
+.outbound-prev {
 	float: left;
 	margin-top: 6px;
 	margin-left:10px
 	display: inline-block;
 }
 
-.inbound-next {
+.outbound-next {
 	float: right;
 	margin-right: 10px;
 	margin-top: 6px;
 	display: inline-block;
 }
 
-.outbound-prev {
+.inbound-prev {
 	float: left;
 	margin-left: 10px;
 	margin-top: 6px;
 	display: inline-block;
 }
 
-.outbound-next {
+.inbound-next {
 	float: right;
 	margin-top: 6px;
 	display: inline-block;
@@ -188,12 +187,12 @@ input.flight-pages {
 	display: inline-block;
 }
 
-.inbound-pages {
+.outbound-pages {
 	display: inline-block;
 	margin: 0 110px;
 }
 
-.outbound-pages {
+.inbound-pages {
 	display: inline-block;
 	margin: 0 110px;
 }
