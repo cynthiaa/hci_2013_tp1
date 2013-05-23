@@ -82,7 +82,7 @@ require(
 				"arrivalTime": convertDateToTime(page[i].arrival.date),
 				"flightClass": page[i].cabinType,
 				"flightStopovers": page[i].stopovers.length,
-				"flightDuration": page[i].duration,
+				"flightDuration": page[i].duration + " horas",
 				"flightTotal": page[i].pricing.total.total
 			}));
 			form.find(".airline-image").eq(i).append(tmp_img({"img_src" : airlineLink}));
