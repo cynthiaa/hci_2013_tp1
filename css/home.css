@@ -100,6 +100,10 @@ div.featured.panel {
     background-color: #CCC;
 }
 
+#featured-flights .featured-item > div > .price {
+    margin-top: 20px;
+}
+
 #featured-flights .featured-item > div > .price > p {
     /* font-weight: bold; */
     text-align: center;
