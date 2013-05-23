@@ -24,7 +24,7 @@ require(
 
         for (var i = 1; i <= 8; i++) {
 
-            $("#select_stopovers").append(select_tmp({"value": i, "name": "Hasta " + i + " escala" + (i > 1 ? "s" : "")}));
+            $("#select_stopovers").append(select_tmp({"value": i, "name": i + " escala" + (i > 1 ? "s" : "")}));
         }
 
         var api = new API();
@@ -87,7 +87,7 @@ require(
             setTimes("dep_time", "select_departure_time", attrs);
             setTimes("ret_time", "select_return_time", attrs);
 
-            console.log(attrs)
+            // console.log(attrs)
             document.location.href = Utils.getUrl("flights.html", Utils.setAdvAttrs(attrs));
         });
 
@@ -114,20 +114,19 @@ require(
 
         function setTimes(attrs_name, id, attrs) {
 
-            // Agregar desfasaje +-2
-
             if (checkValue(id)) {
 
-                attrs["min_" + attrs_name] = addHours(id, -2);
-                attrs["max_" + attrs_name] = addHours(id, 2);
+                attrs["min_" + attrs_name] = addHours(id, -1);
+                attrs["max_" + attrs_name] = addHours(id, 1);
             }
         }
 
         function addHours(id, offset) {
 
             var currentTime = $("#" + id).val();
+            var newTime = Number(currentTime) + offset;
 
-            return (Number(currentTime) + offset) + ":00";
+            return ((newTime < 0 || newTime > 24) ? currentTime : newTime) + ":00";
 
         }
     }
