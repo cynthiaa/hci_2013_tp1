@@ -205,6 +205,17 @@ require(
 
 	getFlights();
 
+    $("#continue").click(function(){
+
+        document.location.href = Utils.getUrl("passengers.html", setAttrs());
+    });
+
+
+    function setAttrs() {
+
+        return param;
+    }
+
     function generateLayoutOneWay() {
 
         if (param.ret_date == "null") {
@@ -224,7 +235,7 @@ require(
 
     function completeSideBar() {
 
-        console.log(param);
+        // console.log(param);
         $("#from").val(param.from_name);
         $("#to").val(param.to_name);
         $("#depart_input").val(param.dep_date_input);
