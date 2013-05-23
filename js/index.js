@@ -12,9 +12,6 @@ require(
         "libs/utils",
         "libs/carousel",
         "libs/jquery.shuffle",
-        // "libs/calendar/calendar",
-        // "libs/calendar/calendar-es",
-        // "libs/calendar/calendar-setup",
         "libs/domReady"
     ],
 

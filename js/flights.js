@@ -89,7 +89,7 @@ require(
 				"flightClass": convertCabinType(page[i].cabinType),
 				"flightStopovers": page[i].stopovers.length,
 				"flightDuration": page[i].duration + " horas",
-				"flightTotal": page[i].pricing.total.total
+				"flightTotal": "U$S " + page[i].pricing.total.total
 			}));
 			form.find(".airline-image").eq(i).append(tmp_img({"img_src" : airlineLink}));
 		}
@@ -102,7 +102,7 @@ require(
 
     var convertDateToTime = function(date) {
 
-        return date.substring(11,16);
+        return date.substring(11,16) + " hs";
     }
 
 	var clearAll = function() {
