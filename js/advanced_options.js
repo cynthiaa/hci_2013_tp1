@@ -30,7 +30,8 @@ require(
         var api = new API();
 
         var airlines = new Array();
-        var airlineId = new Array();
+        airlines[0] = new Array();
+        airlines[1] = new Array();
 
         var callbacks = {
 
@@ -38,42 +39,44 @@ require(
 
             for (var i = 0; i < result.airlines.length; i++) {
 
-                airlines[i] = result.airlines[i].name;
-                airlineId[i] = result.airlines[i].airlineId;
+                airlines[0][i] = result.airlines[i].name;
+                airlines[1][i] = result.airlines[i].airlineId;
             }
         }};
 
         api.misc.getAirlines(callbacks);
 
         $("#airline").autocomplete({
-            source: airlines
+            source: airlines[0]
         });
 
-        callbacks = {
+        // Currencies
+        //
+        // callbacks = {
 
-            success: function(result) {
+        //     success: function(result) {
 
-            for (var i = 0; i < result.currencies.length; i++) {
+        //     for (var i = 0; i < result.currencies.length; i++) {
 
-                var name = result.currencies[i].description;
+        //         var name = result.currencies[i].description;
 
-                name = (name == "Pesos - Argentina") ? "Pesos" : name;
+        //         name = (name == "Pesos - Argentina") ? "Pesos" : name;
 
-                $("#currency").append(select_tmp({"value": name, "name": name}));
-            }
-        }
-        };
+        //         $("#currency").append(select_tmp({"value": name, "name": name}));
+        //     }
+        // }
+        // };
 
-        var param = {"sort_key": "id", "sort_order": "asc"};
+        // var param = {"sort_key": "id", "sort_order": "asc"};
 
-        api.misc.getCurrencies(callbacks, param);
+        // api.misc.getCurrencies(callbacks, param);
 
         $("#search_adv_opt").click(function(){
 
             var citiesAndAirports = Utils.getCitiesAndAirports();
             var attrs = new Array();
 
-            attrs["airline_id"] = "";
+            attrs["airline_id"] = airlines[1][airlines[0].indexOf($("#airline").val())];
 
             checkAndSetPrice("min_price", attrs);
             checkAndSetPrice("max_price", attrs);

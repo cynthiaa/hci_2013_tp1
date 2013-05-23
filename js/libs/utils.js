@@ -241,7 +241,6 @@ define(
 
         'getId': function(name, citiesAndAirports) {
 
-            console.log($(name).val());
             return citiesAndAirports[1][citiesAndAirports[0].indexOf($(name).val())];
         }
 
