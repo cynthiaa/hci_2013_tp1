@@ -11,7 +11,6 @@ require(
         "libs/text!../templates/index/info_featured.html",
         "libs/utils",
         "libs/carousel",
-        "libs/jquery.maskedinput",
         "libs/jquery.shuffle",
         // "libs/calendar/calendar",
         // "libs/calendar/calendar-es",
@@ -34,15 +33,6 @@ require(
 
         createCarouselAndFeatured();
 
-        // Date mask
-
-        Utils.dateMask("#depart_input");
-        Utils.dateMask("#return_input");
-
-        // Init the calendars
-
-        initCalendar("depart_input", "depart-calendar");
-        initCalendar("return_input", "return-calendar");
 
         // Init the carousel
 
@@ -143,10 +133,6 @@ require(
             }, {"from": "BUE"});
         }
 
-        function initCalendar(input, button) {
-
-            Calendar.setup({"inputField": input, "ifFormat": "%d/%m/%Y", "button": button});
-        }
 
         function getCitiesAndAirports() {
 

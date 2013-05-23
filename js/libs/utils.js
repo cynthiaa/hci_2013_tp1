@@ -12,6 +12,7 @@ define(
         "jquery",
         "libs/purl",
         "libs/api",
+        "libs/jquery.maskedinput",
         "libs/ui/jquery-ui"
     ],
     function(header_html, layout_html, layout_only_top_html, select_html, moment) {
@@ -89,6 +90,17 @@ define(
                 for (var i = 1; i < 8; i++) {
                     $('#select_adults').append(select_tmp({'value': i, 'name': i}));
                 }
+
+                // Date mask
+
+                Utils.dateMask("#depart_input");
+                Utils.dateMask("#return_input");
+
+                // Init the calendars
+
+                Utils.initCalendar("depart_input", "depart-calendar");
+                Utils.initCalendar("return_input", "return-calendar");
+
             },
 
             'make_non_menu_html': function(template) {
@@ -123,7 +135,13 @@ define(
                 jQuery(function($) {
                     $(input).mask("99/99/9999");
                 });
+            },
+
+            'initCalendar': function(input, button) {
+
+            Calendar.setup({"inputField": input, "ifFormat": "%d/%m/%Y", "button": button});
             }
+
         }
     }
 );
