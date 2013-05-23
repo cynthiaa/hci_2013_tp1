@@ -23,13 +23,16 @@
 }
 
 .navigation-bar {
+    position: absolute;
+    width: 700px;
     text-align: center;
-    margin-top: 10px;
+    bottom: 10px;
+    height: 57px;
 }
 
 .navigation-bar input[type="submit"] {
     display: inline-block;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .form-component .styled-select {
