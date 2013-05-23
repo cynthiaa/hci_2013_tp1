@@ -131,13 +131,23 @@ require(
             attrs["from"] = "BUE";
             attrs["from_name"] = "Buenos Aires, Ciudad de Buenos Aires";
             attrs["to"] = deals[n + offset][0];
-            attrs["to_name"] = "Falta poner este nombre";
+            attrs["to_name"] = deals[n + offset][1];
             attrs["dep_date"] = date;
+            attrs["dep_date_input"] = convertToDateInput(date);
             attrs["ret_date"] = "null";
             attrs["adults"] = 1;
             attrs["children"] = attrs["infants"] = 0;
 
             return attrs;
+        }
+
+        function convertToDateInput(stringDate) {
+
+            var dateRegex = /^(\d{4})-(\d{1,2})-(\d{1,2})$/;
+            var dateRegexResult = stringDate.match(dateRegex);
+
+            // return moment.utc(stringDate, "DD-MM-YYYY").format("YYYY-MM-DD");
+            return dateRegexResult[3] + "/" + dateRegexResult[2] + "/" + dateRegexResult[1];
         }
 
         function clickFeaturedItem() {
