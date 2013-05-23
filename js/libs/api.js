@@ -135,7 +135,7 @@ API.prototype = (function() {
             },
 
             getFlightDeals: function(callbacks, params) {
-                call("Booking.groovy", "GetFlightDeals", params, callbacks);
+                call("Booking.groovy", "GetFlightDeals2", params, callbacks);
             },
 
             // TODO
@@ -168,7 +168,7 @@ API.prototype = (function() {
         /* Status methods */
         getFlightStatus: {
 
-            getOneWayFlights: function(callbacks, params) {
+            getFlightsStatus: function(callbacks, params) {
                 call("Status.groovy", "GetFlightStatus", params, callbacks);
             }
         }
