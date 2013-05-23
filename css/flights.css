@@ -142,7 +142,7 @@
 }
 
 .inbound-next {
-	position: absolute;
+	float: right;
 	margin-right: 10px;
 	margin-top: 6px;
 	display: inline-block;
@@ -156,7 +156,7 @@
 }
 
 .outbound-next {
-	position: absolute;
+	float: right;
 	margin-top: 6px;
 	display: inline-block;
 	display: inline-block;
@@ -189,7 +189,7 @@ input.flight-pages {
 
 .inbound-pages {
 	display: inline-block;
-	margin: 0 115px;
+	margin: 0 110px;
 }
 
 .outbound-pages {
