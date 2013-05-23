@@ -123,7 +123,6 @@ require(
             }, {"from": "BUE"});
         }
 
-
         function setDealsAttrs(n, days, offset) {
 
             var attrs = new Array();
@@ -143,8 +142,6 @@ require(
 
             return attrs;
         }
-
-
 
         function clickFeaturedItem() {
 
