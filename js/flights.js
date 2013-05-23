@@ -4,6 +4,8 @@ var cabin_names = {
     "FIRST_CLASS": "Primera Clase"
 };
 
+var oneWay = false;
+
 require(
 	["libs/text!../templates/flights/flights.html",
 	"libs/text!../templates/flights/flights_data.html",
@@ -25,11 +27,15 @@ require(
 	param.sort_key= $.trim($("#selectionOrder :selected").val().match(".* ")[0]);
 	param.sort_order= $.trim($("#selectionOrder :selected").val().match(" .*")[0]);
 
-    // Vuelve a rellenar la sidebar
-    completeSideBar();
+   // Si es sólo ida
 
-    // Si es sólo ida
-    // generateLayoutOneWay();
+    if (param.ret_date == "null") {
+
+        generateLayoutOneWay();
+    }
+
+     // Vuelve a rellenar la sidebar
+    completeSideBar();
 
     var inpagenumx = 0;
     var outpagenum = 0;
@@ -52,31 +58,15 @@ require(
 
 		for(var i = 0; i < flightsArray.length; i++) {
 
-			if (flightsArray[i].hasOwnProperty('inboundRoutes')) {
+			if (flightsArray[i].hasOwnProperty('outboundRoutes') || oneWay) {
+
+			    aux = outbound.push(flightsArray[i].outboundRoutes[0].segments[0]);
+				outbound[aux-1].pricing = flightsArray[i].price;
+			} else {
+
 				aux = inbound.push(flightsArray[i].inboundRoutes[0].segments[0]);
 				inbound[aux-1].pricing = flightsArray[i].price;
-			}
-			else {
-				aux = outbound.push(flightsArray[i].outboundRoutes[0].segments[0]);
-				outbound[aux-1].pricing = flightsArray[i].price;
-			}
-		}
-
-		inbound = paginate(inbound, 2);
-		outbound = paginate(outbound, 2);
-
-	    return {"inbound": inbound, "outbound": outbound};
-    }
-
-    var loadPagesArrays2 = function(flightsArray) {
-		var inbound = new Array;
-		var outbound = new Array;
-		var aux;
-
-		for(var i = 0; i < flightsArray.length; i++) {
-
-				aux = outbound.push(flightsArray[i].outboundRoutes[0].segments[0]);
-				outbound[aux-1].pricing = flightsArray[i].price;
+	        }
 		}
 
 		inbound = paginate(inbound, 2);
@@ -122,6 +112,7 @@ require(
     }
 
 	var clearAll = function() {
+
 		inpagenum = 0;
 		outpagenum = 0;
 		$(".inbound form").remove();
@@ -131,20 +122,28 @@ require(
 	}
 
 	var refreshPageFooting = function() {
+
 		$(".inbound-pages span").text("/" + flights.inbound.length);
 		$(".outbound-pages span").text("/" + flights.outbound.length);
 	}
 
 	var clearFlights = function() {
+
 		$(".inbound form div").remove();
 		$(".outbound form div").remove();
 	}
 
 	var refreshPage = function() {
+
 		clearFlights();
-		// showFlights($(".inbound form"), flights.inbound[inpagenum]);
+
+		if (!oneWay) {
+
+            showFlights($(".inbound form"), flights.inbound[inpagenum]);
+            $(".inbound .flight-radio input").first().prop('checked', 'checked');
+        }
+
 		showFlights($(".outbound form"), flights.outbound[outpagenum]);
-		// $(".inbound .flight-radio input").first().prop('checked', 'checked');
     	$(".outbound .flight-radio input").first().prop('checked', 'checked');
 	}
 
@@ -155,7 +154,7 @@ require(
 
 	var callback = {
 		success: function(result) {
-			flights = loadPagesArrays2(result.flights);
+			flights = loadPagesArrays(result.flights);
 			clearPageNums();
 			refreshPageFooting();
 			refreshPage();
@@ -221,29 +220,29 @@ require(
 		}
 	});
 
-    if (param.ret_date != "null") {
-
-        api.booking.getRoundTripFlights(callback, param);
-    } else {
+    if (oneWay) {
 
         api.booking.getOneWayFlights(callback, param);
+    } else {
+
+        api.booking.getRoundTripFlights(callback, param);
     }
 
     function generateLayoutOneWay() {
 
-        if (param.ret_date == "null") {
+        oneWay = true;
 
-            $(".outbound").hide();
-            $("#flight-header-ret").hide();
-            $(".flight-wrapper").css("width", "100%");
-            $(".flight-header").css("width", "100%");
-            $("#pagination-bar-right").hide();
-            $(".vdivider").hide();
-            $(".pagination-bar").css("width", "100%");
-            $(".pagination-bar").css("text-align", "center");
+        $(".inbound").hide();
+        $("#flight-header-ret").hide();
+        $(".flight-wrapper").css("width", "100%");
+        $(".flight-header").css("width", "100%");
+        $("#pagination-bar-left").hide();
+        $(".vdivider").hide();
+        $(".pagination-bar").css("width", "100%");
+        $(".pagination-bar").css("text-align", "center");
+        $("#title").text("Ida");
 
-            javascript:toggleFlightMode('one_way')
-        }
+        javascript:toggleFlightMode('one_way')
     }
 
     function completeSideBar() {
