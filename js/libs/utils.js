@@ -101,6 +101,9 @@ define(
                 Utils.initCalendar("depart_input", "depart-calendar");
                 Utils.initCalendar("return_input", "return-calendar");
 
+                // Generate autocomplete
+
+                Utils.getCitiesAndAirports();
             },
 
             'make_non_menu_html': function(template) {
@@ -140,7 +143,58 @@ define(
             'initCalendar': function(input, button) {
 
             Calendar.setup({"inputField": input, "ifFormat": "%d/%m/%Y", "button": button});
-            }
+            },
+
+            'getCitiesAndAirports': function() {
+
+            var api = new API();
+
+            var citiesAndAirports = new Array();
+            citiesAndAirports[0] = new Array();
+            citiesAndAirports[1] = new Array();
+
+            api.geo.getCities({
+
+                success: function(result) {
+
+                for (var i = 0; i < result.cities.length; i++) {
+
+                    citiesAndAirports[0][i] = result.cities[i].name;
+                    citiesAndAirports[1][i] = result.cities[i].cityId;
+                }
+
+                api.geo.getAirports({
+
+                    success: function(result) {
+
+                        var citiesLength = citiesAndAirports[0].length;
+
+                        for (var i = 0; i < result.airports.length; i++) {
+
+                            citiesAndAirports[0][i + citiesLength] = result.airports[i].description;
+                            citiesAndAirports[1][i + citiesLength] = result.airports[i].airportId;
+                    }
+                }});
+
+            }});
+
+            Utils.autocomplete("#from", citiesAndAirports);
+            Utils.autocomplete("#to", citiesAndAirports);
+        },
+
+        'autocomplete': function(id, citiesAndAirports) {
+
+            $(id).autocomplete({
+                source: function(request, response) {
+
+                    var results = $.ui.autocomplete.filter(citiesAndAirports[0], request.term);
+
+                    response(results.slice(0, 10));
+                },
+
+                minLength: "3"
+            });
+        }
 
         }
     }
