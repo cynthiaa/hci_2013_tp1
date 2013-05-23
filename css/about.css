@@ -2,6 +2,11 @@
     height: 500px;
 }
 
+p.bottom {
+    margin-bottom: 10px;
+    text-align: right;
+}
+
 #main > .main > .about-paragraph {
     margin-top: 25px;
     margin-left: 25px;
