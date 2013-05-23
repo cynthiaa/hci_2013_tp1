@@ -13,6 +13,7 @@ require(
         Utils.make_html(advanced_options_html);
 
         $("#advanced_options").addClass("selected");
+        $("#search").hide();
 
         var select_tmp = Handlebars.compile(select_html);
 
@@ -85,7 +86,10 @@ require(
             checkAndSetValue("cabin_type", "class", attrs);
 
             setTimes("dep_time", "select_departure_time", attrs);
-            setTimes("ret_time", "select_return_time", attrs);
+
+            if ($("#return").is(":visible")) {
+                setTimes("ret_time", "select_return_time", attrs);
+            }
 
             // console.log(attrs)
             document.location.href = Utils.getUrl("flights.html", Utils.setAdvAttrs(attrs));

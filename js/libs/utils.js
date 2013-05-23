@@ -210,9 +210,24 @@ define(
                 });
             },
 
+            'jsonConcat': function(json1, json2) {
+
+                for (var key in json2) {
+
+                    json1[key] = json2[key];
+                }
+
+                return json1;
+            },
+
             'setAdvAttrs': function(advAttrs) {
 
-                return advAttrs;
+                var output = {};
+
+                output = Utils.jsonConcat(output, advAttrs);
+                output = Utils.jsonConcat(output, Utils.setAttrs());
+
+                return output;
             },
 
             'setAttrs': function() {
