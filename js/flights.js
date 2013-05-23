@@ -29,7 +29,7 @@ require(
     completeSideBar();
 
     // Si es sólo ida
-    generateLayoutOneWay();
+    // generateLayoutOneWay();
 
     var inpagenumx = 0;
     var outpagenum = 0;
@@ -52,7 +52,7 @@ require(
 
 		for(var i = 0; i < flightsArray.length; i++) {
 
-			if(flightsArray[i].hasOwnProperty('inboundRoutes')) {
+			if (flightsArray[i].hasOwnProperty('inboundRoutes')) {
 				aux = inbound.push(flightsArray[i].inboundRoutes[0].segments[0]);
 				inbound[aux-1].pricing = flightsArray[i].price;
 			}
@@ -65,9 +65,24 @@ require(
 		inbound = paginate(inbound, 2);
 		outbound = paginate(outbound, 2);
 
-	    var flights = {"inbound": inbound, "outbound": outbound};
+	    return {"inbound": inbound, "outbound": outbound};
+    }
 
-	    return flights;
+    var loadPagesArrays2 = function(flightsArray) {
+		var inbound = new Array;
+		var outbound = new Array;
+		var aux;
+
+		for(var i = 0; i < flightsArray.length; i++) {
+
+				aux = outbound.push(flightsArray[i].outboundRoutes[0].segments[0]);
+				outbound[aux-1].pricing = flightsArray[i].price;
+		}
+
+		inbound = paginate(inbound, 2);
+		outbound = paginate(outbound, 2);
+
+	    return {"inbound": inbound, "outbound": outbound};
     }
 
 	var airlineToAirlineLink = function(airline) {
@@ -75,8 +90,9 @@ require(
 	    return Handlebars.compile("{{Link 'img/airlines/" + airline + ".png'}}");
 	}
 
-    var showFlights= function(form, page) {
+    var showFlights = function(form, page) {
 
+        console.log(page);
         for(var i = 0; i < page.length ; i++) {
 
     	    var airlineLink= airlineToAirlineLink(page[i].airlineId);
@@ -110,11 +126,11 @@ require(
 		outpagenum = 0;
 		$(".inbound form").remove();
 		$(".outbound form").remove();
-		var flights= { "inbound": inbound, "outbound": outbound }
-		return flights;
+
+		return {"inbound": inbound, "outbound": outbound }
 	}
 
-	var refreshPageFooting= function() {
+	var refreshPageFooting = function() {
 		$(".inbound-pages span").text("/" + flights.inbound.length);
 		$(".outbound-pages span").text("/" + flights.outbound.length);
 	}
@@ -124,11 +140,11 @@ require(
 		$(".outbound form div").remove();
 	}
 
-	var refreshPage= function() {
+	var refreshPage = function() {
 		clearFlights();
-		showFlights($(".inbound form"), flights.inbound[inpagenum]);
+		// showFlights($(".inbound form"), flights.inbound[inpagenum]);
 		showFlights($(".outbound form"), flights.outbound[outpagenum]);
-		$(".inbound .flight-radio input").first().prop('checked', 'checked');
+		// $(".inbound .flight-radio input").first().prop('checked', 'checked');
     	$(".outbound .flight-radio input").first().prop('checked', 'checked');
 	}
 
@@ -139,18 +155,25 @@ require(
 
 	var callback = {
 		success: function(result) {
-			flights = loadPagesArrays(result.flights);
+			flights = loadPagesArrays2(result.flights);
 			clearPageNums();
 			refreshPageFooting();
 			refreshPage();
-			}
+		}
  //   	<-- Falta la funcion de error aca -->
 	}
 
 	$("#selectionOrder").change(function() {
 		param.sort_key = $.trim($("#selectionOrder :selected").val().match(".* ")[0]);
 		param.sort_order = $.trim($("#selectionOrder :selected").val().match(" .*")[0]);
-		api.booking.getRoundTripFlights(callback, param);
+
+        if (param.ret_date != "null") {
+
+            api.booking.getRoundTripFlights(callback, param);
+        } else {
+
+            api.booking.getOneWayFlights(callback, param);
+        }
 	});
 
 	$(".inbound-prev").click(function(){
@@ -198,7 +221,13 @@ require(
 		}
 	});
 
-    api.booking.getRoundTripFlights(callback, param);
+    if (param.ret_date != "null") {
+
+        api.booking.getRoundTripFlights(callback, param);
+    } else {
+
+        api.booking.getOneWayFlights(callback, param);
+    }
 
     function generateLayoutOneWay() {
 
