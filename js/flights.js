@@ -1,3 +1,9 @@
+var cabin_names = {
+    "ECONOMY": "Turista",
+    "BUSINESS": "Ejecutiva",
+    "FIRST_CLASS": "Primera Clase"
+};
+
 require(
 	["libs/text!../templates/flights/flights.html",
 	"libs/text!../templates/flights/flights_data.html",
@@ -80,7 +86,7 @@ require(
 				"arrivalCity": page[i].arrival.cityName,
 				"departureTime": convertDateToTime(page[i].departure.date),
 				"arrivalTime": convertDateToTime(page[i].arrival.date),
-				"flightClass": page[i].cabinType,
+				"flightClass": convertCabinType(page[i].cabinType),
 				"flightStopovers": page[i].stopovers.length,
 				"flightDuration": page[i].duration + " horas",
 				"flightTotal": page[i].pricing.total.total
@@ -88,6 +94,11 @@ require(
 			form.find(".airline-image").eq(i).append(tmp_img({"img_src" : airlineLink}));
 		}
 	}
+
+    var convertCabinType = function(cabinType) {
+
+        return cabin_names[cabinType];
+    }
 
     var convertDateToTime = function(date) {
 
