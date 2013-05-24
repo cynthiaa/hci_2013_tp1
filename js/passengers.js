@@ -45,6 +45,11 @@ require([
                 showData("Vuelta");
             }
 
+            $("#continue").click(function(){
+
+                document.location.href = Utils.getUrl(concat(param, json));
+            });
+
             function showData(type) {
 
                 var prefix = (type == "Vuelta") ? "ret" : "";
@@ -65,7 +70,6 @@ require([
 
             }
 
-
             function addPassengers(title, n) {
 
                 if (n == 0) return;
@@ -77,8 +81,8 @@ require([
                     ($('#pass-ctn').append(passenger_data_tmp({})));
                 }
             }
-	        
-	        function constructFrom(index, str) {    
+
+	        function constructFrom(index, str) {
 	            for(var i=index; i< (index + Number(param[str])) ;i++) {
 					$(json).prop("name-" + i , $("#name").eq(i).val());
 					$(json).prop("surname-" + i , $("#surname").eq(i).val());
@@ -86,14 +90,14 @@ require([
 					$(json).prop("gender-" + i , $("#gender option:checked").eq(i).val());
 					$(json).prop("type-" + i , str);
 				}
-				return i;	
+				return i;
 			}
-	            
+
             function makeJson () {
             	var json= new Object();
             	constructFrom(constructFrom(constructFrom(0, "adults"), "children"), "infants");
             	return json;
             }
-            
+
 });
 
