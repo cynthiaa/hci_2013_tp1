@@ -2,6 +2,7 @@ require([
         "libs/text!../templates/passengers/passengers.html",
         "libs/text!../templates/passengers/passenger_data.html",
         "libs/text!../templates/passengers/passenger_title.html",
+        "libs/text!../templates/passengers/passengerValidation.html",
         "libs/utils",
         "libs/jquery.validate",
         "libs/jquery.maskedinput",
@@ -9,10 +10,10 @@ require([
         "libs/domReady"
         ],
 
-        function(passengers_html, passenger_data_html, passenger_title_html) {
+        function(passengers_html, passenger_data_html, passenger_title_html, passenger_validation_html) {
 
             Utils.init();
-            Utils.make_non_menu_html(passengers_html);
+            Utils.make_non_menu_html(passengers_html, passenger_validation_html);
 
             var passenger_data_tmp = Handlebars.compile(passenger_data_html);
             var passenger_title_tmp = Handlebars.compile(passenger_title_html);

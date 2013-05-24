@@ -31,5 +31,8 @@ var validator = new FormValidator('payment-form', [{
 			errorString += errors[i].message + '<br />';
 			console.log(errors[i].message);
 		}
-	} 
+	} else {
+		Utils.stopEvent(e);
+		window.location.href = Utils.getUrl("confirmation.html", Utils.setAttrs());
+	}
 });
