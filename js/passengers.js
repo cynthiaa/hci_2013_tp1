@@ -40,19 +40,26 @@ require([
 
             showData("Ida");
 
+            if (param.ret_date != "null") {
+
+                showData("Vuelta");
+            }
+
             function showData(type) {
+
+                var prefix = (type == "Vuelta") ? "ret" : "";
 
                 $("#summary").append(passenger_summary_tmp({
 
                     "type": type,
-                    "departureCity": param["departureCity"],
-                    "arrivalCity": param["arrivalCity"],
-                    "departureTime": param["departureTime"],
-                    "arrivalTime": param["arrivalTime"],
-                    "flightClass": param["flightClass"],
-                    "flightStopovers": param["flightStopovers"],
-                    "flightDuration": param["flightDuration"],
-                    "flightTotal": param["flightTotal"],
+                    "departureCity": param[prefix + "departureCity"],
+                    "arrivalCity": param[prefix + "arrivalCity"],
+                    "departureTime": param[prefix + "departureTime"],
+                    "arrivalTime": param[prefix + "arrivalTime"],
+                    "flightClass": param[prefix + "flightClass"],
+                    "flightStopovers": param[prefix + "flightStopovers"],
+                    "flightDuration": param[prefix + "flightDuration"],
+                    "flightTotal": param[prefix + "flightTotal"],
                 }));
 
             }
