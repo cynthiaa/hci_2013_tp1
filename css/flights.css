@@ -220,3 +220,11 @@ input.flight-pages {
 .airline-image {
 	width: 290px;
 }
+
+form img{
+	width: 50px;
+	height: 50px;
+	top: 400%;
+	left: 40%;
+	position: absolute;
+}
