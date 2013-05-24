@@ -77,5 +77,23 @@ require([
                     ($('#pass-ctn').append(passenger_data_tmp({})));
                 }
             }
+	        
+	        function constructFrom(index, str) {    
+	            for(var i=index; i< (index + Number(param[str])) ;i++) {
+					$(json).prop("name-" + i , $("#name").eq(i).val());
+					$(json).prop("surname-" + i , $("#surname").eq(i).val());
+					$(json).prop("birth-" + i , $("#birth").eq(i).val());
+					$(json).prop("gender-" + i , $("#gender option:checked").eq(i).val());
+					$(json).prop("type-" + i , str);
+				}
+				return i;	
+			}
+	            
+            function makeJson () {
+            	var json= new Object();
+            	constructFrom(constructFrom(constructFrom(0, "adults"), "children"), "infants");
+            	return json;
+            }
+            
 });
 
