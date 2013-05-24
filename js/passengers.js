@@ -35,11 +35,7 @@ require([
 
             $("#back").click(function(){
 
-                var oldUrl = $(location).attr('href');
-                var auxUrl = oldUrl.split("lang=es&from=");
-                var newUrl = Utils.getUrl("flights.html", {}) + "lang=es&from=" + auxUrl[1];
-
-                document.location.href = newUrl;
+                document.location.href = Utils.getUrl("flights.html", param);
             });
 
             showData("Ida");
@@ -62,7 +58,6 @@ require([
                 var prefix = (type == "Vuelta") ? "ret" : "";
 
                 $("#summary").append(passenger_summary_tmp({
-
                     "type": type,
                     "title": type,
                     "departureCity": param[prefix + "departureCity"],
@@ -88,13 +83,12 @@ require([
                     ($('#pass-ctn').append(passenger_data_tmp({})));
                 }
             }
-
-	        function constructFrom(index, str) {
+	        function constructFrom(index, str, json) {
 	            for(var i=index; i< (index + Number(param[str])) ;i++) {
-					$(json).prop("name-" + i , $("#name").eq(i).val());
-					$(json).prop("surname-" + i , $("#surname").eq(i).val());
-					$(json).prop("birth-" + i , $("#birth").eq(i).val());
-					$(json).prop("gender-" + i , $("#gender option:checked").eq(i).val());
+					$(json).prop("name-" + i , $(".name").eq(i).val());
+					$(json).prop("surname-" + i , $(".surname").eq(i).val());
+					$(json).prop("birth-" + i , $(".birth").eq(i).val());
+					$(json).prop("gender-" + i , $(".gender option:checked").eq(i).val());
 					$(json).prop("type-" + i , str);
 				}
 				return i;
@@ -102,7 +96,7 @@ require([
 
             function makeJson () {
             	var json= new Object();
-            	constructFrom(constructFrom(constructFrom(0, "adults"), "children"), "infants");
+            	constructFrom(constructFrom(constructFrom(0, "adults", json), "children", json), "infants", json);
             	return json;
             }
 

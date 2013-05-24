@@ -4,20 +4,20 @@
 		<div class="form-container">
 			<div class="form-component-left">
 				<label for="name">Nombre:</label>
-				<input name="name" id="name" type="text" class="required" minlength="2"/>
+				<input name="name" type="text" class="required name" minlength="2"/>
 			</div>
 			<div class="form-component-right">
 				<label for="lastname">Apellido:</label>
-				<input name="lastname" id="lastname" type="text" class="required" minlength="2"/>
+				<input name="lastname" type="text" class="required surname" minlength="2"/>
 			</div>
 			<div class="form-component-left">
 				<label>Fecha de nacimiento:</label><br>
-				<input name="birth" id="birth" placeholder="dd/mm/aaaa" type="text" class="birth required" />
+				<input name="birth" placeholder="dd/mm/aaaa" type="text" class="birth required" />
 			</div>
 			<div class="form-component-right">
 				<label>Sexo:</label><br />
 				<div class="gender styled-select">
-					<select name="gender" id="gender">
+					<select name="gender" class="gender">
 						<option value="none" selected="true"></option>
 						<option value="male">Masculino</option>
 						<option value="female">Femenino</option>
