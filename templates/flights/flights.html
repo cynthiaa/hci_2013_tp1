@@ -7,8 +7,8 @@
 			<label>Ordenar por</label>
 			<div class="styled-select">
 				<select name="order" id="selectionOrder">
-					<option value="total asc">Precio: de mayor a menor</option>
-					<option value="total desc">Precio: de menor a mayor</option>
+					<option value="total desc">Precio: de mayor a menor</option>
+					<option value="total asc">Precio: de menor a mayor</option>
 					<option value="stopovers asc">Escalas: de mayor a menor</option>
 					<option value="stopovers desc">Escalas: de menor a mayor</option>
 					<option value="airline asc">Aerolinea: A-Z</option>
@@ -63,7 +63,7 @@
 				<input class="page-number" name="inbound-page-number" type="text">
 				<span></span>
 				<button class="go-button inPageBtn" type="button" name="submit">Ir</button>
-				<!-- out1sert page numbers -->
+				<!-- insert page numbers -->
 			</div>
 			<div class="inbound-next">
 				<img src="{{Link 'img/nextArrow.png'}}" alt="next"/>
@@ -72,10 +72,11 @@
 	<div class="hdivider"></div>
 	<div class="navigation-bar">
 		<div class="summary">
-			<!--aca iria actualizandose lo que clickean los usuarios-->
-			<span></span>
+			<div>
+				<!--aca iria actualizandose lo que clickean los usuarios-->
+			</div>
 		</div>
-		<input id="continue" class="flight-submit" type="submit" value="Continuar" onClick="window.location='{{Link "passengers.html"}}';" />
+		<input class="flight-submit" type="submit" value="Continuar" onClick="window.location='{{Link "passengers.html"}}';" />
 	</div>
 </div>
 

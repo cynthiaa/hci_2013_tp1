@@ -9,16 +9,17 @@ require(
         "libs/text!../templates/index/info_deal.html",
         "libs/text!../templates/index/featured_item.html",
         "libs/text!../templates/index/info_featured.html",
+        "libs/text!../templates/sideValidation.html",
         "libs/utils",
         "libs/carousel",
         "libs/jquery.shuffle",
         "libs/domReady"
     ],
 
-    function(index_html, li_html, img_html, info_deal_html, featured_item_html, info_featured_html) {
+    function(index_html, li_html, img_html, info_deal_html, featured_item_html, info_featured_html, side_validation_html) {
 
         Utils.init();
-        Utils.make_html(index_html);
+        Utils.make_html(index_html, side_validation_html);
 
         $("#home_link").addClass("selected");
 

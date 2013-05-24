@@ -2,14 +2,15 @@ require(
 	["libs/text!../templates/flights/flights.html",
 	"libs/text!../templates/flights/flights_data.html",
     "libs/text!../templates/img.html",
+    "libs/text!../templates/sideValidation.html",
     "libs/utils",
     "libs/carousel",
     "libs/domReady"],
 
-    function(flights_html, flights_data_html, img_html) {
+    function(flights_html, flights_data_html, img_html, side_validation_html) {
 
 	Utils.init();
-    Utils.make_html(flights_html);
+    Utils.make_html(flights_html, side_validation_html);
 
 	var api = new API();
 	var flights_data_tmp = Handlebars.compile(flights_data_html);
