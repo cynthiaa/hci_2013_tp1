@@ -22,7 +22,7 @@ require(
 	var flights_data_tmp = Handlebars.compile(flights_data_html);
 	var tmp_img = Handlebars.compile(img_html);
 	var oneWay = false;
-	
+
     var param = $.url().param();
 	param.sort_key= $.trim($("#selectionOrder :selected").val().match(".* ")[0]);
 	param.sort_order= $.trim($("#selectionOrder :selected").val().match(" .*")[0]);
@@ -70,7 +70,7 @@ require(
 				missingFlights= true;
 				$(".inbound form").append("<span> Su busqueda obtuvo 0 vuelos de vuelta, lo sentimos mucho. </span>");
 			}
-				
+
 		}
 		if(outbound[0] !== undefined)
 			outbound= paginate(outbound, 5);
@@ -78,8 +78,8 @@ require(
 			missingFlights= true;
 			$(".outbound form").append("<span> Su busqueda obtuvo 0 vuelos de ida, lo sentimos mucho. </span>");
 		}
-			
-			
+
+
 	    var flights= { "inbound": inbound, "outbound": outbound }
 	    return flights;
     }
@@ -120,7 +120,7 @@ require(
 			$(".inbound-pages span").text("/" + flights.inbound.length);
 		$(".outbound-pages span").text("/" + flights.outbound.length);
 	}
-	
+
 	var refreshTotals= function() {
 		if(!oneWay)
 			inTotal= parseFloat($(".inbound .flight-radio input:checked").attr("data-total"));
@@ -162,7 +162,7 @@ require(
 			}
  //   	<-- Falta la funcion de error aca -->
 	}
-	
+
 	var getFlights = function() {
 		clearFlights();
 		$(".flight-wrapper form").append(tmp_img({"img_src" : "img/loading.gif"}));
@@ -178,10 +178,10 @@ require(
 		if(!missingFlights)
 			getFlights();
 	});
-	
+
 	$("div").click(function() {
 		if(!missingFlights)
-			refreshTotals(); 
+			refreshTotals();
 	});
 
 	$(".inbound-prev").click(function(){
@@ -259,5 +259,20 @@ require(
         $("#select_children").val(param.children);
         $("#select_infants").val(param.infants);
     }
+
+
+    $("#continue").click(function(){
+
+                document.location.href = Utils.getUrl("passengers.html", setAttrs());
+                    });
+
+
+        function setAttrs() {
+
+                    return param;
+                        }
+
+
+
 });
 
