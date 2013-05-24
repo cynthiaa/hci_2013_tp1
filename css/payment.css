@@ -9,10 +9,10 @@
 	margin-right:20px;
 }
 
-#body .main {
+.payment-main {
 	display: inline-block;
 	height: 500px;
-	width: 544px;
+	width: 550px;
 	position: absolute;
 }
 
@@ -160,6 +160,7 @@ h6.title {
 	padding: 8px 8px;
 }
 
-.payment-main{
-	width: 548px;
+.main {
+	position: absolute;
+	display: inline-block;
 }
