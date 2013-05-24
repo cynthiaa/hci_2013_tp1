@@ -5,6 +5,7 @@
 p.bottom {
     margin-bottom: 10px;
     text-align: right;
+    height: 17px;
 }
 
 #main > .main > .about-paragraph {
@@ -12,6 +13,7 @@ p.bottom {
     margin-left: 25px;
     font-weight: normal;
     font-size: 16px;
+    height: 40px;
 }
 
 #main > .main > .about-list {
@@ -19,6 +21,7 @@ p.bottom {
     margin-left: 75px;
     padding-bottom: 250px;
     list-style-type: square;
+    height: 80px;
 }
 
 #main > .main > .about-list > li {
