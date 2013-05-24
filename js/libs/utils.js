@@ -110,14 +110,6 @@ define(
 
                 Utils.generateAutocomplete();
 
-                $("#search").click(function(){
-
-                    console.log("hola");
-                    window.location.href = Utils.getUrl("flights.html", Utils.setAttrs());
-
-                    return true;
-                });
-
                 $("body").append(validation_tmp);
            },
 
@@ -276,8 +268,26 @@ define(
             'getId': function(name, citiesAndAirports) {
 
                 return citiesAndAirports[1][citiesAndAirports[0].indexOf($(name).val())];
-            }
+            },
 
+            'stopEvent': function(e) {
+
+                if (!e)
+                    if (window.event)
+                        e = window.event;
+                    else
+                        return;
+                if (e.cancelBubble != null)
+                    e.cancelBubble = true;
+                if (e.stopPropagation)
+                    e.stopPropagation();
+                if (e.preventDefault)
+                    e.preventDefault();
+                if (window.event)
+                    e.returnValue = false;
+                if (e.cancel != null)
+                    e.cancel = true;
+            }
         }
     }
 );
