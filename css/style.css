@@ -247,6 +247,7 @@ body > .container > .header .vdivider {
 
 #sidebar .sidebar-body input[type="text"] {
     width: 236px;
+    height: 16px;
 }
 
 .input-date input {
@@ -267,6 +268,7 @@ body > .container > .header .vdivider {
 
 #sidebar .sidebar-body label {
     width: 55%;
+    height: 17px;
     float: left;
     display: block;
     margin: 7px 20px 0 0;
@@ -288,6 +290,8 @@ body > .container > .header .vdivider {
 
 #sidebar .sidebar-body .search input[type="submit"] {
     float: right;
+    width: 81px;
+	height: 33px;
 }
 
 .sidebar-tab {
