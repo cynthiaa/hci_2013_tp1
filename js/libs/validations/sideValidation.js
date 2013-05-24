@@ -1,7 +1,7 @@
 var validate = new function() {
 	var validator = new FormValidator('side-form', [{
 		name: 'from',
-		display: 'origen',    
+		display: 'origen',
 		rules: 'required'
 		}, {
 		name: 'to',
@@ -22,6 +22,6 @@ var validate = new function() {
 				errorString += errors[i].message + '<br />';
 				console.log(errors[i].message);
 			}
-		}  
-	});	
+		}
+	});
 }

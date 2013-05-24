@@ -112,8 +112,12 @@ define(
 
                 $("#search").click(function(){
 
-                    document.location.href = Utils.getUrl("flights.html", Utils.setAttrs());
+                    console.log("hola");
+                    window.location.href = Utils.getUrl("flights.html", Utils.setAttrs());
+
+                    return true;
                 });
+
                 $("body").append(validation_tmp);
            },
 

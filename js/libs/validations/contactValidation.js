@@ -1,6 +1,6 @@
 var validator = new FormValidator('contact-form', [{
 	name: 'subject',
-	display: 'asunto',    
+	display: 'asunto',
 	rules: ''
 	}, {
 	name: 'email',
@@ -16,5 +16,5 @@ var validator = new FormValidator('contact-form', [{
 			errorString += errors[i].message + '<br />';
 			console.log(errors[i].message);
 		}
-	}  
-});	
+	}
+});
