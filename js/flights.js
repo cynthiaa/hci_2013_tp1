@@ -86,24 +86,41 @@ require(
 
 	var airlineToAirlineLink = function(airline) { return Handlebars.compile("{{Link 'img/airlines/" + airline + ".png'}}"); }
 
-    var showFlights= function(form, page) {
-    	for(var i = 0; i < page.length ; i++) {
-    		var airlineLink= airlineToAirlineLink(page[i].airlineId);
+    var showFlights = function(form, page) {
+
+        for(var i = 0; i < page.length ; i++) {
+
+    	    var airlineLink= airlineToAirlineLink(page[i].airlineId);
+
 			var selectionValue= $.param(page[i]);
-			$(form).append(flights_data_tmp({
+            $(form).append(flights_data_tmp({
 				"departureCity": page[i].departure.cityName,
 				"arrivalCity": page[i].arrival.cityName,
-				"departureTime": page[i].departure.date,
-				"arrivalTime": page[i].arrival.date,
-				"flightClass": page[i].cabinType,
+				"departureTime": convertDate(page[i].departure.date),
+				"arrivalTime": convertDate(page[i].arrival.date),
+				"flightClass": convertCabinType(page[i].cabinType),
 				"flightStopovers": page[i].stopovers.length,
-				"flightDuration": page[i].duration,
-				"flightTotal": page[i].pricing.total.total,
-				"buttonValue": selectionValue
+				"flightDuration": page[i].duration + " horas",
+				"flightTotal": "U$S " + page[i].pricing.total.total
 			}));
 			form.find(".airline-image").eq(i).append(tmp_img({"img_src" : airlineLink}));
 		}
 	}
+
+    var convertDate = function(stringDate) {
+
+        var finalDate;
+        var dateRegex = /^(\d{4})\-(\d{1,2})\-(\d{1,2})\ (\d{1,2})\:(\d{1,2})\:(\d{1,2})$/;
+        var dateRegexResult = stringDate.match(dateRegex);
+
+        return dateRegexResult[3] + "/" + dateRegexResult[2] + "/" + dateRegexResult[1]
+           + " - " + dateRegexResult[4] + ":" + dateRegexResult[5];
+    }
+
+    var convertCabinType = function(cabin) {
+
+        return cabin_names[cabin];
+    }
 
 	var clearAll = function() {
 		inpagenum = 0;
