@@ -53,8 +53,6 @@ require(
             paramsFlightOutbound = arr[0];
         }
 
-        // console.log(paramsFlightInbound);
-        // console.log(paramsFlightOutbound);
         return aux;
     }
 
@@ -297,13 +295,11 @@ require(
             document.location.href = $(".outbound .flight-radio input:checked").val();
         } else {
 
-            document.location.href = concatUrls($(".outbound .flight-radio input:checked").val(),
-                                                $(".inbound .flight-radio input:checked").val());
+            document.location.href = concatUrls($(".inbound .flight-radio input:checked").val(),
+                                                $(".outbound .flight-radio input:checked").val());
 
 
         }
-        console.log($(".outbound .flight-radio input:checked").val());
-        console.log($(".inbound .flight-radio input:checked").val());
     });
 
     function concatUrls(url1, url2) {
