@@ -1,7 +1,7 @@
 var validate = new function() {
 	var validator = new FormValidator('side-form', [{
 		name: 'from',
-		display: 'origen',    
+		display: 'origen',
 		rules: 'required'
 		}, {
 		name: 'to',
@@ -15,13 +15,21 @@ var validate = new function() {
 		name: 'return',
 		display: 'regreso',
 		rules: 'required'
-		}], function(errors, event) {
+		}], function(errors, e) {
+
 		if (errors.length > 0) {
-			var errorString = '';
+
+		    var errorString = '';
+
 			for (var i = 0, errorLength = errors.length; i < errorLength; i++) {
-				errorString += errors[i].message + '<br />';
+
+			    errorString += errors[i].message + '<br />';
 				console.log(errors[i].message);
 			}
-		}  
-	});	
+		} else {
+
+            Utils.stopEvent(e);
+            window.location.href = Utils.getUrl("flights.html", Utils.setAttrs());
+        }
+	});
 }
