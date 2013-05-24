@@ -10,6 +10,7 @@ require(
 
         Utils.init();
         Utils.make_non_menu_html(confirmation_html);
-		
+
     }
 );
+
