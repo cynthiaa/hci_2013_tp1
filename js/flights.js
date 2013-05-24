@@ -1,11 +1,3 @@
-var cabin_names = {
-    "ECONOMY": "Turista",
-    "BUSINESS": "Ejecutiva",
-    "FIRST_CLASS": "Primera Clase"
-};
-
-var oneWay = false;
-
 require(
 	["libs/text!../templates/flights/flights.html",
 	"libs/text!../templates/flights/flights_data.html",
@@ -22,134 +14,110 @@ require(
 	var api = new API();
 	var flights_data_tmp = Handlebars.compile(flights_data_html);
 	var tmp_img = Handlebars.compile(img_html);
-
+	var oneWay = false;
+	
     var param = $.url().param();
 	param.sort_key= $.trim($("#selectionOrder :selected").val().match(".* ")[0]);
 	param.sort_order= $.trim($("#selectionOrder :selected").val().match(" .*")[0]);
 
-   // Si es sólo ida
-
-    if (param.ret_date == "null") {
-
-        generateLayoutOneWay();
-    }
-
-     // Vuelve a rellenar la sidebar
     completeSideBar();
 
-    var inpagenumx = 0;
-    var outpagenum = 0;
+    // Si es sólo ida
+    generateLayoutOneWay();
+
+    var inpagenum= 0;
+    var outpagenum= 0;
     var flights;
 
     var paginate = function(arr, pagesize) {
-    	var aux = new Array;
-
-    	for (var i = 0; (i*pagesize) < arr.length; i++) {
-    		aux.push(arr.slice(i*pagesize, (i + 1)*pagesize));
-        }
-
+    	var aux= new Array;
+    	for(var i=0; (i*pagesize)<arr.length ;i++)
+    		aux.push(arr.slice(i*pagesize, (i+1)*pagesize));
  		return aux;
     }
 
     var loadPagesArrays = function(flightsArray) {
-		var inbound = new Array;
-		var outbound = new Array;
+		var inbound= new Array;
+		var outbound= new Array;
 		var aux;
 
-		for(var i = 0; i < flightsArray.length; i++) {
-
-			if (flightsArray[i].hasOwnProperty('outboundRoutes') || oneWay) {
-
-			    aux = outbound.push(flightsArray[i].outboundRoutes[0].segments[0]);
-				outbound[aux-1].pricing = flightsArray[i].price;
-			} else {
-
-				aux = inbound.push(flightsArray[i].inboundRoutes[0].segments[0]);
-				inbound[aux-1].pricing = flightsArray[i].price;
-	        }
+		for(var i=0; i<flightsArray.length ; i++) {
+			if(flightsArray[i].hasOwnProperty('inboundRoutes')) {
+				aux= inbound.push(flightsArray[i].inboundRoutes[0].segments[0]);
+				inbound[aux-1].pricing= flightsArray[i].price;
+			}
+			else {
+				aux= outbound.push(flightsArray[i].outboundRoutes[0].segments[0]);
+				outbound[aux-1].pricing= flightsArray[i].price;
+			}
 		}
 
-		inbound = paginate(inbound, 2);
-		outbound = paginate(outbound, 2);
+		if(!oneWay)
+			inbound= paginate(inbound, 2);
+		outbound= paginate(outbound, 2);
 
-	    return {"inbound": inbound, "outbound": outbound};
+	    var flights= { "inbound": inbound, "outbound": outbound }
+	    return flights;
     }
 
-	var airlineToAirlineLink = function(airline) {
+	var airlineToAirlineLink = function(airline) { return Handlebars.compile("{{Link 'img/airlines/" + airline + ".png'}}"); }
 
-	    return Handlebars.compile("{{Link 'img/airlines/" + airline + ".png'}}");
-	}
-
-    var showFlights = function(form, page) {
-
-        console.log(page);
-        for(var i = 0; i < page.length ; i++) {
-
-    	    var airlineLink= airlineToAirlineLink(page[i].airlineId);
-
-            $(form).append(flights_data_tmp({
+    var showFlights= function(form, page) {
+    	for(var i = 0; i < page.length ; i++) {
+    		var airlineLink= airlineToAirlineLink(page[i].airlineId);
+			var selectionValue= $.param(page[i]);
+			$(form).append(flights_data_tmp({
 				"departureCity": page[i].departure.cityName,
 				"arrivalCity": page[i].arrival.cityName,
-				"departureTime": convertDateToTime(page[i].departure.date),
-				"arrivalTime": convertDateToTime(page[i].arrival.date),
-				"flightClass": convertCabinType(page[i].cabinType),
+				"departureTime": page[i].departure.date,
+				"arrivalTime": page[i].arrival.date,
+				"flightClass": page[i].cabinType,
 				"flightStopovers": page[i].stopovers.length,
-				"flightDuration": page[i].duration + " horas",
-				"flightTotal": "U$S " + page[i].pricing.total.total
+				"flightDuration": page[i].duration,
+				"flightTotal": page[i].pricing.total.total,
+				"buttonValue": selectionValue
 			}));
 			form.find(".airline-image").eq(i).append(tmp_img({"img_src" : airlineLink}));
 		}
 	}
 
-    var convertCabinType = function(cabinType) {
-
-        return cabin_names[cabinType];
-    }
-
-    var convertDateToTime = function(date) {
-
-        return date.substring(11,16) + " hs";
-    }
-
 	var clearAll = function() {
-
 		inpagenum = 0;
 		outpagenum = 0;
-		$(".inbound form").remove();
+		if(!oneWay)
+			$(".inbound form").remove();
 		$(".outbound form").remove();
-
-		return {"inbound": inbound, "outbound": outbound }
+		var flights= { "inbound": inbound, "outbound": outbound }
+		return flights;
 	}
 
-	var refreshPageFooting = function() {
-
-		$(".inbound-pages span").text("/" + flights.inbound.length);
+	var refreshPageFooting= function() {
+		if(!oneWay)
+			$(".inbound-pages span").text("/" + flights.inbound.length);
 		$(".outbound-pages span").text("/" + flights.outbound.length);
 	}
 
 	var clearFlights = function() {
-
-		$(".inbound form div").remove();
+		if(!oneWay)
+			$(".inbound form div").remove();
 		$(".outbound form div").remove();
 	}
 
-	var refreshPage = function() {
-
+	var refreshPage= function() {
 		clearFlights();
-
-		if (!oneWay) {
-
-            showFlights($(".inbound form"), flights.inbound[inpagenum]);
-            $(".inbound .flight-radio input").first().prop('checked', 'checked');
-        }
-
+		if(!oneWay) {
+			showFlights($(".inbound form"), flights.inbound[inpagenum]);
+			$(".inbound .flight-radio input").first().prop('checked', 'checked');
+			$(".inbound-pages .page-number").val(inpagenum +1);
+		}
 		showFlights($(".outbound form"), flights.outbound[outpagenum]);
-    	$(".outbound .flight-radio input").first().prop('checked', 'checked');
+		$(".outbound .flight-radio input").first().prop('checked', 'checked');
+		$(".outbound-pages .page-number").val(outpagenum +1);
 	}
 
 	var clearPageNums = function() {
-		inpagenum = 0;
-		outpagenum = 0;
+		inpagenum= 0;
+		outpagenum= 0;
 	}
 
 	var callback = {
@@ -158,25 +126,24 @@ require(
 			clearPageNums();
 			refreshPageFooting();
 			refreshPage();
-		}
+			}
  //   	<-- Falta la funcion de error aca -->
 	}
+	
+	var getFlights = function() {
+		if(!oneWay)
+    		api.booking.getRoundTripFlights(callback, param);
+    	api.booking.getOneWayFlights(callback, param);
+   }
 
 	$("#selectionOrder").change(function() {
 		param.sort_key = $.trim($("#selectionOrder :selected").val().match(".* ")[0]);
 		param.sort_order = $.trim($("#selectionOrder :selected").val().match(" .*")[0]);
-
-        if (param.ret_date != "null") {
-
-            api.booking.getRoundTripFlights(callback, param);
-        } else {
-
-            api.booking.getOneWayFlights(callback, param);
-        }
+		getFlights();
 	});
 
 	$(".inbound-prev").click(function(){
-		if (inpagenum > 0) {
+		if(inpagenum>0) {
 			inpagenum--;
 			refreshPage();
 		}
@@ -184,7 +151,7 @@ require(
 	});
 
 	$(".outbound-prev").click(function(){
-		if (outpagenum > 0) {
+		if(outpagenum>0) {
 			outpagenum--;
 			refreshPage();
 		}
@@ -205,28 +172,22 @@ require(
 	});
 
 	$(".inPageBtn").click(function() {
-		var desiredPage = $(".inbound-pages .page-number").val();
-		if (desiredPage > 0 && desiredPage <= flights.inbound.length) {
-			inpagenum = desiredPage - 1;
+		var desiredPage= $(".inbound-pages .page-number").val();
+		if(desiredPage>0 && desiredPage<=flights.inbound.length) {
+			inpagenum= desiredPage -1;
 			refreshPage();
 		}
 	});
 
 	$(".outPageBtn").click(function() {
-		var desiredPage = $(".outbound-pages .page-number").val();
-		if (desiredPage > 0 && desiredPage <= flights.outbound.length) {
-			outpagenum = desiredPage - 1;
+		var desiredPage= $(".outbound-pages .page-number").val();
+		if(desiredPage>0 && desiredPage<=flights.outbound.length) {
+			outpagenum= desiredPage -1;
 			refreshPage();
 		}
 	});
 
-    if (oneWay) {
-
-        api.booking.getOneWayFlights(callback, param);
-    } else {
-
-        api.booking.getRoundTripFlights(callback, param);
-    }
+	getFlights();
 
     $("#continue").click(function(){
 
@@ -241,19 +202,19 @@ require(
 
     function generateLayoutOneWay() {
 
-        oneWay = true;
+        if (param.ret_date == "null") {
+			oneWay= true;
+            $(".inbound").hide();
+            $("#flight-header-ret").hide();
+            $(".flight-wrapper").css("width", "100%");
+            $(".flight-header").css("width", "100%");
+            $("#pagination-bar-right").hide();
+            $(".vdivider").hide();
+            $(".pagination-bar").css("width", "100%");
+            $(".pagination-bar").css("text-align", "center");
 
-        $(".inbound").hide();
-        $("#flight-header-ret").hide();
-        $(".flight-wrapper").css("width", "100%");
-        $(".flight-header").css("width", "100%");
-        $("#pagination-bar-left").hide();
-        $(".vdivider").hide();
-        $(".pagination-bar").css("width", "100%");
-        $(".pagination-bar").css("text-align", "center");
-        $("#title").text("Ida");
-
-        javascript:toggleFlightMode('one_way')
+            javascript:toggleFlightMode('one_way')
+        }
     }
 
     function completeSideBar() {
