@@ -1,3 +1,9 @@
+var cabin_names = {
+    "ECONOMY": "Turista",
+    "BUSINESS": "Ejecutiva",
+    "FIRST_CLASS": "Primera Clase"
+};
+
 require(
 	["libs/text!../templates/flights/flights.html",
 	"libs/text!../templates/flights/flights_data.html",
