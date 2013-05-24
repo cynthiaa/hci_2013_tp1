@@ -10,11 +10,14 @@ var validator = new FormValidator('contact-form', [{
 	display:'mensaje',
 	rules: ''
 	}], function(errors, event) {
+		var SELECTOR_ERRORS = $('.contact-error');
+        
 	if (errors.length > 0) {
-		var errorString = '';
+		SELECTOR_ERRORS.empty();
 		for (var i = 0, errorLength = errors.length; i < errorLength; i++) {
-			errorString += errors[i].message + '<br />';
-			console.log(errors[i].message);
+			SELECTOR_ERRORS.append(errors[i].message + '<br />');
 		}
+        SELECTOR_ERRORS.fadeIn(200);
 	}  
-});	
+});
+

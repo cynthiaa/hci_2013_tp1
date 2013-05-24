@@ -9,7 +9,7 @@
 
 .form-container {
     margin: 10px;
-    height: 390px;
+    height: 450px;
 }
 
 #main > .main input[type="submit"],
@@ -19,15 +19,15 @@
 }
 
 .contact-form {
-    height: 450px;
+    height: 446px;
 }
 
 .navigation-bar {
-    position: absolute;
-    width: 700px;
-    text-align: center;
-    bottom: 4px;
-    height: 50px;
+	position: absolute;
+	width: 700px;
+	text-align: center;
+	bottom: 0;
+	height: 50px;
 }
 
 .navigation-bar input[type="submit"], .navigation-bar input[type="reset"] {
@@ -42,4 +42,16 @@ textarea {
 label {
 	margin: 10px 0 0 0;
 }
+
+.contact-error {
+	display: none;
+	background: #FAD3C4;
+	border: 1px solid #A75B4E;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	color: #333;
+	font-size: 13px;
+	margin: 10px 0px 15px 0px;
+	padding: 8px 8px;
 }

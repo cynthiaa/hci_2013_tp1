@@ -20,7 +20,6 @@ var validate = new function() {
 		if (errors.length > 0) {
 			var SELECTOR_ERRORS = $('.error');
 			SELECTOR_ERRORS.empty();
-		    var errorString = '';
 
 			for (var i = 0, errorLength = errors.length; i < errorLength; i++) {
 
