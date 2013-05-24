@@ -4,6 +4,7 @@
 
 #main > .main label {
     display: block;
+    height: 17px;
 }
 
 .form-container {
@@ -14,6 +15,7 @@
 #main > .main input[type="submit"],
 #main > .main input[type="reset"] {
     margin: 10px 0 25px 0;
+    height: 33px;
 }
 
 .contact-form {
@@ -24,7 +26,7 @@
     position: absolute;
     width: 700px;
     text-align: center;
-    bottom: 10px;
+    bottom: 4px;
     height: 50px;
 }
 

@@ -2,123 +2,126 @@
     {{{header}}}
 
     <div id="body">
-        <div class="panel" id="sidebar">
-
-            <script type="text/javascript">
-                function toggleFlightMode(from) {
-
-                    if ($("#round_trip").hasClass("selected") && from == "one_way") {
-
-                        $("#round_trip").removeClass("selected");
-                        $("#one_way").addClass("selected");
-                        $("#return_input").prop("disabled", true);
-                        $("#return_label").addClass("disabled");
-                        $("#return_input").addClass("disabled");
-                        $("#return-calendar").hide();;
-                        $("#return_input").hide();
-                        $("#return_label").hide();
-                        $("#return").hide();
-
-                    }
-
-                    if ($("#one_way").hasClass("selected") && from == "round_trip") {
-
-                        $("#one_way").removeClass("selected");
-                        $("#round_trip").addClass("selected");
-                        $("#return_input").prop("disabled", false);
-                        $("#return_label").removeClass("disabled");
-                        $("#return_input").removeClass("disabled");
-                        $("#return-calendar").show();
-                        $("#return_input").show();
-                        $("#return_label").show();
-                        $("#return").show();
-
-                    }
-                }
-            </script>
-
-            <script type="text/javascript">
-                function isDateKey(data) {
-
-                    character = (document.all) ? data.keyCode : data.which;
-
-                    if (character == 8 || character == 0)
-                        return true;
-
-                    pattern = /[0-9]|-|\//;
-
-                    return pattern.test(String.fromCharCode(character));
-                }
-            </script>
-
-            <div class="sidebar-header">
-                <a href="javascript:toggleFlightMode('round_trip')">
-                    <div class="sidebar-tab selected" id="round_trip">
-                        Ida y vuelta
-                    </div>
-                </a>
-                <a href="javascript:toggleFlightMode('one_way')">
-                    <div class="sidebar-tab" id="one_way">
-                        Ida
-                    </div>
-                </a>
-            </div>
-
-            <div class="sidebar-body">
-                <form name="side-form">
-                    <label>Origen:</label>
-                    <input id="from" name="from" type="text" />
-
-                    <label>Destino:</label>
-                    <input id="to" name="to" type="text" />
-
-                    <div class="hdivider"></div>
-
-                    <label id="depart_label">Partida:</label>
-                    <div class="input-date">
-                        <input id="depart_input" name="depart" type="text" placeholder="dd/mm/aaaa" maxlength="10" onkeypress="return isDateKey(event);" />
-                        <img id="depart-calendar" src="{{Link 'img/calendar.png'}}" />
-
-        				</script>
-        			</div>
-
-		        	<label id="return_label">Regreso:</label>
-        			<div class="input-date">
-		        		<input id="return_input" name="return" type="text" placeholder="dd/mm/aaaa" maxlength="10" onkeypress="return isDateKey(event);" />
-			        	<img id="return-calendar" src="{{Link 'img/calendar.png'}}" />
-
-				    </div>
-
-				    <div class="hdivider"></div>
-
-				    <div class="num-people">
-                        <label>Adultos:</label>
-					    <div class="styled-select">
-						    <select id="select_adults" name="adults"></select>
+		<div id="sidebar">
+		<div class="error panel">
+		</div>
+	        <div class="panel" id="sidebar">
+	            <script type="text/javascript">
+	                function toggleFlightMode(from) {
+	
+	                    if ($("#round_trip").hasClass("selected") && from == "one_way") {
+	
+	                        $("#round_trip").removeClass("selected");
+	                        $("#one_way").addClass("selected");
+	                        $("#return_input").prop("disabled", true);
+	                        $("#return_label").addClass("disabled");
+	                        $("#return_input").addClass("disabled");
+	                        $("#return-calendar").hide();;
+	                        $("#return_input").hide();
+	                        $("#return_label").hide();
+	                        $("#return").hide();
+	
+	                    }
+	
+	                    if ($("#one_way").hasClass("selected") && from == "round_trip") {
+	
+	                        $("#one_way").removeClass("selected");
+	                        $("#round_trip").addClass("selected");
+	                        $("#return_input").prop("disabled", false);
+	                        $("#return_label").removeClass("disabled");
+	                        $("#return_input").removeClass("disabled");
+	                        $("#return-calendar").show();
+	                        $("#return_input").show();
+	                        $("#return_label").show();
+	                        $("#return").show();
+	
+	                    }
+	                }
+	            </script>
+	
+	            <script type="text/javascript">
+	                function isDateKey(data) {
+	
+	                    character = (document.all) ? data.keyCode : data.which;
+	
+	                    if (character == 8 || character == 0)
+	                        return true;
+	
+	                    pattern = /[0-9]|-|\//;
+	
+	                    return pattern.test(String.fromCharCode(character));
+	                }
+	            </script>
+	
+	            <div class="sidebar-header">
+	                <a href="javascript:toggleFlightMode('round_trip')">
+	                    <div class="sidebar-tab selected" id="round_trip">
+	                        Ida y vuelta
+	                    </div>
+	                </a>
+	                <a href="javascript:toggleFlightMode('one_way')">
+	                    <div class="sidebar-tab" id="one_way">
+	                        Ida
+	                    </div>
+	                </a>
+	            </div>
+	
+	            <div class="sidebar-body">
+	                <form name="side-form">
+	                    <label>Origen:</label>
+	                    <input id="from" name="from" type="text" />
+	
+	                    <label>Destino:</label>
+	                    <input id="to" name="to" type="text" />
+	
+	                    <div class="hdivider"></div>
+	
+	                    <label id="depart_label">Partida:</label>
+	                    <div class="input-date">
+	                        <input id="depart_input" name="depart" type="text" placeholder="dd/mm/aaaa" maxlength="10" onkeypress="return isDateKey(event);" />
+	                        <img id="depart-calendar" src="{{Link 'img/calendar.png'}}" />
+	
+	        				</script>
+	        			</div>
+	
+			        	<label id="return_label">Regreso:</label>
+	        			<div class="input-date">
+			        		<input id="return_input" name="return" type="text" placeholder="dd/mm/aaaa" maxlength="10" onkeypress="return isDateKey(event);" />
+				        	<img id="return-calendar" src="{{Link 'img/calendar.png'}}" />
+	
 					    </div>
-				    </div>
-
-				    <div class="num-people">
-                        <label>Menores:<br><span class="small">(2 a 11 años)</span></label>
-					    <div class="styled-select">
-						    <select id="select_children" name="children"></select>
+	
+					    <div class="hdivider"></div>
+	
+					    <div class="num-people">
+	                        <label>Adultos:</label>
+						    <div class="styled-select">
+							    <select id="select_adults" name="adults"></select>
+						    </div>
 					    </div>
-				    </div>
-
-				    <div class="num-people">
-                        <label>Infantes:<br><span class="small">(0 a 2 años)</span></label>
-					    <div class="styled-select">
-						    <select id="select_infants" name="infants"></select>
+	
+					    <div class="num-people">
+	                        <label>Menores:<br><span class="small">(2 a 11 años)</span></label>
+						    <div class="styled-select">
+							    <select id="select_children" name="children"></select>
+						    </div>
 					    </div>
-				    </div>
-
-				    <div class="hdivider"></div>
-
-				    <div class="search">
-					    <a id="advanced_options" href="{{Link 'advanced_options.html'}}">Opciones Avanzadas</a>
-					    <input id="search" type="submit" value="Buscar" />
-				    </div>
-	            </form>
+	
+					    <div class="num-people">
+	                        <label>Infantes:<br><span class="small">(0 a 2 años)</span></label>
+						    <div class="styled-select">
+							    <select id="select_infants" name="infants"></select>
+						    </div>
+					    </div>
+	
+					    <div class="hdivider"></div>
+	
+					    <div class="search">
+						    <a id="advanced_options" href="{{Link 'advanced_options.html'}}">Opciones Avanzadas</a>
+						    <input id="search" type="submit" value="Buscar" />
+					    </div>
+		            </form>
+				</div>
 			</div>
 		</div>
 		<div id="main">

@@ -18,18 +18,19 @@ var validate = new function() {
 		}], function(errors, e) {
 
 		if (errors.length > 0) {
-
+			var SELECTOR_ERRORS = $('.error');
+			SELECTOR_ERRORS.empty();
 		    var errorString = '';
 
 			for (var i = 0, errorLength = errors.length; i < errorLength; i++) {
 
-			    errorString += errors[i].message + '<br />';
-				console.log(errors[i].message);
+			    $(".error").append(errors[i].message + '<br />');
 			}
+			SELECTOR_ERRORS.fadeIn(200);
 		} else {
-
             Utils.stopEvent(e);
             window.location.href = Utils.getUrl("flights.html", Utils.setAttrs());
         }
 	});
 }
+
