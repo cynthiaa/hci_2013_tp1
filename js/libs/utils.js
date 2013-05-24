@@ -113,17 +113,17 @@ define(
                 $("body").append(validation_tmp);
            },
 
-            'make_non_menu_html': function(template) {
+            'make_non_menu_html': function(template, validation) {
 
                 // Make HTML from templates
 
                 var main_tmp = Handlebars.compile(template);
                 var layout_tmp = Handlebars.compile(layout_only_top_html);
                 var header_tmp = Handlebars.compile(header_html);
-				//var validation_tmp = Handlebars.compile(validation);
+				var validation_tmp = Handlebars.compile(validation);
                 
                 $("body").append(layout_tmp({header: header_tmp(), main_body: main_tmp()}));
-              //  $("body").append(validation_tmp);
+				$("body").append(validation_tmp);
 
             },
 

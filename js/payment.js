@@ -2,7 +2,7 @@ require(
     [
         "libs/text!../templates/payment/payment.html",
         "libs/text!../templates/select.html",
-        "libs/test!../templates/payment/paymentValidation.html",
+        "libs/text!../templates/payment/paymentValidation.html",
         "libs/utils",
         "libs/jquery.maskedinput",
         "libs/domReady"
@@ -11,7 +11,7 @@ require(
     function(payment_html, select_html, payment_validation_html) {
 
         Utils.init();
-        Utils.make_non_menu_html(payment_html);
+        Utils.make_non_menu_html(payment_html, payment_validation_html);
 
         var api = new API();
 
