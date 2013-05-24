@@ -44,7 +44,7 @@ require([
 			
 			$("#continue").click(function(){
 			
-				document.location.href = Utils.getUrl(concat(param, json));
+				document.location.href = Utils.getUrl(concat(param, makeJson()));
 			});
 
 
