@@ -26,7 +26,6 @@ require(
     var param = $.url().param();
 	param.sort_key= $.trim($("#selectionOrder :selected").val().match(".* ")[0]);
 	param.sort_order= $.trim($("#selectionOrder :selected").val().match(" .*")[0]);
-	console.log(param);
 
     completeSideBar();
 
@@ -126,7 +125,7 @@ require(
 		if(!oneWay)
 			inTotal= parseFloat($(".inbound .flight-radio input:checked").attr("data-total"));
 		outTotal= parseFloat($(".outbound .flight-radio input:checked").attr("data-total"));
-		$(".summary div").text( "Total: U$S " + (inTotal + outTotal));
+		$(".summary div").text(("Total: U$S " + (inTotal + outTotal)).substring(0,20));
 	}
 
 	var clearFlights = function() {
@@ -155,6 +154,7 @@ require(
 
 	var callback = {
 		success: function(result) {
+			$(".flight-wrapper form img").remove();
 			flights = loadPagesArrays(result.flights);
 			clearPageNums();
 			refreshPageFooting();
@@ -164,6 +164,8 @@ require(
 	}
 	
 	var getFlights = function() {
+		clearFlights();
+		$(".flight-wrapper form").append(tmp_img({"img_src" : "img/loading.gif"}));
 		if(!oneWay)
     		api.booking.getRoundTripFlights(callback, param);
     	else
