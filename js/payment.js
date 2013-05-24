@@ -26,31 +26,6 @@ require(
             $("#exp-date").mask("99/9999");
         });
 
-        // Cortar desde acá
-
-            var paramCard = {
-                "number": $('#card-num').val(),
-                "exp_date": Utils.convertExpirationDate($('#select_expiration_month').val(), $('#select_expiration_year').val()),
-                "sec_code": $('#security-code').val()
-            };
-
-            var callback = {
-                success: function(result) {
-
-                    if (!result.valid) {
-
-                        window.alert("Los datos de la tarjeta son incorrectos");
-                    } else {
-
-                        document.location.href = Utils.getUrl("confirmation.html", paramCard);
-                    }
-                }
-            }
-
-            api.booking.validateCreditCard(callback, paramCard);
-
-        // Hasta acá
-
             console.log(param);
             /* Passengers */
 
@@ -110,15 +85,17 @@ require(
 
                     if (param["type-" + i] == type) {
 
+                        console.log(type);
                         console.log(i);
                         var attrs = {
 
-                            'passengerName': param["name-" + i],
-                            'passengerLastName': param["surname-" + i],
-                            'passengerGender': param["gender-" + i],
-                            'passengerBirthDate': param["birth-" + i]
+                            'name': param["name-" + i],
+                            'lastname': param["surname-" + i],
+                            'gender': (param["gender-" + i] == "male" ? "Masculino" : "Femenino"),
+                            'birth': param["birth-" + i]
                         };
 
+                        console.log(attrs);
                        if (count++ == 0) {
 
                             ($('#pass-ctn').append(payment_title_tmp({"title": title}))).append(payment_data_passenger_tmp(attrs));

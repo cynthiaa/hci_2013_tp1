@@ -47,11 +47,7 @@ require([
 				document.location.href = Utils.getUrl("payment.html",Utils.jsonConcat(param, makeJson()));
 			});
 
-
-
             showData("Ida");
-
-
 
             if (param.ret_date != "null") {
 
