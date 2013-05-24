@@ -2,15 +2,16 @@ require(
     [
         "libs/text!../templates/advanced_options/advanced_options.html",
         "libs/text!../templates/select.html",
+        "libs/text!../templates/advanced_options/advancedOptionsValidation.html",
         "libs/utils",
         "libs/carousel",
         "libs/domReady"
     ],
 
-    function(advanced_options_html, select_html) {
+    function(advanced_options_html, select_html, advanced_options_validation_html) {
 
         Utils.init();
-        Utils.make_html(advanced_options_html);
+        Utils.make_html(advanced_options_html, advanced_options_validation_html);
 
         $("#advanced_options").addClass("selected");
         $("#search").hide();
