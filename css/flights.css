@@ -120,6 +120,7 @@
 .summary div {
 	padding: 10px;
 	text-align: center;
+	height: 17px;
 }
 
 .flight {
@@ -131,6 +132,7 @@
 	display: inline-block;
 	vertical-align: top;
 	margin-top: 60px;
+	margin-left: 1px;
 }
 
 .pagination-bar {
@@ -176,7 +178,7 @@
 }
 
 .navigation-bar {
-	margin-top: 10px;
+	margin-top: 5px;
 }
 
 input.page-number {

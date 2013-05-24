@@ -58,11 +58,13 @@ h4.title {
 h6{
     color:#333;
     text-align:center;
+    height: 17px;
 }
 
 label {
     color: #555;
     margin: 20px 0px 10px 0px;
+    height: 17px;
 }
 
 span.small {
