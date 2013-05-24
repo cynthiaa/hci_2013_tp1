@@ -58,6 +58,7 @@ select {
 	height: 500px;
 	width: 400px;
 	margin-right: 20px;
+	float: left;
 }
 
 div.main.panel {
@@ -124,4 +125,12 @@ div.main.panel {
 	margin: 0px 0px 15px 0px;
 	padding: 8px 8px;
 	width: 672px;
+}
+
+.passenger-main {
+	width: 548px;
+}
+
+.main {
+	display: inline-block;
 }
