@@ -52,6 +52,7 @@ require([
                 $("#summary").append(passenger_summary_tmp({
 
                     "type": type,
+                    "title": type,
                     "departureCity": param[prefix + "departureCity"],
                     "arrivalCity": param[prefix + "arrivalCity"],
                     "departureTime": param[prefix + "departureTime"],
