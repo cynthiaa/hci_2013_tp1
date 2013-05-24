@@ -33,25 +33,30 @@ require([
 
             Utils.dateMask("input.birth");
 
-            $("#back").click(function(){
 
-                document.location.href = Utils.getUrl("flights.html", param);
-            });
+			$("#back").click(function(){
+			
+				var oldUrl = $(location).attr('href');
+				var auxUrl = oldUrl.split("lang=es&from=");
+				var newUrl = Utils.getUrl("flights.html", {}) + "lang=es&from=" + auxUrl[1];
+				document.location.href = newUrl;
+			});
+			
+			$("#continue").click(function(){
+			
+				document.location.href = Utils.getUrl(concat(param, json));
+			});
+
+
 
             showData("Ida");
+			
+			
 
             if (param.ret_date != "null") {
 
                 showData("Vuelta");
             }
-
-            $("#continue").click(function(){
-
-                var json = makeJson();
-
-                console.log(concat(param, json));
-                // document.location.href = Utils.getUrl(concat(param, json));
-            });
 
             function showData(type) {
 
