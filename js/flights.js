@@ -92,7 +92,6 @@ require(
 
     	    var airlineLink= airlineToAirlineLink(page[i].airlineId);
 
-			var selectionValue= $.param(page[i]);
             $(form).append(flights_data_tmp({
 				"departureCity": page[i].departure.cityName,
 				"arrivalCity": page[i].arrival.cityName,
@@ -101,7 +100,8 @@ require(
 				"flightClass": convertCabinType(page[i].cabinType),
 				"flightStopovers": page[i].stopovers.length,
 				"flightDuration": page[i].duration + " horas",
-				"flightTotal": page[i].pricing.total.total
+				"flightTotal": page[i].pricing.total.total,
+				"buttonValue": page[i]
 			}));
 			form.find(".airline-image").eq(i).append(tmp_img({"img_src" : airlineLink}));
 		}
