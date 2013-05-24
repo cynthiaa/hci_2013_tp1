@@ -263,16 +263,12 @@ require(
 
     $("#continue").click(function(){
 
-                document.location.href = Utils.getUrl("passengers.html", setAttrs());
-                    });
+        document.location.href = Utils.getUrl("passengers.html", setAttrs());
+    });
 
+    function setAttrs() {
 
-        function setAttrs() {
-
-                    return param;
-                        }
-
-
-
+        return param;
+    }
 });
 
