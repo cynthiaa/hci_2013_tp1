@@ -26,7 +26,6 @@ require(
             $("#exp-date").mask("99/9999");
         });
 
-            console.log(param);
             /* Passengers */
 
             var n_adults = Number(param["adults"]);
@@ -41,7 +40,7 @@ require(
 
             $("#back").click(function(){
 
-                document.location.href = Utils.getUrl("flights.html", param);
+                document.location.href = Utils.getUrl("passengers.html", param);
             });
 
             showData("Ida");
@@ -85,8 +84,6 @@ require(
 
                     if (param["type-" + i] == type) {
 
-                        console.log(type);
-                        console.log(i);
                         var attrs = {
 
                             'name': param["name-" + i],
@@ -95,7 +92,6 @@ require(
                             'birth': param["birth-" + i]
                         };
 
-                        console.log(attrs);
                        if (count++ == 0) {
 
                             ($('#pass-ctn').append(payment_title_tmp({"title": title}))).append(payment_data_passenger_tmp(attrs));
