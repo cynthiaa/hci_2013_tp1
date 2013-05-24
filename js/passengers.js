@@ -35,23 +35,23 @@ require([
 
 
 			$("#back").click(function(){
-			
+
 				var oldUrl = $(location).attr('href');
 				var auxUrl = oldUrl.split("lang=es&from=");
 				var newUrl = Utils.getUrl("flights.html", {}) + "lang=es&from=" + auxUrl[1];
 				document.location.href = newUrl;
 			});
-			
+
 			$("#continue").click(function(){
-			
-				document.location.href = Utils.getUrl(concat(param, makeJson()));
+
+				document.location.href = Utils.getUrl("payment.html",Utils.jsonConcat(param, makeJson()));
 			});
 
 
 
             showData("Ida");
-			
-			
+
+
 
             if (param.ret_date != "null") {
 

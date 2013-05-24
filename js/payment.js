@@ -16,6 +16,7 @@ require(
         Utils.init();
         Utils.make_non_menu_html(payment_html, payment_validation_html);
 
+        var param = $.url().param();
         var api = new API();
         var payment_summary_flights_tmp = Handlebars.compile(payment_summary_flights_html);
         var payment_title_tmp = Handlebars.compile(payment_title_html);
@@ -25,11 +26,9 @@ require(
             $("#exp-date").mask("99/9999");
         });
 
-        // Cuando se clickee el button de id next, se debe validar la tarjeta
+        // Cortar desde acá
 
-        $("#next").click(function(){
-
-            var param = {
+            var paramCard = {
                 "number": $('#card-num').val(),
                 "exp_date": Utils.convertExpirationDate($('#select_expiration_month').val(), $('#select_expiration_year').val()),
                 "sec_code": $('#security-code').val()
@@ -38,22 +37,28 @@ require(
             var callback = {
                 success: function(result) {
 
-                    window.alert("Los datos de la tarjeta son " + (result.valid == true ? "" : "in") + "correctos");
+                    if (!result.valid) {
+
+                        window.alert("Los datos de la tarjeta son incorrectos");
+                    } else {
+
+                        document.location.href = Utils.getUrl("confirmation.html", paramCard);
+                    }
                 }
             }
 
+            api.booking.validateCreditCard(callback, paramCard);
+
+        // Hasta acá
+
             console.log(param);
-            api.booking.validateCreditCard(callback, param);
-
-            // document.location.href = Utils.getUrl("flights.html", setAttrs());
-        });
-            var param = $.url().param();
-
             /* Passengers */
 
-            addPassengers("Adultos", Number(param["adults"]));
-            addPassengers("Menores", Number(param["children"]));
-            addPassengers("Infantes", Number(param["infants"]));
+            var n_adults = Number(param["adults"]);
+            var n_children = Number(param["children"]);
+            var n_infants = Number(param["infants"]);
+
+            addPassengers(n_adults, n_children, n_infants);
 
             current_year = new Date().getFullYear();
 
@@ -90,19 +95,40 @@ require(
                 }));
             }
 
+            function addPassengers(n_adults, n_children, n_infants) {
 
-            function addPassengers(title, n) {
+                var n_total = n_adults + n_children + n_infants;
 
-                if (n == 0) return;
-
-                ($('#pass-ctn').append(payment_title_tmp({"title": title}))).append(payment_data_passenger_tmp({}));
-
-                while(--n) {
-
-                    ($('#pass-ctn').append(payment_data_passenger_tmp({})));
-                }
+                addPassengersByType(n_adults, n_total, "adults", "Adultos");
+                addPassengersByType(n_children, n_total, "children", "Menores");
+                addPassengersByType(n_infants, n_total, "infants", "Infantes");
             }
 
+            function addPassengersByType(n, n_total, type, title) {
+
+                for (var i = 0, count = 0; count < n && i < n_total; i++) {
+
+                    if (param["type-" + i] == type) {
+
+                        console.log(i);
+                        var attrs = {
+
+                            'passengerName': param["name-" + i],
+                            'passengerLastName': param["surname-" + i],
+                            'passengerGender': param["gender-" + i],
+                            'passengerBirthDate': param["birth-" + i]
+                        };
+
+                       if (count++ == 0) {
+
+                            ($('#pass-ctn').append(payment_title_tmp({"title": title}))).append(payment_data_passenger_tmp(attrs));
+                        } else {
+
+                            ($('#pass-ctn').append(payment_data_passenger_tmp(attrs)));
+                        }
+                    }
+                }
+            }
     }
 );
 
