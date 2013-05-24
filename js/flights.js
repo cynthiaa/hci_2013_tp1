@@ -86,9 +86,9 @@ require(
 
 	var airlineToAirlineLink = function(airline) { return Handlebars.compile("{{Link 'img/airlines/" + airline + ".png'}}"); }
 
-    var showFlights = function(form, page) {
+    var showFlights= function(form, page) {
 
-        for(var i = 0; i < page.length ; i++) {
+        for(var i=0; i<page.length ; i++) {
 
     	    var airlineLink= airlineToAirlineLink(page[i].airlineId);
 
@@ -101,7 +101,7 @@ require(
 				"flightClass": convertCabinType(page[i].cabinType),
 				"flightStopovers": page[i].stopovers.length,
 				"flightDuration": page[i].duration + " horas",
-				"flightTotal": "U$S " + page[i].pricing.total.total
+				"flightTotal": page[i].pricing.total.total
 			}));
 			form.find(".airline-image").eq(i).append(tmp_img({"img_src" : airlineLink}));
 		}
@@ -128,8 +128,7 @@ require(
 		if(!oneWay)
 			$(".inbound form").remove();
 		$(".outbound form").remove();
-		var flights= { "inbound": inbound, "outbound": outbound }
-		return flights;
+		return { "inbound": inbound, "outbound": outbound };
 	}
 
 	var refreshPageFooting= function() {
@@ -142,7 +141,7 @@ require(
 		if(!oneWay)
 			inTotal= parseFloat($(".inbound .flight-radio input:checked").attr("data-total"));
 		outTotal= parseFloat($(".outbound .flight-radio input:checked").attr("data-total"));
-		$(".summary div").text(("Total: U$S " + (inTotal + outTotal)).substring(0,20));
+		$(".summary div").text(("Total: U$S " + (inTotal + outTotal)).substring(0,19));
 	}
 
 	var clearFlights = function() {
