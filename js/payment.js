@@ -4,18 +4,22 @@ require(
         "libs/text!../templates/select.html",
         "libs/text!../templates/payment/paymentValidation.html",
         "libs/text!../templates/payment/payment_summary_flights.html",
+        "libs/text!../templates/payment/payment_title.html",
+        "libs/text!../templates/payment/payment_data_passenger.html",
         "libs/utils",
         "libs/jquery.maskedinput",
         "libs/domReady"
     ],
 
-    function(payment_html, select_html, payment_validation_html, payment_summary_flights_html) {
+    function(payment_html, select_html, payment_validation_html, payment_summary_flights_html, payment_title_html, payment_data_passenger_html) {
 
         Utils.init();
         Utils.make_non_menu_html(payment_html, payment_validation_html);
 
         var api = new API();
         var payment_summary_flights_tmp = Handlebars.compile(payment_summary_flights_html);
+        var payment_title_tmp = Handlebars.compile(payment_title_html);
+        var payment_data_passenger_tmp = Handlebars.compile(payment_data_passenger_html);
 
         jQuery(function($) {
             $("#exp-date").mask("99/9999");
@@ -84,7 +88,6 @@ require(
                     "flightDuration": param[prefix + "flightDuration"],
                     "flightTotal": param[prefix + "flightTotal"],
                 }));
-console.log("hola");
             }
 
 
@@ -92,11 +95,11 @@ console.log("hola");
 
                 if (n == 0) return;
 
-                // ($('#pass-ctn').append(passenger_title_tmp({"title": title}))).append(passenger_data_tmp({}));
+                ($('#pass-ctn').append(payment_title_tmp({"title": title}))).append(payment_data_passenger_tmp({}));
 
                 while(--n) {
 
-                    ($('#pass-ctn').append(passenger_data_tmp({})));
+                    ($('#pass-ctn').append(payment_data_passenger_tmp({})));
                 }
             }
 
