@@ -99,7 +99,7 @@ require(
 
 	var airlineToAirlineLink = function(airline) { return Handlebars.compile("{{Link 'img/airlines/" + airline + ".png'}}"); }
 
-    var showFlights= function(form, page) {
+    var showFlights= function(form, page, type) {
 
         for(var i=0; i<page.length ; i++) {
 
@@ -114,7 +114,7 @@ require(
 				"flightStopovers": page[i].stopovers.length,
 				"flightDuration": page[i].duration + " horas",
 				"flightTotal": page[i].pricing.total.total,
-				"buttonValue": createUrl(page[i])
+				"buttonValue": createUrl(page[i], type)
 			}));
 
 			form.find(".airline-image").eq(i).append(tmp_img({"img_src" : airlineLink}));
@@ -167,11 +167,11 @@ require(
 	var refreshPage= function() {
 		clearFlights();
 		if(!oneWay) {
-			showFlights($(".inbound form"), flights.inbound[inpagenum]);
+			showFlights($(".inbound form"), flights.inbound[inpagenum], "inbound");
 			$(".inbound .flight-radio input").first().prop('checked', 'checked');
 			$(".inbound-pages .page-number").val(inpagenum +1);
 		}
-		showFlights($(".outbound form"), flights.outbound[outpagenum]);
+		showFlights($(".outbound form"), flights.outbound[outpagenum], "outbound");
 		$(".outbound .flight-radio input").first().prop('checked', 'checked');
 		$(".outbound-pages .page-number").val(outpagenum +1);
 		refreshTotals();
@@ -292,25 +292,48 @@ require(
 
     $("#continue").click(function(){
 
-        document.location.href = $(".outbound .flight-radio input:checked").val();
-        // console.log(setAttrs());
+        if (oneWay) {
+
+            document.location.href = $(".outbound .flight-radio input:checked").val();
+        } else {
+
+            document.location.href = concatUrls($(".outbound .flight-radio input:checked").val(),
+                                                $(".inbound .flight-radio input:checked").val());
+
+
+        }
+        console.log($(".outbound .flight-radio input:checked").val());
+        console.log($(".inbound .flight-radio input:checked").val());
     });
 
+    function concatUrls(url1, url2) {
 
-    function createUrl(data) {
+        url2 = url2.split("?");
+
+        return url1 + "&" + url2[1];
+
+    }
+
+    function createUrl(data, type) {
+
+        return getUrl(data, (type == "inbound" ? "ret" : ""));
+    }
+
+    function getUrl(data, string) {
 
         var attrs = new Array();
 
-		attrs["departureCity"] = data.departure.cityName;
-		attrs["arrivalCity"] = data.arrival.cityName;
-        attrs["departureTime"] = convertDate(data.departure.date);
-        attrs["arrivalTime"] = convertDate(data.arrival.date);
-        attrs["flightClass"] = convertCabinType(data.cabinType);
-        attrs["flightStopovers"] = data.stopovers.length;
-        attrs["flightDuration"] = data.duration + " horas";
-        attrs["flightTotal"] = data.pricing.total.total;
+		attrs[string + "departureCity"] = data.departure.cityName;
+		attrs[string + "arrivalCity"] = data.arrival.cityName;
+        attrs[string + "departureTime"] = convertDate(data.departure.date);
+        attrs[string + "arrivalTime"] = convertDate(data.arrival.date);
+        attrs[string + "flightClass"] = convertCabinType(data.cabinType);
+        attrs[string + "flightStopovers"] = data.stopovers.length;
+        attrs[string + "flightDuration"] = data.duration + " horas";
+        attrs[string + "flightTotal"] = data.pricing.total.total;
 
-        return Utils.getUrl("passengers.html", Utils.jsonConcat(attrs, param));
+        return Utils.getUrl("passengers.html",
+                (string == "ret" ? attrs : Utils.jsonConcat(attrs, param)));
     }
 });
 
