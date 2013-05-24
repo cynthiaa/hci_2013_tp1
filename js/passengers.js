@@ -47,7 +47,10 @@ require([
 
             $("#continue").click(function(){
 
-                document.location.href = Utils.getUrl(concat(param, json));
+                var json = makeJson();
+
+                console.log(concat(param, json));
+                // document.location.href = Utils.getUrl(concat(param, json));
             });
 
             function showData(type) {
