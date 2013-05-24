@@ -37,6 +37,7 @@ require(
 	var inTotal= 0;
 	var outTotal= 0;
     var flights;
+    var missingFlights = false;
 
     var paginate = function(arr, pagesize) {
     	var aux = new Array;
@@ -53,27 +54,44 @@ require(
 		var outbound= new Array;
 		var aux;
 
-		for (var i = 0; i < flightsArray.length; i++) {
+		if(flightsArray !== undefined) {
 
-			if (flightsArray[i].hasOwnProperty('inboundRoutes') || oneWay) {
+            for (var i = 0; i < flightsArray.length; i++) {
 
-			    aux = inbound.push(flightsArray[i].inboundRoutes[0].segments[0]);
-				inbound[aux-1].pricing = flightsArray[i].price;
-			} else {
+                if (flightsArray[i].hasOwnProperty('inboundRoutes') || oneWay) {
 
-				aux = outbound.push(flightsArray[i].outboundRoutes[0].segments[0]);
-				outbound[aux-1].pricing = flightsArray[i].price;
-	        }
-		}
+                    aux = inbound.push(flightsArray[i].inboundRoutes[0].segments[0]);
+                    inbound[aux-1].pricing = flightsArray[i].price;
+                } else {
+
+                    aux = outbound.push(flightsArray[i].outboundRoutes[0].segments[0]);
+                    outbound[aux-1].pricing = flightsArray[i].price;
+                }
+            }
+        }
 
 		if (!oneWay) {
 
+            if(inbound[0] !== undefined) {
+
 		    inbound = paginate(inbound, 5);
+		    } else {
+
+                missingFlights = true;
+				$(".inbound form").append("<span> Su busqueda obtuvo 0 vuelos de vuelta, lo sentimos mucho. </span>");
+            }
         }
 
-		outbound = paginate(outbound, 5);
+		if(outbound[0] !== undefined) {
 
-	    return flights = {"inbound": inbound, "outbound": outbound }
+		    outbound = paginate(outbound, 5);
+        } else {
+
+            missingFlights = true;
+			$(".outbound form").append("<span> Su busqueda obtuvo 0 vuelos de ida, lo sentimos mucho. </span>");
+        }
+
+	    return flights = {"inbound": inbound, "outbound": outbound };
     }
 
 	var airlineToAirlineLink = function(airline) {
@@ -87,6 +105,7 @@ require(
 
     	    var airlineLink= airlineToAirlineLink(page[i].airlineId);
 
+			var selectionValue= $.param(page[i]);
             $(form).append(flights_data_tmp({
 				"departureCity": page[i].departure.cityName,
 				"arrivalCity": page[i].arrival.cityName,
@@ -126,7 +145,11 @@ require(
 
 	var refreshTotals= function() {
 
-		inTotal = $(".inbound .flight-radio input[checked='checked']").data-total.val();
+		if(!oneWay) {
+
+		    inTotal = $(".inbound .flight-radio input[checked='checked']").data-total.val();
+        }
+
 		outTotal = $(".outbound .flight-radio input[checked='checked']").data-total.val();
 		$(".navigation-bar span").text("Total: U$S" + (inTotal + outTotal));
 	}
@@ -142,6 +165,7 @@ require(
 	}
 
 	var refreshPage= function() {
+
 		clearFlights();
 
 		if(!oneWay) {
@@ -186,15 +210,16 @@ require(
 
 		param.sort_key = $.trim($("#selectionOrder :selected").val().match(".* ")[0]);
 		param.sort_order = $.trim($("#selectionOrder :selected").val().match(" .*")[0]);
-		getFlights();
+
+		if (!missingFlights) getFlights();
 	});
 
-	$(".inbound .flight-radio input").change(refreshTotals());
-
-	$(".inbound .flight-radio input").change(function() {
-		outTotal = this.data-total.val();
-		$(".navigation-bar span").val( "Total: U$S" + (inTotal + outTotal));
+	$("div").click(function() {
+        if (!missingFlights) {
+			refreshTotals();
+        }
 	});
+
 
 	$(".inbound-prev").click(function(){
 		if (inpagenum > 0) {
@@ -243,21 +268,11 @@ require(
 
 	getFlights();
 
-    $("#continue").click(function(){
-
-        document.location.href = Utils.getUrl("passengers.html", setAttrs());
-    });
-
-
-    function setAttrs() {
-
-        return param;
-    }
-
     function generateLayoutOneWay() {
 
         if (param.ret_date == "null") {
-			oneWay= true;
+
+			oneWay = true;
             $(".inbound").hide();
             $("#flight-header-ret").hide();
             $(".flight-wrapper").css("width", "100%");
