@@ -42,10 +42,10 @@ require([
 				document.location.href = newUrl;
 			});
 
-			$("#continue").click(function(){
+			/*$("#continue").click(function(){
 
 				document.location.href = Utils.getUrl("payment.html",Utils.jsonConcat(param, makeJson()));
-			});
+			});*/
 
             showData("Ida");
 

@@ -123,7 +123,7 @@ define(
 				var validation_tmp = Handlebars.compile(validation);
 
                 $("body").append(layout_tmp({header: header_tmp(), main_body: main_tmp()}));
-				// $("body").append(validation_tmp);
+				$("body").append(validation_tmp);
 
             },
 
