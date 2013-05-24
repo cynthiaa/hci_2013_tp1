@@ -81,7 +81,12 @@ require([
 
                 while(--n) {
 
-                    ($('#pass-ctn').append(passenger_data_tmp({})));
+                    ($('#pass-ctn').append(passenger_data_tmp({
+                    	"name": "name" + n,
+                    	"lastname": "lastname" + n,
+                    	"birth": "birth" + n,
+                    	"gender": "gender" + n
+                    })));
                 }
             }
 	        function constructFrom(index, str, json) {
