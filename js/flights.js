@@ -27,6 +27,8 @@ require(
 
     var inpagenum= 0;
     var outpagenum= 0;
+	var inTotal= 0;
+	var outTotal= 0;
     var flights;
 
     var paginate = function(arr, pagesize) {
@@ -53,8 +55,8 @@ require(
 		}
 
 		if(!oneWay)
-			inbound= paginate(inbound, 2);
-		outbound= paginate(outbound, 2);
+			inbound= paginate(inbound, 5);
+		outbound= paginate(outbound, 5);
 
 	    var flights= { "inbound": inbound, "outbound": outbound }
 	    return flights;
@@ -96,6 +98,12 @@ require(
 			$(".inbound-pages span").text("/" + flights.inbound.length);
 		$(".outbound-pages span").text("/" + flights.outbound.length);
 	}
+	
+	var refreshTotals= function() {
+		inTotal= $(".inbound .flight-radio input[checked= 'checked']").data-total.val();
+		outTotal= $(".outbound .flight-radio input[checked= 'checked']").data-total.val();
+		$(".navigation-bar span").text( "Total: U$S" +(inTotal + outTotal));
+	}
 
 	var clearFlights = function() {
 		if(!oneWay)
@@ -113,6 +121,7 @@ require(
 		showFlights($(".outbound form"), flights.outbound[outpagenum]);
 		$(".outbound .flight-radio input").first().prop('checked', 'checked');
 		$(".outbound-pages .page-number").val(outpagenum +1);
+		refreshTotals();
 	}
 
 	var clearPageNums = function() {
@@ -141,6 +150,15 @@ require(
 		param.sort_order = $.trim($("#selectionOrder :selected").val().match(" .*")[0]);
 		getFlights();
 	});
+	
+	$(".inbound .flight-radio input").change(refreshTotals());
+	
+	$(".inbound .flight-radio input").change(function() {
+		outTotal= this.data-total.val(); 
+		$(".navigation-bar span").val( "Total: U$S" +(inTotal + outTotal));
+	}
+	
+	}
 
 	$(".inbound-prev").click(function(){
 		if(inpagenum>0) {
