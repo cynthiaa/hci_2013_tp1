@@ -157,8 +157,6 @@ require(
 		outTotal= this.data-total.val(); 
 		$(".navigation-bar span").val( "Total: U$S" +(inTotal + outTotal));
 	}
-	
-	}
 
 	$(".inbound-prev").click(function(){
 		if(inpagenum>0) {
