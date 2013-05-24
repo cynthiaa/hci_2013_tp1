@@ -22,6 +22,7 @@ require(
 	var flights_data_tmp = Handlebars.compile(flights_data_html);
 	var tmp_img = Handlebars.compile(img_html);
 	var oneWay = false;
+	var paramsFlight;
 
     var param = $.url().param();
 	param.sort_key= $.trim($("#selectionOrder :selected").val().match(".* ")[0]);
@@ -279,12 +280,18 @@ require(
 
     $("#continue").click(function(){
 
-        document.location.href = Utils.getUrl("passengers.html", setAttrs());
+        console.log(setAttrs());
     });
 
     function setAttrs() {
 
-        return param;
+        var inbound = $(".inbound .flight-radio input:checked").val();
+        var outbound = $(".outbound .flight-radio input:checked").val();
+
+        console.log(inbound);
+        console.log(outbound);
+
+        return Utils.jsonConcat(param, $(".inbound .flight-radio input:checked").val());
     }
 });
 
