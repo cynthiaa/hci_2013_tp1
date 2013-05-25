@@ -1,3 +1,5 @@
+var types = {'adults' : 'Adultos', 'children': 'Menores', 'infants': 'Infantes'};
+
 require([
         "libs/text!../templates/passengers/passengers.html",
         "libs/text!../templates/passengers/passenger_data.html",
@@ -22,15 +24,19 @@ require([
 
 	        var api = new API();
             var param = $.url().param();
+            var n_adults = Number(param["adults"]);
+            var n_children = Number(param["children"]);
+            var n_infants = Number(param["infants"]);
 
-            /* Passengers */
+            if (param["gender-0"] == "female" || param["gender-0"] == "male") {
 
-            addPassengers("Adultos", Number(param["adults"]));
-            addPassengers("Menores", Number(param["children"]));
-            addPassengers("Infantes", Number(param["infants"]));
+                addDataPassengers(param, n_adults + n_children + n_infants);
+            } else {
 
-            current_year = new Date().getFullYear();
-
+                addPassengers("Adultos", n_adults);
+                addPassengers("Menores", n_children);
+                addPassengers("Infantes", n_infants);
+            }
             Utils.dateMask("input.birth");
 
 
@@ -73,6 +79,29 @@ require([
 
             }
 
+            function addDataPassengers(param, n) {
+
+                var flags = {'adults' : false, 'children': false, 'infants': false};
+
+                for (var i = 0; i < n; i++) {
+
+                    var type = param["type-" + i];
+
+                    if (!flags[type]) {
+
+                        $('#pass-ctn').append(passenger_title_tmp({"title": types[type]}));
+                        flags[type] = true;
+                    }
+
+                    $('#pass-ctn').append(passenger_data_tmp({id: i}));
+
+                    $('#' + i + ' input.name').val(param["name-" + i]);
+                    $('#' + i + ' input.surname').val(param["surname-" + i]);
+                    $('#' + i + ' input.birth').val(param["birth-" + i]);
+                    $('#' + i + ' select.gender').val(param["gender-" + i]);
+                }
+            }
+
             function addPassengers(title, n) {
 
                 if (n == 0) return;
@@ -89,6 +118,7 @@ require([
                     })));
                 }
             }
+
 	        function constructFrom(index, str, json) {
 	            for(var i=index; i< (index + Number(param[str])) ;i++) {
 					$(json).prop("name-" + i , $(".name").eq(i).val());

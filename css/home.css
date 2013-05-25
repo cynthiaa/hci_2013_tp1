@@ -35,6 +35,7 @@ div.featured.panel {
     bottom: 0;
     opacity: 0.6;
     filter: alpha(opacity=60);
+    background: black;
 }
 
 #carousel-frame-on .carousel-item > div > h4 {
