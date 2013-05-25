@@ -18,6 +18,6 @@ var validator = new FormValidator('contact-form', [{
 			SELECTOR_ERRORS.append(errors[i].message + '<br />');
 		}
         SELECTOR_ERRORS.fadeIn(200);
-	}  
+	} 
 });
 

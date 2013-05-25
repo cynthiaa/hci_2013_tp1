@@ -111,7 +111,6 @@ var validator = new FormValidator('passenger-form', [{
 	display : 'sexo',
 	rules : 'required'
 }], function(errors, e) {
-	console.log("CACONA");
 	var SELECTOR_ERRORS = $('.passenger-error');
 	if (errors.length > 0) {
 		SELECTOR_ERRORS.empty();
