@@ -20,8 +20,8 @@ require(
 
         for (var i = 0; i <= 24; i++) {
 
-            $("#select_departure_time").append(select_tmp({"value": i, "name": i + ":00"}));
-            $("#select_return_time").append(select_tmp({"value": i, "name": i + ":00"}));
+            $("#select_departure_time").append(select_tmp({"value": i, "name": ((i < 10) ? "0":"") + i + ":00"}));
+            $("#select_return_time").append(select_tmp({"value": i, "name": ((i < 10) ? "0":"") + i + ":00"}));
         }
 
         for (var i = 1; i <= 8; i++) {
@@ -131,7 +131,9 @@ require(
             var currentTime = $("#" + id).val();
             var newTime = Number(currentTime) + offset;
 
-            return ((newTime < 0 || newTime > 24) ? currentTime : newTime) + ":00";
+            return ((newTime < 0 || newTime > 24) ?
+                    (((currentTime < 10) ? "0" : "") + currentTime)
+                     : (((newTime < 10) ? "0" : "")) + ":00");
 
         }
     }
