@@ -11,10 +11,6 @@ var validate = new function() {
 		name: 'depart',
 		display:'partida',
 		rules: 'required'
-		},{
-		name: 'return',
-		display: 'regreso',
-		rules: 'required'
 		}], function(errors, e) {
 
 		if (errors.length > 0) {

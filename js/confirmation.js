@@ -1,16 +1,24 @@
-require(
-    [
-        "libs/text!../templates/confirmation/confirmation.html",
-        "libs/utils",
-        "libs/jquery.maskedinput",
-        "libs/domReady"
-    ],
+require(["libs/text!../templates/confirmation/confirmation.html", "libs/text!../templates/passengers/passenger_summary.html", "libs/text!../templates/payment/payment_summary.html", "libs/utils", "libs/jquery.maskedinput", "libs/domReady"], function(confirmation_html, passenger_summary_html, payment_summary_html) {
 
-    function(confirmation_html) {
+	Utils.init();
+	Utils.make_non_menu_html(confirmation_html);
+	
+	var param = $.url().param();
+	
+	var passenger_summary_tmp = Handlebars.compile(passenger_summary_html);
+	var paymeny_summary_tmp = Handlebars.compile(paymeny_summary_html);
 
-        Utils.init();
-        Utils.make_non_menu_html(confirmation_html);
-
-    }
-);
+	$("#summary").append(payment_summary_tmp({
+		"type" : "flightTitle",
+		"title" : type,
+		"departureCity" : param[prefix + "departureCity"],
+		"arrivalCity" : param[prefix + "arrivalCity"],
+		"departureTime" : param[prefix + "departureTime"],
+		"arrivalTime" : param[prefix + "arrivalTime"],
+		"flightClass" : param[prefix + "flightClass"],
+		"flightStopovers" : param[prefix + "flightStopovers"],
+		"flightDuration" : param[prefix + "flightDuration"],
+		"flightTotal" : param[prefix + "flightTotal"],
+	}));
+});
 
