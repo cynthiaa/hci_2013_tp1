@@ -37,12 +37,13 @@ require(["libs/text!../templates/confirmation/confirmation.html", "libs/text!../
 				"title" : title
 			})));
 
-		while (--n) {($('.summary').append(passenger_data_tmp({
+		while (n) {($('.summary').append(passenger_data_tmp({
 					"name" : "name" + n,
 					"lastname" : "lastname" + n,
 					"birth" : "birth" + n,
 					"gender" : "gender" + n
 				})));
+			n--;
 		}
 	}
 
