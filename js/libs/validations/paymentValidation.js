@@ -1,6 +1,6 @@
 var validator = new formvalidator('payment-form', [{
     name: 'card_num',
-    display: 'numero de tarjeta',    
+    display: 'numero de tarjeta',
     rules: 'required|max_legth(16)|numeric'
 }, {
     name: 'exp-date',
@@ -24,7 +24,7 @@ var validator = new formvalidator('payment-form', [{
 }, {
     name: 'email',
     rules: 'required|valid_email'
-}], function(errors, event) {
+}], function(errors, e) {
 	if (errors.length > 0) {
 		var selector_errors = $('.payment-error');
 		for (var i = 0, errorlength = errors.length; i < errorlength; i++) {
@@ -32,7 +32,7 @@ var validator = new formvalidator('payment-form', [{
 		}
 		selector_errors.fadein(200);
 	} else {
-		utils.stopevent(e);
+		Utils.stopevent(e);
 		/*
 		var param = {
                 "number": $('#card-num').val(),
@@ -48,7 +48,7 @@ var validator = new formvalidator('payment-form', [{
 
 		console.log(param);
 		api.booking.validatecreditcard(callback, param);
-           */ 
-		window.location.href = utils.geturl("confirmation.html", utils.setattrs());
+           */
+		window.location.href = Utils.geturl("confirmation.html", param);
 	}
 });
