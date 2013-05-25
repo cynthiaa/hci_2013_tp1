@@ -43,15 +43,13 @@ require([
 			$("#back").click(function(){
 
 				var oldUrl = $(location).attr('href');
-				var auxUrl = oldUrl.split("lang=es&from=");
-				var newUrl = Utils.getUrl("flights.html", {}) + "lang=es&from=" + auxUrl[1];
+				var auxUrl = oldUrl.split("&from=");
+				var newUrl = Utils.getUrl("flights.html", {}) + "&from=" + auxUrl[1];
 				document.location.href = newUrl;
 			});
 
-			/*$("#continue").click(function(){
-
-				document.location.href = Utils.getUrl("payment.html",Utils.jsonConcat(param, makeJson()));
-			});*/
+			document.location.href = Utils.getUrl("payment.html", Utils.jsonConcat(param, makeJson()));
+			});
 
             showData("Ida");
 
