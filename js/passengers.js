@@ -108,7 +108,7 @@ require([
 
                 ($('#pass-ctn').append(passenger_title_tmp({"title": title})));
 
-                while(--n) {
+                while(n) {
 
                     ($('#pass-ctn').append(passenger_data_tmp({
                     	"name": "name" + n,
@@ -116,6 +116,7 @@ require([
                     	"birth": "birth" + n,
                     	"gender": "gender" + n
                     })));
+                    n--;
                 }
             }
 
