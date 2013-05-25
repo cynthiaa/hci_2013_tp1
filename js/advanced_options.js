@@ -133,7 +133,7 @@ require(
 
             return ((newTime < 0 || newTime > 24) ?
                     (((currentTime < 10) ? "0" : "") + currentTime)
-                     : (((newTime < 10) ? "0" : "")) + ":00";
+                     : (((newTime < 10) ? "0" : "")) + ":00");
 
         }
     }
