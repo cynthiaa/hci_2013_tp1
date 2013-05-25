@@ -43,13 +43,15 @@ require([
 			$("#back").click(function(){
 
 				var oldUrl = $(location).attr('href');
-				var auxUrl = oldUrl.split("&from=");
-				var newUrl = Utils.getUrl("flights.html", {}) + "&from=" + auxUrl[1];
+				var auxUrl = oldUrl.split("lang=es&from=");
+				var newUrl = Utils.getUrl("flights.html", {}) + "lang=es&from=" + auxUrl[1];
 				document.location.href = newUrl;
 			});
 
-			document.location.href = Utils.getUrl("payment.html", Utils.jsonConcat(param, makeJson()));
-			});
+			/*$("#continue").click(function(){
+
+				document.location.href = Utils.getUrl("payment.html",Utils.jsonConcat(param, makeJson()));
+			});*/
 
             showData("Ida");
 
@@ -70,7 +72,7 @@ require([
                     "departureTime": param[prefix + "departureTime"],
                     "arrivalTime": param[prefix + "arrivalTime"],
                     "flightClass": param[prefix + "flightClass"],
-                    "flightStopovers": param[prefix + "flightStopovers"],
+                    "flightStopovers": param[prefix + "flightStopovers"], 
                     "flightDuration": param[prefix + "flightDuration"],
                     "flightTotal": param[prefix + "flightTotal"],
                 }));
@@ -104,7 +106,7 @@ require([
 
                 if (n == 0) return;
 
-                ($('#pass-ctn').append(passenger_title_tmp({"title": title}))).append(passenger_data_tmp({}));
+                ($('#pass-ctn').append(passenger_title_tmp({"title": title})));
 
                 while(--n) {
 
