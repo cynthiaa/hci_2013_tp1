@@ -28,16 +28,15 @@ var validator = new FormValidator('side-form', [{
         Utils.stopEvent(e);
         window.location.href = Utils.getUrl("flights.html", Utils.setAttrs());
     }
-    errors = new Array();
 });
 
 var validator2 = new FormValidator('advanced-form', [{
 	name: 'min-price',
-	display:'precio minimo',
+	display:'Precio minimo',
 	rules: 'numeric'
 	}, {
 	name: 'max-price',
-	display: 'precio maximo',
+	display: 'Precio maximo',
 	rules: 'numeric'
 	}], function(errors, e) {
 
@@ -46,12 +45,11 @@ var validator2 = new FormValidator('advanced-form', [{
 	
 	if (errors.length > 0) {
 		for (var i = 0; i < errors.length; i++)
-		    $(".error").append(errors[i].message + '<br />');
+		    $(".error").append(errors[i].message + '<br/>');
 
 		SELECTOR_ERRORS.fadeIn(200);
 	} else {
         Utils.stopEvent(e);
         $("#search").submit();
     }
-    errors = new Array();
 });

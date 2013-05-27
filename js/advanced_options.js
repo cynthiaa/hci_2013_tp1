@@ -89,28 +89,28 @@ require(["libs/text!../templates/advanced_options/advanced_options.html", "libs/
 
 	// api.misc.getCurrencies(callbacks, param);
 
-	$("#search_adv_opt").click(function() {
-
-		// var citiesAndAirports = Utils.getCitiesAndAirports();
-		var attrs = new Array();
-
-		attrs["airline_id"] = airlines[1][airlines[0].indexOf($("#airline").val())];
-
-		checkAndSetPrice("min_price", attrs);
-		checkAndSetPrice("max_price", attrs);
-
-		checkAndSetValue("stopovers", "select_stopovers", attrs);
-		checkAndSetValue("cabin_type", "class", attrs);
-
-		setTimes("dep_time", "select_departure_time", attrs);
-
-		if ($("#return").is(":visible")) {
-			setTimes("ret_time", "select_return_time", attrs);
-		}
-
-		// console.log(attrs)
-		document.location.href = Utils.getUrl("flights.html", Utils.setAdvAttrs(attrs));
-	});
+	// $("#search_adv_opt").click(function() {
+// 
+		// // var citiesAndAirports = Utils.getCitiesAndAirports();
+		// var attrs = new Array();
+// 
+		// attrs["airline_id"] = airlines[1][airlines[0].indexOf($("#airline").val())];
+// 
+		// checkAndSetPrice("min_price", attrs);
+		// checkAndSetPrice("max_price", attrs);
+// 
+		// checkAndSetValue("stopovers", "select_stopovers", attrs);
+		// checkAndSetValue("cabin_type", "class", attrs);
+// 
+		// setTimes("dep_time", "select_departure_time", attrs);
+// 
+		// if ($("#return").is(":visible")) {
+			// setTimes("ret_time", "select_return_time", attrs);
+		// }
+// 
+		// // console.log(attrs)
+		// document.location.href = Utils.getUrl("flights.html", Utils.setAdvAttrs(attrs));
+	// });
 
 	function checkAndSetPrice(attrs_name, attrs) {
 
