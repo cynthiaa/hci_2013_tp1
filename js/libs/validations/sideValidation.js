@@ -10,12 +10,17 @@ var validate = new function() {
 		}, {
 		name: 'depart',
 		display:'partida',
-		rules: 'required'
-		},{
+		rules: 'required|callback_check_date_range'
+		}, {
 		name: 'return',
 		display: 'regreso',
 		rules: 'required'
 		}], function(errors, e) {
+			validator.registerCallback(check_date_range, function(value){
+				console.log("12" > 12);
+				console.log(12 > 12);
+			});
+			
 
 		var SELECTOR_ERRORS = $('.error');
 		SELECTOR_ERRORS.empty();

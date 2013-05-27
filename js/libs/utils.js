@@ -1,297 +1,304 @@
 var Utils;
 var citiesAndAirports;
 
-define(
-    [
-        "libs/text!../../templates/header.html",
-        "libs/text!../../templates/layout.html",
-        "libs/text!../../templates/layout_only_top.html",
-        "libs/text!../../templates/select.html",
-        "libs/moment",
-        "libs/i18n",
-        "libs/handlebars",
-        "jquery",
-        "libs/purl",
-        "libs/api",
-        "libs/jquery.maskedinput",
-        "libs/ui/jquery-ui"
-    ],
-    function(header_html, layout_html, layout_only_top_html, select_html, moment) {
+define(["libs/text!../../templates/header.html", "libs/text!../../templates/layout.html", "libs/text!../../templates/layout_only_top.html", "libs/text!../../templates/select.html", "libs/moment", "libs/i18n", "libs/handlebars", "jquery", "libs/purl", "libs/api", "libs/jquery.maskedinput", "libs/ui/jquery-ui"], function(header_html, layout_html, layout_only_top_html, select_html, moment) {
 
-        // moment.utc("20-09-1991", "DD-MM-YYYY").format("YYYY-MM-DD");
+	// moment.utc("20-09-1991", "DD-MM-YYYY").format("YYYY-MM-DD");
 
-        Utils = {
+	Utils = {
 
-            '_isEmpty': function(obj) {
+		'_isEmpty' : function(obj) {
 
-                for (var i in obj) {
+			for (var i in obj) {
 
-                    if (i && i.length) {
+				if (i && i.length) {
 
-                        return false;
-                    }
-                }
+					return false;
+				}
+			}
 
-                return true;
-            },
+			return true;
+		},
 
-            '_urlAddParam': function(url, key, value) {
+		'_urlAddParam' : function(url, key, value) {
 
-                if (Utils._isEmpty($.url(url).param())) {
+			if (Utils._isEmpty($.url(url).param())) {
 
-                    if (!url || url.slice(-1) != "?") url += "?";
+				if (!url || url.slice(-1) != "?")
+					url += "?";
 
-                } else {
+			} else {
 
-                    if (url.slice(-1) != "&") url += "&";
-                }
+				if (url.slice(-1) != "&")
+					url += "&";
+			}
 
-                return url + key + "=" + value;
-            },
+			return url + key + "=" + value;
+		},
 
-            'getUrl': function(url, attrs, lang) {
+		'getUrl' : function(url, attrs, lang) {
 
-                // TODO: Descomentar esta línea para usar links relativos al root
+			// TODO: Descomentar esta línea para usar links relativos al root
 
-                //url = $.url().attr('directory') + url;
+			//url = $.url().attr('directory') + url;
 
-                if (lang || typeof lang == 'undefined') {
+			if (lang || typeof lang == 'undefined') {
 
-                    url = Utils._urlAddParam(url, 'lang', I18n.getLanguage());
-                }
+				url = Utils._urlAddParam(url, 'lang', I18n.getLanguage());
+			}
 
-                for (var prop in attrs) {
+			for (var prop in attrs) {
 
-                    if (prop && prop.length) {
+				if (prop && prop.length) {
 
-                        url = Utils._urlAddParam(url, prop, attrs[prop]);
-                    }
-                }
+					url = Utils._urlAddParam(url, prop, attrs[prop]);
+				}
+			}
 
-                return url;
-            },
+			return url;
+		},
 
-            'make_html': function(template, validation) {
+		'make_html' : function(template, validation) {
 
-                // Make HTML from templates
+			// Make HTML from templates
 
-                var main_tmp = Handlebars.compile(template);
-                var layout_tmp = Handlebars.compile(layout_html);
-                var header_tmp = Handlebars.compile(header_html);
-				var validation_tmp = Handlebars.compile(validation);
-                $("body").append(layout_tmp({header: header_tmp(), main_body: main_tmp()}));
+			var main_tmp = Handlebars.compile(template);
+			var layout_tmp = Handlebars.compile(layout_html);
+			var header_tmp = Handlebars.compile(header_html);
+			var validation_tmp = Handlebars.compile(validation);
+			$("body").append(layout_tmp({
+				header : header_tmp(),
+				main_body : main_tmp()
+			}));
 
-                var select_tmp = Handlebars.compile(select_html);
+			var select_tmp = Handlebars.compile(select_html);
 
-                for (var i = 0; i < 8; i++) {
-                    $('#select_children').append(select_tmp({'value': i, 'name': i}));
-                    $('#select_infants').append(select_tmp({'value': i, 'name': i}));
-                }
+			for (var i = 0; i < 8; i++) {
+				$('#select_children').append(select_tmp({
+					'value' : i,
+					'name' : i
+				}));
+				$('#select_infants').append(select_tmp({
+					'value' : i,
+					'name' : i
+				}));
+			}
 
-                for (var i = 1; i < 8; i++) {
-                    $('#select_adults').append(select_tmp({'value': i, 'name': i}));
-                }
+			for (var i = 1; i < 8; i++) {
+				$('#select_adults').append(select_tmp({
+					'value' : i,
+					'name' : i
+				}));
+			}
 
-                // Date mask
+			// Date mask
 
-                Utils.dateMask("#depart_input");
-                Utils.dateMask("#return_input");
+			Utils.dateMask("#depart_input");
+			Utils.dateMask("#return_input");
 
-                // Init the calendars
+			// Init the calendars
 
-                Utils.initCalendar("depart_input", "depart-calendar");
-                Utils.initCalendar("return_input", "return-calendar");
+			Utils.initCalendar("depart_input", "depart-calendar");
+			Utils.initCalendar("return_input", "return-calendar");
 
-                // Generate Cities and Airports
+			// Generate Cities and Airports
 
-                Utils.generateCitiesAndAirports();
+			Utils.generateCitiesAndAirports();
 
-                // Generate autocomplete
+			// Generate autocomplete
 
-                Utils.generateAutocomplete();
+			Utils.generateAutocomplete();
 
-                $("body").append(validation_tmp);
-           },
+			$("body").append(validation_tmp);
+		},
 
-            'make_non_menu_html': function(template, validation) {
+		'make_non_menu_html' : function(template, validation) {
 
-                // Make HTML from templates
+			// Make HTML from templates
 
-                var main_tmp = Handlebars.compile(template);
-                var layout_tmp = Handlebars.compile(layout_only_top_html);
-                var header_tmp = Handlebars.compile(header_html);
-				var validation_tmp = Handlebars.compile(validation);
+			var main_tmp = Handlebars.compile(template);
+			var layout_tmp = Handlebars.compile(layout_only_top_html);
+			var header_tmp = Handlebars.compile(header_html);
+			var validation_tmp = Handlebars.compile(validation);
 
-                $("body").append(layout_tmp({header: header_tmp(), main_body: main_tmp()}));
-				$("body").append(validation_tmp);
+			$("body").append(layout_tmp({
+				header : header_tmp(),
+				main_body : main_tmp()
+			}));
+			$("body").append(validation_tmp);
 
-            },
+		},
 
-            'init': function() {
+		'init' : function() {
 
-                I18n.init();
+			I18n.init();
 
-                Handlebars.registerHelper('Link', function(url) {
+			Handlebars.registerHelper('Link', function(url) {
 
-                    return Utils.getUrl(url);
-                });
-            },
+				return Utils.getUrl(url);
+			});
+		},
 
-            'convertExpirationDate': function(month, year) {
+		'convertExpirationDate' : function(month, year) {
 
-                return month + year.substring(2);
-            },
+			return month + year.substring(2);
+		},
 
-            'dateMask': function(input) {
+		'dateMask' : function(input) {
 
-                jQuery(function($) {
-                    $(input).mask("99/99/9999");
-                });
-            },
+			jQuery(function($) {
+				$(input).mask("99/99/9999");
+			});
+		},
 
-            'initCalendar': function(input, button) {
+		'initCalendar' : function(input, button) {
 
-            Calendar.setup({"inputField": input, "ifFormat": "%d/%m/%Y", "button": button});
-            },
+			Calendar.setup({
+				"inputField" : input,
+				"ifFormat" : "%d/%m/%Y",
+				"button" : button
+			});
+		},
 
-            'generateAutocomplete': function() {
+		'generateAutocomplete' : function() {
 
-                Utils.autocomplete("#from", citiesAndAirports);
-                Utils.autocomplete("#to", citiesAndAirports);
+			Utils.autocomplete("#from", citiesAndAirports);
+			Utils.autocomplete("#to", citiesAndAirports);
 
-            },
+		},
 
-            'generateCitiesAndAirports': function() {
+		'generateCitiesAndAirports' : function() {
 
-                var api = new API();
+			var api = new API();
 
-                citiesAndAirports = new Array();
-                citiesAndAirports[0] = new Array();
-                citiesAndAirports[1] = new Array();
+			citiesAndAirports = new Array();
+			citiesAndAirports[0] = new Array();
+			citiesAndAirports[1] = new Array();
 
-                api.geo.getCities({
+			api.geo.getCities({
 
-                    success: function(result) {
+				success : function(result) {
 
-                    for (var i = 0; i < result.cities.length; i++) {
+					for (var i = 0; i < result.cities.length; i++) {
 
-                        citiesAndAirports[0][i] = result.cities[i].name;
-                        Utils.checkName(i);
-                        citiesAndAirports[1][i] = result.cities[i].cityId;
-                    }
+						citiesAndAirports[0][i] = result.cities[i].name;
+						Utils.checkName(i);
+						citiesAndAirports[1][i] = result.cities[i].cityId;
+					}
 
-                    api.geo.getAirports({
+					api.geo.getAirports({
 
-                        success: function(result) {
+						success : function(result) {
 
-                            var citiesLength = citiesAndAirports[0].length;
+							var citiesLength = citiesAndAirports[0].length;
 
-                            for (var i = 0; i < result.airports.length; i++) {
+							for (var i = 0; i < result.airports.length; i++) {
 
-                                citiesAndAirports[0][i + citiesLength] = result.airports[i].description;
-                                Utils.checkName(i + citiesLength);
-                                citiesAndAirports[1][i + citiesLength] = result.airports[i].airportId;
-                        }
-                    }});
+								citiesAndAirports[0][i + citiesLength] = result.airports[i].description;
+								Utils.checkName(i + citiesLength);
+								citiesAndAirports[1][i + citiesLength] = result.airports[i].airportId;
+							}
+						}
+					});
 
-                }});
-            },
+				}
+			});
+		},
 
-            'checkName': function(i) {
+		'checkName' : function(i) {
 
-                citiesAndAirports[0][i] = citiesAndAirports[0][i].replace("R\uFFFD","Ri");
-                citiesAndAirports[0][i] = citiesAndAirports[0][i].replace("\uFFFD","ñ");
-                citiesAndAirports[0][i] = citiesAndAirports[0][i].replace("&#241;","ñ");
-                citiesAndAirports[0][i] = citiesAndAirports[0][i].replace("�","ñ");
-            },
+			citiesAndAirports[0][i] = citiesAndAirports[0][i].replace("R\uFFFD", "Ri");
+			citiesAndAirports[0][i] = citiesAndAirports[0][i].replace("\uFFFD", "ñ");
+			citiesAndAirports[0][i] = citiesAndAirports[0][i].replace("&#241;", "ñ");
+			citiesAndAirports[0][i] = citiesAndAirports[0][i].replace("�", "ñ");
+		},
 
-            'autocomplete': function(id, citiesAndAirports) {
+		'autocomplete' : function(id, citiesAndAirports) {
 
-                $(id).autocomplete({
-                    source: function(request, response) {
+			$(id).autocomplete({
+				source : function(request, response) {
 
-                        var results = $.ui.autocomplete.filter(citiesAndAirports[0], request.term);
+					var results = $.ui.autocomplete.filter(citiesAndAirports[0], request.term);
 
-                        response(results.slice(0, 10));
-                    },
+					response(results.slice(0, 10));
+				},
 
-                    minLength: "3"
-                });
-            },
+				minLength : "3"
+			});
+		},
 
-            'jsonConcat': function(json1, json2) {
+		'jsonConcat' : function(json1, json2) {
 
-                for (var key in json2) {
+			for (var key in json2) {
 
-                    json1[key] = json2[key];
-                }
+				json1[key] = json2[key];
+			}
 
-                return json1;
-            },
+			return json1;
+		},
 
-            'setAdvAttrs': function(advAttrs) {
+		'setAdvAttrs' : function(advAttrs) {
 
-                var output = {};
+			var output = {};
 
-                output = Utils.jsonConcat(output, advAttrs);
-                output = Utils.jsonConcat(output, Utils.setAttrs());
+			output = Utils.jsonConcat(output, advAttrs);
+			output = Utils.jsonConcat(output, Utils.setAttrs());
 
-                return output;
-            },
+			return output;
+		},
 
-            'setAttrs': function() {
+		'setAttrs' : function() {
 
-                var attrs = new Array();
+			var attrs = new Array();
 
-                attrs["from"] = Utils.getId("#from", citiesAndAirports);
-                attrs["from_name"] = $("#from").val();
-                attrs["to"] = Utils.getId("#to", citiesAndAirports);
-                attrs["to_name"] = $("#to").val();
-                attrs["dep_date"] = Utils.convertDate($("#depart_input").val());
-                attrs["dep_date_input"] = $("#depart_input").val();
-                attrs["ret_date"] = $("#return_input").is(":visible") ? Utils.convertDate($("#return_input").val()) : "null";
-                attrs["ret_date_input"] = $("#return_input").val();
-                attrs["adults"] = $("#select_adults").val();
-                attrs["children"] = $("#select_children").val();
-                attrs["infants"] = $("#select_infants").val();
+			attrs["from"] = Utils.getId("#from", citiesAndAirports);
+			attrs["from_name"] = $("#from").val();
+			attrs["to"] = Utils.getId("#to", citiesAndAirports);
+			attrs["to_name"] = $("#to").val();
+			attrs["dep_date"] = Utils.convertDate($("#depart_input").val());
+			attrs["dep_date_input"] = $("#depart_input").val();
+			attrs["ret_date"] = $("#return_input").is(":visible") ? Utils.convertDate($("#return_input").val()) : "null";
+			attrs["ret_date_input"] = $("#return_input").val();
+			attrs["adults"] = $("#select_adults").val();
+			attrs["children"] = $("#select_children").val();
+			attrs["infants"] = $("#select_infants").val();
 
-                return attrs;
-            },
+			return attrs;
+		},
 
-            'convertDate': function(stringDate) {
+		'convertDate' : function(stringDate) {
+			if (stringDate != null) {
+				var dateRegex = /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/;
+				var dateRegexResult = stringDate.match(dateRegex);
 
-                var dateRegex = /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/;
-                var dateRegexResult = stringDate.match(dateRegex);
+				// return moment.utc(stringDate, "DD-MM-YYYY").format("YYYY-MM-DD");
+				return dateRegexResult[3] + "-" + dateRegexResult[2] + "-" + dateRegexResult[1];
+			}
+		},
 
-                // return moment.utc(stringDate, "DD-MM-YYYY").format("YYYY-MM-DD");
-                return dateRegexResult[3] + "-" + dateRegexResult[2] + "-" + dateRegexResult[1];
-            },
+		'getId' : function(name, citiesAndAirports) {
 
-            'getId': function(name, citiesAndAirports) {
+			return citiesAndAirports[1][citiesAndAirports[0].indexOf($(name).val())];
+		},
 
-                return citiesAndAirports[1][citiesAndAirports[0].indexOf($(name).val())];
-            },
+		'stopEvent' : function(e) {
 
-            'stopEvent': function(e) {
-
-                if (!e)
-                    if (window.event)
-                        e = window.event;
-                    else
-                        return;
-                if (e.cancelBubble != null)
-                    e.cancelBubble = true;
-                if (e.stopPropagation)
-                    e.stopPropagation();
-                if (e.preventDefault)
-                    e.preventDefault();
-                if (window.event)
-                    e.returnValue = false;
-                if (e.cancel != null)
-                    e.cancel = true;
-            }
-
-        }
-    }
-);
+			if (!e)
+				if (window.event)
+					e = window.event;
+				else
+					return;
+			if (e.cancelBubble != null)
+				e.cancelBubble = true;
+			if (e.stopPropagation)
+				e.stopPropagation();
+			if (e.preventDefault)
+				e.preventDefault();
+			if (window.event)
+				e.returnValue = false;
+			if (e.cancel != null)
+				e.cancel = true;
+		}
+	}
+});
 
