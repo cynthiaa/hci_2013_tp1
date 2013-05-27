@@ -120,7 +120,7 @@ require(["libs/text!../templates/flights/flights.html", "libs/text!../templates/
 					"flightStopovers" : page[i].stopovers.length,
 					"flightDuration" : page[i].duration + " horas",
 					"flightTotal" : page[i].pricing.total.total,
-					"allFares": "Adultos: " + page[i].pricing.adults.baseFare + " Impuestos: " + (page[i].pricing.total.fare + page[i].pricing.total.taxes),
+					"allFares": "Adultos: " + page[i].pricing.adults.baseFare + " Impuestos: " + (page[i].pricing.total.charges + page[i].pricing.total.taxes),
 					"buttonValue" : createUrl(page[i], type)
 				}));
 
@@ -346,7 +346,7 @@ require(["libs/text!../templates/flights/flights.html", "libs/text!../templates/
 			attrs[string + "childrenFare"] = aux.baseFare;
 		if(aux= data.pricing.children)
 			attrs[string + "infantsFare"] = data.pricing.infants.baseFare;
-		attrs[string + "taxation"] = (data.pricing.total.fare + data.pricing.total.taxes);
+		attrs[string + "taxation"] = (data.pricing.total.charges + data.pricing.total.taxes);
 
 		return Utils.getUrl("passengers.html", (string == "ret" ? attrs : Utils.jsonConcat(attrs, param)));
 	}
