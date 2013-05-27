@@ -17,19 +17,19 @@ var validate = new function() {
 		rules: 'required'
 		}], function(errors, e) {
 
+		var SELECTOR_ERRORS = $('.error');
+		SELECTOR_ERRORS.empty();
+		
 		if (errors.length > 0) {
-			var SELECTOR_ERRORS = $('.error');
-			SELECTOR_ERRORS.empty();
-
-			for (var i = 0, errorLength = errors.length; i < errorLength; i++) {
-
+			for (var i = 0; i < errors.length; i++)
 			    $(".error").append(errors[i].message + '<br />');
-			}
+
 			SELECTOR_ERRORS.fadeIn(200);
 		} else {
             Utils.stopEvent(e);
             window.location.href = Utils.getUrl("flights.html", Utils.setAttrs());
         }
+        errors = new Array();
 	});
 }
 
