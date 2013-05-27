@@ -24,19 +24,19 @@ function isBetweenThirtyDays(date) { {
 
 var validator = new FormValidator('side-form', [{
 	name : 'from',
-	display : 'origen',
+	display : 'Origen',
 	rules : 'required'
 }, {
 	name : 'to',
-	display : 'destino',
+	display : 'Destino',
 	rules : 'required'
 }, {
 	name : 'depart',
-	display : 'partida',
+	display : 'Partida',
 	rules : 'required|callback_check_date_range'
 }, {
 	name : 'return',
-	display : 'regreso',
+	display : 'Regreso',
 	rules : 'required'
 }], function(errors, e) {
 
