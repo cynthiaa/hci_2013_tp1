@@ -290,6 +290,7 @@ body > .container > .header .vdivider {
 }
 
 #sidebar .sidebar-body .search a {
+	color: #52B0D6;
     font-size: 12px;
     text-decoration: underline;
 }
