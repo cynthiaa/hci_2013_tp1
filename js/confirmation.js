@@ -16,7 +16,7 @@ require(["libs/text!../templates/confirmation/confirmation.html",
 	var flight_data_summary_html_tmp = Handlebars.compile(flight_data_summary_html);
 	var summary_passenger_title_html_tmp = Handlebars.compile(summary_passenger_title_html);
 	var summary_passenger_data_html_tmp = Handlebars.compile(summary_passenger_data_html);
-	var summary_passenger_data_html_tmp = Handlebars.compile(confirmation_payment_summary_html);
+	var confirmation_payment_summary_html_tmp = Handlebars.compile(confirmation_payment_summary_html);
 
 	$("#contact_link").click(function() {
 		document.location.href = Utils.getUrl("contact.html", Utils.setAttrs());
@@ -40,7 +40,18 @@ require(["libs/text!../templates/confirmation/confirmation.html",
 	var n_infants = Number(param["infants"]);
 
 	addPassengers(n_adults, n_children, n_infants);
-
+	
+	$("#payment-summary").append(confirmation_payment_summary_html_tmp({
+		"card" : param["card"],
+		"cardNumber" : param["cardnum"],
+		"expireDate" : param["expdate"],
+		"securityCode" : param["securitycode"],
+		"ownerName" : param["ownername"],
+		"ownerLastName" : param["ownerlastname"],
+		"dni" : param["ownerdni"],
+		"email" : param["owneremail"]
+	}));
+	
 	function showData(type) {
 		var prefix = (type == "Vuelta") ? "ret" : "";
 
@@ -58,17 +69,6 @@ require(["libs/text!../templates/confirmation/confirmation.html",
 			"flightDuration" : param[prefix + "flightDuration"],
 			"flightTotal" : param[prefix + "flightTotal"],
 			"taxation" : (param[prefix + "taxation"]).substring(0, 18),
-		}));
-
-		$("#payment-summary").append(flight_data_summary_html_tmp({
-			"card" : param["card"],
-			"cardNumber" : param["cardnum"],
-			"expireDate" : param["expdate"],
-			"securityCode" : param["securitycode"],
-			"ownerName" : param["ownername"],
-			"ownerLastName" : param["ownerlastname"],
-			"dni" : param["ownerdni"],
-			"email" : param["owneremail"]
 		}));
 	}
 
