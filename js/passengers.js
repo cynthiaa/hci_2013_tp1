@@ -17,7 +17,7 @@ require([
         "libs/domReady"
         ],
 
-        function(passengers_html, passenger_data_html, passenger_summary_html, passenger_title_html, passenger_validation_html) {
+    function(passengers_html, passenger_data_html, passenger_summary_html, passenger_title_html, passenger_validation_html) {
 
 	Utils.init();
 	Utils.make_non_menu_html(passengers_html, passenger_validation_html);
@@ -95,7 +95,7 @@ require([
 				flags[type] = true;
 			}
 
-			$('#pass-ctn form').append(passenger_data_tmp({
+			$('#pass-ctn').append(passenger_data_tmp({
 				id : i
 			}));
 
@@ -121,7 +121,6 @@ require([
 					"birth" : "birth" + n,
 					"gender" : "gender" + n
 				})));
-				console.log("while");
 				n--;
 		}
 	}

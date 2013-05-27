@@ -4,22 +4,22 @@
 		<div class="form-container">
 			<div class="form-component-left">
 				<label for="name">Nombre:</label>
-				<input name={{name}} type="text" class="required name" minlength="2"/>
+				<input name="{{name}}" type="text" class="required name" minlength="2"/>
 			</div>
 			<div class="form-component-right">
 				<label for="lastname">Apellido:</label>
-				<input name={{lastname}} type="text" class="required surname" minlength="2"/>
+				<input name="{{lastname}}" type="text" class="required surname" minlength="2"/>
 			</div>
 			<div class="form-component-left">
 				<label>Fecha de nacimiento:</label>
 				<br>
-				<input name={{birth}} placeholder="dd/mm/aaaa" type="text" class="birth required" />
+				<input name="{{birth}}" placeholder="dd/mm/aaaa" type="text" class="birth required" />
 			</div>
 			<div class="form-component-right">
 				<label>Sexo:</label>
 				<br />
 				<div class="gender styled-select">
-					<select name={{gender}} class="gender">
+					<select name="{{gender}}" class="gender">
 						<option value="male" selected="selected">Masculino</option>
 						<option value="female">Femenino</option>
 					</select>
