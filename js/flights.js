@@ -178,7 +178,7 @@ require(["libs/text!../templates/flights/flights.html", "libs/text!../templates/
 			clearPageNums();
 			refreshPageFooting();
 			refreshPage();
-			if(flights.inbound[0] == undefined || flights.outbounds[0] == undefined)
+			if((flights.inbound[0] == undefined && !oneWay) || flights.outbounds[0] == undefined)
 				$("#continue").hide();
 			else
 				$("#continue").show();
