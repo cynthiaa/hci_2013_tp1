@@ -35,6 +35,7 @@ require(["libs/text!../templates/flights/flights.html", "libs/text!../templates/
 	param.sort_order = $.trim($("#selectionOrder :selected").val().match(" .*")[0]);
 
 	completeSideBar();
+	$("#continue").hide();
 
 	// Si es sólo ida
 	generateLayoutOneWay();
