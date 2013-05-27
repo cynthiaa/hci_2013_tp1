@@ -92,18 +92,19 @@ require(["libs/text!../templates/flights/flights.html", "libs/text!../templates/
 			for (var i = 0; i < page.length; i++) {
 
 				var airlineLink = airlineToAirlineLink(page[i].airlineId);
-
+				console.log(page[i]);
 				$(form).append(flights_data_tmp({
 					"departureCity" : page[i].departure.cityName,
 					"arrivalCity" : page[i].arrival.cityName,
 					"departureTime" : convertDate(page[i].departure.date),
 					"arrivalTime" : convertDate(page[i].arrival.date),
-					"departureAirport" : "caca", 
-					"arrivalAirport" : "caca2",
+					"departureAirport" : (page[i].departure.airportDescription).split(",")[0], 
+					"arrivalAirport" : (page[i].arrival.airportDescription).split(",")[0],
 					"flightClass" : convertCabinType(page[i].cabinType),
 					"flightStopovers" : page[i].stopovers.length,
 					"flightDuration" : page[i].duration + " horas",
 					"flightTotal" : page[i].pricing.total.total,
+					"allFares": "Adultos: " + page[i].pricing.adults.baseFare + " Impuestos: " + (page[i].pricing.total.fare + page[i].pricing.total.taxes),
 					"buttonValue" : createUrl(page[i], type)
 				}));
 

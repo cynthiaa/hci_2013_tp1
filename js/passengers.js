@@ -59,6 +59,7 @@ require([
 	function showData(type) {
 
 		var prefix = (type == "Vuelta") ? "ret" : "";
+		console.log(param);
 
 		$("#summary").append(passenger_summary_tmp({
 			"type" : type,
@@ -73,6 +74,7 @@ require([
 			"flightStopovers" : param[prefix + "flightStopovers"],
 			"flightDuration" : param[prefix + "flightDuration"],
 			"flightTotal" : param[prefix + "flightTotal"],
+			"allFares": "caca3 y caca4"
 		}));
 
 	}
