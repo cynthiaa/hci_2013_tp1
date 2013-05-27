@@ -40,6 +40,8 @@ require(
 				"arrivalCity": param[prefix + "arrivalCity"],
 				"departureTime": param[prefix + "departureTime"],
 				"arrivalTime": param[prefix + "arrivalTime"],
+				"departureAirport" : "caca", 
+				"arrivalAirport" : "caca2",
 				"flightClass": param[prefix + "flightClass"],
 				"flightStopovers": param[prefix + "flightStopovers"],
 				"flightDuration": param[prefix + "flightDuration"],

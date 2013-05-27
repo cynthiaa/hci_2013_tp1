@@ -98,6 +98,8 @@ require(["libs/text!../templates/flights/flights.html", "libs/text!../templates/
 					"arrivalCity" : page[i].arrival.cityName,
 					"departureTime" : convertDate(page[i].departure.date),
 					"arrivalTime" : convertDate(page[i].arrival.date),
+					"departureAirport" : "caca", 
+					"arrivalAirport" : "caca2",
 					"flightClass" : convertCabinType(page[i].cabinType),
 					"flightStopovers" : page[i].stopovers.length,
 					"flightDuration" : page[i].duration + " horas",
