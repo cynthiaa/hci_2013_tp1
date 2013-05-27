@@ -4,7 +4,6 @@
 
 .form-container {
     margin: 10px;
-    height: 387px;
 }
 
 .form-component {
@@ -24,8 +23,10 @@
 }
 
 .navigation-bar {
+    position: absolute;
     width: 700px;
     text-align: center;
+    bottom: 10px;
     height: 57px;
 }
 
