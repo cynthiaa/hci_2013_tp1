@@ -59,19 +59,22 @@ require(["libs/text!../templates/flights/flights.html", "libs/text!../templates/
 			}
 
 		if (!oneWay) {
-			if (inbound[0] !== undefined)
+			if (inbound[0] !== undefined) {
 				inbound = paginate(inbound, 5, "inbound");
-			else {
+				$(".inbound .empty-flights").remove();
+			} else {
 				missingFlights = true;
-				$(".inbound .empty-flights").append("<span> Su busqueda obtuvo 0 vuelos de vuelta, lo sentimos mucho. </span>");
+				$(".inbound").prepend("<div class='empty-flights'> <span> Su busqueda obtuvo 0 vuelos de vuelta, lo sentimos mucho. </span> </div>");
 			}
 
 		}
-		if (outbound[0] !== undefined)
+		
+		if (outbound[0] !== undefined) {
 			outbound = paginate(outbound, 5, "outbound");
-		else {
+			$(".outbound .empty-flights").remove();
+		} else {
 			missingFlights = true;
-			$(".outbound .empty-flights").append("<span> Su busqueda obtuvo 0 vuelos de ida, lo sentimos mucho. </span>");
+			$(".outbound").prepend("<div class='empty-flights'> <span> Su busqueda obtuvo 0 vuelos de ida, lo sentimos mucho. </span> </div>");
 		}
 
 		var flights = {
@@ -178,7 +181,7 @@ require(["libs/text!../templates/flights/flights.html", "libs/text!../templates/
 			clearPageNums();
 			refreshPageFooting();
 			refreshPage();
-			if((flights.inbound[0] == undefined && !oneWay) || flights.outbounds[0] == undefined)
+			if((flights.inbound[0] == undefined && !oneWay) || flights.outbound[0] == undefined)
 				$("#continue").hide();
 			else
 				$("#continue").show();
