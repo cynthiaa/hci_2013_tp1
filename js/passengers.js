@@ -32,10 +32,9 @@ require([
 	var n_children = Number(param["children"]);
 	var n_infants = Number(param["infants"]);
 
-	if (param["gender-0"] == "female" || param["gender-0"] == "male") {
-
+	if (param["gender-0"] == "female" || param["gender-0"] == "male")
 		addDataPassengers(param, n_adults + n_children + n_infants);
-	} else {
+	else {
 
 		addPassengers("Adultos", n_adults);
 		addPassengers("Menores", n_children);
@@ -44,17 +43,11 @@ require([
 	Utils.dateMask("input.birth");
 
 	$("#back").click(function() {
-
 		var oldUrl = $(location).attr('href');
 		var auxUrl = oldUrl.split("&from=");
 		var newUrl = Utils.getUrl("flights.html", {}) + "&from=" + auxUrl[1];
 		document.location.href = newUrl;
 	});
-
-	// $("#continue").click(function() {
-// 
-		// document.location.href = Utils.getUrl("payment.html", Utils.jsonConcat(param, makeJson()));
-	// });
 
 	showData("Ida");
 
