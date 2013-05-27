@@ -10,9 +10,12 @@
 }
 
 #body .main {
-	display: inline-block;
 	height: 500px;
-	width: 544px;
+	width: 548px;
+}
+
+.main-container {
+	display: inline-block;
 	position: absolute;
 }
 
