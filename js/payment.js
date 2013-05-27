@@ -45,7 +45,6 @@ require(["libs/text!../templates/payment/payment.html", "libs/text!../templates/
 
 	function showData(type) {
 		var prefix = (type == "Vuelta") ? "ret" : "";
-		console.log(param);
 
 		$("#summary").append(payment_summary_flights_tmp({
 			"type" : type,

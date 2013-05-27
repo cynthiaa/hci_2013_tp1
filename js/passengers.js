@@ -71,7 +71,6 @@ require([
 	function showData(type) {
 
 		var prefix = (type == "Vuelta") ? "ret" : "";
-		console.log(param);
 
 		$("#summary").append(passenger_summary_tmp({
 			"type" : type,
