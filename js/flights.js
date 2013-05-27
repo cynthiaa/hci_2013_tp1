@@ -20,6 +20,10 @@ require(["libs/text!../templates/flights/flights.html", "libs/text!../templates/
 	$("#home_link").click(function() {
 		document.location.href = Utils.getUrl("index.html", Utils.setAttrs());
 	});
+	
+	$("#advanced_options").click(function() {
+		document.location.href = Utils.getUrl("advanced_options.html", Utils.setAttrs());
+	});
 
 	var api = new API();
 	var flights_data_tmp = Handlebars.compile(flights_data_html);

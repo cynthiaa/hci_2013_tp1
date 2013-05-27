@@ -20,6 +20,10 @@ require(["libs/text!../templates/contact/contact.html", "libs/text!../templates/
 	$("#home_link").click(function() {
 		document.location.href = Utils.getUrl("index.html", Utils.setAttrs());
 	});
+	
+	$("#advanced_options").click(function() {
+		document.location.href = Utils.getUrl("advanced_options.html", Utils.setAttrs());
+	});
 
 	function completeSideBar() {
 
