@@ -3,7 +3,7 @@ require(
         "libs/text!../templates/payment/payment.html",
         "libs/text!../templates/select.html",
         "libs/text!../templates/payment/paymentValidation.html",
-        "libs/text!../templates/passengers/passengers_summary.html",
+        "libs/text!../templates/passengers/passenger_summary.html",
         "libs/text!../templates/payment/payment_title.html",
         "libs/text!../templates/payment/payment_data_passenger.html",
         "libs/utils",
