@@ -36,8 +36,21 @@ var validator = new FormValidator('payment-form', [{
 	} else {
 		var param = $.url().param();
 		Utils.stopEvent(e);
-		api.booking.bookFlight2(function(data) {
-		}, param);
-		document.location.href = Utils.getUrl("confirmation.html", param);
+		// api.booking.bookFlight2(function(data) {
+		// }, param);
+		document.location.href = Utils.getUrl("confirmation.html", Utils.jsonConcat(param, makeJson()));
 	}
-}); 
+});
+
+function makeJson() {
+	var json = new Object();
+	$(json).prop("card", $("input:checked").val());
+	$(json).prop("cardnum", $("#card-num").val());
+	$(json).prop("expdate", $("#exp-date").val());
+	$(json).prop("securitycode", $("#security-code").val());
+	$(json).prop("ownername", $("input[name='name']").val());
+	$(json).prop("ownerlastname", $("input[name='lastname']").val());
+	$(json).prop("ownerdni-", $("input[name='dni']").val());
+	$(json).prop("owneremail-", $("input[name='email']").val());
+	return json;
+}
