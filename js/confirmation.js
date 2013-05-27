@@ -2,7 +2,7 @@ require(
     [
         "libs/text!../templates/confirmation/confirmation.html",
         "libs/text!../templates/confirmation/confirmationValidation.html",
-        "libs/text!../templates/passengers/passenger_summary_html",
+        "libs/text!../templates/passengers/passenger_summary.html",
         "libs/text!../templates/payment/payment_title.html",
         "libs/text!../templates/payment/payment_data_passenger.html",
         "libs/utils",
