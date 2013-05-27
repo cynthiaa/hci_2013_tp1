@@ -18,3 +18,21 @@
 .barcode-img {
 	width: 20%;
 }
+
+.flight {
+    font-size: 12px;
+    color: #52B0D6;
+    display: inline-block;
+}
+
+.flightTotal {
+	font-size: 16px;
+    color: #52B0D6;
+}
+
+.pTotal {
+	font-size: 16px;
+	color: #333;
+}
+
+

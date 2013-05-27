@@ -371,4 +371,14 @@ div.error {
 	border: solid 4px #A75B4E;
 }
 
+.flightTotal {
+	font-size: 16px;
+    color: #52B0D6;
+}
+
+.pTotal {
+	font-size: 16px;
+	color: #333;
+}
+
 
