@@ -152,6 +152,6 @@ div.main.panel {
 }
 
 #summary {
-	width: 465px;
+	height: 465px;
 	overflow-y: scroll;
 }
