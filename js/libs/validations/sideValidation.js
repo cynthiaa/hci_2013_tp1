@@ -9,11 +9,11 @@ var validator = new FormValidator('side-form', [{
 }, {
 	name : 'depart',
 	display : 'Partida',
-	rules : 'callback_check_date_range|required'
+	rules : 'required|callback_check_date_range'
 }, {
 	name : 'return',
 	display : 'Regreso',
-	rules : 'callback_check_date_range|callback_check_greaterThanDeparture|required'
+	rules : 'required|callback_check_date_range|callback_check_greaterThanDeparture'
 }], function(errors, e) {
 
 	var SELECTOR_ERRORS = $('.error');

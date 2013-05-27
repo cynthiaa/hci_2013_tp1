@@ -26,14 +26,6 @@ require(["libs/text!../templates/payment/payment.html", "libs/text!../templates/
 		document.location.href = Utils.getUrl("passengers.html", param);
 	});
 
-	$("#buy").click(function() {
-		console.log(param);
-		api.booking.bookFlight2(function(data) {
-			console.log(data);
-		}, param);
-		document.location.href = Utils.getUrl("confirmation.html", param);
-	});
-
 	$("#contact_link").click(function() {
 		document.location.href = Utils.getUrl("contact.html");
 	});
