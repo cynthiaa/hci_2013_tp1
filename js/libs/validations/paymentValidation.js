@@ -44,7 +44,7 @@ var validator = new FormValidator('payment-form', [{
 
 function makeJson() {
 	var json = new Object();
-	$(json).prop("card", $("input:checked").val());
+	$(json).prop("card", $("input:checked").attr("id"));
 	$(json).prop("cardnum", $("#card-num").val());
 	$(json).prop("expdate", $("#exp-date").val());
 	$(json).prop("securitycode", $("#security-code").val());
