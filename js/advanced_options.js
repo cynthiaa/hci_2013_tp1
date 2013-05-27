@@ -18,7 +18,7 @@ require(
 
         var select_tmp = Handlebars.compile(select_html);
 
-        for (var i = 0; i <= 24; i++) {
+        for (var i = 0; i < 24; i++) {
 
             $("#select_departure_time").append(select_tmp({"value": i, "name": i + ":00"}));
             $("#select_return_time").append(select_tmp({"value": i, "name": i + ":00"}));
