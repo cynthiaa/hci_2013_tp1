@@ -107,7 +107,6 @@ require([
 	}
 
 	function addPassengers(title, n) {
-
 		if (n == 0)
 			return;
 
@@ -115,7 +114,8 @@ require([
 				"title" : title
 			})));
 
-		while (n) {($('#pass-ctn').append(passenger_data_tmp({
+		while (n) {
+			($('#pass-ctn').append(passenger_data_tmp({
 					"name" : "name" + n,
 					"lastname" : "lastname" + n,
 					"birth" : "birth" + n,
