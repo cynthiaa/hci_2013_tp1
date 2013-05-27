@@ -20,9 +20,9 @@ API.prototype = (function() {
 		$.ajax({
 			url : resolveUrl(relativeUrl, method, params),
 			dataType : "jsonp",
-			timeout : 10000,
+			timeout : 15000,
 			error : function(XMLHttpRequest, textStatus, errorThrown) {
-				alert("Disculpe las molestias ocasionadas, el servidor no se encuentra disponible en este momento, por favor intente más tarde");
+				alert("Disculpe las molestias ocasionadas, el servidor no se encuentra disponible en este momento.");
 			}
 		}).done(function(data) {
 

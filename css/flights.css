@@ -3,10 +3,6 @@
     width: 694px;
 }
 
-.flight {
-    overflow: auto;
-}
-
 .pFlight {
     font-size: 12px;
     color: #52B0D6;
@@ -126,6 +122,7 @@
 .flight {
 	padding: 10px;
 	display: inline-block;
+	width: 290px;
 }
 
 .flight-radio {
