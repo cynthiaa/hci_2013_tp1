@@ -1,139 +1,166 @@
-require(
-    [
-        "libs/text!../templates/advanced_options/advanced_options.html",
-        "libs/text!../templates/select.html",
-        "libs/text!../templates/advanced_options/advancedOptionsValidation.html",
-        "libs/utils",
-        "libs/carousel",
-        "libs/domReady"
-    ],
+require(["libs/text!../templates/advanced_options/advanced_options.html", "libs/text!../templates/select.html", "libs/text!../templates/advanced_options/advancedOptionsValidation.html", "libs/utils", "libs/carousel", "libs/domReady"], function(advanced_options_html, select_html, advanced_options_validation_html) {
 
-    function(advanced_options_html, select_html, advanced_options_validation_html) {
+	Utils.init();
+	Utils.make_html(advanced_options_html, advanced_options_validation_html);
 
-        Utils.init();
-        Utils.make_html(advanced_options_html, advanced_options_validation_html);
+	var param = $.url().param();
 
-        $("#advanced_options").addClass("selected");
-        $("#search").hide();
+	completeSideBar();
 
-        var select_tmp = Handlebars.compile(select_html);
+	$("#advanced_options").addClass("selected");
+	$("#search").hide();
 
-        for (var i = 0; i < 24; i++) {
+	$("#contact_link").click(function() {
+		document.location.href = Utils.getUrl("contact.html", Utils.setAttrs());
+	});
 
-            $("#select_departure_time").append(select_tmp({"value": i, "name": i + ":00"}));
-            $("#select_return_time").append(select_tmp({"value": i, "name": i + ":00"}));
-        }
+	$("#about_link").click(function() {
+		document.location.href = Utils.getUrl("about.html", Utils.setAttrs());
+	});
 
-        for (var i = 1; i <= 8; i++) {
+	$("#home_link").click(function() {
+		document.location.href = Utils.getUrl("index.html", Utils.setAttrs());
+	});
 
-            $("#select_stopovers").append(select_tmp({"value": i, "name": i + " escala" + (i > 1 ? "s" : "")}));
-        }
+	var select_tmp = Handlebars.compile(select_html);
 
-        var api = new API();
+	for (var i = 0; i < 24; i++) {
 
-        var airlines = new Array();
-        airlines[0] = new Array();
-        airlines[1] = new Array();
+		$("#select_departure_time").append(select_tmp({
+			"value" : i,
+			"name" : i + ":00"
+		}));
+		$("#select_return_time").append(select_tmp({
+			"value" : i,
+			"name" : i + ":00"
+		}));
+	}
 
-        var callbacks = {
+	for (var i = 1; i <= 8; i++) {
 
-            success: function(result) {
+		$("#select_stopovers").append(select_tmp({
+			"value" : i,
+			"name" : i + " escala" + (i > 1 ? "s" : "")
+		}));
+	}
 
-            for (var i = 0; i < result.airlines.length; i++) {
+	var api = new API();
 
-                airlines[0][i] = result.airlines[i].name;
-                airlines[1][i] = result.airlines[i].airlineId;
-            }
-        }};
+	var airlines = new Array();
+	airlines[0] = new Array();
+	airlines[1] = new Array();
 
-        api.misc.getAirlines(callbacks);
+	var callbacks = {
 
-        $("#airline").autocomplete({
-            source: airlines[0]
-        });
+		success : function(result) {
 
-        // Currencies
-        //
-        // callbacks = {
+			for (var i = 0; i < result.airlines.length; i++) {
 
-        //     success: function(result) {
+				airlines[0][i] = result.airlines[i].name;
+				airlines[1][i] = result.airlines[i].airlineId;
+			}
+		}
+	};
 
-        //     for (var i = 0; i < result.currencies.length; i++) {
+	api.misc.getAirlines(callbacks);
 
-        //         var name = result.currencies[i].description;
+	$("#airline").autocomplete({
+		source : airlines[0]
+	});
 
-        //         name = (name == "Pesos - Argentina") ? "Pesos" : name;
+	// Currencies
+	//
+	// callbacks = {
 
-        //         $("#currency").append(select_tmp({"value": name, "name": name}));
-        //     }
-        // }
-        // };
+	//     success: function(result) {
 
-        // var param = {"sort_key": "id", "sort_order": "asc"};
+	//     for (var i = 0; i < result.currencies.length; i++) {
 
-        // api.misc.getCurrencies(callbacks, param);
+	//         var name = result.currencies[i].description;
 
-        $("#search_adv_opt").click(function(){
+	//         name = (name == "Pesos - Argentina") ? "Pesos" : name;
 
-            // var citiesAndAirports = Utils.getCitiesAndAirports();
-            var attrs = new Array();
+	//         $("#currency").append(select_tmp({"value": name, "name": name}));
+	//     }
+	// }
+	// };
 
-            attrs["airline_id"] = airlines[1][airlines[0].indexOf($("#airline").val())];
+	// var param = {"sort_key": "id", "sort_order": "asc"};
 
-            checkAndSetPrice("min_price", attrs);
-            checkAndSetPrice("max_price", attrs);
+	// api.misc.getCurrencies(callbacks, param);
 
-            checkAndSetValue("stopovers", "select_stopovers", attrs);
-            checkAndSetValue("cabin_type", "class", attrs);
+	$("#search_adv_opt").click(function() {
 
-            setTimes("dep_time", "select_departure_time", attrs);
+		// var citiesAndAirports = Utils.getCitiesAndAirports();
+		var attrs = new Array();
 
-            if ($("#return").is(":visible")) {
-                setTimes("ret_time", "select_return_time", attrs);
-            }
+		attrs["airline_id"] = airlines[1][airlines[0].indexOf($("#airline").val())];
 
-            // console.log(attrs)
-            document.location.href = Utils.getUrl("flights.html", Utils.setAdvAttrs(attrs));
-        });
+		checkAndSetPrice("min_price", attrs);
+		checkAndSetPrice("max_price", attrs);
 
-        function checkAndSetPrice(attrs_name, attrs) {
+		checkAndSetValue("stopovers", "select_stopovers", attrs);
+		checkAndSetValue("cabin_type", "class", attrs);
 
-            if (($("#" + attrs_name).val()) != "") {
+		setTimes("dep_time", "select_departure_time", attrs);
 
-                attrs[attrs_name] = $("#" + attrs_name).val();
-            }
-        }
+		if ($("#return").is(":visible")) {
+			setTimes("ret_time", "select_return_time", attrs);
+		}
 
-        function checkAndSetValue(attrs_name, id, attrs) {
+		// console.log(attrs)
+		document.location.href = Utils.getUrl("flights.html", Utils.setAdvAttrs(attrs));
+	});
 
-            if (checkValue(id)) {
+	function checkAndSetPrice(attrs_name, attrs) {
 
-                attrs[attrs_name] = $("#" + id).val();
-            }
-        }
+		if (($("#" + attrs_name).val()) != "") {
 
-        function checkValue(id) {
+			attrs[attrs_name] = $("#" + attrs_name).val();
+		}
+	}
 
-            return ($("#" + id).val() != "no-preference");
-        }
+	function checkAndSetValue(attrs_name, id, attrs) {
 
-        function setTimes(attrs_name, id, attrs) {
+		if (checkValue(id)) {
 
-            if (checkValue(id)) {
+			attrs[attrs_name] = $("#" + id).val();
+		}
+	}
 
-                attrs["min_" + attrs_name] = addHours(id, -1);
-                attrs["max_" + attrs_name] = addHours(id, 1);
-            }
-        }
+	function checkValue(id) {
 
-        function addHours(id, offset) {
+		return ($("#" + id).val() != "no-preference");
+	}
 
-            var currentTime = $("#" + id).val();
-            var newTime = Number(currentTime) + offset;
+	function setTimes(attrs_name, id, attrs) {
 
-            return ((newTime < 0 || newTime > 24) ? currentTime : newTime) + ":00";
+		if (checkValue(id)) {
 
-        }
-    }
-);
+			attrs["min_" + attrs_name] = addHours(id, -1);
+			attrs["max_" + attrs_name] = addHours(id, 1);
+		}
+	}
+
+	function addHours(id, offset) {
+
+		var currentTime = $("#" + id).val();
+		var newTime = Number(currentTime) + offset;
+
+		return ((newTime < 0 || newTime > 24) ? currentTime : newTime) + ":00";
+
+	}
+
+	function completeSideBar() {
+
+		$("#from").val(param.from_name);
+		$("#to").val(param.to_name);
+		$("#depart_input").val(param.dep_date_input);
+		$("#return_input").val(param.ret_date_input);
+		$("#select_adults").val(param.adults);
+		$("#select_children").val(param.children);
+		$("#select_infants").val(param.infants);
+	}
+
+});
 

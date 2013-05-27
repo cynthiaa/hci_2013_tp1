@@ -1,189 +1,214 @@
 // Cantidad de imágenes en el carousel y en destacados
 var max = 5;
 
-require(
-    [
-        "libs/text!../templates/index/index.html",
-        "libs/text!../templates/index/li.html",
-        "libs/text!../templates/img.html",
-        "libs/text!../templates/index/info_deal.html",
-        "libs/text!../templates/index/featured_item.html",
-        "libs/text!../templates/index/info_featured.html",
-        "libs/text!../templates/sideValidation.html",
-        "libs/utils",
-        "libs/carousel",
-        "libs/jquery.shuffle",
-        "libs/domReady"
-    ],
+require(["libs/text!../templates/index/index.html", "libs/text!../templates/index/li.html", "libs/text!../templates/img.html", "libs/text!../templates/index/info_deal.html", "libs/text!../templates/index/featured_item.html", "libs/text!../templates/index/info_featured.html", "libs/text!../templates/sideValidation.html", "libs/utils", "libs/carousel", "libs/jquery.shuffle", "libs/domReady"], function(index_html, li_html, img_html, info_deal_html, featured_item_html, info_featured_html, side_validation_html) {
 
-    function(index_html, li_html, img_html, info_deal_html, featured_item_html, info_featured_html, side_validation_html) {
+	Utils.init();
+	Utils.make_html(index_html, side_validation_html);
 
-        Utils.init();
-        Utils.make_html(index_html, side_validation_html);
+	var param = $.url().param();
 
-        $("#home_link").addClass("selected");
+	completeSideBar();
 
-        var api = new API();
-        var citiesAndAirports = new Array(2);
-        var deals = new Array(max);
+	$("#home_link").addClass("selected");
 
-        // Create the carousel-frame and the featured-frame
+	$("#contact_link").click(function() {
+		document.location.href = Utils.getUrl("contact.html", Utils.setAttrs());
+	});
 
-        createCarouselAndFeatured();
+	$("#about_link").click(function() {
+		document.location.href = Utils.getUrl("about.html", Utils.setAttrs());
+	});
+	
+	$("#advanced_options").click(function() {
+		document.location.href = Utils.getUrl("advanced_options.html", Utils.setAttrs());
+	});
 
-        // Init the carousel
+	var api = new API();
+	var citiesAndAirports = new Array(2);
+	var deals = new Array(max);
 
-        DP.inicio();
+	// Create the carousel-frame and the featured-frame
 
-        // // Cuando se clickee alguna imagen del carousel
+	createCarouselAndFeatured();
 
-        clickCarouselImage();
+	// Init the carousel
 
-        // Cuando se clickee algún destacado
+	DP.inicio();
 
-        clickFeaturedItem();
+	// // Cuando se clickee alguna imagen del carousel
 
-        // Cuando se clickee el button de id search
+	clickCarouselImage();
 
+	// Cuando se clickee algún destacado
 
-        function createCarouselAndFeatured() {
+	clickFeaturedItem();
 
-            var li_tmp = Handlebars.compile(li_html);
-            var featured_item_tmp = Handlebars.compile(featured_item_html);
+	// Cuando se clickee el button de id search
 
-            for (var i = 0; i < max ; i++) {
+	function createCarouselAndFeatured() {
 
-                var li = li_tmp({'id': 'li-' + i});
-                $('#carousel-frame').append(li);
+		var li_tmp = Handlebars.compile(li_html);
+		var featured_item_tmp = Handlebars.compile(featured_item_html);
 
-                var featured_item = featured_item_tmp({'id': 'feat-' + i});
-                $('#featured-flights').append(featured_item);
-            }
+		for (var i = 0; i < max; i++) {
 
-            setCarouselAndFeaturedImages();
-        }
+			var li = li_tmp({
+				'id' : 'li-' + i
+			});
+			$('#carousel-frame').append(li);
 
-        function setCarouselAndFeaturedImages() {
+			var featured_item = featured_item_tmp({
+				'id' : 'feat-' + i
+			});
+			$('#featured-flights').append(featured_item);
+		}
 
-            var info_deal_tmp = Handlebars.compile(info_deal_html);
-            var info_featured_tmp = Handlebars.compile(info_featured_html);
-            var img_tmp = Handlebars.compile(img_html);
+		setCarouselAndFeaturedImages();
+	}
 
-            api.booking.getFlightDeals({
+	function setCarouselAndFeaturedImages() {
 
-                success: function(result) {
+		var info_deal_tmp = Handlebars.compile(info_deal_html);
+		var info_featured_tmp = Handlebars.compile(info_featured_html);
+		var img_tmp = Handlebars.compile(img_html);
 
-                    for (var i = 0; i < result.deals.length; i++) {
+		api.booking.getFlightDeals({
 
-                        deals[i] = new Array();
+			success : function(result) {
 
-                        deals[i][0] = result.deals[i].cityId;
-                        deals[i][1] = result.deals[i].cityName;
-                        deals[i][2] = result.deals[i].price;
-                    }
+				for (var i = 0; i < result.deals.length; i++) {
 
-                    deals = $.shuffle(deals);
+					deals[i] = new Array();
 
-                    // Carousel images
+					deals[i][0] = result.deals[i].cityId;
+					deals[i][1] = result.deals[i].cityName;
+					deals[i][2] = result.deals[i].price;
+				}
 
-                    for (var i = 0; i < max; i++) {
+				deals = $.shuffle(deals);
 
-                        var link = '{{Link "img/featured/' + deals[i][0] + '.jpg"}}';
-                        var img_src = Handlebars.compile(link);
-                        var img = img_tmp({'img_src': img_src});
+				// Carousel images
 
-                        var city = deals[i][1].split(",")[0];
-                        var percentage = Math.floor(Math.random() * 5 + 1) * 5;
-                        var cards = ["Visa", "Diners", "Master Card", "American Express"];
-                        var card = cards[Math.floor(Math.random() * 3 + 1)];
-                        var deal = percentage + "% de descuento a " + city +
-                                " abonando con " + card;
+				for (var i = 0; i < max; i++) {
 
-                        $('#li-' + i).append(img);
-                        $('#li-' + i + ' div').append(info_deal_tmp({"title": deals[i][1], "deal": deal}));
-                    }
+					var link = '{{Link "img/featured/' + deals[i][0] + '.jpg"}}';
+					var img_src = Handlebars.compile(link);
+					var img = img_tmp({
+						'img_src' : img_src
+					});
 
-                    // Featured items
+					var city = deals[i][1].split(",")[0];
+					var percentage = Math.floor(Math.random() * 5 + 1) * 5;
+					var cards = ["Visa", "Diners", "Master Card", "American Express"];
+					var card = cards[Math.floor(Math.random() * 3 + 1)];
+					var deal = percentage + "% de descuento a " + city + " abonando con " + card;
 
-                    for (var i = max; i < 2 * max; i++) {
+					$('#li-' + i).append(img);
+					$('#li-' + i + ' div').append(info_deal_tmp({
+						"title" : deals[i][1],
+						"deal" : deal
+					}));
+				}
 
-                        var link = '{{Link "img/featured/' + deals[i][0] + '.jpg"}}';
-                        var img_src = Handlebars.compile(link);
-                        var img = img_tmp({'img_src': img_src});
+				// Featured items
 
-                        var city = deals[i][1].split(",")[0];
-                        var price = "Desde U$S " + Math.ceil(deals[i][2]);
+				for (var i = max; i < 2 * max; i++) {
 
-                        $('#feat-' + (i - max)).append(img);
-                        $('#feat-' + (i - max) + ' div').append(info_featured_tmp({"city": city, "price": price}));
-                    }
-                }
-            }, {"from": "BUE"});
-        }
+					var link = '{{Link "img/featured/' + deals[i][0] + '.jpg"}}';
+					var img_src = Handlebars.compile(link);
+					var img = img_tmp({
+						'img_src' : img_src
+					});
 
-        function setDealsAttrs(n, days, offset) {
+					var city = deals[i][1].split(",")[0];
+					var price = "Desde U$S " + Math.ceil(deals[i][2]);
 
-            var attrs = new Array();
-            var currentDate = new Date();
-            currentDate.setDate(currentDate.getDate() + days);
-            var date = currentDate.getFullYear() + "-" + (currentDate.getMonth() + 1) +
-                    '-' + currentDate.getDate();
+					$('#feat-' + (i - max)).append(img);
+					$('#feat-' + (i - max) + ' div').append(info_featured_tmp({
+						"city" : city,
+						"price" : price
+					}));
+				}
+			}
+		}, {
+			"from" : "BUE"
+		});
+	}
 
-            attrs["from"] = "BUE";
-            attrs["from_name"] = "Buenos Aires, Ciudad de Buenos Aires";
-            attrs["to"] = deals[n + offset][0];
-            attrs["to_name"] = deals[n + offset][1];
-            attrs["dep_date"] = date;
-            attrs["dep_date_input"] = convertToDateInput(date);
-            attrs["ret_date"] = "null";
-            attrs["adults"] = 1;
-            attrs["children"] = attrs["infants"] = 0;
+	function setDealsAttrs(n, days, offset) {
 
-            return attrs;
-        }
+		var attrs = new Array();
+		var currentDate = new Date();
+		currentDate.setDate(currentDate.getDate() + days);
+		var date = currentDate.getFullYear() + "-" + (currentDate.getMonth() + 1) + '-' + currentDate.getDate();
 
-        function convertToDateInput(stringDate) {
+		attrs["from"] = "BUE";
+		attrs["from_name"] = "Buenos Aires, Ciudad de Buenos Aires";
+		attrs["to"] = deals[n + offset][0];
+		attrs["to_name"] = deals[n + offset][1];
+		attrs["dep_date"] = date;
+		attrs["dep_date_input"] = convertToDateInput(date);
+		attrs["ret_date"] = "null";
+		attrs["adults"] = 1;
+		attrs["children"] = attrs["infants"] = 0;
 
-            var dateRegex = /^(\d{4})-(\d{1,2})-(\d{1,2})$/;
-            var dateRegexResult = stringDate.match(dateRegex);
+		return attrs;
+	}
 
-            // return moment.utc(stringDate, "DD-MM-YYYY").format("YYYY-MM-DD");
-            return dateRegexResult[3] + "/" + dateRegexResult[2] + "/" + dateRegexResult[1];
-        }
+	function convertToDateInput(stringDate) {
 
-        function clickFeaturedItem() {
+		var dateRegex = /^(\d{4})-(\d{1,2})-(\d{1,2})$/;
+		var dateRegexResult = stringDate.match(dateRegex);
 
-            for (var i = 0; i < max; i++) {
+		// return moment.utc(stringDate, "DD-MM-YYYY").format("YYYY-MM-DD");
+		return dateRegexResult[3] + "/" + dateRegexResult[2] + "/" + dateRegexResult[1];
+	}
 
-                clickFeaturedImage(i);
-            }
-        }
+	function clickFeaturedItem() {
 
-        function clickFeaturedImage(i) {
+		for (var i = 0; i < max; i++) {
 
-            $("#feat-" + i).click(function(){
+			clickFeaturedImage(i);
+		}
+	}
 
-                    document.location.href = Utils.getUrl("flights.html", setDealsAttrs(i, 2, max));
-            });
+	function clickFeaturedImage(i) {
 
-        }
+		$("#feat-" + i).click(function() {
 
-        function clickCarouselImage() {
+			document.location.href = Utils.getUrl("flights.html", setDealsAttrs(i, 2, max));
+		});
 
-            for (var i = 0; i < max; i++) {
+	}
 
-                $("#li-" + i).click(function(){
+	function clickCarouselImage() {
 
-                    for (var j = 0; j < max; j++) {
+		for (var i = 0; i < max; i++) {
 
-                        if($("#li-" + j).hasClass("selected")) {
+			$("#li-" + i).click(function() {
 
-                            document.location.href = Utils.getUrl("flights.html", setDealsAttrs(j, 2, 0));
-                        }
-                    }
-                });
-            }
-        }
-    }
-);
+				for (var j = 0; j < max; j++) {
+
+					if ($("#li-" + j).hasClass("selected")) {
+
+						document.location.href = Utils.getUrl("flights.html", setDealsAttrs(j, 2, 0));
+					}
+				}
+			});
+		}
+	}
+
+	function completeSideBar() {
+
+		$("#from").val(param.from_name);
+		$("#to").val(param.to_name);
+		$("#depart_input").val(param.dep_date_input);
+		$("#return_input").val(param.ret_date_input);
+		$("#select_adults").val(param.adults);
+		$("#select_children").val(param.children);
+		$("#select_infants").val(param.infants);
+	}
+
+});
 

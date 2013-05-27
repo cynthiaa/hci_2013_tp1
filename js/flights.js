@@ -310,6 +310,5 @@ require(["libs/text!../templates/flights/flights.html", "libs/text!../templates/
 
 		return Utils.getUrl("passengers.html", (string == "ret" ? attrs : Utils.jsonConcat(attrs, param)));
 	}
-
 });
 

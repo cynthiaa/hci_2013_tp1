@@ -248,7 +248,6 @@ define(["libs/text!../../templates/header.html", "libs/text!../../templates/layo
 		},
 
 		'setAttrs' : function() {
-
 			var attrs = new Array();
 
 			attrs["from"] = Utils.getId("#from", citiesAndAirports);
@@ -267,7 +266,7 @@ define(["libs/text!../../templates/header.html", "libs/text!../../templates/layo
 		},
 
 		'convertDate' : function(stringDate) {
-			if (stringDate != null) {
+			if (!!stringDate) {
 				var dateRegex = /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/;
 				var dateRegexResult = stringDate.match(dateRegex);
 
