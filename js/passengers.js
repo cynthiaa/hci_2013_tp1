@@ -80,13 +80,13 @@ require([
 			"arrivalCity" : param[prefix + "arrivalCity"],
 			"departureTime" : param[prefix + "departureTime"],
 			"arrivalTime" : param[prefix + "arrivalTime"],
-			"departureAirport" : "caca", 
-			"arrivalAirport" : "caca2",
+			"departureAirport" : param[prefix + "departureAirport"],
+			"arrivalAirport" : param[prefix + "arrivalAirport"],
 			"flightClass" : param[prefix + "flightClass"],
 			"flightStopovers" : param[prefix + "flightStopovers"],
 			"flightDuration" : param[prefix + "flightDuration"],
 			"flightTotal" : param[prefix + "flightTotal"],
-			"allFares": "caca3 y caca4"
+			"taxation": param[prefix + "taxation"]
 		}));
 
 	}

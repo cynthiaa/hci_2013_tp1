@@ -329,15 +329,24 @@ require(["libs/text!../templates/flights/flights.html", "libs/text!../templates/
 	function getUrl(data, string) {
 
 		var attrs = new Array();
+		var aux;
 
 		attrs[string + "departureCity"] = data.departure.cityName;
 		attrs[string + "arrivalCity"] = data.arrival.cityName;
+		attrs[string + "departureAirport"] = (data.departure.airportDescription).split(",")[0];
+		attrs[string + "arrivalAirport"] = (data.arrival.airportDescription).split(",")[0];
 		attrs[string + "departureTime"] = convertDate(data.departure.date);
 		attrs[string + "arrivalTime"] = convertDate(data.arrival.date);
 		attrs[string + "flightClass"] = convertCabinType(data.cabinType);
 		attrs[string + "flightStopovers"] = data.stopovers.length;
 		attrs[string + "flightDuration"] = data.duration + " horas";
 		attrs[string + "flightTotal"] = data.pricing.total.total;
+		attrs[string + "adultsFare"] = data.pricing.adults.baseFare;
+		if(aux= data.pricing.children)
+			attrs[string + "childrenFare"] = aux.baseFare;
+		if(aux= data.pricing.children)
+			attrs[string + "infantsFare"] = data.pricing.infants.baseFare;
+		attrs[string + "taxation"] = (data.pricing.total.fare + data.pricing.total.taxes);
 
 		return Utils.getUrl("passengers.html", (string == "ret" ? attrs : Utils.jsonConcat(attrs, param)));
 	}
