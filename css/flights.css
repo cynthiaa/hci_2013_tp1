@@ -231,3 +231,7 @@ input.flight-pages {
 	position: absolute;
 }
 
+.empty-flights {
+	text-align: center;
+	margin-top: 150px;
+}
