@@ -4,7 +4,20 @@ var types = {
 	'infants' : 'Infantes'
 };
 
-require(["libs/text!../templates/passengers/passengers.html", "libs/text!../templates/passengers/passenger_data.html", "libs/text!../templates/passengers/passenger_summary.html", "libs/text!../templates/passengers/passenger_title.html", "libs/text!../templates/passengers/passengerValidation.html", "libs/utils", "libs/jquery.validate", "libs/jquery.maskedinput", "libs/jquery.formvalidator.min", "libs/domReady"], function(passengers_html, passenger_data_html, passenger_summary_html, passenger_title_html, passenger_validation_html) {
+require([
+        "libs/text!../templates/passengers/passengers.html",
+        "libs/text!../templates/passengers/passenger_data.html",
+        "libs/text!../templates/passengers/passenger_summary.html",
+        "libs/text!../templates/passengers/passenger_title.html",
+        "libs/text!../templates/passengers/passengerValidation.html",
+        "libs/utils",
+        "libs/jquery.validate",
+        "libs/jquery.maskedinput",
+        "libs/jquery.formvalidator.min",
+        "libs/domReady"
+        ],
+
+        function(passengers_html, passenger_data_html, passenger_summary_html, passenger_title_html, passenger_validation_html) {
 
 	Utils.init();
 	Utils.make_non_menu_html(passengers_html, passenger_validation_html);
@@ -38,10 +51,10 @@ require(["libs/text!../templates/passengers/passengers.html", "libs/text!../temp
 		document.location.href = newUrl;
 	});
 
-	$("#continue").click(function() {
-
-		document.location.href = Utils.getUrl("payment.html", Utils.jsonConcat(param, makeJson()));
-	});
+	// $("#continue").click(function() {
+// 
+		// document.location.href = Utils.getUrl("payment.html", Utils.jsonConcat(param, makeJson()));
+	// });
 
 	showData("Ida");
 
@@ -89,7 +102,7 @@ require(["libs/text!../templates/passengers/passengers.html", "libs/text!../temp
 				flags[type] = true;
 			}
 
-			$('#pass-ctn').append(passenger_data_tmp({
+			$('#pass-ctn form').append(passenger_data_tmp({
 				id : i
 			}));
 
@@ -100,17 +113,6 @@ require(["libs/text!../templates/passengers/passengers.html", "libs/text!../temp
 		}
 	}
 
-	/**function addPassengers(title, n) {
-
-	 if (n == 0) return;
-
-	 ($('#pass-ctn').append(passenger_title_tmp({"title": title}))).append(passenger_data_tmp({}));
-
-	 while(--n) {
-
-	 ($('#pass-ctn').append(passenger_data_tmp({})));
-	 }
-	 }**/
 	function addPassengers(title, n) {
 
 		if (n == 0)
@@ -118,14 +120,16 @@ require(["libs/text!../templates/passengers/passengers.html", "libs/text!../temp
 
 		($('#pass-ctn').append(passenger_title_tmp({
 				"title" : title
-			}))).append(passenger_data_tmp({}));
+			})));
 
-		while (--n) {($('#pass-ctn').append(passenger_data_tmp({
+		while (n) {($('#pass-ctn').append(passenger_data_tmp({
 					"name" : "name" + n,
 					"lastname" : "lastname" + n,
 					"birth" : "birth" + n,
 					"gender" : "gender" + n
 				})));
+				console.log("while");
+				n--;
 		}
 	}
 
