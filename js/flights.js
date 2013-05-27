@@ -112,8 +112,10 @@ require(["libs/text!../templates/flights/flights.html", "libs/text!../templates/
 	var convertDate = function(stringDate) {
 
 		var finalDate;
+		
 		var dateRegex = /^(\d{4})\-(\d{1,2})\-(\d{1,2})\ (\d{1,2})\:(\d{1,2})\:(\d{1,2})$/;
 		var dateRegexResult = stringDate.match(dateRegex);
+
 
 		return dateRegexResult[3] + "/" + dateRegexResult[2] + "/" + dateRegexResult[1] + " - " + dateRegexResult[4] + ":" + dateRegexResult[5];
 	}

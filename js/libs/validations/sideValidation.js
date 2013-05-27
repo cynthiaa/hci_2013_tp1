@@ -16,10 +16,11 @@ var validate = new function() {
 		display: 'regreso',
 		rules: 'required'
 		}], function(errors, e) {
-			validator.registerCallback(check_date_range, function(value){
-				console.log("12" > 12);
-				console.log(12 > 12);
-			});
+			// validator.registerCallback(check_date_range, function(value){
+				// var dateRegex = /^(\d{4})\-(\d{1,2})\-(\d{1,2})\ (\d{1,2})\:(\d{1,2})\:(\d{1,2})$/;
+		// var dateRegexResult = stringDate.match(dateRegex);
+				// if
+			// });
 			
 
 		var SELECTOR_ERRORS = $('.error');
