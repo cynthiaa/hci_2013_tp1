@@ -9,6 +9,18 @@ require(["libs/text!../templates/flights/flights.html", "libs/text!../templates/
 	Utils.init();
 	Utils.make_html(flights_html, side_validation_html);
 
+	$("#contact_link").click(function() {
+		document.location.href = Utils.getUrl("contact.html", Utils.setAttrs());
+	});
+
+	$("#about_link").click(function() {
+		document.location.href = Utils.getUrl("about.html", Utils.setAttrs());
+	});
+
+	$("#home_link").click(function() {
+		document.location.href = Utils.getUrl("index.html", Utils.setAttrs());
+	});
+
 	var api = new API();
 	var flights_data_tmp = Handlebars.compile(flights_data_html);
 	var tmp_img = Handlebars.compile(img_html);

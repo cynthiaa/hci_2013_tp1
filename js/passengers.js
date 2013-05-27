@@ -22,6 +22,18 @@ require([
 	Utils.init();
 	Utils.make_non_menu_html(passengers_html, passenger_validation_html);
 
+	$("#contact_link").click(function() {
+		document.location.href = Utils.getUrl("contact.html", Utils.setAttrs());
+	});
+
+	$("#about_link").click(function() {
+		document.location.href = Utils.getUrl("about.html", Utils.setAttrs());
+	});
+
+	$("#home_link").click(function() {
+		document.location.href = Utils.getUrl("index.html", Utils.setAttrs());
+	});
+
 	var passenger_data_tmp = Handlebars.compile(passenger_data_html);
 	var passenger_summary_tmp = Handlebars.compile(passenger_summary_html);
 	var passenger_title_tmp = Handlebars.compile(passenger_title_html);
