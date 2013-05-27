@@ -34,6 +34,10 @@ var validator = new FormValidator('side-form', [{
 validator.registerCallback("check_greaterThanDeparture", function(value) {
 	var regExp = /(\d{1,2})\/(\d{1,2})\/(\d{2,4})/;
 
+	var obj = $(".disabled");
+	if (obj != null) {
+		return true;
+	};
 	if (parseInt(value.replace(regExp, "$3$2$1")) > parseInt($("#depart_input").val().replace(regExp, "$3$2$1"))) {
 		return true;
 	}
@@ -73,7 +77,6 @@ function isBetweenThirtyOneDays(date) { {
 		if (day > 31 || day < 1) {
 			return false;
 		} else {
-			console.log("ENTRE A ESTE IF1");
 			while (true);
 			return true;
 		}
@@ -85,7 +88,6 @@ function isBetweenThirtyDays(date) { {
 		if (day > 30 || day < 1) {
 			return false;
 		} else {
-			console.log("ENTRE A ESTE IF2");
 			while (true);
 			return true;
 		}
