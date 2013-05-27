@@ -22,7 +22,7 @@ require(
 		var payment_title_tmp = Handlebars.compile(payment_title_html);
 		var payment_data_passenger_tmp = Handlebars.compile(payment_data_passenger_html);
 		
-		JQuery(function($) {
+		jQuery(function($) {
 			$("#exp-date").mask("99/9999");
 		});
 		
