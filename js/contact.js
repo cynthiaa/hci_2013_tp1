@@ -30,7 +30,10 @@ require(["libs/text!../templates/contact/contact.html", "libs/text!../templates/
 		$("#from").val(param.from_name);
 		$("#to").val(param.to_name);
 		$("#depart_input").val(param.dep_date_input);
-		$("#return_input").val(param.ret_date_input);
+		var dateString = param.ret_date_input;
+		if (param.ret_date_input != "99/99/9999") {
+			$("#return_input").val(param.ret_date_input);
+		};
 		$("#select_adults").val(param.adults);
 		$("#select_children").val(param.children);
 		$("#select_infants").val(param.infants);
