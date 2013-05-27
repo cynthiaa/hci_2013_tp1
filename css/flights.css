@@ -106,7 +106,7 @@
 
 .summary {
 	display: inline-block;
-	width: 170px;
+	width: 580px;
 	height: 35px;
 	background-color: rgba(255, 255, 255, 0.6);
 	border-radius: 35px;
@@ -115,8 +115,9 @@
 
 .summary div {
 	padding: 10px;
-	text-align: center;
-	height: 17px;
+	font-size: 12px
+	height: 12px;
+	color: #333;
 }
 
 .flight {
