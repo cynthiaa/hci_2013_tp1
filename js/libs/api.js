@@ -9,13 +9,9 @@ API.prototype = (function() {
 
         var url = baseUrl + relativeUrl + "?method=" + method;
 
-        for (var property in params) {
-
-            if (params.hasOwnProperty(property)) {
-
-                url += "&" + property + "=" + encodeURIComponent(params[property]);
-            }
-        }
+		for (var property in params)
+			if (params.hasOwnProperty(property))
+				url += "&" + property + "=" + encodeURIComponent(params[property]);
 
         return url;
     }
@@ -28,16 +24,14 @@ API.prototype = (function() {
         }).done(function(data) {
 
             console.log(data);
-            if (callbacks.success) {
-
+            if (callbacks.success)
                 callbacks.success(data);
-            }
+
         }).fail(function() {
 
-            if (callbacks.error) {
-
+            if (callbacks.error)
                 callbacks.error();
-            }
+            
         });
     };
 
@@ -138,9 +132,8 @@ API.prototype = (function() {
                 call("Booking.groovy", "GetFlightDeals", params, callbacks);
             },
 
-            // TODO
-            bookFlight: function(callbacks) {
-                call("Booking.groovy", "BookFlight", {}, callbacks);
+            bookFlight2: function(callbacks, params) {
+                call("Booking.groovy", "BookFlight2", params, callbacks);
             },
 
             validateCreditCard: function(callbacks, param) {
@@ -159,7 +152,6 @@ API.prototype = (function() {
                 call("Review.groovy", "GetOneWayFlights", params, callbacks);
             },
 
-            // TODO
             reviewAirline: function(callbacks) {
                 call("Review.groovy", "ReviewAirline", {}, callbacks);
             }
