@@ -1,4 +1,13 @@
-require(["libs/text!../templates/confirmation/confirmation.html", "libs/text!../templates/confirmation/confirmationValidation.html", "libs/text!../templates/passengers/passenger_summary.html", "libs/text!../templates/payment/payment_title.html", "libs/text!../templates/payment/payment_data_passenger.html", "libs/utils", "libs/jquery.maskedinput", "libs/domReady"], function(confirmation_html, confirmation_validation_html, flight_data_summary_html, summary_passenger_title_html, summary_passenger_data_html) {
+require(["libs/text!../templates/confirmation/confirmation.html",
+		"libs/text!../templates/confirmation/confirmationValidation.html",
+		"libs/text!../templates/passengers/passenger_summary.html",
+		"libs/text!../templates/payment/payment_title.html",
+		"libs/text!../templates/payment/payment_data_passenger.html",
+		"libs/text!../templates/confirmation/confirmation_payment_summary.html",
+		"libs/utils",
+		"libs/jquery.maskedinput",
+		"libs/domReady"],
+		function(confirmation_html, confirmation_validation_html, flight_data_summary_html, summary_passenger_title_html, summary_passenger_data_html, confirmation_payment_summary_html) {
 
 	Utils.init();
 	Utils.make_non_menu_html(confirmation_html, confirmation_validation_html);
@@ -7,6 +16,7 @@ require(["libs/text!../templates/confirmation/confirmation.html", "libs/text!../
 	var flight_data_summary_html_tmp = Handlebars.compile(flight_data_summary_html);
 	var summary_passenger_title_html_tmp = Handlebars.compile(summary_passenger_title_html);
 	var summary_passenger_data_html_tmp = Handlebars.compile(summary_passenger_data_html);
+	var summary_passenger_data_html_tmp = Handlebars.compile(confirmation_payment_summary_html);
 
 	$("#contact_link").click(function() {
 		document.location.href = Utils.getUrl("contact.html", Utils.setAttrs());
@@ -33,7 +43,6 @@ require(["libs/text!../templates/confirmation/confirmation.html", "libs/text!../
 
 	function showData(type) {
 		var prefix = (type == "Vuelta") ? "ret" : "";
-		console.log(param);
 
 		$("#flight-summary").append(flight_data_summary_html_tmp({
 			"type" : type,
@@ -48,7 +57,18 @@ require(["libs/text!../templates/confirmation/confirmation.html", "libs/text!../
 			"flightStopovers" : param[prefix + "flightStopovers"],
 			"flightDuration" : param[prefix + "flightDuration"],
 			"flightTotal" : param[prefix + "flightTotal"],
-			"taxation": (param[prefix + "taxation"]).substring(0, 18)
+			"taxation" : (param[prefix + "taxation"]).substring(0, 18),
+		}));
+
+		$("#payment-summary").append(flight_data_summary_html_tmp({
+			"card" : param["card"],
+			"cardNumber" : param["cardnum"],
+			"expireDate" : param["expdate"],
+			"securityCode" : param["securitycode"],
+			"ownerName" : param["ownername"],
+			"ownerLastName" : param["ownerlastname"],
+			"dni" : param["ownerdni"],
+			"email" : param["owneremail"]
 		}));
 	}
 

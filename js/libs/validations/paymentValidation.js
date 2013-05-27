@@ -50,7 +50,7 @@ function makeJson() {
 	$(json).prop("securitycode", $("#security-code").val());
 	$(json).prop("ownername", $("input[name='name']").val());
 	$(json).prop("ownerlastname", $("input[name='lastname']").val());
-	$(json).prop("ownerdni-", $("input[name='dni']").val());
-	$(json).prop("owneremail-", $("input[name='email']").val());
+	$(json).prop("ownerdni", $("input[name='dni']").val());
+	$(json).prop("owneremail", $("input[name='email']").val());
 	return json;
 }
