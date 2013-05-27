@@ -45,13 +45,10 @@ require(
     		aux.push(arr.slice(i*pagesize, (i+1)*pagesize));
         }
 
-        if (type = "inbound") {
-
+        if (type = "inbound")
             paramsFlightInbound = arr[0];
-        } else {
-
+        else
             paramsFlightOutbound = arr[0];
-        }
 
         return aux;
     }
@@ -78,7 +75,7 @@ require(
 				inbound= paginate(inbound, 5, "inbound");
 			else {
 				missingFlights= true;
-				$(".inbound form").append("<span> Su busqueda obtuvo 0 vuelos de vuelta, lo sentimos mucho. </span>");
+				$(".inbound .empty-flights").append("<span> Su busqueda obtuvo 0 vuelos de vuelta, lo sentimos mucho. </span>");
 			}
 
 		}
@@ -86,7 +83,7 @@ require(
 			outbound= paginate(outbound, 5, "outbound");
 		else {
 			missingFlights= true;
-			$(".outbound form").append("<span> Su busqueda obtuvo 0 vuelos de ida, lo sentimos mucho. </span>");
+			$(".outbound .empty-flights").append("<span> Su busqueda obtuvo 0 vuelos de ida, lo sentimos mucho. </span>");
 		}
 
 
@@ -290,16 +287,10 @@ require(
 
     $("#continue").click(function(){
 
-        if (oneWay) {
-
+        if (oneWay)
             document.location.href = $(".outbound .flight-radio input:checked").val();
-        } else {
-
-            document.location.href = concatUrls($(".inbound .flight-radio input:checked").val(),
-                                                $(".outbound .flight-radio input:checked").val());
-
-
-        }
+        else
+            document.location.href = concatUrls($(".inbound .flight-radio input:checked").val(), $(".outbound .flight-radio input:checked").val());
     });
 
     function concatUrls(url1, url2) {
