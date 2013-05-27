@@ -42,6 +42,7 @@ require(
 			api.booking.bookFlight2( function(data) {
 				console.log(data);
 			}, param);
+			document.location.href = Utils.getUrl("confirmation.html", param);
 		});
 		
 		showData("Ida");
