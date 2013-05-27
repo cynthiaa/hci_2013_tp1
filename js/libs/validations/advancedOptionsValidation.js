@@ -15,11 +15,6 @@ var validator = new FormValidator('side-form', [{
 	display: 'regreso',
 	rules: 'required'
 	}], function(errors, e) {
-		validator.registerCallback(check_date_range, function(value){
-			console.log("12" > 12);
-			console.log(12 > 12);
-		});
-		
 
 	var SELECTOR_ERRORS = $('.error');
 	SELECTOR_ERRORS.empty();

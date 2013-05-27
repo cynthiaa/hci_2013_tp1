@@ -32,9 +32,8 @@ require(["libs/text!../templates/flights/flights.html", "libs/text!../templates/
 
 	var paginate = function(arr, pagesize, type) {
 		var aux = new Array;
-		for (var i = 0; (i * pagesize) < arr.length; i++) {
-			aux.push(arr.slice(i * pagesize, (i + 1) * pagesize));
-		}
+		for (var i=0; i*pagesize < arr.length ;i++)
+			aux.push(arr.slice(i*pagesize, (i+1)*pagesize));
 
 		if ( type = "inbound")
 			paramsFlightInbound = arr[0];
@@ -49,7 +48,7 @@ require(["libs/text!../templates/flights/flights.html", "libs/text!../templates/
 		var aux;
 
 		if (flightsArray !== undefined)
-			for (var i = 0; i < flightsArray.length; i++) {
+			for (var i=0; i < flightsArray.length ;i++) {
 				if (flightsArray[i].hasOwnProperty('inboundRoutes')) {
 					aux = inbound.push(flightsArray[i].inboundRoutes[0].segments[0]);
 					inbound[aux - 1].pricing = flightsArray[i].price;
@@ -60,19 +59,22 @@ require(["libs/text!../templates/flights/flights.html", "libs/text!../templates/
 			}
 
 		if (!oneWay) {
-			if (inbound[0] !== undefined)
+			if (inbound[0] !== undefined) {
 				inbound = paginate(inbound, 5, "inbound");
-			else {
+				$(".inbound .empty-flights").remove();
+			} else {
 				missingFlights = true;
-				$(".inbound .empty-flights").append("<span> Su busqueda obtuvo 0 vuelos de vuelta, lo sentimos mucho. </span>");
+				$(".inbound").prepend("<div class='empty-flights'> <span> Su busqueda obtuvo 0 vuelos de vuelta, lo sentimos mucho. </span> </div>");
 			}
 
 		}
-		if (outbound[0] !== undefined)
+		
+		if (outbound[0] !== undefined) {
 			outbound = paginate(outbound, 5, "outbound");
-		else {
+			$(".outbound .empty-flights").remove();
+		} else {
 			missingFlights = true;
-			$(".outbound .empty-flights").append("<span> Su busqueda obtuvo 0 vuelos de ida, lo sentimos mucho. </span>");
+			$(".outbound").prepend("<div class='empty-flights'> <span> Su busqueda obtuvo 0 vuelos de ida, lo sentimos mucho. </span> </div>");
 		}
 
 		var flights = {
@@ -96,6 +98,8 @@ require(["libs/text!../templates/flights/flights.html", "libs/text!../templates/
 					"arrivalCity" : page[i].arrival.cityName,
 					"departureTime" : convertDate(page[i].departure.date),
 					"arrivalTime" : convertDate(page[i].arrival.date),
+					"departureAirport" : "caca", 
+					"arrivalAirport" : "caca2",
 					"flightClass" : convertCabinType(page[i].cabinType),
 					"flightStopovers" : page[i].stopovers.length,
 					"flightDuration" : page[i].duration + " horas",
@@ -143,6 +147,10 @@ require(["libs/text!../templates/flights/flights.html", "libs/text!../templates/
 		if (!oneWay)
 			inTotal = parseFloat($(".inbound .flight-radio input:checked").attr("data-total"));
 		outTotal = parseFloat($(".outbound .flight-radio input:checked").attr("data-total"));
+		if(isNaN(inTotal))
+			inTotal= 0;
+		if(isNaN(outTotal))
+			outTotal= 0;
 		$(".summary div").text(("Total: U$S " + (inTotal + outTotal)).substring(0, 19));
 	}
 	var clearFlights = function() {
@@ -152,14 +160,16 @@ require(["libs/text!../templates/flights/flights.html", "libs/text!../templates/
 	}
 	var refreshPage = function() {
 		clearFlights();
-		if (!oneWay) {
+		if (!oneWay && flights.inbound[inpagenum] !== undefined) {
 			showFlights($(".inbound form"), flights.inbound[inpagenum], "inbound");
 			$(".inbound .flight-radio input").first().prop('checked', 'checked');
 			$(".inbound-pages .page-number").val(inpagenum + 1);
 		}
-		showFlights($(".outbound form"), flights.outbound[outpagenum], "outbound");
-		$(".outbound .flight-radio input").first().prop('checked', 'checked');
-		$(".outbound-pages .page-number").val(outpagenum + 1);
+		if(flights.outbound[outpagenum] !== undefined) {
+			showFlights($(".outbound form"), flights.outbound[outpagenum], "outbound");
+			$(".outbound .flight-radio input").first().prop('checked', 'checked');
+			$(".outbound-pages .page-number").val(outpagenum + 1);
+		}
 		refreshTotals();
 	}
 	var clearPageNums = function() {
@@ -173,6 +183,10 @@ require(["libs/text!../templates/flights/flights.html", "libs/text!../templates/
 			clearPageNums();
 			refreshPageFooting();
 			refreshPage();
+			if((flights.inbound[0] == undefined && !oneWay) || flights.outbound[0] == undefined)
+				$("#continue").hide();
+			else
+				$("#continue").show();
 		}
 		//   	<-- Falta la funcion de error aca -->
 	}
