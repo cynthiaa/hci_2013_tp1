@@ -21,7 +21,7 @@ require(
 		var summary_passenger_data_html_tmp = Handlebars.compile(summary_passenger_data_html);
 		
 		showData("Ida");
-		if (param.ret_date != "null"){
+		if (param.ret_date != "null") {
 			showData("Vuelta");
 		}
 		
@@ -33,6 +33,8 @@ require(
 		
 		function showData(type) {
 			var prefix = (type == "Vuelta") ? "ret" : "";
+			console.log(param);
+			
 			$("#flight-summary").append(flight_data_summary_html_tmp({
 				"type": type,
 				"title": type,
@@ -40,12 +42,13 @@ require(
 				"arrivalCity": param[prefix + "arrivalCity"],
 				"departureTime": param[prefix + "departureTime"],
 				"arrivalTime": param[prefix + "arrivalTime"],
-				"departureAirport" : "caca", 
+				"departureAirport" : "caca",
 				"arrivalAirport" : "caca2",
 				"flightClass": param[prefix + "flightClass"],
 				"flightStopovers": param[prefix + "flightStopovers"],
 				"flightDuration": param[prefix + "flightDuration"],
 				"flightTotal": param[prefix + "flightTotal"],
+				"allFares": "caca3 y caca4"
 			}));
 		}
 		
