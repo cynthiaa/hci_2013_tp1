@@ -131,3 +131,22 @@ div.main.panel {
 	height: 500px;
 	width: 548px;
 }
+
+.passenger-alert {
+	display: none;
+	background: #FFFF99;
+	border: 1px solid #FFBF00;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	color: #333;
+	font-size: 13px;
+	padding: 8px 8px;
+	display: inline-block;
+	position: absolute;
+}
+
+.passenger-header {
+	display: inline-block;
+	margin-right: 70px;
+}
