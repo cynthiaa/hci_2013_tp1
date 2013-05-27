@@ -150,3 +150,8 @@ div.main.panel {
 	display: inline-block;
 	margin-right: 70px;
 }
+
+#summary {
+	width: 465px;
+	overflow-y: scroll;
+}
