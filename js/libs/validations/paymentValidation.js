@@ -70,14 +70,15 @@ var validator = new FormValidator('payment-form', [{
 		SELECTOR_ERRORS.fadeIn(200);
 	} else {
 		Utils.stopEvent(e);
+		aux= $("exp-date").val().split("/");
 		var json = {
 			"flightId" : param.flightId,
 			"passengers" : passengersArrayGenerator(), 
 			"payment" : { 
 				"creditCard" : {
 					"number" : $("card-num").val(),
-					"expiration" : $("exp-date").val(),
-					"securityCode" : $("security-code").val(),
+					"expiration" : $("exp-date").val().split("/"),
+					"securityCode" : $("security-code").val(aux[0]+ "" +aux[1]),
 					"firstName" : $(".form-component-left input")[0].val(),
 					"lastName" : $(".form-component-right input")[0].val()
 				}				
