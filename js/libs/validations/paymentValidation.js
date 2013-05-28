@@ -88,9 +88,10 @@ var validator = new FormValidator('payment-form', [{
 			}	
 		}
 		console.log(json);
-		api.booking.bookFlight2( function(data) {
+		api.booking.bookFlight2( { 
+			success : function(data) {
 			document.location.href = Utils.getUrl("confirmation.html", Utils.jsonConcat(param, makeJson()));
-		}, json);
+		} }, json);
 	}
 });
 
