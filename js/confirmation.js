@@ -1,50 +1,108 @@
-require(["libs/text!../templates/confirmation/confirmation.html", "libs/text!../templates/passengers/passenger_summary.html", "libs/text!../templates/payment/payment_summary.html", "libs/utils", "libs/jquery.maskedinput", "libs/domReady"], function(confirmation_html, passenger_summary_html, payment_summary_html) {
+require(["libs/text!../templates/confirmation/confirmation.html",
+		"libs/text!../templates/confirmation/confirmationValidation.html",
+		"libs/text!../templates/passengers/passenger_summary.html",
+		"libs/text!../templates/payment/payment_title.html",
+		"libs/text!../templates/payment/payment_data_passenger.html",
+		"libs/text!../templates/confirmation/confirmation_payment_summary.html",
+		"libs/utils",
+		"libs/jquery.maskedinput",
+		"libs/domReady"],
+		function(confirmation_html, confirmation_validation_html, flight_data_summary_html, summary_passenger_title_html, summary_passenger_data_html, confirmation_payment_summary_html) {
 
 	Utils.init();
-	Utils.make_non_menu_html(confirmation_html);
+	Utils.make_non_menu_html(confirmation_html, confirmation_validation_html);
 
 	var param = $.url().param();
+	console.log(param);
+	var flight_data_summary_html_tmp = Handlebars.compile(flight_data_summary_html);
+	var summary_passenger_title_html_tmp = Handlebars.compile(summary_passenger_title_html);
+	var summary_passenger_data_html_tmp = Handlebars.compile(summary_passenger_data_html);
+	var confirmation_payment_summary_html_tmp = Handlebars.compile(confirmation_payment_summary_html);
 
-	var passenger_summary_tmp = Handlebars.compile(passenger_summary_html);
-	var paymeny_summary_tmp = Handlebars.compile(paymeny_summary_html);
+	$("#contact_link").click(function() {
+		document.location.href = Utils.getUrl("contact.html", Utils.setAttrs());
+	});
+
+	$("#about_link").click(function() {
+		document.location.href = Utils.getUrl("about.html", Utils.setAttrs());
+	});
+
+	$("#home_link").click(function() {
+		document.location.href = Utils.getUrl("index.html", Utils.setAttrs());
+	});
+
+	showData("Ida");
+	if (param.ret_date != "null") {
+		showData("Vuelta");
+	}
+
 	var n_adults = Number(param["adults"]);
 	var n_children = Number(param["children"]);
 	var n_infants = Number(param["infants"]);
 
-	addPassengers("Adultos", n_adults);
-	addPassengers("Menores", n_children);
-	addPassengers("Infantes", n_infants);
-
-	$(".summary").append(payment_summary_tmp({
-		"type" : "flightTitle",
-		"title" : "Resumen",
-		"departureCity" : param[prefix + "departureCity"],
-		"arrivalCity" : param[prefix + "arrivalCity"],
-		"departureTime" : param[prefix + "departureTime"],
-		"arrivalTime" : param[prefix + "arrivalTime"],
-		"flightClass" : param[prefix + "flightClass"],
-		"flightStopovers" : param[prefix + "flightStopovers"],
-		"flightDuration" : param[prefix + "flightDuration"],
-		"flightTotal" : param[prefix + "flightTotal"],
+	addPassengers(n_adults, n_children, n_infants);
+	
+	$("#payment-summary").append(confirmation_payment_summary_html_tmp({
+		"card" : param["card"],
+		"cardNumber" : param["cardnum"],
+		"expireDate" : param["expdate"],
+		"securityCode" : param["securitycode"],
+		"ownerName" : param["ownername"],
+		"ownerLastName" : param["ownerlastname"],
+		"dni" : param["ownerdni"],
+		"email" : param["owneremail"]
 	}));
-	$(".summary").append(passenger_summary_tmp({}));
+	
+	$("#total").append("TOTAL: " + ((Number(param["flightTotal"]) + Number(param["retflightTotal"]) + Number(param["taxation"]) + Number(param["rettaxation"])).toFixed(2)))s;
+	
+	
+	
+	function showData(type) {
+		var prefix = (type == "Vuelta") ? "ret" : "";
 
-	function addPassengers(title, n) {
+		$("#flight-summary").append(flight_data_summary_html_tmp({
+			"type" : type,
+			"title" : type,
+			"departureCity" : param[prefix + "departureCity"],
+			"arrivalCity" : param[prefix + "arrivalCity"],
+			"departureTime" : param[prefix + "departureTime"],
+			"arrivalTime" : param[prefix + "arrivalTime"],
+			"departureAirport" : param[prefix + "departureAirport"],
+			"arrivalAirport" : param[prefix + "arrivalAirport"],
+			"flightClass" : param[prefix + "flightClass"],
+			"flightStopovers" : param[prefix + "flightStopovers"],
+			"flightDuration" : param[prefix + "flightDuration"],
+			"flightTotal" : param[prefix + "flightTotal"],
+			"taxation" : param[prefix + "taxation"]
+		}));
+	}
 
-		if (n == 0)
-			return;
-		($('#pass-ctn').append(passenger_title_tmp({
-				"title" : title
-			})));
+	function addPassengers(n_adults, n_children, n_infants) {
+		var n_total = n_adults + n_children + n_infants;
 
-		while (n) {($('.summary').append(passenger_data_tmp({
-					"name" : "name" + n,
-					"lastname" : "lastname" + n,
-					"birth" : "birth" + n,
-					"gender" : "gender" + n
-				})));
-			n--;
-		}
+		addPassengersByType(n_adults, n_total, "adults", "Adultos");
+		addPassengersByType(n_children, n_total, "children", "Menores");
+		addPassengersByType(n_infants, n_total, "infants", "Infantes");
+	}
+
+	function addPassengersByType(n, n_total, type, title) {
+
+		for (var i = 0, count = 0; count < n && i < n_total; i++)
+			if (param["type-" + i] == type) {
+				var attrs = {
+					'name' : param["name-" + i],
+					'lastname' : param["surname-" + i],
+					'gender' : (param["gender-" + i] == "male" ? "Masculino" : "Femenino"),
+					'birth' : param["birth-" + i]
+				};
+
+				if (count++ == 0)
+					($('#passenger-summary').append(summary_passenger_title_html_tmp({
+							"title" : title
+						}))).append(summary_passenger_data_html_tmp(attrs));
+				else
+					($('#passenger-summary').append(summary_passenger_data_html_tmp(attrs)));
+			}
 	}
 
 });

@@ -3,180 +3,171 @@ function API() {
 
 API.prototype = (function() {
 
-    var baseUrl = "http://eiffel.itba.edu.ar/hci/service2/";
+	var baseUrl = "http://eiffel.itba.edu.ar/hci/service2/";
 
-    var resolveUrl = function(relativeUrl, method, params) {
+	var resolveUrl = function(relativeUrl, method, params) {
 
-        var url = baseUrl + relativeUrl + "?method=" + method;
+		var url = baseUrl + relativeUrl + "?method=" + method;
 
-        for (var property in params) {
+		for (var property in params)
+		if (params.hasOwnProperty(property))
+			url += "&" + property + "=" + encodeURIComponent(params[property]);
 
-            if (params.hasOwnProperty(property)) {
+		return url;
+	}
+	var call = function(relativeUrl, method, params, callbacks) {
 
-                url += "&" + property + "=" + encodeURIComponent(params[property]);
-            }
-        }
+		$.ajax({
+			url : resolveUrl(relativeUrl, method, params),
+			dataType : "jsonp",
+			timeout : 15000,
+			error : function(XMLHttpRequest, textStatus, errorThrown) {
+				alert("Disculpe las molestias ocasionadas, el servidor no se encuentra disponible en este momento.");
+			}
+		}).done(function(data) {
 
-        return url;
-    }
+			console.log(data);
+			if (callbacks.success)
+				callbacks.success(data);
 
-    var call = function(relativeUrl, method, params, callbacks) {
+		}).fail(function() {
 
-        $.ajax({
-            url: resolveUrl(relativeUrl, method, params),
-            dataType: "jsonp",
-            timeout: 100000,
-            error: function(XMLHttpRequest, textStatus, errorThrown) {
-                alert("Disculpe las molestias ocasionadas, el servidor no se encuentra disponible en este momento, por favor intente nuevamente más tarde, muchas gracias.");
-            }
-        }).done(function(data) {
+			if (callbacks.error)
+				callbacks.error();
 
-            console.log(data);
-            if (callbacks.success) {
+		});
+	};
 
-                callbacks.success(data);
-            }
-        }).fail(function() {
+	return {
+		/* Misc methods */
+		misc : {
 
-            if (callbacks.error) {
+			getLanguages : function(callbacks) {
 
-                callbacks.error();
-            }
-        });
-    };
+				call("Misc.groovy", "GetLanguages", {}, callbacks);
+			},
 
-    return {
-        /* Misc methods */
-        misc: {
+			getCurrencies : function(callbacks, params) {
+				call("Misc.groovy", "GetCurrencies", params, callbacks);
+			},
 
-            getLanguages: function(callbacks) {
+			getCurrencyById : function(callbacks, params) {
+				call("Misc.groovy", "GetCurrencyById", params, callbacks);
+			},
 
-                call("Misc.groovy", "GetLanguages", {}, callbacks);
-            },
+			getCurrenciesRatio : function(callbacks, params) {
+				call("Misc.groovy", "GetCurrenciesRatio", params, callbacks);
+			},
 
-            getCurrencies: function(callbacks, params) {
-                call("Misc.groovy", "GetCurrencies", params, callbacks);
-            },
+			getAirlines : function(callbacks, params) {
+				call("Misc.groovy", "GetAirlines", params, callbacks);
+			},
 
-            getCurrencyById: function(callbacks, params) {
-                call("Misc.groovy", "GetCurrencyById", params, callbacks);
-            },
+			getAirlineById : function(callbacks, params) {
+				call("Misc.groovy", "GetAirlineById", params, callbacks);
+			},
 
-            getCurrenciesRatio: function(callbacks, params) {
-                call("Misc.groovy", "GetCurrenciesRatio", params, callbacks);
-            },
+			getAirlinesByName : function(callbacks) {
+				call("Misc.groovy", "GetAirlineByName", {}, callbacks);
+			}
+		},
 
-            getAirlines: function(callbacks, params) {
-                call("Misc.groovy", "GetAirlines", params, callbacks);
-            },
+		/* Geo methods */
+		geo : {
 
-            getAirlineById: function(callbacks, params) {
-                call("Misc.groovy", "GetAirlineById", params, callbacks);
-            },
+			getCountries : function(callbacks, params) {
+				call("Geo.groovy", "GetCountries", params, callbacks);
+			},
 
-            getAirlinesByName: function(callbacks) {
-                call("Misc.groovy", "GetAirlineByName", {}, callbacks);
-            }
-        },
+			getCountryById : function(callbacks, params) {
+				call("Geo.groovy", "GetCountryById", params, callbacks);
+			},
 
-        /* Geo methods */
-        geo: {
+			getCities : function(callbacks, params) {
+				call("Geo.groovy", "GetCities", params, callbacks);
+			},
 
-            getCountries: function(callbacks, params) {
-                call("Geo.groovy", "GetCountries", params, callbacks);
-            },
+			getCityById : function(callbacks, params) {
+				call("Geo.groovy", "GetCityById", params, callbacks);
+			},
 
-            getCountryById: function(callbacks, params) {
-                call("Geo.groovy", "GetCountryById", params, callbacks);
-            },
+			getCitiesByName : function(callbacks) {
+				call("Geo.groovy", "GetCitiesByName", {}, callbacks);
+			},
 
-            getCities: function(callbacks, params) {
-                call("Geo.groovy", "GetCities", params, callbacks);
-            },
+			getCitiesByPosition : function(callbacks, params) {
+				call("Geo.groovy", "GetCitiesByPosition", params, callbacks);
+			},
 
-            getCityById: function(callbacks, params) {
-                call("Geo.groovy", "GetCityById", params, callbacks);
-            },
+			getAirports : function(callbacks, params) {
+				call("Geo.groovy", "GetAirports", params, callbacks);
+			},
 
-            getCitiesByName: function(callbacks) {
-                call("Geo.groovy", "GetCitiesByName", {}, callbacks);
-            },
+			getAirportById : function(callbacks, params) {
+				call("Geo.groovy", "GetAirportById", params, callbacks);
+			},
 
-            getCitiesByPosition: function(callbacks, params) {
-                call("Geo.groovy", "GetCitiesByPosition", params, callbacks);
-            },
+			getAirportsByName : function(callbacks, params) {
+				call("Geo.groovy", "GetAirportsByName", params, callbacks);
+			},
 
-            getAirports: function(callbacks, params) {
-                call("Geo.groovy", "GetAirports", params, callbacks);
-            },
+			getAirportsByPosition : function(callbacks, params) {
+				call("Geo.groovy", "GetAirportsByPosition", params, callbacks);
+			},
 
-            getAirportById: function(callbacks, params) {
-                call("Geo.groovy", "GetAirportById", params, callbacks);
-            },
+			getCitiesAndAirportsByName : function(callbacks, params) {
+				call("Geo.groovy", "GetCitiesAndAirportsByName", params, callbacks);
+			}
+		},
 
-            getAirportsByName: function(callbacks, params) {
-                call("Geo.groovy", "GetAirportsByName", params, callbacks);
-            },
+		/* Booking methods */
+		booking : {
 
-            getAirportsByPosition: function(callbacks, params) {
-                call("Geo.groovy", "GetAirportsByPosition", params, callbacks);
-            },
+			getOneWayFlights : function(callbacks, params) {
+				call("Booking.groovy", "GetOneWayFlights", params, callbacks);
+			},
 
-            getCitiesAndAirportsByName: function(callbacks, params) {
-                call("Geo.groovy", "GetCitiesAndAirportsByName", params, callbacks);
-            }
-        },
+			getRoundTripFlights : function(callbacks, params) {
+				call("Booking.groovy", "GetRoundTripFlights", params, callbacks);
+			},
 
-        /* Booking methods */
-        booking: {
+			getFlightDeals : function(callbacks, params) {
+				call("Booking.groovy", "GetFlightDeals", params, callbacks);
+			},
 
-            getOneWayFlights: function(callbacks, params) {
-                call("Booking.groovy", "GetOneWayFlights", params, callbacks);
-            },
+			bookFlight2 : function(callbacks, params) {
+				call("Booking.groovy", "BookFlight2", params, callbacks);
+			},
 
-            getRoundTripFlights: function(callbacks, params) {
-                call("Booking.groovy", "GetRoundTripFlights", params, callbacks);
-            },
+			validateCreditCard : function(callbacks, param) {
+				call("Booking.groovy", "ValidateCreditCard", param, callbacks);
+			},
 
-            getFlightDeals: function(callbacks, params) {
-                call("Booking.groovy", "GetFlightDeals", params, callbacks);
-            },
+			getInstallments : function(callbacks, params) {
+				call("Booking.groovy", "GetInstallments", params, callbacks);
+			}
+		},
 
-            // TODO
-            bookFlight: function(callbacks) {
-                call("Booking.groovy", "BookFlight", {}, callbacks);
-            },
+		/* Review methods */
+		review : {
 
-            validateCreditCard: function(callbacks, param) {
-                call("Booking.groovy", "ValidateCreditCard", param, callbacks);
-            },
+			getAirlineReviews : function(callbacks, params) {
+				call("Review.groovy", "GetOneWayFlights", params, callbacks);
+			},
 
-            getInstallments: function(callbacks, params) {
-                call("Booking.groovy", "GetInstallments", params, callbacks);
-            }
-        },
+			reviewAirline : function(callbacks) {
+				call("Review.groovy", "ReviewAirline", {}, callbacks);
+			}
+		},
 
-        /* Review methods */
-        review: {
+		/* Status methods */
+		getFlightStatus : {
 
-            getAirlineReviews: function(callbacks, params) {
-                call("Review.groovy", "GetOneWayFlights", params, callbacks);
-            },
+			getFlightsStatus : function(callbacks, params) {
+				call("Status.groovy", "GetFlightStatus", params, callbacks);
+			}
+		}
 
-            // TODO
-            reviewAirline: function(callbacks) {
-                call("Review.groovy", "ReviewAirline", {}, callbacks);
-            }
-        },
-
-        /* Status methods */
-        getFlightStatus: {
-
-            getFlightsStatus: function(callbacks, params) {
-                call("Status.groovy", "GetFlightStatus", params, callbacks);
-            }
-        }
-
-    }
+	}
 })();
 

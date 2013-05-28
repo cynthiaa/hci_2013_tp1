@@ -1,71 +1,67 @@
 <div class="main panel">
-	<h2>Opciones avanzadas</h2>
-	<div class="hdivider"></div>
-	<form name="advancedForm">
-		<div class="form-container">
-			<div class="form-component">
-				<label>Aerolínea:</label>
-				<input id="airline" name="airline" type="text" placeholder="Ingrese el nombre de una aerolínea" />
-			</div>
-			<div class="form-component">
-				<label>Horario de partida:<span class="small">
-						<br>
-						±1 hora </span></label>
-				<div class="styled-select">
-					<select id="select_departure_time" name="departure_time">
-						<option value="no-preference">Sin preferencia</option>
-					</select>
-				</div>
-			</div>
-			<div id="return" class="form-component">
-				<label>Horario de regreso:<span class="small">
-						<br>
-						±1 hora </span></label>
-				<div class="styled-select">
-					<select id="select_return_time" name="return_time">
-						<option value="no-preference">Sin preferencia</option>
-					</select>
-				</div>
-			</div>
-			<div class="form-component">
-				<label>Cantidad de escalas:</label>
-				<div class="styled-select">
-					<select id="select_stopovers" name="stopovers">
-						<option value="no-preference">Sin preferencia</option>
-						<option value="0">Sin escalas</option>
-					</select>
-				</div>
-			</div>
-			<div class="form-component">
-				<label>Clase:</label>
-				<div class="styled-select">
-					<select id="class" name="class">
-						<option value="no-preference">Sin preferencia</option>
-						<option value="ECONOMY">Turista</option>
-						<option value="BUSINESS">Ejecutiva</option>
-						<option value="FIRST_CLASS">Primera clase</option>
-					</select>
-				</div>
-			</div>
-			<!-- <div class="form&#45;component"> -->
-			<!--     <label>Moneda:</label> -->
-			<!--     <div class="styled&#45;select"> -->
-			<!--         <select id="currency" name="currency"></select> -->
-			<!--     </div> -->
-			<!-- </div> -->
-			<div class="form-component">
-				<label>Precio mínimo:</label>
-				<input id="min_price" class="price" name="min-price" type="text" placeholder="Mín" />
-			</div>
-			<div class="form-component">
-				<label>Precio máximo:</label>
-				<input id="max_price" class="price" name="max-price" type="text" placeholder="Máx" />
-			</div>
-		</div>
-		<div class="navigation-bar">
-			<div class="hdivider"></div>
-			<input id="search_adv_opt" type="submit" value="Buscar" />
-		</div>
+    <h2>Opciones avanzadas</h2>
+    <div class="hdivider"></div>
+    <form name="advanced-form">
+	    <div class="form-container">
+	        <div class="form-component">
+	            <label>Aerolínea:</label>
+	            <input id="airline" name="airline" type="text" placeholder="Ingrese el nombre de una aerolínea"/>
+	        </div>
+	        <div class="form-component">
+	            <label>Horario de partida:<span class="small"><br>±1 hora </span></label>
+	            <div class="styled-select">
+	                <select id="select_departure_time" name="departure_time">
+	                    <option value="no-preference">Sin preferencia</option>
+	                </select>
+	            </div>
+	        </div>
+	        <div id="return" class="form-component">
+	            <label>Horario de regreso:<span class="small"><br>±1 hora </span></label>
+	            <div class="styled-select">
+	                <select id="select_return_time" name="return_time">
+	                    <option value="no-preference">Sin preferencia</option>
+	                </select>
+	            </div>
+	        </div>
+	        <div class="form-component">
+	            <label>Cantidad de escalas:</label>
+	            <div class="styled-select">
+	                <select id="select_stopovers" name="stopovers">
+	                    <option value="no-preference">Sin preferencia</option>
+	                    <option value="0">Sin escalas</option>
+	                </select>
+	            </div>
+	        </div>
+	        <div class="form-component">
+	            <label>Clase:</label>
+	            <div class="styled-select">
+	                <select id="class" name="class">
+	                    <option value="no-preference">Sin preferencia</option>
+	                    <option value="ECONOMY">Turista</option>
+	                    <option value="BUSINESS">Ejecutiva</option>
+	                    <option value="FIRST_CLASS">Primera clase</option>
+	                </select>
+	            </div>
+	        </div>
+	        <!-- <div class="form&#45;component"> -->
+	        <!--     <label>Moneda:</label> -->
+	        <!--     <div class="styled&#45;select"> -->
+	        <!--         <select id="currency" name="currency"></select> -->
+	        <!--     </div> -->
+	        <!-- </div> -->
+	        <div class="form-component">
+	            <label>Precio mínimo:</label>
+	            <input id="min_price" class="price" name="min-price" type="text" placeholder="Mín" />
+	        </div>
+	        <div class="form-component">
+	            <label>Precio máximo:</label>
+	            <input id="max_price" class="price" name="max-price" type="text" placeholder="Máx" />
+	        </div>
+	    </div>
+	    <div class="navigation-bar">
+	        <div class="hdivider"></div>
+	        <input id="search_adv_opt" type="submit" value="Buscar" />
+	    </div>
 	</form>
 </div>
 

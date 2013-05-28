@@ -9,10 +9,13 @@
 	margin-right:20px;
 }
 
-.payment-main {
-	display: inline-block;
+#body .main {
 	height: 500px;
-	width: 550px;
+	width: 548px;
+}
+
+.main-container {
+	display: inline-block;
 	position: absolute;
 }
 
@@ -148,19 +151,10 @@ h6.title {
 }
 
 .payment-error {
-	background: #FAD3C4;
-	border: 1px solid #A75B4E;
-	border-radius: 5px;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	color: #333;
 	display: none;
-	font-size: 13px;
-	margin: 0px 0px 15px 0px;
+	color: #333;
+	margin-bottom: 10px;
+	background: #FAD3C4;
+	border: solid 4px #A75B4E;
 	padding: 8px 8px;
-}
-
-.main {
-	position: absolute;
-	display: inline-block;
 }

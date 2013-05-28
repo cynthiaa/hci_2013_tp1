@@ -1,10 +1,6 @@
 #main > .main {
     height: 500px;
-    width: 700px;
-}
-
-.flight {
-    overflow: auto;
+    width: 694px;
 }
 
 .pFlight {
@@ -110,7 +106,7 @@
 
 .summary {
 	display: inline-block;
-	width: 170px;
+	width: 580px;
 	height: 35px;
 	background-color: rgba(255, 255, 255, 0.6);
 	border-radius: 35px;
@@ -119,13 +115,15 @@
 
 .summary div {
 	padding: 10px;
-	text-align: center;
-	height: 17px;
+	font-size: 11px;
+	height: 11px;
+	color: #333;
 }
 
 .flight {
 	padding: 10px;
 	display: inline-block;
+	width: 290px;
 }
 
 .flight-radio {
@@ -150,7 +148,7 @@
 
 .outbound-next {
 	float: right;
-	margin-right: 10px;
+	margin-right: 6px;
 	margin-top: 6px;
 	display: inline-block;
 }
@@ -196,19 +194,19 @@ input.flight-pages {
 
 .outbound-pages {
 	display: inline-block;
-	margin: 0 110px;
+	margin: 0 100px;
 }
 
 .inbound-pages {
 	display: inline-block;
-	margin: 0 110px;
+	margin: 0 100px;
 }
 
 .go-button {
 	color: #52B0D6;
 	border: 1px solid #52B0D6;
 	height: 26px;
-	width: 20px;
+	width: 40px;
 }
 
 .go-button :hover {
@@ -228,6 +226,11 @@ input.flight-pages {
 	height: 50px;
 	top: 400%;
 	left: 40%;
+	margin-top: 150px;
 	position: absolute;
 }
 
+.empty-flights {
+	text-align: center;
+	margin-top: 150px;
+}

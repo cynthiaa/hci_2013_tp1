@@ -8,6 +8,7 @@
 }
 
 a {
+	cursor: pointer;
     color: #888;
     text-decoration: none;
     font-weight: bold;
@@ -47,7 +48,7 @@ h4 {
 }
 
 h4.featured {
-    font-size: 17px;
+    font-size: 100%;
 }
 
 h4.title {
@@ -102,6 +103,7 @@ input[type="submit"], input[type="reset"], input[type="button"] {
     /* text-shadow: 1px 1px 0px #52B0D6; */
     background: #E4F1F6; /* fallback para navegadores que no soporten degradados */
     background: -moz-linear-gradient(top, #E4F1F6 0%, #CFE6EF 100%);
+    display: inline-block;
     /* background: -webkit-linear-gradient(top, #E4F1F6 0%,#CFE6EF 100%); */
     /*background: -webkit-radial-gradient(circle, #E4F1F6 40%, #CFE6EF);*/
 }
@@ -208,6 +210,7 @@ body > .container > .header .vdivider {
 }
 
 .menu_link {
+	cursor: pointer;
     display: inline-block;
 }
 
@@ -287,6 +290,7 @@ body > .container > .header .vdivider {
 }
 
 #sidebar .sidebar-body .search a {
+	color: #52B0D6;
     font-size: 12px;
     text-decoration: underline;
 }
@@ -368,6 +372,16 @@ div.error {
 	width: 250px;
 	background: #FAD3C4;
 	border: solid 4px #A75B4E;
+}
+
+.flightTotal {
+	font-size: 16px;
+    color: #52B0D6;
+}
+
+.pTotal {
+	font-size: 16px;
+	color: #333;
 }
 
 

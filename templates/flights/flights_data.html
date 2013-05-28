@@ -1,6 +1,6 @@
 <div>
 	<div class="flight-radio">
-		 <input type="radio" name="flight" value="{{buttonValue}}" data-total="{{flightTotal}}">
+		 <input type="radio" name="flight" value="{{buttonValue}}">
 	</div>
 	<div class="flight">
 		<div class="airline-image">
@@ -11,7 +11,15 @@
 		</p>
 		<br>
 		<p class="pFlight">
+			Aeropuerto de salida: <span class="pCommon">{{departureAirport}}</span>
+		</p>
+		<br>
+		<p class="pFlight">
 			Destino: <span class="pCommon">{{arrivalCity}}</span>
+		</p>
+		<br>
+		<p class="pFlight">
+			Aeropuerto de llegada: <span class="pCommon">{{arrivalAirport}}</span>
 		</p>
 		<br>
 		<p class="pFlight">
@@ -33,8 +41,8 @@
 		<p class="pFlight">
 			Duración: <span class="pCommon">{{flightDuration}}</span>
 		</p>
-		<p class="pFlightTotal">
-			Total: U$S <span class="pTotal">{{flightTotal}}</span>
+		<p class="flightTotal">
+			Total: <span class="pTotal">U$S {{flightTotal}}</span>
 		</p>
 	</div>
 </div>
