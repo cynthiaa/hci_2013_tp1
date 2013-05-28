@@ -22,7 +22,7 @@ function createPassengerRules() {
 		passengerRules[i] = {
 			name : 'name' + i,
 			display : 'Nombre',
-			rules : 'required|alpha'
+			rules : 'required|callback_nombre'
 		}
 		passengerRules[MAX_PASSENGERS + i] = {
 			name : 'lastname' + i,
@@ -42,6 +42,10 @@ function createPassengerRules() {
 	};
 	return passengerRules;
 }
+
+validator.registerCallback("nombre", function(value) {
+	return /^[a-zA-Z()/(\s)/]+$/.test(value);
+}).setMessage('nombre', "El campo Nombre debe contener solamente caracteres");
 
 function constructFrom(index, str, json) {
 	for (var i = index; i < (index + Number(param[str])); i++) {
