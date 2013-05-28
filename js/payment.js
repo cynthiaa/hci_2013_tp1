@@ -4,6 +4,7 @@ require(["libs/text!../templates/payment/payment.html", "libs/text!../templates/
 	Utils.make_non_menu_html(payment_html, payment_validation_html);
 
 	var param = $.url().param();
+	console.log(param);
 	var api = new API();
 	var payment_summary_flights_tmp = Handlebars.compile(payment_summary_flights_html);
 	var payment_title_tmp = Handlebars.compile(payment_title_html);

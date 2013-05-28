@@ -25,10 +25,42 @@ var validator = new FormValidator('payment-form', [{
 	name : 'email',
 	rules : 'required|valid_email'
 }], function(errors, e) {
+	var param = $.url().param();
 	var SELECTOR_ERRORS = $('.payment-error');
 	SELECTOR_ERRORS.empty();
 	var passengersArrayGenerator = function() {
-		
+		var arr= new Array();
+		var aux;
+		for(var i=0; i<param.adults ;i++) {
+			aux= {
+				"firstName" : $(param).attr("name-" + i),
+				"lastName" : $(param).attr("surname-" + i),
+				"birthdate" : $(param).attr("name-" + i),
+				"idType" : 1,
+				"idNumber" : $(".form-component-left input")[1].val()
+			}
+			arr.push(aux);
+		}
+		for(i=0; i<param.children ;i++) {
+			aux= {
+				"firstName" : $(param).attr("name-" + (i + param.adults)),
+				"lastName" : $(param).attr("surname-" + (i + param.adults)),
+				"birthdate" : $(param).attr("name-" + (i + param.adults)),
+				"idType" : 1,
+				"idNumber" : $(".form-component-left input")[1].val()
+			}
+			arr.push(aux);
+		}
+		for(i=0; i<param.infants ;i++) {
+			aux= {
+				"firstName" : $(param).attr("name-" + (i + param.children + param.adults)),
+				"lastName" : $(param).attr("surname-" + (i + param.children + param.adults)),
+				"birthdate" : $(param).attr("name-" + (i + param.children + param.adults)),
+				"idType" : 1,
+				"idNumber" : $(".form-component-left input")[1].val()	
+			}
+			arr.push(aux);
+		}
 	}
 
 	if (errors.length > 0) {
@@ -37,11 +69,8 @@ var validator = new FormValidator('payment-form', [{
 
 		SELECTOR_ERRORS.fadeIn(200);
 	} else {
-		var param = $.url().param();
 		Utils.stopEvent(e);
-		api.booking.bookFlight2(function(data) {
-			document.location.href = Utils.getUrl("confirmation.html", Utils.jsonConcat(param, makeJson()));
-		}, {
+		var json = {
 			"flightId" : param.flightId,
 			"passengers" : passengersArrayGenerator(), 
 			"payment" : { 
@@ -57,7 +86,11 @@ var validator = new FormValidator('payment-form', [{
 				"email" : $(".form-component-right input")[1].val(),
 				"phones" : ["555-5555"]
 			}	
-		});
+		}
+		console.log(json);
+		api.booking.bookFlight2( function(data) {
+			document.location.href = Utils.getUrl("confirmation.html", Utils.jsonConcat(param, makeJson()));
+		}, json);
 	}
 });
 
