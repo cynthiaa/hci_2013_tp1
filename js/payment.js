@@ -10,7 +10,7 @@ require(["libs/text!../templates/payment/payment.html", "libs/text!../templates/
 	var payment_data_passenger_tmp = Handlebars.compile(payment_data_passenger_html);
 
 	jQuery(function($) {
-		$("#exp-date").mask("99/9999");
+		$("#exp-date").mask("99/99");
 	});
 
 	/* Passengers */
@@ -59,7 +59,7 @@ require(["libs/text!../templates/payment/payment.html", "libs/text!../templates/
 			"flightStopovers" : param[prefix + "flightStopovers"],
 			"flightDuration" : param[prefix + "flightDuration"],
 			"flightTotal" : param[prefix + "flightTotal"],
-			"taxation": Number((param[prefix + "taxation"])).toFixed(2)
+			"taxation": param[prefix + "taxation"]
 		}));
 	}
 

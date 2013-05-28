@@ -85,7 +85,7 @@ require([
 			"flightStopovers" : param[prefix + "flightStopovers"],
 			"flightDuration" : param[prefix + "flightDuration"],
 			"flightTotal" : param[prefix + "flightTotal"],
-			"taxation": Number((param[prefix + "taxation"])).toFixed(2)
+			"taxation": param[prefix + "taxation"]
 		}));
 
 	}

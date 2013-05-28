@@ -400,6 +400,7 @@ require(["libs/text!../templates/flights/flights.html", "libs/text!../templates/
 		if ( aux = data.pricing.infants)
 			attrs[string + "infantsFare"] = aux.baseFare;
 		attrs[string + "taxation"] = Number((data.pricing.total.charges + data.pricing.total.taxes).toFixed(2));
+		attrs[string + "flightId"] = data.flightId;
 
 		return Utils.getUrl("passengers.html", (string == "ret" ? attrs : Utils.jsonConcat(attrs, param)));
 	}

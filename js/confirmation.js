@@ -13,6 +13,7 @@ require(["libs/text!../templates/confirmation/confirmation.html",
 	Utils.make_non_menu_html(confirmation_html, confirmation_validation_html);
 
 	var param = $.url().param();
+	console.log(param);
 	var flight_data_summary_html_tmp = Handlebars.compile(flight_data_summary_html);
 	var summary_passenger_title_html_tmp = Handlebars.compile(summary_passenger_title_html);
 	var summary_passenger_data_html_tmp = Handlebars.compile(summary_passenger_data_html);
@@ -68,7 +69,7 @@ require(["libs/text!../templates/confirmation/confirmation.html",
 			"flightStopovers" : param[prefix + "flightStopovers"],
 			"flightDuration" : param[prefix + "flightDuration"],
 			"flightTotal" : param[prefix + "flightTotal"],
-			"taxation" : Number((param[prefix + "taxation"])).toFixed(2)
+			"taxation" : param[prefix + "taxation"]
 		}));
 	}
 

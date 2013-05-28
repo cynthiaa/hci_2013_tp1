@@ -27,6 +27,9 @@ var validator = new FormValidator('payment-form', [{
 }], function(errors, e) {
 	var SELECTOR_ERRORS = $('.payment-error');
 	SELECTOR_ERRORS.empty();
+	var passengersArrayGenerator = function() {
+		
+	}
 
 	if (errors.length > 0) {
 		for (var i = 0; i < errors.length; i++)
@@ -36,9 +39,25 @@ var validator = new FormValidator('payment-form', [{
 	} else {
 		var param = $.url().param();
 		Utils.stopEvent(e);
-		// api.booking.bookFlight2(function(data) {
-		// }, param);
-		document.location.href = Utils.getUrl("confirmation.html", Utils.jsonConcat(param, makeJson()));
+		api.booking.bookFlight2(function(data) {
+			document.location.href = Utils.getUrl("confirmation.html", Utils.jsonConcat(param, makeJson()));
+		}, {
+			"flightId" : param.flightId,
+			"passengers" : passengersArrayGenerator(), 
+			"payment" : { 
+				"creditCard" : {
+					"number" : $("card-num").val(),
+					"expiration" : $("exp-date").val(),
+					"securityCode" : $("security-code").val(),
+					"firstName" : $(".form-component-left input")[0].val(),
+					"lastName" : $(".form-component-right input")[0].val()
+				}				
+			}, 
+			"contact" : { 
+				"email" : $(".form-component-right input")[1].val(),
+				"phones" : ["555-5555"]
+			}	
+		});
 	}
 });
 
