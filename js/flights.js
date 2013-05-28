@@ -20,7 +20,7 @@ require(["libs/text!../templates/flights/flights.html", "libs/text!../templates/
 	$("#home_link").click(function() {
 		document.location.href = Utils.getUrl("index.html", Utils.setAttrs());
 	});
-	
+
 	$("#advanced_options").click(function() {
 		document.location.href = Utils.getUrl("advanced_options.html", Utils.setAttrs());
 	});
@@ -33,6 +33,7 @@ require(["libs/text!../templates/flights/flights.html", "libs/text!../templates/
 	var param = $.url().param();
 	param.sort_key = $.trim($("#selectionOrder :selected").val().match(".* ")[0]);
 	param.sort_order = $.trim($("#selectionOrder :selected").val().match(" .*")[0]);
+	console.log(param);
 
 	completeSideBar();
 	$("#continue").hide();
@@ -44,13 +45,15 @@ require(["libs/text!../templates/flights/flights.html", "libs/text!../templates/
 	var outpagenum = 0;
 	var inTotal = 0;
 	var outTotal = 0;
+	var inSelected = 0;
+	var outSelected = 0;
 	var flights;
 	var missingFlights = false;
 
 	var paginate = function(arr, pagesize, type) {
 		var aux = new Array;
-		for (var i=0; i*pagesize < arr.length ;i++)
-			aux.push(arr.slice(i*pagesize, (i+1)*pagesize));
+		for (var i = 0; i * pagesize < arr.length; i++)
+			aux.push(arr.slice(i * pagesize, (i + 1) * pagesize));
 
 		if ( type = "inbound")
 			paramsFlightInbound = arr[0];
@@ -65,7 +68,7 @@ require(["libs/text!../templates/flights/flights.html", "libs/text!../templates/
 		var aux;
 
 		if (flightsArray !== undefined)
-			for (var i=0; i < flightsArray.length ;i++) {
+			for (var i = 0; i < flightsArray.length; i++) {
 				if (flightsArray[i].hasOwnProperty('inboundRoutes')) {
 					aux = inbound.push(flightsArray[i].inboundRoutes[0].segments[0]);
 					inbound[aux - 1].pricing = flightsArray[i].price;
@@ -85,7 +88,7 @@ require(["libs/text!../templates/flights/flights.html", "libs/text!../templates/
 			}
 
 		}
-		
+
 		if (outbound[0] !== undefined) {
 			outbound = paginate(outbound, 5, "outbound");
 			$(".outbound .empty-flights").remove();
@@ -115,13 +118,12 @@ require(["libs/text!../templates/flights/flights.html", "libs/text!../templates/
 					"arrivalCity" : page[i].arrival.cityName,
 					"departureTime" : convertDate(page[i].departure.date),
 					"arrivalTime" : convertDate(page[i].arrival.date),
-					"departureAirport" : (page[i].departure.airportDescription).split(",")[0], 
+					"departureAirport" : (page[i].departure.airportDescription).split(",")[0],
 					"arrivalAirport" : (page[i].arrival.airportDescription).split(",")[0],
 					"flightClass" : convertCabinType(page[i].cabinType),
 					"flightStopovers" : page[i].stopovers.length,
 					"flightDuration" : page[i].duration + " horas",
 					"flightTotal" : page[i].pricing.total.total,
-					"allFares": "Adultos: " + page[i].pricing.adults.baseFare + " Impuestos: " + (page[i].pricing.total.charges + page[i].pricing.total.taxes),
 					"buttonValue" : createUrl(page[i], type)
 				}));
 
@@ -134,10 +136,9 @@ require(["libs/text!../templates/flights/flights.html", "libs/text!../templates/
 	var convertDate = function(stringDate) {
 
 		var finalDate;
-		
+
 		var dateRegex = /^(\d{4})\-(\d{1,2})\-(\d{1,2})\ (\d{1,2})\:(\d{1,2})\:(\d{1,2})$/;
 		var dateRegexResult = stringDate.match(dateRegex);
-
 
 		return dateRegexResult[3] + "/" + dateRegexResult[2] + "/" + dateRegexResult[1] + " - " + dateRegexResult[4] + ":" + dateRegexResult[5];
 	}
@@ -161,15 +162,80 @@ require(["libs/text!../templates/flights/flights.html", "libs/text!../templates/
 			$(".inbound-pages span").text("/" + flights.inbound.length);
 		$(".outbound-pages span").text("/" + flights.outbound.length);
 	}
+	var refreshSelected = function() {
+		$(".inbound .flight-radio input").each(function(i) {
+			if ($(this).is(":checked"))
+				inSelected = i;
+		});
+		$(".outbound .flight-radio input").each(function(i) {
+			if ($(this).is(":checked"))
+				outSelected = i;
+		});
+		console.log("inbound selected: " + inSelected);
+		console.log("outbound selected: " + outSelected);
+	};
+
 	var refreshTotals = function() {
-		if (!oneWay)
-			inTotal = parseFloat($(".inbound .flight-radio input:checked").attr("data-total"));
-		outTotal = parseFloat($(".outbound .flight-radio input:checked").attr("data-total"));
-		if(isNaN(inTotal))
-			inTotal= 0;
-		if(isNaN(outTotal))
-			outTotal= 0;
-		$(".summary div").text(("Total: U$S " + (inTotal + outTotal)).substring(0, 19));
+
+		var inData = flights.inbound[inpagenum];
+		if (inData != undefined)
+			inData = inData[inSelected];
+		var outData = flights.outbound[outpagenum];
+		if (outData != undefined)
+			outData = outData[outSelected];
+
+		var inAdulFare = 0;
+		var inChilFare = 0;
+		var inInfFare = 0;
+		var inTaxation = 0;
+		var outAdulFare = 0;
+		var outChilFare = 0;
+		var outInfFare = 0;
+		var outTaxation = 0;
+		var strChil = "";
+		var strInf = "";
+
+		inTotal = (!oneWay) ? inData.pricing.total.total : 0;
+		outTotal = outData.pricing.total.total;
+
+		if (inData !== undefined) {
+			inAdulFare = inData.pricing.adults.baseFare;
+			if (param.children != 0)
+				inChilFare = inData.pricing.children.baseFare;
+			if (param.infants != 0)
+				inInfFare = inData.pricing.infants.baseFare;
+			inTaxation = Number((inData.pricing.total.charges + inData.pricing.total.taxes).toFixed(2));
+		}
+
+		if (outData !== undefined) {
+			outAdulFare = outData.pricing.adults.baseFare;
+			if (param.children != 0)
+				outChilFare = outData.pricing.children.baseFare;
+			if (param.infants != 0)
+				outInfFare = outData.pricing.infants.baseFare;
+			outTaxation = Number((outData.pricing.total.charges + outData.pricing.total.taxes).toFixed(2));
+		}
+
+		if ((inChilFare + outChilFare) != 0)
+			strChil = ("U$S " + Number((inChilFare + outChilFare).toFixed(2)) + "(c/ men.), ");
+		if ((inInfFare + outInfFare) != 0)
+			strInf = ("U$S " + Number((inInfFare + outInfFare).toFixed(2)) + " (c/ inf.), ");
+
+		var str = " [" + ("U$S " + Number((inAdulFare+outAdulFare).toFixed(2)) + " (c/ adul.), ") + strChil + strInf + ("U$S " + Number((inTaxation+outTaxation).toFixed(2)) + " (c/ imp.)") + "]";
+
+		console.log("inbound adult fare: " + inAdulFare);
+		console.log("inbound children fare: " + inChilFare);
+		console.log("inbound infant fare: " + inInfFare);
+		console.log("inbound taxation: " + inTaxation);
+		console.log("outbound adult fare: " + outAdulFare);
+		console.log("outbound children fare: " + outChilFare);
+		console.log("outbound infant fare: " + outInfFare);
+		console.log("outbound taxation: " + outTaxation);
+		console.log("children string: " + strChil);
+		console.log("infants string: " + strInf);
+		console.log("final string: " + str);
+
+		$(".summary div").text(("Total: U$S " + Number((inTotal + outTotal).toFixed(2))) + str);
 	}
 	var clearFlights = function() {
 		if (!oneWay)
@@ -183,11 +249,12 @@ require(["libs/text!../templates/flights/flights.html", "libs/text!../templates/
 			$(".inbound .flight-radio input").first().prop('checked', 'checked');
 			$(".inbound-pages .page-number").val(inpagenum + 1);
 		}
-		if(flights.outbound[outpagenum] !== undefined) {
+		if (flights.outbound[outpagenum] !== undefined) {
 			showFlights($(".outbound form"), flights.outbound[outpagenum], "outbound");
 			$(".outbound .flight-radio input").first().prop('checked', 'checked');
 			$(".outbound-pages .page-number").val(outpagenum + 1);
 		}
+		refreshSelected();
 		refreshTotals();
 	}
 	var clearPageNums = function() {
@@ -201,7 +268,7 @@ require(["libs/text!../templates/flights/flights.html", "libs/text!../templates/
 			clearPageNums();
 			refreshPageFooting();
 			refreshPage();
-			if((flights.inbound[0] == undefined && !oneWay) || flights.outbound[0] == undefined)
+			if ((flights.inbound[0] == undefined && !oneWay) || flights.outbound[0] == undefined)
 				$("#continue").hide();
 			else
 				$("#continue").show();
@@ -230,6 +297,7 @@ require(["libs/text!../templates/flights/flights.html", "libs/text!../templates/
 	$("div").click(function() {
 		if (!missingFlights)
 			refreshTotals();
+		refreshSelected();
 	});
 
 	$(".inbound-prev").click(function() {
@@ -290,7 +358,8 @@ require(["libs/text!../templates/flights/flights.html", "libs/text!../templates/
 			$("#pagination-bar-right").hide();
 			$(".vdivider").hide();
 			$(".pagination-bar").css("width", "100%");
-			$(".pagination-bar").css("text-align", "center"); javascript:toggleFlightMode('one_way')
+			$(".pagination-bar").css("text-align", "center");
+			javascript:toggleFlightMode('one_way')
 		}
 	}
 
@@ -343,13 +412,14 @@ require(["libs/text!../templates/flights/flights.html", "libs/text!../templates/
 		attrs[string + "flightDuration"] = data.duration + " horas";
 		attrs[string + "flightTotal"] = data.pricing.total.total;
 		attrs[string + "adultsFare"] = data.pricing.adults.baseFare;
-		if(aux= data.pricing.children)
+		if ( aux = data.pricing.children)
 			attrs[string + "childrenFare"] = aux.baseFare;
-		if(aux= data.pricing.children)
-			attrs[string + "infantsFare"] = data.pricing.infants.baseFare;
-		attrs[string + "taxation"] = (data.pricing.total.charges + data.pricing.total.taxes);
+		if ( aux = data.pricing.infants)
+			attrs[string + "infantsFare"] = aux.baseFare;
+		attrs[string + "taxation"] = Number((data.pricing.total.charges + data.pricing.total.taxes).toFixed(2));
 
 		return Utils.getUrl("passengers.html", (string == "ret" ? attrs : Utils.jsonConcat(attrs, param)));
 	}
+
 });
 
