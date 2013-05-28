@@ -59,7 +59,7 @@ require(["libs/text!../templates/payment/payment.html", "libs/text!../templates/
 			"flightStopovers" : param[prefix + "flightStopovers"],
 			"flightDuration" : param[prefix + "flightDuration"],
 			"flightTotal" : param[prefix + "flightTotal"],
-			"taxation": (param[prefix + "taxation"]).substring(0, 18)
+			"taxation": Number((param[prefix + "taxation"]).toFixed(2))
 		}));
 	}
 
