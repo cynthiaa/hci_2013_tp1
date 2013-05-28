@@ -12,7 +12,7 @@ API.prototype = (function() {
 		for (var property in params)
 		if (params.hasOwnProperty(property))
 			url += "&" + property + "=" + encodeURIComponent(params[property]);
-
+		console.log(url);
 		return url;
 	}
 	var call = function(relativeUrl, method, params, callbacks) {
@@ -25,8 +25,6 @@ API.prototype = (function() {
 				alert("Disculpe las molestias ocasionadas, el servidor no se encuentra disponible en este momento.");
 			}
 		}).done(function(data) {
-
-			console.log(data);
 			if (callbacks.success)
 				callbacks.success(data);
 

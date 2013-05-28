@@ -1,7 +1,7 @@
 var validator = new FormValidator('payment-form', [{
 	name : 'card_num',
 	display : 'numero de tarjeta',
-	rules : 'required|max_legth(16)|numeric'
+	rules : 'required|max_legth(16)|numeric|callback_is_valid_card'
 }, {
 	name : 'exp-date',
 	display : 'fecha de vencimiento',
@@ -60,6 +60,23 @@ var validator = new FormValidator('payment-form', [{
 		});
 	}
 });
+
+validator.registerCallback("is_valid_card", function(value) {
+	var api = new API();
+	var callback = {
+		success : function(result) {
+			console.log(result);
+			return result.valid;
+		}
+	}
+	var params = {
+		number : $("#card-num").val(),
+		exp_date : $("#exp-date").val(),
+		sec_code : $("#security-code").val()
+	};
+	var ans = api.booking.validateCreditCard(callback, params);
+
+}).setMessage('is_valid_card', "El numero de tarjeta de crédito es inválido");
 
 function makeJson() {
 	var json = new Object();
