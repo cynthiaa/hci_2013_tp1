@@ -33,7 +33,6 @@ require(["libs/text!../templates/flights/flights.html", "libs/text!../templates/
 	var param = $.url().param();
 	param.sort_key = $.trim($("#selectionOrder :selected").val().match(".* ")[0]);
 	param.sort_order = $.trim($("#selectionOrder :selected").val().match(" .*")[0]);
-	console.log(param);
 
 	completeSideBar();
 	$("#continue").hide();
@@ -112,7 +111,6 @@ require(["libs/text!../templates/flights/flights.html", "libs/text!../templates/
 			for (var i = 0; i < page.length; i++) {
 
 				var airlineLink = airlineToAirlineLink(page[i].airlineId);
-				console.log(page[i]);
 				$(form).append(flights_data_tmp({
 					"departureCity" : page[i].departure.cityName,
 					"arrivalCity" : page[i].arrival.cityName,
@@ -171,8 +169,6 @@ require(["libs/text!../templates/flights/flights.html", "libs/text!../templates/
 			if ($(this).is(":checked"))
 				outSelected = i;
 		});
-		console.log("inbound selected: " + inSelected);
-		console.log("outbound selected: " + outSelected);
 	};
 
 	var refreshTotals = function() {
@@ -222,19 +218,6 @@ require(["libs/text!../templates/flights/flights.html", "libs/text!../templates/
 			strInf = ("U$S " + Number((inInfFare + outInfFare).toFixed(2)) + " (c/ inf.), ");
 
 		var str = " [" + ("U$S " + Number((inAdulFare+outAdulFare).toFixed(2)) + " (c/ adul.), ") + strChil + strInf + ("U$S " + Number((inTaxation+outTaxation).toFixed(2)) + " (c/ imp.)") + "]";
-
-		console.log("inbound adult fare: " + inAdulFare);
-		console.log("inbound children fare: " + inChilFare);
-		console.log("inbound infant fare: " + inInfFare);
-		console.log("inbound taxation: " + inTaxation);
-		console.log("outbound adult fare: " + outAdulFare);
-		console.log("outbound children fare: " + outChilFare);
-		console.log("outbound infant fare: " + outInfFare);
-		console.log("outbound taxation: " + outTaxation);
-		console.log("children string: " + strChil);
-		console.log("infants string: " + strInf);
-		console.log("final string: " + str);
-
 		$(".summary div").text(("Total: U$S " + Number((inTotal + outTotal).toFixed(2))) + str);
 	}
 	var clearFlights = function() {
