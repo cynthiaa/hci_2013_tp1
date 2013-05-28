@@ -53,6 +53,10 @@ require(["libs/text!../templates/confirmation/confirmation.html",
 		"email" : param["owneremail"]
 	}));
 	
+	$("#total").append("TOTAL: " + ((Number(param["flightTotal"]) + Number(param["retflightTotal"]) + Number(param["taxation"]) + Number(param["rettaxation"])).toFixed(2)))s;
+	
+	
+	
 	function showData(type) {
 		var prefix = (type == "Vuelta") ? "ret" : "";
 
